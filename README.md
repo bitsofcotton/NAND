@@ -25,3 +25,11 @@ Being determined syntaxes.
 * * * * const cast
 * * * operator +=item
 * * * * operator with some extension of C.
+* * * void func(type, ...)
+* source
+* * require 'a/b/c.hg' : python style.
+* * using a.b.c.classd : C++ style.
+* * void func(var a : type, ...)
+* * no exception methods, instead of it, template class result.
+* * 'for ... in ...', no 'for ... ; ... ; ...'.
+* * 
