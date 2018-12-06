@@ -1,7 +1,7 @@
 # NAND
 Natural simpler compiler with natural simpler documentation on pairs of file.
 Aims to readability (for me), compact and low-complexity implementation, moderate worst-case speed, not slow better-case speed.
-And aims to revert operation via QP solver. Library oriented. Convert to C language.
+And aims to revert operation via QP solver. Library oriented. Convert to C language. So it's huge, it should import prior sources with license notifications, so multiple file link is needed.
 
 Stub of planning project.
 
@@ -33,3 +33,10 @@ Being determined syntaxes.
 * * no exception methods, instead of it, template class result.
 * * no thread directives, instead of it, template class.
 * * with parallel 'for ... in ...', no 'for ... ; ... ; ...'.
+* special classes can be overrided.
+* * Int<8,false>
+* * Int<16,false>
+* * Int<32,false>
+* * Int<64,false>
+* * Float is for speed, it's not invertible in general.
+* * Duck
