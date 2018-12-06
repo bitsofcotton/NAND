@@ -31,5 +31,5 @@ Being determined syntaxes.
 * * using a.b.c.classd : C++ style.
 * * void func(var a : type, ...)
 * * no exception methods, instead of it, template class result.
-* * 'for ... in ...', no 'for ... ; ... ; ...'.
-* * 
+* * no thread directives, instead of it, template class.
+* * with parallel 'for ... in ...', no 'for ... ; ... ; ...'.
