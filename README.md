@@ -1,7 +1,7 @@
 # NAND
 Natural simpler compiler with natural simpler documentation on pairs of file.
 Aims to readability (for me), compact and low-complexity implementation, moderate worst-case speed, not slow better-case speed.
-And aims to revert operation via QP solver. Library oriented.
+And aims to revert operation via QP solver. Library oriented. Convert to C language.
 
 Stub of planning project.
 
