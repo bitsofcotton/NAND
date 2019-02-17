@@ -34,9 +34,9 @@ Being determined syntaxes.
 * * no thread directives, instead of it, template class.
 * * with parallel 'for ... in ...', no 'for ... ; ... ; ...'.
 * special classes can be overrided.
-* * Int<8,false>
-* * Int<16,false>
-* * Int<32,false>
-* * Int<64,false>
+* * Int<8>
+* * Int<16>
+* * Int<32>
+* * Int<64>
 * * Float is for speed, it's not invertible in general.
 * * Duck
