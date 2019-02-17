@@ -23,7 +23,7 @@ Being determined syntaxes.
 * * * * a is instanced object of b.
 * * * var a : const(a)
 * * * * const cast
-* * * operator +=item
+* * * operator +=item val
 * * * * operator with some extension of C.
 * * * void func(type, ...)
 * source
