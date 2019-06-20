@@ -5,14 +5,11 @@ And aims to revert operation via QP solver. Library oriented. Convert to C langu
 
 Stub of planning project.
 
-# Status
-Being determined syntaxes.
-
 # Syntax Before draft.
 * header
 * * require : require once.
 * * include : include multiple with this indent.
-* * class   : pure class.
+* * class   : pure class, only one class inherit is accepted.
 * * extend  : pure extends class.
 * * def     : type and some definitions, block-wise.
 * * var     : like swift:
@@ -25,11 +22,13 @@ Being determined syntaxes.
 * * * * const cast
 * * * operator +=item val
 * * * * operator with some extension of C.
-* * * void func(type, ...)
+* * * function name(type, ...) : void
+* * * start with _ as private
+* * * * from some programming languages.
+* * * this and leaf object references
 * source
-* * require 'a/b/c.hg' : python style.
-* * using a.b.c.classd : C++ style.
-* * void func(var a : type, ...)
+* * using a.b.c.classd : name
+* * function name(var a : type, ...) : type
 * * no exception methods, instead of it, template class result.
 * * no thread directives, instead of it, template class.
 * * with parallel 'for ... in ...', no 'for ... ; ... ; ...'.
