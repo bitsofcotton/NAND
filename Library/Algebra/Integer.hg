@@ -1,0 +1,203 @@
+class Int<def bits>
+  def int  : Int<bits>
+  def bool : Int<1>
+  
+  fn  ctor()    : void
+  fn  ctor(def) : void
+  fn  dtor()    : void
+  fn  operator []  (const Int) const : bool
+  fn  operator !   () const : bool
+  fn  operator ~   () const : int
+  fn  operator ++  () const : int
+  fn  operator ++  (void) const : int
+  fn  operator --  ()     const : int
+  fn  operator --  (void) const : int
+  fn  operator -   ()     const : int
+  fn  operator *   (const int) const : int
+  fn  operator **  (const int) const : int
+  fn  operator /   (const int) const : int
+  fn  operator %   (const int) const : int
+  fn  operator +   (const int) const : int
+  fn  operator -   (const int) const : int
+  fn  operator <<  (const Int) const : int
+  fn  operator >>  (const Int) const : int
+  fn  operator <   (const int) const : bool
+  fn  operator <=  (const int) const : bool
+  fn  operator >   (const int) const : bool
+  fn  operator >=  (const int) const : bool
+  fn  operator ==  (const int) const : bool
+  fn  operator !=  (const int) const : bool
+  fn  operator &   (const int) const : int
+  fn  operator ^   (const int) const : int
+  fn  operator |   (const int) const : int
+  fn  operator &&  (const int) const : bool
+  fn  operator ||  (const int) const : bool
+  fn  operator :=  (const int)       : int
+  fn  operator +=  (const int)       : int
+  fn  operator -=  (const int)       : int
+  fn  operator *=  (const int)       : int
+  fn  operator **= (const int)       : int
+  fn  operator /=  (const int)       : int
+  fn  operator %=  (const int)       : int
+  fn  operator /=  (const int)       : int
+  fn  operator <<= (const Int)       : int
+  fn  operator >>= (const Int)       : int
+  fn  operator &=  (const int)       : int
+  fn  operator |=  (const int)       : int
+
+# stub
+class InvInt<def bits>
+  def int  : InvInt<bits>
+  def bool : Int<1>
+  def qp   : stub
+  
+  fn  ctor()    : void
+  fn  ctor(def) : void
+  fn  dtor()    : void
+  fn  operator []  (const Int) const : bool
+  fn  operator !   () const : bool
+  fn  operator ~   () const : int
+  fn  operator ++  () const : int
+  fn  operator ++  (void) const : int
+  fn  operator --  ()     const : int
+  fn  operator --  (void) const : int
+  fn  operator -   ()     const : int
+  fn  operator *   (const int) const : int
+  fn  operator **  (const int) const : int
+  fn  operator /   (const int) const : int
+  fn  operator %   (const int) const : int
+  fn  operator +   (const int) const : int
+  fn  operator -   (const int) const : int
+  fn  operator <<  (const Int) const : int
+  fn  operator >>  (const Int) const : int
+  fn  operator <   (const int) const : bool
+  fn  operator <=  (const int) const : bool
+  fn  operator >   (const int) const : bool
+  fn  operator >=  (const int) const : bool
+  fn  operator ==  (const int) const : bool
+  fn  operator !=  (const int) const : bool
+  fn  operator &   (const int) const : int
+  fn  operator ^   (const int) const : int
+  fn  operator |   (const int) const : int
+  fn  operator &&  (const int) const : bool
+  fn  operator ||  (const int) const : bool
+  fn  operator :=  (const int)       : int
+  fn  operator +=  (const int)       : int
+  fn  operator -=  (const int)       : int
+  fn  operator *=  (const int)       : int
+  fn  operator **= (const int)       : int
+  fn  operator /=  (const int)       : int
+  fn  operator %=  (const int)       : int
+  fn  operator /=  (const int)       : int
+  fn  operator <<= (const Int)       : int
+  fn  operator >>= (const Int)       : int
+  fn  operator &=  (const int)       : int
+  fn  operator |=  (const int)       : int
+  fn  invert(const int) : qp
+
+class Signed<def bits, def type>
+  def int  : Signed<bits, type>
+  def bool : Int<1>
+  
+  fn  ctor()    : void
+  fn  ctor(def) : void
+  fn  dtor()    : void
+  fn  operator []  (const Int) const : bool
+  fn  operator !   () const : bool
+  fn  operator ~   () const : int
+  fn  operator ++  () const : int
+  fn  operator ++  (void) const : int
+  fn  operator --  ()     const : int
+  fn  operator --  (void) const : int
+  fn  operator -   ()     const : int
+  fn  operator *   (const int) const : int
+  fn  operator **  (const int) const : int
+  fn  operator /   (const int) const : int
+  fn  operator %   (const int) const : int
+  fn  operator +   (const int) const : int
+  fn  operator -   (const int) const : int
+  fn  operator <<  (const Int) const : int
+  fn  operator >>  (const Int) const : int
+  fn  operator <   (const int) const : bool
+  fn  operator <=  (const int) const : bool
+  fn  operator >   (const int) const : bool
+  fn  operator >=  (const int) const : bool
+  fn  operator ==  (const int) const : bool
+  fn  operator !=  (const int) const : bool
+  fn  operator &   (const int) const : int
+  fn  operator ^   (const int) const : int
+  fn  operator |   (const int) const : int
+  fn  operator &&  (const int) const : bool
+  fn  operator ||  (const int) const : bool
+  fn  operator :=  (const int)       : int
+  fn  operator +=  (const int)       : int
+  fn  operator -=  (const int)       : int
+  fn  operator *=  (const int)       : int
+  fn  operator **= (const int)       : int
+  fn  operator /=  (const int)       : int
+  fn  operator %=  (const int)       : int
+  fn  operator /=  (const int)       : int
+  fn  operator <<= (const Int)       : int
+  fn  operator >>= (const Int)       : int
+  fn  operator &=  (const int)       : int
+  fn  operator |=  (const int)       : int
+  fn  invert(const int) : qp
+
+class pZ<def type, type z>
+  def pz   : pz<type, z>
+  def bool : Int<1>
+  
+  fn  ctor()    : void
+  fn  ctor(def) : void
+  fn  dtor()    : void
+  fn  operator !   () const : bool
+  fn  operator ~   () const : pz
+  fn  operator ++  () const : pz
+  fn  operator ++  (void) const : pz
+  fn  operator --  ()     const : pz
+  fn  operator --  (void) const : pz
+  fn  operator -   ()     const : pz
+  fn  operator *   (const int) const : pz
+  fn  operator **  (const int) const : pz
+  fn  operator /   (const int) const : pz
+  fn  operator %   (const int) const : pz
+  fn  operator +   (const int) const : pz
+  fn  operator -   (const int) const : pz
+  fn  operator <<  (const Int) const : pz
+  fn  operator >>  (const Int) const : pz
+  fn  operator <   (const int) const : bool
+  fn  operator <=  (const int) const : bool
+  fn  operator >   (const int) const : bool
+  fn  operator >=  (const int) const : bool
+  fn  operator ==  (const int) const : bool
+  fn  operator !=  (const int) const : bool
+  fn  operator &   (const int) const : pz
+  fn  operator ^   (const int) const : pz
+  fn  operator |   (const int) const : pz
+  fn  operator &&  (const int) const : bool
+  fn  operator ||  (const int) const : bool
+  fn  operator :=  (const int)       : pz
+  fn  operator +=  (const int)       : pz
+  fn  operator -=  (const int)       : pz
+  fn  operator *=  (const int)       : pz
+  fn  operator **= (const int)       : pz
+  fn  operator /=  (const int)       : pz
+  fn  operator %=  (const int)       : pz
+  fn  operator /=  (const int)       : pz
+  fn  operator <<= (const Int)       : pz
+  fn  operator >>= (const Int)       : pz
+  fn  operator &=  (const int)       : pz
+  fn  operator |=  (const int)       : pz
+
+# class Band<def type> : Complex<type>
+
+fn gcd<def type>(const type, const type) : type
+fn lcm<def type>(const type, const type) : type
+fn factor2<def type>(const type) : type
+fn max<def type>(const type, const type) : type
+fn min<def type>(const type, const type) : type
+fn abs<def type>(const type) : type
+
+// Solve ax + by = c in Z, a, b, c are const.
+fn eucleidos<def type>(const type, const type, const type, type, type)
+
