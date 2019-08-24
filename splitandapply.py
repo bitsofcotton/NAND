@@ -119,14 +119,14 @@ def cut(s):
   bra = {}
   bra[")"] = "("
   bra["}"] = "{"
-  bra[">"] = "<"
+  bra["]"] = "["
   braket = {}
   braket["("] = "("
   braket[")"] = ")"
   braket["{"] = "{"
   braket["}"] = "}"
-  braket["<"] = "<"
-  braket[">"] = ">"
+  braket["["] = "["
+  braket["]"] = "]"
   work   = [{}]
   work[- 1]["cache"] = []
   work[- 1]["line"]  = 1
