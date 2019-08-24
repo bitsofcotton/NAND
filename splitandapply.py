@@ -147,6 +147,8 @@ def cut(s):
               print "NG indent: ", ss, " indent: ", indent
           work[- 1]["indent"] = indent
           indent = - 1
+      if(0 < len(mode) and p != '\r' and p != '\n' and mode[- 1] == '\\'):
+        mode = mode[:-1]
       if(p == '\\'):
         mode += '\\'
       elif(p == '\r' or p == '\n'):
