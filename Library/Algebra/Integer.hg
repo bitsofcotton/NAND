@@ -95,6 +95,57 @@ class InvInt<def bits>
   fn  operator |=  (const int)       : int
   fn  invert(const int) : qp
 
+# stub
+class ParaInt<def bits, def blocks>
+  def int  : ParaInt<bits, blocks>
+  def bint : Int<blocks>
+  def bool : Int<1>
+  
+  fn  ctor()    : void
+  fn  ctor(def) : void
+  fn  dtor()    : void
+  fn  seed(const bint) : int
+  fn  operator []  (const Int) const : bool
+  fn  operator !   () const : bool
+  fn  operator ~   () const : int
+  fn  operator ++  () const : int
+  fn  operator ++  (void) const : int
+  fn  operator --  ()     const : int
+  fn  operator --  (void) const : int
+  fn  operator -   ()     const : int
+  fn  operator *   (const int) const : int
+  fn  operator **  (const int) const : int
+  fn  operator /   (const int) const : int
+  fn  operator %   (const int) const : int
+  fn  operator +   (const int) const : int
+  fn  operator -   (const int) const : int
+  fn  operator <<  (const Int) const : int
+  fn  operator >>  (const Int) const : int
+  fn  operator <   (const int) const : bool
+  fn  operator <=  (const int) const : bool
+  fn  operator >   (const int) const : bool
+  fn  operator >=  (const int) const : bool
+  fn  operator ==  (const int) const : bool
+  fn  operator !=  (const int) const : bool
+  fn  operator &   (const int) const : int
+  fn  operator ^   (const int) const : int
+  fn  operator |   (const int) const : int
+  fn  operator &&  (const int) const : bool
+  fn  operator ||  (const int) const : bool
+  fn  operator :=  (const int)       : int
+  fn  operator +=  (const int)       : int
+  fn  operator -=  (const int)       : int
+  fn  operator *=  (const int)       : int
+  fn  operator **= (const int)       : int
+  fn  operator /=  (const int)       : int
+  fn  operator %=  (const int)       : int
+  fn  operator /=  (const int)       : int
+  fn  operator <<= (const Int)       : int
+  fn  operator >>= (const Int)       : int
+  fn  operator &=  (const int)       : int
+  fn  operator |=  (const int)       : int
+  fn  invert(const int) : qp
+
 class Signed<def bits, def type>
   def int  : Signed<bits, type>
   def bool : Int<1>
@@ -141,7 +192,6 @@ class Signed<def bits, def type>
   fn  operator >>= (const Int)       : int
   fn  operator &=  (const int)       : int
   fn  operator |=  (const int)       : int
-  fn  invert(const int) : qp
 
 class pZ<def type, type z>
   def pz   : pz<type, z>
