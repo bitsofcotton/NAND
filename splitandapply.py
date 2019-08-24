@@ -3,147 +3,186 @@
 import sys
 import re
 
-def parse_header(s, reqs, incs):
-  lines  = []
-  s     += "\n"
-  # cut with indent and quot.
-  indent = 0
-  pidt   = False
-  mode   = ""
-  temp   = [0, 0, ""]
-  ws         = {}
-  ws[' ']    = ' '
-  ws['\t']   = '\t'
-  nl         = {}
-  nl['\n']   = '\n'
-  nl['\r']   = '\r'
-  quot       = {}
-  quot['\''] = '\''
-  quot['\"'] = '\"'
-  quot['\\'] = '\\'
-  for ss in range(0, len(s)):
-    pp = re.split(r"([\ \t\n\r\"\'\(\)\{\}\<\>\:\,])", s[ss])
-    for p in pp:
-      if(0 < len(mode) and mode[- 1] in quot):
-        if(p in quot and 0 < len(mode) and mode[- 1] == p):
-          mode = mode[:-1]
-        else:
-          temp[- 1] += p
-        continue
-      elif(p in ws or p == ''):
-        if(pidt):
-          if(0 < len(temp[- 1])):
-            temp.append("")
-        else:
-          indent += 1
-          temp[1] = indent
-        continue
-      else:
-        pidt  = True
-      if(p in quot):
-        mode += p
-      elif(p in nl):
-        if(0 < len(mode)):
-          print "NG @ line:", ss + 1, " : stack: ", temp
-        if(len(temp[- 1]) <= 0):
-          temp = temp[:-1]
-        if(2 < len(temp)):
-          lines.append(temp)
-        indent = 0
-        pidt   = False
-        mode   = ""
-        temp   = [0, 0, ""]
-      elif(0 < len(p)):
-        temp[- 1] += p
-        temp.append("")
-  lines.append(temp)
-  lines.append([- 1, - 1])
-  # cut input to class, function, definition list.
-  indent   = 0
-  mode     = ""
-  NAME     = 0
-  CLASSTBL = 1
-  DEFTBL   = 2
-  VARTBL   = 3
-  root     = {}
-  root["root"] = ["root", {}, {}, {}, [], []]
-  work     = root["root"]
-  for ss in range(0, len(lines)):
-    s = lines[ss]
-    if(mode == "#"):
-      if(indent <= s[1]):
-        continue
-      mode = ""
-    elif(0 < len(mode) and s[1] < indent):
-      mode = ""
-      work = root["root"]
-    if(len(s) < 3):
-      continue
-    elif(s[2] == "require"):
-      if(not (s[3] in reqs) and mode == ""):
-        f = open(s[3])
-        reqs[s[3]] = s[3]
-        # XXX: collidion?
-        root.update(parse_header(f.readlines(), reqs, incs))
-        f.close()
-    elif(s[2] == "include"):
-      if(s[3] in lincs):
-        print "recursive includes."
-        continue
-      f = open(s[3])
-      lincs = []
-      for u in range(0, len(incs)):
-        lincs.append(incs[u])
-      lincs.append(s[3])
-      r = parse_header(f.readlines(), reqs, lincs)
-      # XXX indent and collidion?
-      root.update(r)
-      f.close()
-    elif(s[2] == "#"):
-      mode   = "#"
-      indent = s[1] + 2
-    elif(s[2] == "class" or s[2] == "extend"):
-      if(mode != ""):
-        print "internal error, class or extend must be top of scope"
-        break
-      mode   = "C"
-      if(ss + 1 < len(lines)):
-        indent = lines[ss + 1][1]
-      else:
-        print "internal error, class or extend with null line."
-        break
-      name   = []
-      uu     = len(s)
-      for u in range(3, len(s)):
-        if(s[u] == ":"):
-          uu = u
-          break
-        name.append(s[u])
-      name2  = []
-      for u in range(uu + 1, len(s)):
-        if(s[u] == ":"):
-          print "NG"
-        name2.append(s[u])
-      root["".join(name)] = ["".join(name), {}, {}, {}, name, name2]
-      work = root["".join(name)]
-    elif(s[2] == "using"):
-      work[DEFTBL][s[3]] = s[4:]
-    elif(s[2] == "def"):
-      work[DEFTBL][s[3]] = s[4:]
-    elif(s[2] == "var"):
-      work[VARTBL][s[3]] = s[5:]
-    else:
-      # functions.
-      print s
-  print root
-  return root
+# thanks to: https://qiita.com/hoto17296/items/e1f80fef8536a0e5e7db
+flatten = lambda x: "_".join([z for y in x for z in (flatten(y) if hasattr(y, '__iter__') and not isinstance(y, str) else (y,))])
 
-def parse_source(s):
+def header_block(blocks):
+  uroot   = {}
+  vroot   = {}
+  droot   = {}
+  froot   = {}
+  nroot   = {}
+  uroot["root"] = {}
+  vroot["root"] = {}
+  droot["root"] = {}
+  froot["root"] = {}
+  nroot["root"] = ["root"]
+  ustack  = uroot["root"]
+  vstack  = vroot["root"]
+  dstack  = droot["root"]
+  fstack  = froot["root"]
+  chgc    = False
+  indent  = 0
+  for a in blocks:
+    if(chgc):
+      indent = a[1]
+      chgc   = False
+    if(indent != a[1]):
+      ustack = uroot["root"]
+      vstack = vroot["root"]
+      dstack = droot["root"]
+      fstack = froot["root"]
+    if(a[0] == "class" or a[0] == "extend"):
+      chgc   = True
+      if(not (flatten(a[2]) in vroot)):
+        uroot[flatten(a[2])] = {}
+        vroot[flatten(a[2])] = {}
+        droot[flatten(a[2])] = {}
+        froot[flatten(a[2])] = {}
+        nroot[flatten(a[2])] = a[2]
+      ustack = uroot[flatten(a[2])]
+      vstack = vroot[flatten(a[2])]
+      dstack = droot[flatten(a[2])]
+      fstack = froot[flatten(a[2])]
+    elif(a[0] == "var" or \
+         a[0] == "fn"  or \
+         a[0] == "def" or \
+         a[0] == "using"):
+      # def class int
+      if(flatten(a[2]) in vstack):
+        print "hash collidion"
+      if(a[0] == "var"):
+        vstack[flatten(a[2])] = [a[2], a[3]]
+      elif(a[0] == "fn"):
+        fstack[flatten(a[2])] = [a[2]]
+        fstack[flatten(a[2])].extend(a[3])
+      elif(a[0] == "def"):
+        dstack[flatten(a[2])] = [a[2], a[3]]
+      elif(a[0] == "using"):
+        ustack[flatten(a[2])] = [a[2], a[3]]
+  res = {}
+  res["using"] = uroot
+  res["var"]   = vroot
+  res["def"]   = droot
+  res["fn"]    = froot
+  res["name"]  = nroot
+  return res
+
+# split each line.
+def header_parts(a):
+  b = a["cache"]
+  if(len(b) <= 0 or len(b[0]) <= 0):
+    return []
+  term = {}
+  term["var"]   = "var"
+  term["fn"]    = "fn"
+  term["using"] = "using"
+  term["def"]   = "def"
+  if(b[0] == "class" or b[0] == "extend"):
+    if(a["indent"] != 0):
+      print "NG no root class.", a["line"]
+    # detect ':'.
+    colon = 0
+    for u in range(1, len(b)):
+      if(b[u] == ":"):
+        if(colon < 0):
+          colon = u
+        else:
+          print "NG multiple colon: ", a, b
+    if(colon != 0 and b[0] == "extend"):
+      print "NG @ extend parse", a["line"]
+      colon = 0
+    if(colon == 0):
+      return ["class", a["indent"], b[1:]]
+    return ["class", a["indent"], b[1:colon], b[colon + 1:]]
+  elif(b[0] in term):
+    idx = - 1
+    for u in range(1, len(b)):
+      if(b[u] == ":"):
+        if(idx < 0):
+          idx = u
+        else:
+          print "NG multiple colon: ", a, b
+    if(idx < 0):
+      print "NG no colon: ", a, b
+      return []
+    return [b[0], a["indent"], b[1:idx], b[idx + 1:]]
+  else:
+    print "NG: ", b[0], ",", a["line"]
   return
 
-f = open(sys.argv[1])
-reqs = {}
-reqs[sys.argv[1]] = sys.argv[1]
-parse_header(f.readlines(), reqs, [])
-f.close()
+# original source to [work, ...]
+# work["line"]   : line no.
+# work["indent"] : indent no.
+# work["cache"]  : splitted lines with no blank chars.
+def cut(s):
+  bra = {}
+  bra[")"] = "("
+  bra["}"] = "{"
+  bra[">"] = "<"
+  braket = {}
+  braket["("] = "("
+  braket[")"] = ")"
+  braket["{"] = "{"
+  braket["}"] = "}"
+  braket["<"] = "<"
+  braket[">"] = ">"
+  work   = [{}]
+  work[- 1]["cache"] = []
+  work[- 1]["line"]  = 1
+  stack  = [work[- 1]["cache"]]
+  indent = 0
+  mode   = ''
+  for ss in range(0, len(s)):
+    pp = re.split(r"([\ \t\n\r\(\)\{\}\<\>\:\,])", s[ss])
+    for p in pp:
+      if(p == ' ' or p == '\t' or p == ''):
+        if(indent >= 0 and p != ''):
+          indent += 1
+        continue
+      else:
+        if(indent >= 0):
+          if(0 < len(work[- 1]["cache"])):
+            if(work["indent"] != indent):
+              print "NG indent: ", ss, " indent: ", indent
+          work[- 1]["indent"] = indent
+          indent = - 1
+      if(p == '\\'):
+        mode += '\\'
+      elif(p == '\r' or p == '\n'):
+        if(len(mode) > 0 and mode[- 1] == '\\'):
+          mode = mode[:- 1]
+        else:
+          if(0 < len(mode)):
+            print "NG no closed line: ", ss, " indent: ", indent
+          work.append({})
+          work[- 1]["cache"] = []
+          work[- 1]["line"]  = ss + 1
+          stack = [work[- 1]["cache"]]
+          mode = ''
+        indent = 0
+      elif(p in braket):
+        if(p in bra):
+          if(len(mode) <= 0 or mode[- 1] != bra[p]):
+            print "NG no closed modes line: ", ss, " indent: ", indent, ", mode: ", mode
+          else:
+            mode  = mode[:-1]
+            stack = stack[:-1]
+        else:
+          if(len(work[- 1]["cache"]) <= 0):
+            print "NG no type line: ", ss, " indent: ", indent
+          mode += p
+          stack[- 1].append([p])
+          stack.append(stack[- 1][- 1])
+      else:
+        stack[- 1].append(p)
+  return work
+
+work   = cut(sys.stdin.readlines())
+hparts = []
+for w in work:
+  w = header_parts(w)
+  if(len(w) > 0):
+    hparts.append(w)
+print header_block(hparts)
 
