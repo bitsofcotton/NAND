@@ -1,0 +1,140 @@
+using "Library/Algebra/Integer.hg"
+
+class Float<Int mantissa, Int exponent>
+  def float : Float<mantissa,exponent>
+  def bool  : Int<1>
+  def intm  : Int<mantissa>
+  def intw  : Int<mantissa * Int(2)>
+  def inte  : Int<exponent>
+  
+  var nan  : bool
+  var inf  : bool
+  var sign : bool
+  var m    : intm
+  var e    : inte
+  
+  fn  ctor()    : void
+  fn  ctor(def) : void
+  fn  dtor()    : void
+  fn  roundMulDiv(intw)   : bool
+  fn  operator ! () const : bool
+  fn  operator - () const : float
+  fn  operator *  (const float) const : float
+  fn  operator ** (const float) const : float
+  fn  operator /  (const float) const : float
+  fn  operator %  (const float) const : float
+  fn  operator +  (const float) const : float
+  fn  operator -  (const float) const : float
+  fn  operator <  (const float) const : bool
+  fn  operator <= (const float) const : bool
+  fn  operator >  (const float) const : bool
+  fn  operator >= (const float) const : bool
+  fn  operator == (const float) const : bool
+  fn  operator != (const float) const : bool
+  fn  operator := (const float)  : float
+  fn  operator += (const float)  : float
+  fn  operator -= (const float)  : float
+  fn  operator *= (const float)  : float
+  fn  operator **= (const float) : float
+  fn  operator /= (const float)  : float
+  fn  operator %= (const float)  : float
+
+class Float<def float_t>
+  def float : Float<float_t>
+  def bool  : Int<1>
+  
+  var f0 : float
+  var f1 : float
+  
+  fn  ctor()    : void
+  fn  ctor(def) : void
+  fn  dtor()    : void
+  fn  operator !  () const : bool
+  fn  operator -  () const : float
+  fn  operator *  (const float) const : float
+  fn  operator ** (const float) const : float
+  fn  operator /  (const float) const : float
+  fn  operator %  (const float) const : float
+  fn  operator +  (const float) const : float
+  fn  operator -  (const float) const : float
+  fn  operator <  (const float) const : bool
+  fn  operator <= (const float) const : bool
+  fn  operator >  (const float) const : bool
+  fn  operator >= (const float) const : bool
+  fn  operator == (const float) const : bool
+  fn  operator != (const float) const : bool
+  fn  operator := (const float) : float
+  fn  operator += (const float) : float
+  fn  operator -= (const float) : float
+  fn  operator *= (const float) : float
+  fn  operator **= (const float) : float
+  fn  operator /= (const float) : float
+  fn  operator %= (const float) : float
+
+def Fraction<def type>
+  def fraction : Fraction<type>
+  def bool     : Int<1>
+  
+  var sign : bool
+  var n    : type
+  var d    : type
+  
+  fn  ctor() : void
+  fn  ctor(type, type) : void
+  fn  dtor() : void
+  fn  operator !  ()  const : bool
+  fn  operator -  ()  const : fraction
+  fn  operator *  (const fraction) const : fraction
+  fn  operator ** (const fraction) const : fraction
+  fn  operator /  (const fraction) const : fraction
+  fn  operator %  (const fraction) const : fraction
+  fn  operator +  (const fraction) const : fraction
+  fn  operator -  (const fraction) const : fraction
+  fn  operator <  (const fraction) const : bool
+  fn  operator <= (const fraction) const : bool
+  fn  operator >  (const fraction) const : bool
+  fn  operator >= (const fraction) const : bool
+  fn  operator == (const fraction) const : bool
+  fn  operator != (const fraction) const : bool
+  fn  operator := (const fraction) const : fraction
+  fn  operator += (const fraction) const : fraction
+  fn  operator -= (const fraction) const : fraction
+  fn  operator *= (const fraction) const : fraction
+  fn  operator **= (const fraction) const : fraction
+  fn  operator /= (const fraction) const : fraction
+  fn  operator %= (const fraction) const : fraction
+
+def EFloat<def float_t> : float_t
+  def efloat : EFloat<float_t>
+  def bool   : Int<1>
+  
+  fn  ctor() : void
+  fn  ctor(float_t, float_t) : void
+  fn  dtor() : void
+  fn  operator !  () const : bool
+  fn  operator -  () const : efloat
+  fn  operator *  (const efloat) const : efloat
+  fn  operator ** (const efloat) const : efloat
+  fn  operator /  (const efloat) const : efloat
+  fn  operator %  (const efloat) const : efloat
+  fn  operator +  (const efloat) const : efloat
+  fn  operator -  (const efloat) const : efloat
+  fn  operator <  (const efloat) const : bool
+  fn  operator <= (const efloat) const : bool
+  fn  operator >  (const efloat) const : bool
+  fn  operator >= (const efloat) const : bool
+  fn  operator == (const efloat) const : bool
+  fn  operator != (const efloat) const : bool
+  fn  operator := (const efloat) const : efloat
+  fn  operator += (const efloat) const : efloat
+  fn  operator -= (const efloat) const : efloat
+  fn  operator *= (const efloat) const : efloat
+  fn  operator **= (const efloat) const : efloat
+  fn  operator /= (const efloat) const : efloat
+  fn  operator %= (const efloat) const : efloat
+
+fn floor<def type>(type) : type
+fn ceil<def type>(type)  : type
+fn isnan<def type>(type) : Int<1>
+fn isinf<def type>(type) : Int<1>
+
