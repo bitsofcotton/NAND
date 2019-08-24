@@ -33,9 +33,9 @@ Stub of planning project.
 * * with parallel 'for ... in ...', no 'for ... ; ... ; ...'.
 * special classes can be overrided.
 * * Object
-* * Int<8>
-* * Int<16>
-* * Int<32>
-* * Int<64>
+* * Int\[8\]
+* * Int\[16\]
+* * Int\[32\]
+* * Int\[64\]
 * * Float is for speed, it's not invertible in general.
 * * Duck
