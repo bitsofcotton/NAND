@@ -1,1 +1,64 @@
+class Complex<def type>
+  def complex : Complex<type>
+  def bool    : Int<1>
+  
+  var real : type
+  var imag : type
+  
+  fn ctor() : void
+  fn ctor(const type) : void
+  fn ctor(const type, const type) : void
+  fn ctor(const complex) : void
+  fn dtor() : void
+  
+  fn operator [ ] (const Int) : type
+  fn operator !   () const : bool
+  fn operator ~   () const : complex
+  fn operator -   () const : complex
+  fn operator *   (const complex) const : complex
+  fn operator **  (const complex) const : complex
+  fn operator /   (const complex) const : complex
+  fn operator +   (const complex) const : complex
+  fn operator -   (const complex) const : complex
+  fn operator ==  (const complex) const : bool
+  fn operator !=  (const complex) const : bool
+  fn operator &&  (const complex) const : bool
+  fn operator ||  (const complex) const : bool
+  fn operator =   (const complex) : complex
+  fn operator +=  (const complex) : complex
+  fn operator -=  (const complex) : complex
+  fn operator *=  (const complex) : complex
+  fn operator **= (const complex) : complex
+  fn operator /=  (const complex) : complex
+
+fn abs(const Complex<def type>) : type
+fn arg(const Complex<def type>) : type
+
+class Quaternion<def type>
+  def quat : Quaternion<type>
+  def bool : Int<1>
+  
+  var r1 : type
+  var r2 : type
+  var r3 : type
+  var r4 : type
+  
+  fn ctor() : void
+  fn ctor(const type) : void
+  fn ctor(const Complex<type>) : void
+  fn ctor(const type, const type, const type, const type) : void
+  fn ctor(const Complex<type>, const Complex<type>) : void
+  fn dtor() : void
+
+class CayleyHamilton<def type>
+  def ch   : CayleyHamilton<type>
+  def bool : Int<1>
+  
+  var r1 : type
+  var r2 : type
+  
+  fn ctor() : void
+  fn ctor(const type) : void
+  fn ctor(const CayleyHamilton<type>) : void
+  fn dtor() : void
 
