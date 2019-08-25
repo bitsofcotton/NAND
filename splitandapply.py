@@ -59,7 +59,10 @@ def header_block(blocks):
       elif(a[0] == "def"):
         dstack[flatten(a[2])] = [a[2], a[3]]
       elif(a[0] == "using"):
-        ustack[flatten(a[2])] = [a[2], a[3]]
+        if(3 < len(a)):
+          ustack[flatten(a[2])] = [a[2], a[3]]
+        else:
+          ustack[flatten(a[2])] = [a[2]]
   res = {}
   res["using"] = uroot
   res["var"]   = vroot
@@ -74,28 +77,20 @@ def header_parts(a):
   if(len(b) <= 0 or len(b[0]) <= 0):
     return []
   term = {}
-  term["var"]   = "var"
-  term["fn"]    = "fn"
-  term["using"] = "using"
-  term["def"]   = "def"
-  if(b[0] == "class" or b[0] == "extend"):
-    if(a["indent"] != 0):
+  term["var"]    = "var"
+  term["fn"]     = "fn"
+  term["using"]  = "using"
+  term["def"]    = "def"
+  term["class"]  = "class"
+  term["extend"] = "extend"
+  nocolon = {}
+  nocolon["class"]  = "class"
+  nocolon["extend"] = "extend"
+  nocolon["using"]  = "using"
+  if(b[0] in term):
+    if((b[0] == "class" or b[0] == "extend") and a["indent"] != 0):
       print "NG no root class.", a["line"]
-    # detect ':'.
-    colon = 0
-    for u in range(1, len(b)):
-      if(b[u] == ":"):
-        if(colon < 0):
-          colon = u
-        else:
-          print "NG multiple colon: ", a, b
-    if(colon != 0 and b[0] == "extend"):
-      print "NG @ extend parse", a["line"]
-      colon = 0
-    if(colon == 0):
-      return ["class", a["indent"], b[1:]]
-    return ["class", a["indent"], b[1:colon], b[colon + 1:]]
-  elif(b[0] in term):
+      return []
     idx = - 1
     for u in range(1, len(b)):
       if(b[u] == ":"):
@@ -104,12 +99,17 @@ def header_parts(a):
         else:
           print "NG multiple colon: ", a, b
     if(idx < 0):
-      print "NG no colon: ", a, b
-      return []
+      if(b[0] in nocolon):
+        return [b[0], a["indent"], b[1:]]
+      else:
+        print "NG no colon: ", a, b
+        return []
     return [b[0], a["indent"], b[1:idx], b[idx + 1:]]
+  elif(b[0] == "#" or b[0] == "//"):
+    pass
   else:
     print "NG: ", b[0], ",", a["line"]
-  return
+  return []
 
 # original source to [work, ...]
 # work["line"]   : line no.
@@ -134,7 +134,7 @@ def cut(s):
   indent = 0
   mode   = ''
   for ss in range(0, len(s)):
-    pp = re.split(r"([\ \t\n\r\(\)\{\}\<\>\:\,])", s[ss])
+    pp = re.split(r"([\ \t\n\r\(\)\{\}\[\]\:\,])", s[ss])
     for p in pp:
       if(p == ' ' or p == '\t' or p == ''):
         if(indent >= 0 and p != ''):
