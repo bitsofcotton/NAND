@@ -25,7 +25,7 @@ Stub of planning project.
 * * * fn name(type, ...) : void
 * * * start with _ as private
 * * * ctor, dtor
-* * * * from some programming languages.
+* * * * from some awesome programming languages.
 * * * this and leaf and super object references
 * source
 * * no exception methods, instead of it, template class result.
