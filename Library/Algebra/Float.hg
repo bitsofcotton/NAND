@@ -1,18 +1,16 @@
 using Library.Algebra.Integer
 
-class Float[Int mantissa, Int exponent]
-  def float : Float[mantissa,exponent]
+class Float[Int mantissa, Int exponent] : Object
+  def float : Float[mantissa, exponent]
   def bool  : Int[1]
   def intm  : Int[mantissa]
   def intw  : Int[mantissa * Int(2)]
   def inte  : Int[exponent]
-  
-  var nan  : bool
-  var inf  : bool
-  var sign : bool
-  var m    : intm
-  var e    : inte
-  
+  var _nan  : bool
+  var _inf  : bool
+  var _sign : bool
+  var _m    : intm
+  var _e    : inte
   fn  ctor()    : void
   fn  ctor(def) : void
   fn  dtor()    : void
@@ -31,6 +29,7 @@ class Float[Int mantissa, Int exponent]
   fn  operator >= (const float) const : bool
   fn  operator == (const float) const : bool
   fn  operator != (const float) const : bool
+  fn  operator =  (float)        : float
   fn  operator =  (const float)  : float
   fn  operator += (const float)  : float
   fn  operator -= (const float)  : float
@@ -38,14 +37,14 @@ class Float[Int mantissa, Int exponent]
   fn  operator **= (const float) : float
   fn  operator /= (const float)  : float
   fn  operator %= (const float)  : float
+  fn  isnan() const : bool
+  fn  isinf() const : bool
 
-class Float[def float_t]
+class Float[def float_t] : Object
   def float : Float[float_t]
   def bool  : Int[1]
-  
-  var f0 : float
-  var f1 : float
-  
+  var _f0   : float_t
+  var _f1   : float_t
   fn  ctor()    : void
   fn  ctor(def) : void
   fn  dtor()    : void
@@ -70,17 +69,18 @@ class Float[def float_t]
   fn  operator **= (const float) : float
   fn  operator /= (const float) : float
   fn  operator %= (const float) : float
+  fn  isnan() const : bool
+  fn  isinf() const : bool
 
-class Fraction[def type]
+class Fraction[def type] : Object
   def fraction : Fraction[type]
   def bool     : Int[1]
-  
-  var sign : bool
-  var n    : type
-  var d    : type
-  
+  var _sign  : bool
+  var _n     : type
+  var _d     : type
   fn  ctor() : void
   fn  ctor(type, type) : void
+  fn  ctor(const type, const type) : void
   fn  dtor() : void
   fn  operator !  ()  const : bool
   fn  operator -  ()  const : fraction
@@ -96,20 +96,22 @@ class Fraction[def type]
   fn  operator >= (const fraction) const : bool
   fn  operator == (const fraction) const : bool
   fn  operator != (const fraction) const : bool
-  fn  operator =  (const fraction) const : fraction
-  fn  operator += (const fraction) const : fraction
-  fn  operator -= (const fraction) const : fraction
-  fn  operator *= (const fraction) const : fraction
-  fn  operator **= (const fraction) const : fraction
-  fn  operator /= (const fraction) const : fraction
-  fn  operator %= (const fraction) const : fraction
+  fn  operator =  (fraction)       : fraction
+  fn  operator =  (const fraction) : fraction
+  fn  operator += (const fraction) : fraction
+  fn  operator -= (const fraction) : fraction
+  fn  operator *= (const fraction) : fraction
+  fn  operator **= (const fraction) : fraction
+  fn  operator /= (const fraction) : fraction
+  fn  operator %= (const fraction) : fraction
 
-def EFloat[def float_t] : float_t
+def EFloat[def float_t, float_t err] : float_t
   def efloat : EFloat[float_t]
   def bool   : Int[1]
-  
+  var _e     : float_t
   fn  ctor() : void
-  fn  ctor(float_t, float_t) : void
+  fn  ctor(float_t) : void
+  fn  ctor(const float_t) : void
   fn  dtor() : void
   fn  operator !  () const : bool
   fn  operator -  () const : efloat
@@ -125,16 +127,19 @@ def EFloat[def float_t] : float_t
   fn  operator >= (const efloat) const : bool
   fn  operator == (const efloat) const : bool
   fn  operator != (const efloat) const : bool
-  fn  operator =  (const efloat) const : efloat
-  fn  operator += (const efloat) const : efloat
-  fn  operator -= (const efloat) const : efloat
-  fn  operator *= (const efloat) const : efloat
-  fn  operator **= (const efloat) const : efloat
-  fn  operator /= (const efloat) const : efloat
-  fn  operator %= (const efloat) const : efloat
+  fn  operator =  (efloat)       : efloat
+  fn  operator =  (const efloat) : efloat
+  fn  operator += (const efloat) : efloat
+  fn  operator -= (const efloat) : efloat
+  fn  operator *= (const efloat) : efloat
+  fn  operator **= (const efloat) : efloat
+  fn  operator /= (const efloat) : efloat
+  fn  operator %= (const efloat) : efloat
 
 fn floor[def type](type) : type
 fn ceil[def type](type)  : type
+fn isnan(EFloat) : Int[1]
+fn isinf(EFloat) : Int[1]
 fn isnan[def type](type) : Int[1]
 fn isinf[def type](type) : Int[1]
 

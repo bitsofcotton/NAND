@@ -1,20 +1,20 @@
-class Complex[def type]
+class Complex[def type] : Object
   def complex : Complex[type]
   def bool    : Int[1]
-  
-  var real : type
-  var imag : type
-  
-  fn ctor() : void
+  var real    : type
+  var imag    : type
+  fn ctor()   : void
+  fn ctor(type)       : void
   fn ctor(const type) : void
+  fn ctor(type, type) : void
   fn ctor(const type, const type) : void
+  fn ctor(complex)    : void
   fn ctor(const complex) : void
-  fn dtor() : void
-  
+  fn dtor()   : void
   fn operator [ ] (const Int) : type
-  fn operator !   () const : bool
-  fn operator ~   () const : complex
-  fn operator -   () const : complex
+  fn operator !   () const    : bool
+  fn operator ~   () const    : complex
+  fn operator -   () const    : complex
   fn operator *   (const complex) const : complex
   fn operator **  (const complex) const : complex
   fn operator /   (const complex) const : complex
@@ -24,6 +24,7 @@ class Complex[def type]
   fn operator !=  (const complex) const : bool
   fn operator &&  (const complex) const : bool
   fn operator ||  (const complex) const : bool
+  fn operator =   (complex)       : complex
   fn operator =   (const complex) : complex
   fn operator +=  (const complex) : complex
   fn operator -=  (const complex) : complex
@@ -34,31 +35,73 @@ class Complex[def type]
 fn abs(const Complex[def type]) : type
 fn arg(const Complex[def type]) : type
 
-class Quaternion[def type]
-  def quat : Quaternion[type]
-  def bool : Int[1]
-  
-  var r1 : type
-  var r2 : type
-  var r3 : type
-  var r4 : type
-  
+class Quaternion[def type] : Object
+  def quat  : Quaternion[type]
+  def bool  : Int[1]
+  var r1    : type
+  var r2    : type
+  var r3    : type
+  var r4    : type
   fn ctor() : void
+  fn ctor(type)       : void
   fn ctor(const type) : void
+  fn ctor(Complex[type])       : void
   fn ctor(const Complex[type]) : void
+  fn ctor(type, type, type, type) : void
   fn ctor(const type, const type, const type, const type) : void
+  fn ctor(Complex[type], Complex[type])             : void
   fn ctor(const Complex[type], const Complex[type]) : void
-  fn dtor() : void
+  fn dtor()  : void
+  fn operator [ ] (const Int) : type
+  fn operator !   () const    : bool
+  fn operator ~   () const    : quat
+  fn operator -   () const    : quat
+  fn operator *   (const quat) const : quat
+  fn operator **  (const quat) const : quat
+  fn operator /   (const quat) const : quat
+  fn operator +   (const quat) const : quat
+  fn operator -   (const quat) const : quat
+  fn operator ==  (const quat) const : bool
+  fn operator !=  (const quat) const : bool
+  fn operator &&  (const quat) const : bool
+  fn operator ||  (const quat) const : bool
+  fn operator =   (quat)       : quat
+  fn operator =   (const quat) : quat
+  fn operator +=  (const quat) : quat
+  fn operator -=  (const quat) : quat
+  fn operator *=  (const quat) : quat
+  fn operator **= (const quat) : quat
+  fn operator /=  (const quat) : quat
 
-class CayleyHamilton[def type]
-  def ch   : CayleyHamilton[type]
-  def bool : Int[1]
-  
-  var r1 : type
-  var r2 : type
-  
+class CayleyHamilton[def type] : Object
+  def ch    : CayleyHamilton[type]
+  def bool  : Int[1]
+  var r1    : type
+  var r2    : type
   fn ctor() : void
+  fn ctor(type) : void
   fn ctor(const type) : void
+  fn ctor(CayleyHamilton[type]) : void
   fn ctor(const CayleyHamilton[type]) : void
   fn dtor() : void
+  fn operator [ ] (const Int) : type
+  fn operator !   () const    : bool
+  fn operator ~   () const    : ch
+  fn operator -   () const    : ch
+  fn operator *   (const ch) const : ch
+  fn operator **  (const ch) const : ch
+  fn operator /   (const ch) const : ch
+  fn operator +   (const ch) const : ch
+  fn operator -   (const ch) const : ch
+  fn operator ==  (const ch) const : bool
+  fn operator !=  (const ch) const : bool
+  fn operator &&  (const ch) const : bool
+  fn operator ||  (const ch) const : bool
+  fn operator =   (ch)       : ch
+  fn operator =   (const ch) : ch
+  fn operator +=  (const ch) : ch
+  fn operator -=  (const ch) : ch
+  fn operator *=  (const ch) : ch
+  fn operator **= (const ch) : ch
+  fn operator /=  (const ch) : ch
 

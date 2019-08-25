@@ -1,17 +1,27 @@
-class Int[def bits]
-  def int  : Int[bits]
+class Int[8]  : Object
+class Int[16] : Object
+class Int[32] : Object
+class Int[64] : Object
+
+class Int[def blocks, def type, def storage] : Object
+  def bits : blocks * type.bits
+  def int  : storage[bits]
   def bool : Int[1]
-  
   fn  ctor()    : void
   fn  ctor(def) : void
+  fn  ctor(Int) : void
+  fn  ctor(const Int) : void
   fn  dtor()    : void
+  fn  operator []  (const Int) : bool
   fn  operator []  (const Int) const : bool
+  fn  operator []  (const Int, const Int) : int
+  fn  operator []  (const Int, const Int) const : int
   fn  operator !   () const : bool
   fn  operator ~   () const : int
-  fn  operator ++  () const : int
-  fn  operator ++  (void) const : int
-  fn  operator --  ()     const : int
-  fn  operator --  (void) const : int
+  fn  operator ++  ()     : int
+  fn  operator ++  (void) : int
+  fn  operator --  ()     : int
+  fn  operator --  (void) : int
   fn  operator -   ()     const : int
   fn  operator *   (const int) const : int
   fn  operator **  (const int) const : int
@@ -32,6 +42,7 @@ class Int[def bits]
   fn  operator |   (const int) const : int
   fn  operator &&  (const int) const : bool
   fn  operator ||  (const int) const : bool
+  fn  operator =   (int)             : int
   fn  operator =   (const int)       : int
   fn  operator +=  (const int)       : int
   fn  operator -=  (const int)       : int
@@ -45,73 +56,99 @@ class Int[def bits]
   fn  operator &=  (const int)       : int
   fn  operator |=  (const int)       : int
 
-# stub
-class InvInt[def bits]
-  def int  : InvInt[bits]
-  def bool : Int[1]
-  def qp   : stub
-  
-  fn  ctor()    : void
-  fn  ctor(def) : void
-  fn  dtor()    : void
+class InvInt[def baseint]
+  def int    : InvInt[baseint]
+  def bool   : Int[1]
+  var _bits  : baseint
+  # stub
+  var _eqn   : qp
+  fn  ctor() : void
+  fn  ctor(InvInt) : void
+  fn  ctor(const InvInt) : void
+  fn  dtor() : void
+  fn  operator []  (const Int) : bool
   fn  operator []  (const Int) const : bool
+  fn  operator []  (const Int, const Int) : int
+  fn  operator []  (const Int, const Int) const : int
   fn  operator !   () const : bool
   fn  operator ~   () const : int
-  fn  operator ++  () const : int
-  fn  operator ++  (void) const : int
-  fn  operator --  ()     const : int
-  fn  operator --  (void) const : int
-  fn  operator -   ()     const : int
+  fn  operator ++  () : int
+  fn  operator ++  (void) : int
+  fn  operator --  ()     : int
+  fn  operator --  (void) : int
+  fn  operator -   () const : int
   fn  operator *   (const int) const : int
+  fn  operator *   (const Int) const : int
   fn  operator **  (const int) const : int
+  fn  operator **  (const Int) const : int
   fn  operator /   (const int) const : int
+  fn  operator /   (const Int) const : int
   fn  operator %   (const int) const : int
+  fn  operator %   (const Int) const : int
   fn  operator +   (const int) const : int
+  fn  operator +   (const Int) const : int
   fn  operator -   (const int) const : int
+  fn  operator -   (const Int) const : int
   fn  operator <<  (const Int) const : int
   fn  operator >>  (const Int) const : int
-  fn  operator <   (const int) const : bool
-  fn  operator <=  (const int) const : bool
-  fn  operator >   (const int) const : bool
-  fn  operator >=  (const int) const : bool
-  fn  operator ==  (const int) const : bool
-  fn  operator !=  (const int) const : bool
   fn  operator &   (const int) const : int
+  fn  operator &   (const Int) const : int
   fn  operator ^   (const int) const : int
+  fn  operator ^   (const Int) const : int
   fn  operator |   (const int) const : int
+  fn  operator |   (const Int) const : int
   fn  operator &&  (const int) const : bool
+  fn  operator &&  (const Int) const : bool
   fn  operator ||  (const int) const : bool
-  fn  operator =   (const int)       : int
-  fn  operator +=  (const int)       : int
-  fn  operator -=  (const int)       : int
-  fn  operator *=  (const int)       : int
-  fn  operator **= (const int)       : int
-  fn  operator /=  (const int)       : int
-  fn  operator %=  (const int)       : int
-  fn  operator /=  (const int)       : int
-  fn  operator <<= (const Int)       : int
-  fn  operator >>= (const Int)       : int
-  fn  operator &=  (const int)       : int
-  fn  operator |=  (const int)       : int
-  fn  invert(const int) : qp
+  fn  operator ||  (const Int) const : bool
+  fn  operator =   (int)       : int
+  fn  operator =   (const int) : int
+  fn  operator =   (const Int) : int
+  fn  operator +=  (const int) : int
+  fn  operator +=  (const Int) : int
+  fn  operator -=  (const int) : int
+  fn  operator -=  (const Int) : int
+  fn  operator *=  (const int) : int
+  fn  operator *=  (const Int) : int
+  fn  operator **= (const int) : int
+  fn  operator **= (const Int) : int
+  fn  operator /=  (const int) : int
+  fn  operator /=  (const Int) : int
+  fn  operator %=  (const int) : int
+  fn  operator %=  (const Int) : int
+  fn  operator /=  (const int) : int
+  fn  operator /=  (const Int) : int
+  fn  operator <<= (const Int) : int
+  fn  operator >>= (const Int) : int
+  fn  operator &=  (const int) : int
+  fn  operator &=  (const Int) : int
+  fn  operator |=  (const int) : int
+  fn  operator |=  (const Int) : int
+  fn  outputQP() : void
 
-# stub
-class ParaInt[def bits, def blocks]
-  def int  : ParaInt[bits, blocks]
-  def bint : Int[blocks]
-  def bool : Int[1]
-  
-  fn  ctor()    : void
-  fn  ctor(def) : void
-  fn  dtor()    : void
+class ParaInt[def blocks, def type, def storage]
+  def int   : ParaInt[blocks, type]
+  def bint  : type
+  def bool  : Int[1]
+  var _flat : storage[blocks * type.bits]
+  fn  ctor()     : void
+  fn  ctor(def)  : void
+  fn  ctor(type) : void
+  fn  ctor(type, fn) : void
+  fn  dtor()     : void
   fn  seed(const bint) : int
+  fn  seed(const bint, fn) : int
+  fn  dopara(fn) : void
+  fn  operator []  (const Int) : bool
   fn  operator []  (const Int) const : bool
+  fn  operator []  (const Int, const Int) : bool
+  fn  operator []  (const Int, const Int) const : bool
   fn  operator !   () const : bool
   fn  operator ~   () const : int
-  fn  operator ++  () const : int
-  fn  operator ++  (void) const : int
-  fn  operator --  ()     const : int
-  fn  operator --  (void) const : int
+  fn  operator ++  ()     : int
+  fn  operator ++  (void) : int
+  fn  operator --  ()     : int
+  fn  operator --  (void) : int
   fn  operator -   ()     const : int
   fn  operator *   (const int) const : int
   fn  operator **  (const int) const : int
@@ -132,35 +169,42 @@ class ParaInt[def bits, def blocks]
   fn  operator |   (const int) const : int
   fn  operator &&  (const int) const : bool
   fn  operator ||  (const int) const : bool
-  fn  operator =   (const int)       : int
-  fn  operator +=  (const int)       : int
-  fn  operator -=  (const int)       : int
-  fn  operator *=  (const int)       : int
-  fn  operator **= (const int)       : int
-  fn  operator /=  (const int)       : int
-  fn  operator %=  (const int)       : int
-  fn  operator /=  (const int)       : int
-  fn  operator <<= (const Int)       : int
-  fn  operator >>= (const Int)       : int
-  fn  operator &=  (const int)       : int
-  fn  operator |=  (const int)       : int
+  fn  operator =   (int)       : int
+  fn  operator =   (const int) : int
+  fn  operator +=  (const int) : int
+  fn  operator -=  (const int) : int
+  fn  operator *=  (const int) : int
+  fn  operator **= (const int) : int
+  fn  operator /=  (const int) : int
+  fn  operator %=  (const int) : int
+  fn  operator /=  (const int) : int
+  fn  operator <<= (const Int) : int
+  fn  operator >>= (const Int) : int
+  fn  operator &=  (const int) : int
+  fn  operator |=  (const int) : int
   fn  invert(const int) : qp
 
-class Signed[def bits, def type]
-  def int  : Signed[bits, type]
+class Signed[def type]
+  def int  : Signed[type]
   def bool : Int[1]
-  
   fn  ctor()    : void
   fn  ctor(def) : void
+  fn  ctor(type) : void
+  fn  ctor(const type) : void
+  fn  ctor(int) : void
+  fn  ctor(const int) : void
   fn  dtor()    : void
+  fn  operator []  (const Int) : bool
   fn  operator []  (const Int) const : bool
+  fn  operator []  (const Int, const Int) : int
+  fn  operator []  (const Int, const Int) const : int
   fn  operator !   () const : bool
   fn  operator ~   () const : int
-  fn  operator ++  () const : int
-  fn  operator ++  (void) const : int
-  fn  operator --  ()     const : int
-  fn  operator --  (void) const : int
-  fn  operator -   ()     const : int
+  fn  operator ++  ()       : int
+  fn  operator ++  (void)   : int
+  fn  operator --  ()       : int
+  fn  operator --  (void)   : int
+  fn  operator -   () const : int
   fn  operator *   (const int) const : int
   fn  operator **  (const int) const : int
   fn  operator /   (const int) const : int
@@ -180,33 +224,35 @@ class Signed[def bits, def type]
   fn  operator |   (const int) const : int
   fn  operator &&  (const int) const : bool
   fn  operator ||  (const int) const : bool
-  fn  operator =   (const int)       : int
-  fn  operator +=  (const int)       : int
-  fn  operator -=  (const int)       : int
-  fn  operator *=  (const int)       : int
-  fn  operator **= (const int)       : int
-  fn  operator /=  (const int)       : int
-  fn  operator %=  (const int)       : int
-  fn  operator /=  (const int)       : int
-  fn  operator <<= (const Int)       : int
-  fn  operator >>= (const Int)       : int
-  fn  operator &=  (const int)       : int
-  fn  operator |=  (const int)       : int
+  fn  operator =   (int)       : int
+  fn  operator =   (const int) : int
+  fn  operator +=  (const int) : int
+  fn  operator -=  (const int) : int
+  fn  operator *=  (const int) : int
+  fn  operator **= (const int) : int
+  fn  operator /=  (const int) : int
+  fn  operator %=  (const int) : int
+  fn  operator /=  (const int) : int
+  fn  operator <<= (const Int) : int
+  fn  operator >>= (const Int) : int
+  fn  operator &=  (const int) : int
+  fn  operator |=  (const int) : int
 
 class pZ[def type, type z]
   def pz   : pz[type, z]
   def bool : Int[1]
-  
   fn  ctor()    : void
   fn  ctor(def) : void
+  fn  ctor(type) : void
+  fn  ctor(const type) : void
   fn  dtor()    : void
   fn  operator !   () const : bool
   fn  operator ~   () const : pz
-  fn  operator ++  () const : pz
-  fn  operator ++  (void) const : pz
-  fn  operator --  ()     const : pz
-  fn  operator --  (void) const : pz
-  fn  operator -   ()     const : pz
+  fn  operator ++  ()     : pz
+  fn  operator ++  (void) : pz
+  fn  operator --  ()     : pz
+  fn  operator --  (void) : pz
+  fn  operator -   () const : pz
   fn  operator *   (const int) const : pz
   fn  operator **  (const int) const : pz
   fn  operator /   (const int) const : pz
@@ -226,18 +272,19 @@ class pZ[def type, type z]
   fn  operator |   (const int) const : pz
   fn  operator &&  (const int) const : bool
   fn  operator ||  (const int) const : bool
-  fn  operator =   (const int)       : pz
-  fn  operator +=  (const int)       : pz
-  fn  operator -=  (const int)       : pz
-  fn  operator *=  (const int)       : pz
-  fn  operator **= (const int)       : pz
-  fn  operator /=  (const int)       : pz
-  fn  operator %=  (const int)       : pz
-  fn  operator /=  (const int)       : pz
-  fn  operator <<= (const Int)       : pz
-  fn  operator >>= (const Int)       : pz
-  fn  operator &=  (const int)       : pz
-  fn  operator |=  (const int)       : pz
+  fn  operator =   (int)       : pz
+  fn  operator =   (const int) : pz
+  fn  operator +=  (const int) : pz
+  fn  operator -=  (const int) : pz
+  fn  operator *=  (const int) : pz
+  fn  operator **= (const int) : pz
+  fn  operator /=  (const int) : pz
+  fn  operator %=  (const int) : pz
+  fn  operator /=  (const int) : pz
+  fn  operator <<= (const Int) : pz
+  fn  operator >>= (const Int) : pz
+  fn  operator &=  (const int) : pz
+  fn  operator |=  (const int) : pz
 
 # class Band[def type] : Complex[type]
 
@@ -246,7 +293,8 @@ fn lcm[def type](const type, const type) : type
 fn factor2[def type](const type) : type
 fn max[def type](const type, const type) : type
 fn min[def type](const type, const type) : type
-fn abs[def type](const type) : type
+fn abs(const Int)    : type
+fn abs(const Signed) : type
 
 // Solve ax + by = c in Z, a, b, c are const.
 fn eucleidos[def type](const type, const type, const type, type, type) : void

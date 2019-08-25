@@ -1,3 +1,5 @@
+class Array
+
 class Vector[def type, def index]
   def vector : Vector[type, index]
   def bool   : Int[1]
@@ -6,8 +8,11 @@ class Vector[def type, def index]
   fn  ctor() : void
   fn  ctor(const index) : void
   fn  dtor() : void
+  fn  resize(const index) : void
   fn  operator [] (const index)        : void
   fn  operator [] (const index)  const : void
+  fn  operator [] (const index, const index)        : void
+  fn  operator [] (const index, const index)  const : void
   fn  operator !  ()             const : bool
   fn  operator -  ()             const : vector
   fn  dot         (const vector) const : type
@@ -23,13 +28,14 @@ class Vector[def type, def index]
   fn  operator >= (const vector) const : bool
   fn  operator == (const vector) const : bool
   fn  operator != (const vector) const : bool
-  fn  operator =  (const vector)       : vector
-  fn  operator += (const vector)       : vector
-  fn  operator -= (const vector)       : vector
-  fn  operator *= (const type)         : vector
-  fn  operator **= (const vector)      : vector
-  fn  operator /= (const type)         : vector
-  fn  operator %= (const type)         : vector
+  fn  operator =  (vector)       : vector
+  fn  operator =  (const vector) : vector
+  fn  operator += (const vector) : vector
+  fn  operator -= (const vector) : vector
+  fn  operator *= (const type)   : vector
+  fn  operator **= (const vector) : vector
+  fn  operator /= (const type)   : vector
+  fn  operator %= (const type)   : vector
 
 class Matrix[def type, def index]
   def matrix : Matrix[type, index]
@@ -37,36 +43,40 @@ class Matrix[def type, def index]
   def bool   : Int[1]
   var transposed : bool
   var coeff  : type
-  var entity : Array[Array[type]]
+  var entity : Array[vector]
   fn  ctor() : void
-  fn  ctor(const index) : void
+  fn  ctor(const index, const index) : void
   fn  dtor() : void
-  fn  operator [] (const index)        : void
-  fn  operator [] (const index)  const : void
+  fn  resize(const index, const index) : void
+  fn  row(const index) : void
+  fn  row(const index) const : void
+  fn  setCol(const index, vector) : void
+  fn  setCol(const index, const vector) : void
+  fn  col(const index) const : void
+  fn  operator [] (const index, const index)  const : void
   fn  operator !  ()             const : bool
   fn  operator -  ()             const : vector
-  fn  dot         (const vector) const : type
   fn  operator *  (const type)   const : vector
-  fn  operator ** (const type)   const : vector
-  fn  operator /  (const type)   const : vector
-  fn  operator %  (const type)   const : vector
-  fn  operator +  (const vector) const : vector
-  fn  operator -  (const vector) const : vector
-  fn  operator <  (const vector) const : bool
-  fn  operator <= (const vector) const : bool
-  fn  operator >  (const vector) const : bool
-  fn  operator >= (const vector) const : bool
+  fn  operator *  (const vector) const : vector
+  fn  operator *  (const matrix) const : matrix
+  fn  operator ** (const type)   const : matrix
+  fn  operator +  (const vector) const : matrix
+  fn  operator -  (const vector) const : matrix
+  fn  operator <d  (const vector) const : bool
+  fn  operator <=d (const vector) const : bool
+  fn  operator >d  (const vector) const : bool
+  fn  operator >=d (const vector) const : bool
   fn  operator == (const vector) const : bool
   fn  operator != (const vector) const : bool
-  fn  operator =  (const vector)       : vector
-  fn  operator += (const vector)       : vector
-  fn  operator -= (const vector)       : vector
-  fn  operator *= (const type)         : vector
-  fn  operator **= (const vector)      : vector
-  fn  operator /= (const type)         : vector
-  fn  operator %= (const type)         : vector
-  fn  transpose()                      : vector
-  fn  transposed()               const : vector
+  fn  operator =  (matrix)       : matrix
+  fn  operator =  (const matrix) : matrix
+  fn  operator += (const matrix) : matrix
+  fn  operator -= (const matrix) : matrix
+  fn  operator *= (const type)   : matrix
+  fn  operator *= (const matrix) : matrix
+  fn  operator **= (const type)  : matrix
+  fn  transpose()                : matrix
+  fn  transposed()         const : matrix
 
 fn Eigen(const Matrix, Matrix, Matrix) : bool
 fn Eigen(const Matrix, const Matrix, Matrix, Matrix, Matrix) : bool
