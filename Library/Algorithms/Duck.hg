@@ -1,1 +1,81 @@
+class Storage
+class Array
+
+class Object
+  def invertible    : 0
+  def abel          : 0
+  def commutative   : 0
+  # stub for leafs.
+  def zorn()        : { }
+  def each()        : { }
+  def progress()    : { }
+  def print()       : { }
+  def test()        : { }
+  def save(Storage) : { }
+  def load(const Storage)  : { }
+  def in(const Object)     : { }
+  def bigger(const Object) : { }
+
+def OnMemory<def bits> : Object
+  var storage : @
+  fn ctor()   : void
+  fn dtor()   : void
+  fn operator [] ()                           : Int
+  fn operator [] ()                     const : Int
+  fn operator [] (const Int)                  : Int
+  fn operator [] (const Int)            const : Int
+  fn operator [] (const Int, const Int)       : Int
+  fn operator [] (const Int, const Int) const : Int
+
+def OnProcess<def bits> : Object
+  var storage : @
+  var lock    : Lock
+  fn ctor()   : void
+  fn dtor()   : void
+  fn operator [] ()                           : Int
+  fn operator [] ()                     const : Int
+  fn operator [] (const Int)                  : Int
+  fn operator [] (const Int)            const : Int
+  fn operator [] (const Int, const Int)       : Int
+  fn operator [] (const Int, const Int) const : Int
+
+def OnMachine<def bits> : Object
+  var storage : @
+  var lock    : Lock
+  fn ctor()   : void
+  fn dtor()   : void
+  fn operator [] ()                           : Int
+  fn operator [] ()                     const : Int
+  fn operator [] (const Int)                  : Int
+  fn operator [] (const Int)            const : Int
+  fn operator [] (const Int, const Int)       : Int
+  fn operator [] (const Int, const Int) const : Int
+
+def OnCluster<def bits> : Object
+  var storage : @
+  var lock    : Lock
+  fn ctor()   : void
+  fn dtor()   : void
+  fn operator [] ()                           : Int
+  fn operator [] ()                     const : Int
+  fn operator [] (const Int)                  : Int
+  fn operator [] (const Int)            const : Int
+  fn operator [] (const Int, const Int)       : Int
+  fn operator [] (const Int, const Int) const : Int
+
+def OnDisk<def bits> : Object
+  var file  : File
+  fn ctor() : void
+  fn dtor() : void
+  fn operator [] ()                           : Int
+  fn operator [] ()                     const : Int
+  fn operator [] (const Int)                  : Int
+  fn operator [] (const Int)            const : Int
+  fn operator [] (const Int, const Int)       : Int
+  fn operator [] (const Int, const Int) const : Int
+
+fn assert(Int<1>) : void
+fn Export(def)    : void
+fn Import(def)    : void
+fn Call(def, Array) : Duck
 
