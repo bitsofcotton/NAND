@@ -1,0 +1,86 @@
+class Vector[def type, def index]
+  def vector : Vector[type, index]
+  def bool   : Int[1]
+  var coeff  : type
+  var entity : Array[type]
+  fn  ctor() : void
+  fn  ctor(const index) : void
+  fn  dtor() : void
+  fn  operator [] (const index)        : void
+  fn  operator [] (const index)  const : void
+  fn  operator !  ()             const : bool
+  fn  operator -  ()             const : vector
+  fn  dot         (const vector) const : type
+  fn  operator *  (const type)   const : vector
+  fn  operator ** (const type)   const : vector
+  fn  operator /  (const type)   const : vector
+  fn  operator %  (const type)   const : vector
+  fn  operator +  (const vector) const : vector
+  fn  operator -  (const vector) const : vector
+  fn  operator <  (const vector) const : bool
+  fn  operator <= (const vector) const : bool
+  fn  operator >  (const vector) const : bool
+  fn  operator >= (const vector) const : bool
+  fn  operator == (const vector) const : bool
+  fn  operator != (const vector) const : bool
+  fn  operator =  (const vector)       : vector
+  fn  operator += (const vector)       : vector
+  fn  operator -= (const vector)       : vector
+  fn  operator *= (const type)         : vector
+  fn  operator **= (const vector)      : vector
+  fn  operator /= (const type)         : vector
+  fn  operator %= (const type)         : vector
+
+class Matrix[def type, def index]
+  def matrix : Matrix[type, index]
+  def vector : Vector[type, index]
+  def bool   : Int[1]
+  var transposed : bool
+  var coeff  : type
+  var entity : Array[Array[type]]
+  fn  ctor() : void
+  fn  ctor(const index) : void
+  fn  dtor() : void
+  fn  operator [] (const index)        : void
+  fn  operator [] (const index)  const : void
+  fn  operator !  ()             const : bool
+  fn  operator -  ()             const : vector
+  fn  dot         (const vector) const : type
+  fn  operator *  (const type)   const : vector
+  fn  operator ** (const type)   const : vector
+  fn  operator /  (const type)   const : vector
+  fn  operator %  (const type)   const : vector
+  fn  operator +  (const vector) const : vector
+  fn  operator -  (const vector) const : vector
+  fn  operator <  (const vector) const : bool
+  fn  operator <= (const vector) const : bool
+  fn  operator >  (const vector) const : bool
+  fn  operator >= (const vector) const : bool
+  fn  operator == (const vector) const : bool
+  fn  operator != (const vector) const : bool
+  fn  operator =  (const vector)       : vector
+  fn  operator += (const vector)       : vector
+  fn  operator -= (const vector)       : vector
+  fn  operator *= (const type)         : vector
+  fn  operator **= (const vector)      : vector
+  fn  operator /= (const type)         : vector
+  fn  operator %= (const type)         : vector
+  fn  transpose()                      : vector
+  fn  transposed()               const : vector
+
+fn Eigen(const Matrix, Matrix, Matrix) : bool
+fn Eigen(const Matrix, const Matrix, Matrix, Matrix, Matrix) : bool
+fn LU(const Matrix, Matrix, Matrix) : bool
+fn Cholesky(const Matrix, Matrix)   : bool
+fn QR(const Matrix, Matrix, Matrix) : bool
+fn FullQR(const Matrix, Matrix, Matrix) : bool
+fn Schur(const Matrix, Matrix, Matrix) : bool
+fn SVD(const Matrix, Matrix, Vector, Matrix) : bool
+fn pseudoInverse(const Matrix) : Matrix
+fn feasible(const Matrix, const Vector) : bool
+fn LP(const Matrix, const Vector, const Vector) : Vector
+fn QP(const Matrix, const Vector, const Matrix, const Vector) : Vector
+fn Fourier(const Vector, const Int[1]) : Vector
+fn Diff(const Vector) : Vector
+fn Wavelet(const Vector, const Vector, const Int[1]) : Vector
+

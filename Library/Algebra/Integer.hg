@@ -1,6 +1,6 @@
-class Int<def bits>
-  def int  : Int<bits>
-  def bool : Int<1>
+class Int[def bits]
+  def int  : Int[bits]
+  def bool : Int[1]
   
   fn  ctor()    : void
   fn  ctor(def) : void
@@ -32,7 +32,7 @@ class Int<def bits>
   fn  operator |   (const int) const : int
   fn  operator &&  (const int) const : bool
   fn  operator ||  (const int) const : bool
-  fn  operator :=  (const int)       : int
+  fn  operator =   (const int)       : int
   fn  operator +=  (const int)       : int
   fn  operator -=  (const int)       : int
   fn  operator *=  (const int)       : int
@@ -46,9 +46,9 @@ class Int<def bits>
   fn  operator |=  (const int)       : int
 
 # stub
-class InvInt<def bits>
-  def int  : InvInt<bits>
-  def bool : Int<1>
+class InvInt[def bits]
+  def int  : InvInt[bits]
+  def bool : Int[1]
   def qp   : stub
   
   fn  ctor()    : void
@@ -81,7 +81,7 @@ class InvInt<def bits>
   fn  operator |   (const int) const : int
   fn  operator &&  (const int) const : bool
   fn  operator ||  (const int) const : bool
-  fn  operator :=  (const int)       : int
+  fn  operator =   (const int)       : int
   fn  operator +=  (const int)       : int
   fn  operator -=  (const int)       : int
   fn  operator *=  (const int)       : int
@@ -96,10 +96,10 @@ class InvInt<def bits>
   fn  invert(const int) : qp
 
 # stub
-class ParaInt<def bits, def blocks>
-  def int  : ParaInt<bits, blocks>
-  def bint : Int<blocks>
-  def bool : Int<1>
+class ParaInt[def bits, def blocks]
+  def int  : ParaInt[bits, blocks]
+  def bint : Int[blocks]
+  def bool : Int[1]
   
   fn  ctor()    : void
   fn  ctor(def) : void
@@ -132,7 +132,7 @@ class ParaInt<def bits, def blocks>
   fn  operator |   (const int) const : int
   fn  operator &&  (const int) const : bool
   fn  operator ||  (const int) const : bool
-  fn  operator :=  (const int)       : int
+  fn  operator =   (const int)       : int
   fn  operator +=  (const int)       : int
   fn  operator -=  (const int)       : int
   fn  operator *=  (const int)       : int
@@ -146,9 +146,9 @@ class ParaInt<def bits, def blocks>
   fn  operator |=  (const int)       : int
   fn  invert(const int) : qp
 
-class Signed<def bits, def type>
-  def int  : Signed<bits, type>
-  def bool : Int<1>
+class Signed[def bits, def type]
+  def int  : Signed[bits, type]
+  def bool : Int[1]
   
   fn  ctor()    : void
   fn  ctor(def) : void
@@ -180,7 +180,7 @@ class Signed<def bits, def type>
   fn  operator |   (const int) const : int
   fn  operator &&  (const int) const : bool
   fn  operator ||  (const int) const : bool
-  fn  operator :=  (const int)       : int
+  fn  operator =   (const int)       : int
   fn  operator +=  (const int)       : int
   fn  operator -=  (const int)       : int
   fn  operator *=  (const int)       : int
@@ -193,9 +193,9 @@ class Signed<def bits, def type>
   fn  operator &=  (const int)       : int
   fn  operator |=  (const int)       : int
 
-class pZ<def type, type z>
-  def pz   : pz<type, z>
-  def bool : Int<1>
+class pZ[def type, type z]
+  def pz   : pz[type, z]
+  def bool : Int[1]
   
   fn  ctor()    : void
   fn  ctor(def) : void
@@ -226,7 +226,7 @@ class pZ<def type, type z>
   fn  operator |   (const int) const : pz
   fn  operator &&  (const int) const : bool
   fn  operator ||  (const int) const : bool
-  fn  operator :=  (const int)       : pz
+  fn  operator =   (const int)       : pz
   fn  operator +=  (const int)       : pz
   fn  operator -=  (const int)       : pz
   fn  operator *=  (const int)       : pz
@@ -239,15 +239,15 @@ class pZ<def type, type z>
   fn  operator &=  (const int)       : pz
   fn  operator |=  (const int)       : pz
 
-# class Band<def type> : Complex<type>
+# class Band[def type] : Complex[type]
 
-fn gcd<def type>(const type, const type) : type
-fn lcm<def type>(const type, const type) : type
-fn factor2<def type>(const type) : type
-fn max<def type>(const type, const type) : type
-fn min<def type>(const type, const type) : type
-fn abs<def type>(const type) : type
+fn gcd[def type](const type, const type) : type
+fn lcm[def type](const type, const type) : type
+fn factor2[def type](const type) : type
+fn max[def type](const type, const type) : type
+fn min[def type](const type, const type) : type
+fn abs[def type](const type) : type
 
 // Solve ax + by = c in Z, a, b, c are const.
-fn eucleidos<def type>(const type, const type, const type, type, type)
+fn eucleidos[def type](const type, const type, const type, type, type) : void
 
