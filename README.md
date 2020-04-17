@@ -1,6 +1,6 @@
 # NAND
 Natural simpler compiler with natural simpler documentation on pairs of file.
-Aims to readability (for me), compact and low-complexity implementation, moderate worst-case speed, not slow better-case speed.
+Aims to readability (for me), compact and low-complexity implementation, moderate worst-case speed, no matter better-case speed.
 And aims to revert operation via QP solver. Library oriented. Convert to C language. So it's huge, it should import prior sources with license notifications, so multiple file link is needed. And, const operation should be hardly calculated to optimize.  
 
 Stub of planning project.
@@ -22,20 +22,16 @@ Stub of planning project.
 * * * * const cast
 * * * operator +=item val
 * * * * operator with some extension of C.
-* * * fn name(type, ...) : void
-* * * start with _ as private
-* * * ctor, dtor
-* * * * from some awesome programming languages.
-* * * this and leaf and super object references
+* * fn name(type, ...) : void
+* * start with _ as private
+* * ctor, dtor
+* * * from some awesome programming languages.
+* * this and leaf and super object references
 * source
 * * no exception methods, instead of it, template class result.
 * * no thread directives, instead of it, template class.
 * * with parallel 'for ... in ...', no 'for ... ; ... ; ...'.
 * special classes can be overrided.
-* * Object
-* * Int\[8\]
-* * Int\[16\]
-* * Int\[32\]
-* * Int\[64\]
-* * Float is for speed, it's not invertible in general.
-* * Duck
+* * Int\[platform_depends\]
+
+<!-- I need really simple compiler. -->
