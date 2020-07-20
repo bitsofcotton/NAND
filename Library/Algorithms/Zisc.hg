@@ -9,3 +9,19 @@ class Perceptron[def type] : Matrix[type]
   fn gettag(const vec in)   : vec
   fn tag2out(const vec tag) : vec
 
+class Manuscript : Zisc
+  fn ctor() : void
+  fn dtor() : void
+
+class RecognizeSpeak : Zisc
+  fn ctor() : void
+  fn dtor() : void
+
+class Speak : Zisc
+  fn ctor() : void
+  fn dtor() : void
+
+class ZeroKnowledgeRecog : Zisc
+  fn ctor() : void
+  fn dtor() : void
+
