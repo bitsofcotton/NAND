@@ -1,0 +1,5 @@
+class Calendar : Int
+  let tick : Int
+
+# some procedures like:
+#   attend/leave time logging and calculate total time with time zone.

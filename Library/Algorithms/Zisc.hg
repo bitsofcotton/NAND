@@ -1,1 +1,11 @@
+using Vector : Library.Algebra.Linear.Vector
+using Matrix : Library.Algebra.Linear.Matrix
+
+class Perceptron[def type] : Matrix[type]
+  def vec : Vector[type]
+  fn ctor() : void
+  fn dtor() : void
+  fn study(const vec in, const vec tag) : void
+  fn gettag(const vec in)   : vec
+  fn tag2out(const vec tag) : vec
 

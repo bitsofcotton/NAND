@@ -1,0 +1,6 @@
+# Huge...
+
+class FE[def type, fn delegate(const Vector, const Vector) : type] : Array[Vector]
+  fn ctor() : void
+  fn dtor() : void
+

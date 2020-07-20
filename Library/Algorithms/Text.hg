@@ -1,0 +1,9 @@
+class Text : Array
+  ctor()
+  dtor()
+
+# UTF, UCS, jis, euc, sjis
+# fputs function.
+# fread function.
+# consoles.
+

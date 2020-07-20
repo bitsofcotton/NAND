@@ -1,0 +1,23 @@
+class Texture[def color] : Matrix[color]
+  fn ctor(const Complex[Int]) : void
+  fn dtor() : void
+  # ld/st, stretch, clear, point, line
+  # make pattern
+
+class Plot[def color] : Texture[color]
+  # making graph
+  fn ctor() : void
+  fn dtor() : void
+
+class PlayMovie[def color, def driver] : Texture[color]
+  fn ctor() : void
+  fn dtor() : void
+
+# 2D, 3D, illust
+# fonts
+# Huge...
+
+# Maze
+# SVG
+# Huge...
+
