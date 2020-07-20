@@ -32,25 +32,17 @@ class Pool[Int size] : Int[0]
   fn assign[def type]() : type
   fn release[def type](type) : bool
 
+class PoolDisk[int size] : Int[0]
+  def bool : Int[1]
+  let handle : #XXX
+  ctor()   : void
+  dtor()   : void
+  fn assign(def type](const Int as) : type
+  fn release[def type](type) : bool
+
 class Array[def type, Pool p] : Int[0]
   def bool : Int[1]
   let ptr  : Int
-  ctor()   : void
-  ctor(Int size) : void
-  dtor()   : void
-  fn resize(const Int size, const type init) : void
-  fn reserve(const Int size) : void
-  fn push_back(type p) : void
-  fn pop_back()        : void
-  fn delete(const Int idx) : void
-  fn last()            : type
-  fn size()            : Int
-  fn operator [] (const Int idx) : type
-
-class ArrayOnDisk[def type] : Int[0]
-  def bool : int[1]
-  # XXX :
-  let handle : void
   ctor()   : void
   ctor(Int size) : void
   dtor()   : void
