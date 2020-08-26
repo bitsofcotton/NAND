@@ -59,4 +59,4 @@ If we're working on R, with logarithm and exponent matrix (can be defined with d
 On the other hands, Quadratic Programming also in them, any of inverse function on the computer that all part converges can be described as quadratic programming form.
 Nor, we can describe machine learning into quadratic programming form with huge problem. 
 
-So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system). (In another words, if we don't needs such things and we have much of datas, machine learning is better.)
+So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system). (In another words, if we don't need such readability and we have much of datas and their relations, machine learning is better.)
