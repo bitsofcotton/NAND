@@ -54,7 +54,7 @@ Stub of planning project.
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation because A in N^{n\*n}, A\*2^x in randtools meaning.
-If we're working on R, with logarithm and exponent matrix (can be defined with differential matrix, not the logarithm of matrix nor exponent of matrix), we can handle transcendental numbers on them (if the data series is enough). If data is not seriarized, exp(A\*log(x)) can be used for them. So general form is as Sum exp(A_k\*log(x)) + A_0\*x, this can be trained with existing machine learning things. So almost any of the algorithms we met (on converged series) can be described as machine learning.
+If we're working on R, with logarithm and exponent matrix (can be defined with differential matrix, not the logarithm of matrix nor exponent of matrix), we can handle transcendental numbers on them (if the data series is enough). If data is not seriarized, exp(A\*log(x)) can be used for them. So general form is as Sum exp(A_k\*log(x)) + A_0\*x, this can be trained with existing machine learning things. So almost any of the algorithms we met (on converged series) can be described as machine learning. (In another words, topology of the machine learning block diagrams is needed when we met the condition the problem is huge nor the problem is something sparse.)
 
 On the other hands, Quadratic Programming also in them, any of inverse function on the computer that all part converges can be described as quadratic programming form.
 Nor, we can describe machine learning into quadratic programming form with huge problem. 
