@@ -47,9 +47,9 @@ Stub of planning project.
 * * assert(x)
 * * * stop execution or compilation if x is false.
 * special variables
-* * __pointer_bits__
+* * \_\_pointer_bits\_\_
 * * * number of pointer bit size.
-* * __here__
+* * \_\_here\_\_
 * * * information for debugging.
 
 # General Tips
@@ -60,3 +60,4 @@ On the other hands, Quadratic Programming also in them, any of inverse function 
 Nor, we can describe machine learning into quadratic programming form with huge problem. 
 
 So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system). (In another words, if we don't need such readability and we have much of datas and their relations, machine learning is better.)
+<!-- N.B. If the program is readable one, the constraints size is able to count-up by human, this is important for understanding the algorithms. -->
