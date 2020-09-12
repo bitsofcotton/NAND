@@ -1,5 +1,4 @@
 class Glay[def type] : type
-  let i : type
   fn ctor() : void
   fn dtor() : void
 
@@ -12,7 +11,6 @@ class RGB[def type] : Int[0]
 
 class RGBA[def type] : Quarternion[type]
   def rgba : Quarternion[type]
-  let c    : rgba
   fn ctor() : void
   fn dtor() : void
 

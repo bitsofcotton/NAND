@@ -5,7 +5,8 @@ class Perceptron[def type] : Matrix[type]
   def vec : Vector[type]
   fn ctor() : void
   fn dtor() : void
-  fn study(const vec in, const vec tag) : void
+  fn study(const vec in, const vec tag) : type
+  fn improve(const vec in)  : type
   fn gettag(const vec in)   : vec
   fn tag2out(const vec tag) : vec
 

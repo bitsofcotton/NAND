@@ -100,4 +100,6 @@ class RBTree[def type] : Sorted[type]
 class Graph[def type] : Matrix[type]
   ctor() : void
   dtor() : void
+  # graph into plane.
+  fn place() : Array
 
