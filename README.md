@@ -62,4 +62,4 @@ On the other hands, Quadratic Programming also in them, any of inverse function 
 Nor, we can describe machine learning into quadratic programming form with huge problem. 
 
 So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system). (In another words, if we don't need such readability and we have much of datas and their relations, machine learning is better.)
-<!-- N.B. If the program is readable one, the constraints size is able to count-up by human, this is important for understanding the algorithms. -->
+<!-- N.B. If the program is readable one, the constraints size is able to count-up by human, this is important for understanding the algorithms. And, if the data we collected is not so concrete, the results also be not so concrete. -->
