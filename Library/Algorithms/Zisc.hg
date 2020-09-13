@@ -6,6 +6,17 @@ class Perceptron[def type] : Matrix[type]
   fn ctor() : void
   fn dtor() : void
   fn study(const vec in, const vec tag) : type
+  fn learn(const vec in)    : type
+  fn improve(const vec in)  : type
+  fn gettag(const vec in)   : vec
+  fn tag2out(const vec tag) : vec
+
+class BlockDiagram[def type] : Array[Perceptron[type]]
+  def vec : Vector[type]
+  fn ctor(const Matrix[Int] d) : void
+  fn dtor() : void
+  fn study(const vec in, const vec tag) : type
+  fn learn(const vec in)    : type
   fn improve(const vec in)  : type
   fn gettag(const vec in)   : vec
   fn tag2out(const vec tag) : vec
