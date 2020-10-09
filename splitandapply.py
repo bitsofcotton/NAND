@@ -6,21 +6,71 @@ import re
 # thanks to: https://qiita.com/hoto17296/items/e1f80fef8536a0e5e7db
 flatten = lambda x: "_".join([z for y in x for z in (flatten(y) if (hasattr(y, '__iter__') and not isinstance(y, str)) else y,)])
 
+def match_type(type, hblocks):
+  lnames = {}
+  for names in hblocks["name"]:
+    lnames[names[1][0]] = names[1][0]
+  for usesidx in hblocks["using"]:
+    for idx in hblocks["using"][usesidx]:
+      llname = hblocks["using"][usesidx][idx][0][0]
+      lnames[llname] = llname
+  lnames["def"] = "def"
+  if(type[0] in lnames):
+    return True
+  return False
+
+def debug_types_header(hblocks):
+  for lets in hblocks["let"]:
+    if(not match_type(lets[1], hblocks)):
+      print("NG type: ", lets[1])
+  fnfriends = {}
+  for f in hblocks["fn"]:
+    fnfriends[f] = hblocks["fn"][f]
+  for f in hblocks["friend"]:
+    for ff in hblocks["friend"][f]:
+      fnfriends[f][ff] = hblocks["friend"][f][ff]
+  for fnridx in fnfriends:
+    fnroot = fnfriends[fnridx]
+    for fnidx in fnroot:
+      fn = fnroot[fnidx]
+      if(len(fn) <= 0 or len(fn[0]) <= 0 or 2 < len(fn)):
+        print("NG # val: ", fn)
+        continue
+      idx0 = 1
+      if(fn[0][0] == "operator"):
+        idx0 = 2
+      if(not match_type(fn[1], hblocks)):
+        print("NG type: ", fn)
+      if(fn[0][idx0][0] != "("):
+        print("NG bracket: ", fn)
+      buf = []
+      for idx in range(1, len(fn[1])):
+        if(fn[1][idx] == ","):
+          if(not match_type(buf, hblocks)):
+            print("NG type: ", fn, buf)
+          buf = []
+      if(0 < len(buf) and not match_type(buf, hblocks)):
+        print("NG type: ", fn, buf)
+  return
+
 def header_block(blocks):
   uroot  = {}
   vroot  = {}
   droot  = {}
   froot  = {}
+  frroot = {}
   nroot  = {}
   uroot["root"] = {}
   vroot["root"] = {}
   droot["root"] = {}
   froot["root"] = {}
+  frroot["root"] = {}
   nroot["root"] = ["root"]
   ustack = uroot["root"]
   vstack = vroot["root"]
   dstack = droot["root"]
   fstack = froot["root"]
+  frstack = froot["root"]
   chgc   = False
   indent = 0
   for a in blocks:
@@ -32,20 +82,24 @@ def header_block(blocks):
       vstack = vroot["root"]
       dstack = droot["root"]
       fstack = froot["root"]
-    if(a[0] == "class" or a[0] == "extend"):
+      frstack = frroot["root"]
+    if(a[0] == "class"):
       chgc   = True
       if(not (flatten(a[2]) in vroot)):
         uroot[flatten(a[2])] = {}
         vroot[flatten(a[2])] = {}
         droot[flatten(a[2])] = {}
         froot[flatten(a[2])] = {}
+        frroot[flatten(a[2])] = {}
         nroot[flatten(a[2])] = a[2]
       ustack = uroot[flatten(a[2])]
       vstack = vroot[flatten(a[2])]
       dstack = droot[flatten(a[2])]
       fstack = froot[flatten(a[2])]
+      frstack = frroot[flatten(a[2])]
     elif(a[0] == "let" or \
          a[0] == "fn"  or \
+         a[0] == "friend" or \
          a[0] == "def" or \
          a[0] == "using"):
       # def class int
@@ -56,6 +110,9 @@ def header_block(blocks):
       elif(a[0] == "fn"):
         fstack[flatten(a[2])] = [a[2]]
         fstack[flatten(a[2])].extend(a[3])
+      elif(a[0] == "friend"):
+        frstack[flatten(a[2])] = [a[2]]
+        frstack[flatten(a[2])].extend(a[3])
       elif(a[0] == "def"):
         dstack[flatten(a[2])] = [a[2], a[3]]
       elif(a[0] == "using"):
@@ -68,6 +125,7 @@ def header_block(blocks):
   res["let"]   = vroot
   res["def"]   = droot
   res["fn"]    = froot
+  res["friend"] = frroot
   res["name"]  = nroot
   return res
 
@@ -79,10 +137,10 @@ def header_parts(a):
   term = {}
   term["let"]    = "let"
   term["fn"]     = "fn"
+  term["friend"] = "friend"
   term["using"]  = "using"
   term["def"]    = "def"
   term["class"]  = "class"
-  term["extend"] = "extend"
   nocolon = {}
   nocolon["class"]  = "class"
   nocolon["using"]  = "using"
@@ -146,12 +204,21 @@ def cut(s):
               print("NG indent: ", ss, " indent: ", indent)
           work[- 1]["indent"] = indent
           indent = - 1
-      if(0 < len(mode) and p != '\r' and p != '\n' and mode[- 1] == '\\'):
-        stack[- 1][- 1].append(mode[- 1] + p)
+      if(0 < len(mode) and mode[- 1] == '\\' and p != '\r' and p != '\n'):
+        stack[- 1].append(p)
         mode = mode[:- 1]
         continue
+      elif(0 < len(mode) and mode[- 1] == ':'):
+        if(p[0] == '=' and p != '\r' and p != '\n'):
+          stack[- 1].append(mode[- 1] + p)
+          mode = mode[:- 1]
+          continue
+        stack[- 1].append(mode[- 1])
+        mode = mode[:- 1]
       if(p == '\\'):
         mode += '\\'
+      elif(p == ':'):
+        mode += ':'
       elif(p == '\r' or p == '\n'):
         if(len(mode) > 0 and mode[- 1] == '\\'):
           mode = mode[:- 1]
@@ -179,21 +246,6 @@ def cut(s):
           stack.append(stack[- 1][- 1])
       else:
         stack[- 1].append(p)
-  # concat :=...
-  for st in work:
-    scache = []
-    c      = 0
-    while(c < len(st["cache"]) - 1):
-      if(st["cache"][c] == ":" and \
-         st["cache"][c + 1][0] == "="):
-        scache.append(st["cache"][c] + st["cache"][c + 1])
-        c += 1
-      else:
-        scache.append(st["cache"][c])
-      c += 1
-    if(c < len(st["cache"])):
-      scache.append(st["cache"][c])
-    st["cache"] = scache
   return work
 
 work   = cut(sys.stdin.readlines())
@@ -202,7 +254,23 @@ for w in work:
   w = header_parts(w)
   if(len(w) > 0):
     hparts.append(w)
+for h in hparts:
+  print h
 hh     = header_block(hparts)
 for h in hh:
-  print(hh[h])
+  print h
+  if(h != "name"):
+    for h0 in hh[h]:
+      print h0
+      for h1 in hh[h][h0]:
+        print h1
+        print hh[h][h0][h1]
+      print
+  else:
+    for h0 in hh[h]:
+      print h0, hh[h][h0]
+  print
+print("type check.")
+debug_types_header(hh)
+print("OK")
 
