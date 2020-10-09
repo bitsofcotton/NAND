@@ -11,3 +11,14 @@ class Text : Array
 # SGML
 # BNF parser
 # Huge...
+
+class Stemming[def text] : # XXX
+  fn ctor() : void
+  fn dtor() : void
+
+class Regex[def text] : # XXX
+  fn ctor() : void
+  fn dtor() : void
+  fn compile(const text) : bool
+  fn match(const text) : # XXX
+
