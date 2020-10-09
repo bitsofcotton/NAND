@@ -1,7 +1,8 @@
 # commutative and non commutative...
 # referring some mathematic results.
 
-using Int[64]   : Int[0]
+using void      : Int[0]
+using Int[64]
 using DUInt[64] : Int[64]
 
 class DUInt[Int bits] : Int[0]
@@ -289,8 +290,8 @@ class pZ[def type, type z]
   fn  operator |=  (const int) : pz
 
 class Band[def type] : Complex[type]
-  ctor() : void
-  dtor() : void
+  fn ctor() : void
+  fn dtor() : void
 
 fn gcd[def type](const type, const type) : type
 fn lcm[def type](const type, const type) : type
@@ -348,7 +349,7 @@ class Float[Int mantissa, Int exponent] : Int[0]
   fn  isinf() const : bool
   fn  ceil()  : float
   fn  floor() : float
-  extend operator Int(const float) const : Int
+  friend operator Int(const float) const : Int
 
 class WFloat[def float_t] : Int[0]
   def float : WFloat[float_t]
@@ -415,7 +416,7 @@ class Fraction[def type] : Object
   fn  operator /= (const fraction) : fraction
   fn  operator %= (const fraction) : fraction
 
-def EFloat[def float_t, float_t err] : float_t
+class EFloat[def float_t, float_t err] : float_t
   def efloat : EFloat[float_t]
   def bool   : Int[1]
   let _e     : float_t
