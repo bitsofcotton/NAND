@@ -6,10 +6,11 @@ import re
 # thanks to: https://qiita.com/hoto17296/items/e1f80fef8536a0e5e7db
 flatten = lambda x: "_".join([z for y in x for z in (flatten(y) if (hasattr(y, '__iter__') and not isinstance(y, str)) else y,)])
 
-def match_type(type, hblocks):
+def match_type(type, hblocks, cls = "root"):
   lnames = {}
   for names in hblocks["name"]:
-    lnames[names[1][0]] = names[1][0]
+    llname = hblocks["name"][names][0]
+    lnames[llname] = llname
   for usesidx in hblocks["using"]:
     for idx in hblocks["using"][usesidx]:
       llname = hblocks["using"][usesidx][idx][0][0]
@@ -17,12 +18,15 @@ def match_type(type, hblocks):
   lnames["def"] = "def"
   if(type[0] in lnames):
     return True
+  print type
   return False
 
 def debug_types_header(hblocks):
   for lets in hblocks["let"]:
-    if(not match_type(lets[1], hblocks)):
-      print("NG type: ", lets[1])
+    for ll in hblocks["let"][lets]:
+      llets = hblocks["let"][lets][ll][1][0]
+      if(not match_type(llets, hblocks)):
+        print("NG type: ", llets)
   fnfriends = {}
   for f in hblocks["fn"]:
     fnfriends[f] = hblocks["fn"][f]
@@ -254,8 +258,6 @@ for w in work:
   w = header_parts(w)
   if(len(w) > 0):
     hparts.append(w)
-for h in hparts:
-  print h
 hh     = header_block(hparts)
 for h in hh:
   print h
