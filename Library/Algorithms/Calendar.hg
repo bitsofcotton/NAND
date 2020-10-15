@@ -1,5 +1,7 @@
 class Calendar : Int
-  let tick : Int
+  fn ctor() : void
+  fn dtor() : void
 
 # some procedures like:
 #   attend/leave time logging and calculate total time with time zone.
+

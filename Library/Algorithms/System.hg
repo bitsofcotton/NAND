@@ -2,6 +2,41 @@ class Int[0]
   def invertible    : 0
   def abel          : 0
   def commutative   : 0
+  fn  operator !  ()     : bool
+  fn  operator ++ ()     : leaf
+  fn  operator ++ (void) : leaf
+  fn  operator -- (void) : leaf
+  fn  operator -  () const : leaf
+  fn  operator *  (const leaf) const : bool
+  fn  operator **  (const leaf) const : bool
+  fn  operator /  (const leaf) const : bool
+  fn  operator << [def type] (const type) const : bool
+  fn  operator >> [def type] (const type) const : bool
+  fn  operator %  (const leaf) const : bool
+  fn  operator +  (const leaf) const : bool
+  fn  operator -  (const leaf) const : bool
+  fn  operator &  (const leaf) const : bool
+  fn  operator |  (const leaf) const : bool
+  fn  operator ^  (const leaf) const : bool
+  fn  operator <  (const leaf) const : bool
+  fn  operator <= (const leaf) const : bool
+  fn  operator >  (const leaf) const : bool
+  fn  operator >= (const leaf) const : bool
+  fn  operator == (const leaf) const : bool
+  fn  operator != (const leaf) const : bool
+  fn  operator && (const leaf) const : bool
+  fn  operator || (const leaf) const : bool
+  fn  operator += (const leaf) const : bool
+  fn  operator -= (const leaf) const : bool
+  fn  operator *= (const leaf) const : bool
+  fn  operator **= (const leaf) const : bool
+  fn  operator %= (const leaf) const : bool
+  fn  operator /= (const leaf) const : bool
+  fn  operator <<= [def type] (const type) const : bool
+  fn  operator >>= [def type] (const type) const : bool
+  fn  operator &= (const leaf) const : bool
+  fn  operator |= (const leaf) const : bool
+  fn  operator ^= (const leaf) const : bool
   # stub for leafs.
   def zorn()        : { }
   def each()        : { }
