@@ -1,6 +1,7 @@
 # limit op on equation.
 fn bothside[def type](type, type, type) : type
 fn newton[def type, def f](type) : type
+fn superGeometry[def type, Array[type] a, Array[type] b, def f] : type
 fn sqrt[def type](type) : type
 fn pi[def type](type)   : type
 fn exp[def type](type)  : type

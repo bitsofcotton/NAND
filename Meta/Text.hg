@@ -1,3 +1,17 @@
+class Text : Array
+  ctor()
+  dtor()
+
+# UTF, UCS, jis, euc, sjis
+# fputs function.
+# fread function.
+# consoles.
+
+# BNF
+# SGML
+# BNF parser
+# Huge...
+
 class Stemming[def text] : # XXX
   fn ctor() : void
   fn dtor() : void
