@@ -1,0 +1,21 @@
+# Huge...
+class FFS[Array = ArrayOnDisk] : Array
+  fn ctor() : void
+  fn dtor() : void
+
+class FAT[Array = ArrayOnDisk] : Array
+  fn ctor() : void
+  fn dtor() : void
+
+class HFS[Array = ArrayOnDisk] : Array
+  fn ctor() : void
+  fn dtor() : void
+
+class UDF[Array = ArrayOnDisk] : Array
+  fn ctor() : void
+  fn dtor() : void
+
+class CD9660[Array = ArrayOnDisk] : Array
+  fn ctor() : void
+  fn dtor() : void
+

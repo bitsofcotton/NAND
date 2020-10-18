@@ -1,0 +1,73 @@
+class Glay[def type] : type
+  fn ctor() : void
+  fn dtor() : void
+
+class RGB[def type] : Int[0]
+  let r : type
+  let g : type
+  let b : type
+  fn ctor() : void
+  fn dtor() : void
+
+class RGBA[def type] : Quarternion[type]
+  def rgba : Quarternion[type]
+  fn ctor() : void
+  fn dtor() : void
+
+class HSV[def type] : Int[0]
+  let h : type
+  let s : type
+  let v : type
+  fn ctor() : void
+  fn dtor() : void
+
+class HSB<def type> : Int[0]
+  let h : type
+  let s : type
+  let b : type
+  fn ctor() : void
+  fn dtor() : void
+
+class Lab<def type> : Int[0]
+  let l : type
+  let a : type
+  let b : type
+  fn ctor() : void
+  fn dtor() : void
+
+class ColorDigital[def type] : Vector[type]
+  fn ctor() : void
+  fn dtor() : void
+
+class ColorAnalogue[def type, fn func] : Int[0]
+  fn ctor() : void
+  fn dtor() : void
+
+class Texture[def color] : Matrix[color]
+  fn ctor(const Complex[Int]) : void
+  fn dtor() : void
+  # ld/st, stretch, clear, point, line
+  # make pattern
+
+class Plot[def color] : Texture[color]
+  # making graph
+  fn ctor() : void
+  fn dtor() : void
+
+class PlayMovie[def color, def driver] : Texture[color]
+  fn ctor() : void
+  fn dtor() : void
+
+# 2D, 3D, illust
+# fonts
+# Huge...
+
+# Maze
+# SVG
+# Huge...
+
+# Poincare cut.
+# Huge...
+
+# Widgets: dom xml base. Huge...
+
