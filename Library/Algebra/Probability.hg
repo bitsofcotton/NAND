@@ -1,8 +1,0 @@
-using Vector : Library.Algebra.Linear.Vector
-
-class Distribution[def type, def func]
-  ctor() : void
-  dtor() : void
-
-fn isFit(const Vector, type) : Int[1]
-
