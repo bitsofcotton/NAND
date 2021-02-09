@@ -1,7 +1,9 @@
 # NAND
 Natural simpler compiler with natural simpler documentation on pairs of file.
 Aims to readability (for me), compact and low-complexity implementation, moderate worst-case speed, no matter better-case speed.
-And aims to revert operation via QP solver. Library oriented. Convert to C language. So it's huge, it should import prior sources with license notifications, so multiple file link is needed. And, const operation should be hardly calculated to optimize.  
+And aims to revert operation via randtools solver. Library oriented. Convert to C language.
+So it's huge, it should import prior sources with license notifications, so multiple file link is needed.
+And, const operation should be hardly calculated to optimize.  
 
 Stub of planning project.
 
@@ -55,11 +57,10 @@ Stub of planning project.
 * * * information for debugging.
 
 # General Tips
-If the data is enough, machine learning methods can implement any of the implementation because A in N^{n\*n}, A\*2^x in randtools meaning.
-If we're working on R, with logarithm and exponent matrix (can be defined with differential matrix, not the logarithm of matrix nor exponent of matrix), we can handle transcendental numbers on them (if the data series is enough). If data is not seriarized, exp(A\*log(x)) can be used for them. So general form is as Sum exp(A_k\*log(x)) + A_0\*x, this can be trained with existing machine learning things. So almost any of the algorithms we met (on converged series) can be described as machine learning. (In another words, topology of the machine learning block diagrams is needed in only the case when we met the condition the problem is huge nor the problem is something sparse.)
+If the data is enough, machine learning methods can implement any of the implementation. For this, please refer bit_factorize.
+In another words, topology of the machine learning block diagrams is needed in only the case when we met the condition the problem is huge nor the problem is something sparse.
 
-On the other hands, Quadratic Programming also in them, any of inverse function on the computer that all part converges can be described as quadratic programming form.
-Nor, we can describe machine learning into quadratic programming form with huge problem. 
+So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system).
+In another words, if we don't need such readability and we have much of datas and their relations, machine learning is better.
 
-So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system). (In another words, if we don't need such readability and we have much of datas and their relations, machine learning is better.)
-<!-- N.B. If the program is readable one, the constraints size is able to count-up by human, this is important for understanding the algorithms. And, if the data we collected is not so concrete, the results also be not so concrete. -->
+<!-- N.B. If the program is readable one, the constraints size is able to count-up by human, this is important for understanding the algorithms. And, if the data we collected is not so concrete, the results also be not so concrete when machine learning. -->
