@@ -1,5 +1,4 @@
-using Vector : Library.Algebra.Linear.Vector
-using Matrix : Library.Algebra.Linear.Matrix
+using Meta.Linear
 
 class Perceptron[def type] : Matrix[type]
   def vec : Vector[type]

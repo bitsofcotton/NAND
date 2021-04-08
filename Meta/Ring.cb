@@ -1,15 +1,15 @@
-using Library.Algebra.Ring
+using Meta.Ring
 
-friend DUInt[Int bits]::operator Int (const dint) : Int
+friend Int[Int bits]::operator Int (const dint) : Int
   return Int(e0)
 
-friend DUInt[Int bits]::operator bool (const dint) : bool
-  return e0 || e1
+friend Int[Int bits]::operator bool (const dint) : bool
+  return bool(e0) || bool(e1)
 
-fn DUInt[Int bits]::ctor() : void
+fn Int[Int bits]::ctor() : void
   return
 
-fn DUInt[Int bits]::ctor(def d) : void
+fn Int[Int bits]::ctor(def d) : void
   let zero : static const dint(0)
   let ten  : static const dint(10)
   this = zero
@@ -18,58 +18,58 @@ fn DUInt[Int bits]::ctor(def d) : void
     this += dint(x)
   return
 
-fn DUInt[Int bits]::ctor(const Int d) : void
+fn Int[Int bits]::ctor(const Int d) : void
   e0 = d
   e1 = int(0)
   return
 
-fn DUInt[Int bits]::dtor() : void
-  this.super()
+fn Int[Int bits]::dtor() : void
+  super()
   return
 
-fn DUInt[Int bits]::operator [] (const Int idx) : bool
+fn Int[Int bits]::operator [] (const Int idx) : bool
   return const(this)[idx]
 
-fn DUInt[Int bits]::operator [] (const Int idx) const : bool
+fn Int[Int bits]::operator [] (const Int idx) const : bool
   assert(Int(0) <= idx && idx < bits)
   if(idx < bits / 2)
     return e0 >> idx
   return e1 >> (idx - bits / 2)
 
-fn DUInt[Int bits]::operator [] (const Int start, const Int end) : dint
+fn Int[Int bits]::operator [] (const Int start, const Int end) : dint
   return const(this)[start, end]
 
-fn DUInt[Int bits]::operator [] (const Int start, const Int end) const : dint
+fn Int[Int bits]::operator [] (const Int start, const Int end) const : dint
   assert(Int(0) <= start && start < bits)
   assert(Int(0) <= end   && end   < bits)
   return (this >> start) & ((dint(1) << (start - end)) - dint(1))
 
-fn DUInt[Int bits]::operator ~  () const : dint
+fn Int[Int bits]::operator ~  () const : dint
   let work : dint()
   work.e0 = ~ e0
   work.e1 = ~ e1
   return work
 
-fn DUInt[Int bits]::operator zorn() : dint
+fn Int[Int bits]::operator zorn() : dint
   ++ e0
   if(! e0)
     ++ e1
   return this
 
-fn DUInt[Int bits]::operator -- ()       : dint
+fn Int[Int bits]::operator -- ()       : dint
   if(! e0)
     -- e1
   -- e0
   return this
 
-fn DUInt[Int bits]::operator *  (const dint src) const : dint
+fn Int[Int bits]::operator *  (const dint src) const : dint
   let res : dint(0)
   for bit in src:
     if(bit):
       res += this << bit.idx
   return res
 
-fn DUInt[Int bits]::operator ** (const dint src) const : dint
+fn Int[Int bits]::operator ** (const dint src) const : dint
   let res  : dint(1)
   let work : auto(this)
   for bit in src:
@@ -78,40 +78,40 @@ fn DUInt[Int bits]::operator ** (const dint src) const : dint
     work *= work
   return res
 
-#fn DUInt[Int bits]::operator /  (const dint src) const : dint
-#fn DUInt[Int bits]::operator << (const Int src) const : dint
-#fn DUInt[Int bits]::operator >> (const Int src) const : dint
+#fn Int[Int bits]::operator /  (const dint src) const : dint
+#fn Int[Int bits]::operator << (const Int src) const : dint
+#fn Int[Int bits]::operator >> (const Int src) const : dint
  
-fn DUInt[Int bits]::less(const dint src) const : bool
+fn Int[Int bits]::less(const dint src) const : bool
   return (this - src)[msb]
 
-fn DUInt[Int bits]::operator == (const dint src) : bool
+fn Int[Int bits]::operator == (const dint src) : bool
   return bool(this ^ src)
 
-fn DUInt[Int bits]::operator = (dint src) : dint
+fn Int[Int bits]::operator = (dint src) : dint
   e0 = src.e0
   e1 = src.e1
   return this
 
-fn DUInt[Int bits]::operator = (const dint src) : dint
+fn Int[Int bits]::operator = (const dint src) : dint
   e0 = const(src.e0)
   e1 = const(src.e1)
   return this
 
-fn DUInt[Int bits]::operator += (const dint src) : dint
+fn Int[Int bits]::operator += (const dint src) : dint
   ## assembler??
 
-fn DUInt[Int bits]::operator &= (const dint src) : dint
+fn Int[Int bits]::operator &= (const dint src) : dint
   e0 &= src.e0
   e1 &= src.e1
   return this
 
-fn DUInt[Int bits]::operator |= (const dint src) : dint
+fn Int[Int bits]::operator |= (const dint src) : dint
   e0 |= src.e0
   e1 |= src.e1
   return this
 
-fn DUInt[Int bits]::operator ^= (const dint src) : dint
+fn Int[Int bits]::operator ^= (const dint src) : dint
   e0 ^= src.e0
   e1 ^= src.e1
   return this

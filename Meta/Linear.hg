@@ -1,80 +1,72 @@
-using Array : Library.Algorithms.Balance.Array
+using Meta.System
 
 class Vector[def type, def index, def Array = Array]
   def vector : Vector[type, index]
-  def bool   : Int[1]
   let coeff  : type
   let entity : Array[type]
   fn  ctor() : void
   fn  ctor(const index) : void
   fn  dtor() : void
-  fn  resize(const index) : void
-  fn  operator [] (const index)        : void
-  fn  operator [] (const index)  const : void
-  fn  operator [] (const index, const index)        : void
-  fn  operator [] (const index, const index)  const : void
-  fn  operator !  ()             const : bool
+  fn  resize(const index) : vector
+  fn  size() const : const index
+  fn  init(fn ier(idx : index, entity : type) : void) : vector
+  fn  O() const : vector
+  fn  I() const : vector
+  fn  operator [] (const index)        : type
+  fn  operator [] (const index)  const : const type
+  fn  operator [] (const index, const index)        : vector
+  fn  operator [] (const index, const index)  const : const vector
+  fn  operator bool () const : bool
   fn  operator -  ()             const : vector
   fn  dot         (const vector) const : type
-  fn  operator *  (const type)   const : vector
-  fn  operator ** (const type)   const : vector
-  fn  operator /  (const type)   const : vector
-  fn  operator %  (const type)   const : vector
-  fn  operator +  (const vector) const : vector
-  fn  operator -  (const vector) const : vector
-  fn  operator <  (const vector) const : bool
-  fn  operator <= (const vector) const : bool
-  fn  operator >  (const vector) const : bool
-  fn  operator >= (const vector) const : bool
-  fn  operator == (const vector) const : bool
+  fn  operator <eachAll (const vector) const : bool
   fn  operator != (const vector) const : bool
   fn  operator =  (vector)       : vector
   fn  operator =  (const vector) : vector
   fn  operator += (const vector) : vector
   fn  operator -= (const vector) : vector
-  fn  operator *= (const type)   : vector
-  fn  operator **= (const vector) : vector
-  fn  operator /= (const type)   : vector
-  fn  operator %= (const type)   : vector
+  fn  operator *=  (const type)   : vector
+  fn  operator **= (const type)   : vector
+  fn  operator /=  (const type)   : vector
+  fn  operator %=  (const type)   : vector
+  def less() : bool
 
-class Matrix[def type, def index, def Array = Array]
-  def matrix : Matrix[type, index]
-  def vector : Vector[type, index]
-  def bool   : Int[1]
+class Matrix[def type, def index0, def Array = Array]
+  def matrix : Matrix[type, index0]
+  def vector : Vector[type, index0]
+  def index  : Complex[index0]
   let transposed : bool
   let coeff  : type
   let entity : Array[vector]
   fn  ctor() : void
-  fn  ctor(const index, const index) : void
+  fn  ctor(const index) : void
   fn  dtor() : void
-  fn  resize(const index, const index) : void
-  fn  row(const index) : void
-  fn  row(const index) const : void
-  fn  setCol(const index, vector) : void
-  fn  setCol(const index, const vector) : void
-  fn  col(const index) const : void
-  fn  operator [] (const index, const index)  const : void
+  fn  resize(const index) : matrix
+  fn  size() const : const index
+  fn  init(fn ier(idx : index, entity : type) : void) : matrix
+  fn  O() const : matrix
+  fn  I() const : matrix
+  fn  II() const : matrix
+  fn  row(const index0) : vector
+  fn  row(const index0) const : const vector
+  fn  setCol(const index0, const vector) : void
+  fn  col(const index0) const : const vector
+  fn  operator [] (const index)       : type
+  fn  operator [] (const index) const : const type
+  fn  operator [] (const index, const index)       : type
+  fn  operator [] (const index, const index) const : const type
   fn  operator !  ()             const : bool
-  fn  operator -  ()             const : vector
-  fn  operator *  (const type)   const : vector
+  fn  operator -  ()             const : matrix
   fn  operator *  (const vector) const : vector
   fn  operator *  (const matrix) const : matrix
   fn  operator ** (const type)   const : matrix
-  fn  operator +  (const vector) const : matrix
-  fn  operator -  (const vector) const : matrix
-  fn  operator <d  (const vector) const : bool
-  fn  operator <=d (const vector) const : bool
-  fn  operator >d  (const vector) const : bool
-  fn  operator >=d (const vector) const : bool
-  fn  operator == (const vector) const : bool
+  fn  operator <d  (const matrix) const : bool
   fn  operator != (const vector) const : bool
   fn  operator =  (matrix)       : matrix
   fn  operator =  (const matrix) : matrix
   fn  operator += (const matrix) : matrix
   fn  operator -= (const matrix) : matrix
   fn  operator *= (const type)   : matrix
-  fn  operator *= (const matrix) : matrix
-  fn  operator **= (const type)  : matrix
   fn  transpose()                : matrix
   fn  transposed()         const : matrix
 
@@ -86,17 +78,18 @@ fn QR(const Matrix, Matrix, Matrix) : bool
 fn FullQR(const Matrix, Matrix, Matrix) : bool
 fn Schur(const Matrix, Matrix, Matrix) : bool
 fn SVD(const Matrix, Matrix, Vector, Matrix) : bool
+fn GSVD(const Matrix, const Matrix, Matrix, Matrix, Matrix) : bool
 fn pseudoInverse(const Matrix) : Matrix
 fn feasible(const Matrix, const Vector) : bool
 fn LP(const Matrix, const Vector, const Vector) : Vector
 fn QP(const Matrix, const Vector, const Matrix, const Vector) : Vector
-fn Fourier(const Vector, const Int[1]) : Vector
-fn Diff(const Vector) : Vector
-fn Wavelet(const Vector, const Vector, const Int[1]) : Vector
+fn Fourier(const Vector, const bool) : Vector
+fn FastFourier(const Vector, const bool) : Vector
+fn Diff(const Vector, const bool) : Vector
+fn MotherWavelet(const Vector, const Vector, const bool) : Vector
 
-class Complex[def type] : Int[0]
+class Complex[def type] : Object
   def complex : Complex[type]
-  def bool    : Int[1]
   let real    : type
   let imag    : type
   fn ctor()   : void
@@ -107,6 +100,7 @@ class Complex[def type] : Int[0]
   fn ctor(complex)    : void
   fn ctor(const complex) : void
   fn dtor()   : void
+  fn size() const : const Int
   fn operator []  (const Int) : type
   fn operator !   () const    : bool
   fn operator ~   () const    : complex
@@ -114,9 +108,6 @@ class Complex[def type] : Int[0]
   fn operator *   (const complex) const : complex
   fn operator **  (const complex) const : complex
   fn operator /   (const complex) const : complex
-  fn operator +   (const complex) const : complex
-  fn operator -   (const complex) const : complex
-  fn operator ==  (const complex) const : bool
   fn operator !=  (const complex) const : bool
   fn operator &&  (const complex) const : bool
   fn operator ||  (const complex) const : bool
@@ -124,16 +115,14 @@ class Complex[def type] : Int[0]
   fn operator =   (const complex) : complex
   fn operator +=  (const complex) : complex
   fn operator -=  (const complex) : complex
-  fn operator *=  (const complex) : complex
-  fn operator **= (const complex) : complex
   fn operator /=  (const complex) : complex
+  fn operator /=  (const type) : complex
 
 fn abs(const Complex) : type
 fn arg(const Complex) : type
 
-class Quaternion[def type] : Int[0]
+class Quaternion[def type] : Object
   def quat  : Quaternion[type]
-  def bool  : Int[1]
   let r1    : type
   let r2    : type
   let r3    : type
@@ -148,7 +137,8 @@ class Quaternion[def type] : Int[0]
   fn ctor(Complex[type], Complex[type])             : void
   fn ctor(const Complex[type], const Complex[type]) : void
   fn dtor()  : void
-  fn operator [ ] (const Int) : type
+  fn size() const : const Int
+  fn operator []  (const Int) : type
   fn operator !   () const    : bool
   fn operator ~   () const    : quat
   fn operator -   () const    : quat
@@ -157,7 +147,6 @@ class Quaternion[def type] : Int[0]
   fn operator /   (const quat) const : quat
   fn operator +   (const quat) const : quat
   fn operator -   (const quat) const : quat
-  fn operator ==  (const quat) const : bool
   fn operator !=  (const quat) const : bool
   fn operator &&  (const quat) const : bool
   fn operator ||  (const quat) const : bool
@@ -165,13 +154,10 @@ class Quaternion[def type] : Int[0]
   fn operator =   (const quat) : quat
   fn operator +=  (const quat) : quat
   fn operator -=  (const quat) : quat
-  fn operator *=  (const quat) : quat
-  fn operator **= (const quat) : quat
-  fn operator /=  (const quat) : quat
+  fn operator /=  (const type) : quat
 
-class CayleyHamilton[def type] : Int[0]
-  def ch    : CayleyHamilton[type]
-  def bool  : Int[1]
+class CayleyHamilton[def type, def base] : Object
+  def ch    : CayleyHamilton[base]
   let r1    : type
   let r2    : type
   fn ctor() : void
@@ -180,16 +166,14 @@ class CayleyHamilton[def type] : Int[0]
   fn ctor(CayleyHamilton[type]) : void
   fn ctor(const CayleyHamilton[type]) : void
   fn dtor() : void
-  fn operator [ ] (const Int) : type
+  fn size() const : const Int
+  fn operator []  (const Int) : type
   fn operator !   () const    : bool
   fn operator ~   () const    : ch
   fn operator -   () const    : ch
   fn operator *   (const ch) const : ch
   fn operator **  (const ch) const : ch
   fn operator /   (const ch) const : ch
-  fn operator +   (const ch) const : ch
-  fn operator -   (const ch) const : ch
-  fn operator ==  (const ch) const : bool
   fn operator !=  (const ch) const : bool
   fn operator &&  (const ch) const : bool
   fn operator ||  (const ch) const : bool
@@ -197,7 +181,5 @@ class CayleyHamilton[def type] : Int[0]
   fn operator =   (const ch) : ch
   fn operator +=  (const ch) : ch
   fn operator -=  (const ch) : ch
-  fn operator *=  (const ch) : ch
-  fn operator **= (const ch) : ch
-  fn operator /=  (const ch) : ch
+  fn operator /=  (const type) : ch
 

@@ -1,4 +1,4 @@
-class SoundBuffer : Fourier
+class SoundBuffer : Vector
   fn ctor() : void
   fn dtor() : void
 

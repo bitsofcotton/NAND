@@ -7,76 +7,86 @@ class Int[0]
   fn  operator ++ (void) : leaf
   fn  operator -- (void) : leaf
   fn  operator -  () const : leaf
-  fn  operator *  (const leaf) const : bool
-  fn  operator **  (const leaf) const : bool
-  fn  operator /  (const leaf) const : bool
-  fn  operator << [def type] (const type) const : bool
-  fn  operator >> [def type] (const type) const : bool
-  fn  operator %  (const leaf) const : bool
-  fn  operator +  (const leaf) const : bool
-  fn  operator -  (const leaf) const : bool
-  fn  operator &  (const leaf) const : bool
-  fn  operator |  (const leaf) const : bool
-  fn  operator ^  (const leaf) const : bool
+  fn  operator *   (const leaf) const : leaf
+  fn  operator **  (const leaf) const : leaf
+  fn  operator /  (const leaf) const : leaf
+  fn  operator %  (const leaf) const : leaf
+  fn  operator +  (const leaf) const : leaf
+  fn  operator -  (const leaf) const : leaf
+  fn  operator << [def type] (const type) const : leaf
+  fn  operator >> [def type] (const type) const : leaf
   fn  operator <  (const leaf) const : bool
   fn  operator <= (const leaf) const : bool
   fn  operator >  (const leaf) const : bool
   fn  operator >= (const leaf) const : bool
   fn  operator == (const leaf) const : bool
   fn  operator != (const leaf) const : bool
+  fn  operator &  (const leaf) const : leaf
+  fn  operator ^  (const leaf) const : leaf
+  fn  operator |  (const leaf) const : leaf
   fn  operator && (const leaf) const : bool
   fn  operator || (const leaf) const : bool
-  fn  operator += (const leaf) const : bool
-  fn  operator -= (const leaf) const : bool
-  fn  operator *= (const leaf) const : bool
-  fn  operator **= (const leaf) const : bool
-  fn  operator %= (const leaf) const : bool
-  fn  operator /= (const leaf) const : bool
-  fn  operator <<= [def type] (const type) const : bool
-  fn  operator >>= [def type] (const type) const : bool
-  fn  operator &= (const leaf) const : bool
-  fn  operator |= (const leaf) const : bool
-  fn  operator ^= (const leaf) const : bool
+  fn  operator += (const leaf) const : leaf
+  fn  operator -= (const leaf) const : leaf
+  fn  operator *= (const leaf) const : leaf
+  fn  operator **= (const leaf) const : leaf
+  fn  operator /= (const leaf) const : leaf
+  fn  operator %= (const leaf) const : leaf
+  fn  operator <<= [def type] (const type) const : leaf
+  fn  operator >>= [def type] (const type) const : leaf
+  fn  operator &= (const leaf) const : leaf
+  fn  operator ^= (const leaf) const : leaf
+  fn  operator |= (const leaf) const : leaf
   # stub for leafs.
-  def zorn()        : { }
-  def each()        : { }
-  def progress()    : { }
-  def print()       : { }
-  def test()        : { }
-  def save(Storage) : { }
-  def load(const Storage) : { }
-  def in(const Int[0])    : { }
-  def less(const Int[0])  : { }
+  def zorn()      : { }
+  def less(const leaf) : { }
+  def each()      : { }
+  def progress()  : { }
+  def print()     : { }
+  def test()      : { }
+  def in(const Array) : { }
+  def out()       : { }
 
-class Duck[...] : Int[0]
+class Int[1] : Int[0]
+  def abel        : 1
+  def commutative : 1
+
+class Int[__pointer_bits__] : Int[0]
+  def abel        : 1
+  def commutative : 1
+
+def void   : Int[0]
+def Object : Int[0]
+def bool   : Int[1]
+def int    : Int[__pointer_bits_]
+
+class Duck[...] : Object
   ctor() : void
   dtor() : void
 
 fn Export(def) : void
-fn Import(def) : void
+fn Import(def) : bool
 fn Call(def, Array)   : Duck
 fn Signal(Int, Int)   : Int
-fn SignalHandler(Int) : Int
+fn SignalHandler(Int, Int) : Int
 fn Thread(fn delegate() : Int) : Int
 
-class Pool[Int size] : Int[0]
-  def bool : Int[1]
+class Pool[Int size] : Object
   let ptr  : Int
   ctor()   : void
   dtor()   : void
   fn assign[def type]() : type
   fn release[def type](type) : bool
+  # Linked list*
 
-class PoolDisk[int size] : Int[0]
-  def bool : Int[1]
-  let handle : #XXX
+class PoolDisk[Int size] : Object
+  let handle : Array
   ctor()   : void
   dtor()   : void
   fn assign(def type](const Int as) : type
   fn release[def type](type) : bool
 
-class Array[def type, Pool p] : Int[0]
-  def bool : Int[1]
+class Array[def type, def p = Pool, p pool] : Object
   let ptr  : Int
   ctor()   : void
   ctor(Int size) : void
@@ -97,13 +107,15 @@ class Sorted[def type] : Array[type]
   ctor(const Array[type] a) : void
   dtor()   : void
   fn reserve(const Int size) : void
+  fn push_back(type p) : void
+  fn delete(const Int idx) : void
   fn size() : Int
   fn min()  : type
   fn median() : type
   fn max()  : type
   fn operator [] (const Int idx) : type
 
-class Pair[def type0, def type1] : Int[0]
+class Pair[def type0, def type1] : Object
   def pair : Pair[type0, type1]
   let e0 : type0
   let e1 : type1
@@ -111,10 +123,6 @@ class Pair[def type0, def type1] : Int[0]
   ctor(type0 e0, type1 e1)
   dtor() : void
   fn operator <  (const pair) : bool
-  fn operator <= (const pair) : bool
-  fn operator >  (const pair) : bool
-  fn operator >= (const pair) : bool
-  fn operator == (const pair) : bool
   fn operator != (const pair) : bool
 
 class Map[def typedst, def typesrc] : Sorted[Pair[typedst, typesrc]]
@@ -122,7 +130,7 @@ class Map[def typedst, def typesrc] : Sorted[Pair[typedst, typesrc]]
   dtor() : void
   fn isin(const typedst a) : bool
   fn operator [] (const typedst a) : typesrc
-  fn delete(const typedst a) : void
+  fn delete(const typedst a) : bool
 
 class Schedule[def schedFunc] : Sorted[Pair[Int, Int]]
   ctor() : void

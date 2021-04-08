@@ -1,8 +1,8 @@
-using Vector : Library.Algebra.Linear.Vector
+using Meta.Linear
 
 class Distribution[def type, def func]
   ctor() : void
   dtor() : void
 
-fn isFit(const Vector, type) : Int[1]
+fn isFit[def type](const Vector, type) : Float
 

@@ -12,11 +12,11 @@ class Text : Array
 # BNF parser
 # Huge...
 
-class Stemming[def text] : # XXX
+class Stemming[def text] : Object
   fn ctor() : void
   fn dtor() : void
 
-class Regex[def text] : # XXX
+class Regex[def text] : Object
   fn ctor() : void
   fn dtor() : void
   fn compile(const text) : bool

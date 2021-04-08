@@ -1,4 +1,4 @@
-using Library.Algorithm.System
+using Meta.System
 
 fn Int[0]::operator ! () : bool
   return ! bool(leaf)
@@ -31,26 +31,17 @@ fn Int[0]::operator /  (const leaf src) const : leaf
 fn Int[0]::operator %  (const leaf src) const : leaf
   return leaf - (leaf / src) * src
 
-fn Int[0]::operator << [def type] (const type src) const : leaf
-  return auto(this) <<= src
-
-fn Int[0]::operator >> [def type] (const type src) const : leaf
-  return auto(this) >>= src
-
 fn Int[0]::operator +  (const leaf src) const : leaf
   return auto(leaf) += src
 
 fn Int[0]::operator -  (const leaf src) const : leaf
   return auto(leaf) -= src
 
-fn Int[0]::operator &  (const leaf src) const : leaf
-  return auto(leaf) &= src
+fn Int[0]::operator << [def type] (const type src) const : leaf
+  return auto(leaf) <<= src
 
-fn Int[0]::operator |  (const leaf src) const : leaf
-  return auto(leaf) |= src
-
-fn Int[0]::operator ^  (const leaf src) const : leaf
-  return auto(leaf) ^= src
+fn Int[0]::operator >> [def type] (const type src) const : leaf
+  return auto(leaf) >>= src
 
 fn Int[0]::operator <  (const leaf src) const : bool
   return leaf.less(src)
@@ -65,10 +56,19 @@ fn Int[0]::operator >= (const leaf src) const : bool
   return ! (this <  src)
 
 fn Int[0]::operator == (const leaf src) const : bool
-  return ! (this == src)
+  return ! (this != src)
 
 fn Int[0]::operator != (const leaf src) const : bool
-  return ! (this != src)
+  return ! (this == src)
+
+fn Int[0]::operator &  (const leaf src) const : leaf
+  return auto(leaf) &= src
+
+fn Int[0]::operator ^  (const leaf src) const : leaf
+  return auto(leaf) ^= src
+
+fn Int[0]::operator |  (const leaf src) const : leaf
+  return auto(leaf) |= src
 
 fn Int[0]::operator && (const leaf src) const : bool
   return bool(leaf) && bool(src)
@@ -88,11 +88,11 @@ fn Int[0]::operator *= (const leaf src) : leaf
 fn Int[0]::operator **= (const leaf src) : leaf
   return leaf = leaf ** src
 
-fn Int[0]::operator %= (const leaf src) : leaf
-  return leaf = leaf % src
-
 fn Int[0]::operator /= (const leaf src) : leaf
   return leaf = leaf / src
+
+fn Int[0]::operator %= (const leaf src) : leaf
+  return leaf = leaf % src
 
 fn Int[0]::operator <<= [def type] (const type src) : leaf
   return leaf = leaf << src
@@ -103,9 +103,9 @@ fn Int[0]::operator >>= [def type] (const type src) : leaf
 fn Int[0]::operator &= (const leaf src) : leaf
   return leaf = leaf & src
 
-fn Int[0]::operator |= (const leaf src) : leaf
-  return leaf = leaf | src
-
 fn Int[0]::operator ^= (const leaf src) : leaf
   return leaf = leaf ^ src
+
+fn Int[0]::operator |= (const leaf src) : leaf
+  return leaf = leaf | src
 
