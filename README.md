@@ -7,6 +7,11 @@ And, const operation should be hardly calculated to optimize.
 
 Stub of planning project.
 
+If you know other techniques to have an language structure that source code
+structure to be write once and small amount of lines with low complexity
+on both compiler and program, please teach me, or, simply please send me
+on issue on this bitsofcotton/NAND .
+
 # Syntax Before draft.
 * header
 * * using name : path.path(.class)
@@ -17,31 +22,46 @@ Stub of planning project.
 * * * type and some definitions, block-wise.
 * * let : like swift:
 * * * let a : b
-* * * * a is reference of b.
+* * * let a : const(b)
+* * * * a is (non const) reference of b or const reference of b.
 * * * let a : auto(b)
 * * * let a : type(b)
-* * * * a is instanced object of b or operator type object of b.
-* * * let a : const(b)
-* * * let a : var(b)
-* * * * const cast
+* * * let a : func(b)
+* * * let a : const auto(b)
+* * * let a : const type(b)
+* * * let a : const func(b)
+* * * * a is instanced object of b
+* * * *      or operator type operator on object of b
+* * * *      or function return makes some object.
 * * * operator +=item val
-* * * * operator with some extension of C.
-* * fn name(type, ...) : void
-* * * function definition. also lambda be.
+* * * * operator with some extension to C.
+* * * * super class operator is also operator +=item .
+* * * * if there's no such operator, search super, then, replace with
+* * * * root class definition on operator += or some with refactored one.
+* * fn name(type, ...) : type        (definition)
+* * fn name(name : type, ...) : type (function)
+* * * function definition. also lambda be. from awesome scala.
 * * friend
-* * * in-class friend functions.
+* * * in-class friend functions to write down inter-class operator.
 * * start with _ as private
 * * ctor, dtor
 * * * from some awesome programming languages.
-* * this and leaf (if it's end leaf, this ref) and super object references
+* * ensure
+* * * every variable change, we call this last.
+* * this and leaf (end of leaf on the object) and super object references.
+* * and as a function call, same function on them except this object reference.
 * source
 * * no exception methods, instead of it, template class result.
 * * no thread directives, instead of it, template class.
 * * with parallel 'for ... in ...', no 'for ... ; ... ; ...'.
+* * inverse(function) : worst case brute force inverse function if function
+* *                     is a deterministic one. using QP or extreme accuracy
+* *                     matrix inverse on randtools.
 * special classes can be overrided.
 * * Int\[0\]
 * * * void, Object root.
-* * Int\[platform_depends\] inherites Int\[0\].
+* * Int\[1\] inherites Int\[0\]. : bool class.
+* * Int\[platform_depends\] inherites Int\[0\]. : only integer class.
 * * * on register integer.
 * * Duck[type, type, ...]
 * * * Duck type programming.
@@ -57,10 +77,14 @@ Stub of planning project.
 * * * information for debugging.
 
 # General Tips
-If the data is enough, machine learning methods can implement any of the implementation. For this, please refer bit_factorize.
+If the data is enough, machine learning methods can implement any of the implementation. For this, please refer randtools (with F_p integer, using F_p^k register).
+<!--
 In another words, topology of the machine learning block diagrams is needed in only the case when we met the condition the problem is huge nor the problem is something sparse.
+-->
 
 So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system).
+<!--
 In another words, if we don't need such readability and we have much of datas and their relations, machine learning is better.
 
-<!-- N.B. If the program is readable one, the constraints size is able to count-up by human, this is important for understanding the algorithms. And, if the data we collected is not so concrete, the results also be not so concrete when machine learning. -->
+N.B. If the program is readable one, the constraints size is able to count-up by human, this is important for understanding the algorithms. And, if the data we collected is not so concrete, the results also be not so concrete when machine learning. -->
+
