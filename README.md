@@ -1,6 +1,6 @@
 # NAND
 Natural simpler compiler with natural simpler documentation on pairs of file.
-Aims to readability (for me), compact and low-complexity implementation, moderate worst-case speed, no matter better-case speed.
+Aims to small code amount with documentation, moderate worst-case speed, no matter better-case speed with medium functionality.
 And aims to revert operation via randtools solver. Library oriented. Convert to C language.
 So it's huge, it should import prior sources with license notifications, so multiple file link is needed.
 And, const operation should be hardly calculated to optimize.  
@@ -16,9 +16,9 @@ on issue on this bitsofcotton/NAND .
 * header
 * * using name : path.path(.class)
 * * * use library (class) as the name.
-* * class classname (: inherit)
+* * class classname (: inherit) : "comment"
 * * * pure class, only one class inherit is accepted.
-* * def name : definition
+* * def name : definition : "comment"
 * * * type and some definitions, block-wise.
 * * let : like swift:
 * * * let a : b
@@ -31,16 +31,20 @@ on issue on this bitsofcotton/NAND .
 * * * let a : const type(b)
 * * * let a : const func(b)
 * * * * a is instanced object of b
-* * * *      or operator type operator on object of b
-* * * *      or function return makes some object.
+* * * * or operator type operator on object of b
+* * * * or function return makes some object.
+* * * * (const ... defined function returns reference).
+* * * let a : b : "comment"
+* * * * with comment.
 * * * operator +=item val
 * * * * operator with some extension to C.
 * * * * super class operator is also operator +=item .
 * * * * if there's no such operator, search super, then, replace with
 * * * * root class definition on operator += or some with refactored one.
-* * fn name(type, ...) : type        (definition)
+* * fn name(name : type : "comment", ...) : type : "comment" (definition)
 * * fn name(name : type, ...) : type (function)
 * * * function definition. also lambda be. from awesome scala.
+* * * const return type makes reference to the variable.
 * * friend
 * * * in-class friend functions to write down inter-class operator.
 * * start with _ as private
@@ -49,19 +53,19 @@ on issue on this bitsofcotton/NAND .
 * * ensure
 * * * every variable change, we call this last.
 * * this and leaf (end of leaf on the object) and super object references.
-* * and as a function call, same function on them except this object reference.
+* * typeof, typeid
+* * * typeof(this), typid(class name) and so on.
 * source
 * * no exception methods, instead of it, template class result.
 * * no thread directives, instead of it, template class.
 * * with parallel 'for ... in ...', no 'for ... ; ... ; ...'.
 * * inverse(function) : worst case brute force inverse function if function
-* *                     is a deterministic one. using QP or extreme accuracy
-* *                     matrix inverse on randtools.
+* * is a deterministic one.
 * special classes can be overrided.
 * * Int\[0\]
 * * * void, Object root.
 * * Int\[1\] inherites Int\[0\]. : bool class.
-* * Int\[platform_depends\] inherites Int\[0\]. : only integer class.
+* * Int\[platform_depends\] inherites Int\[0\]. : only one integer class.
 * * * on register integer.
 * * Duck[type, type, ...]
 * * * Duck type programming.
@@ -85,6 +89,5 @@ In another words, topology of the machine learning block diagrams is needed in o
 So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system).
 <!--
 In another words, if we don't need such readability and we have much of datas and their relations, machine learning is better.
-
-N.B. If the program is readable one, the constraints size is able to count-up by human, this is important for understanding the algorithms. And, if the data we collected is not so concrete, the results also be not so concrete when machine learning. -->
+We call when the constraints size is able to count-up by human, it's readable one. If the data we collected is not so concrete, the results also be not so concrete when machine learning. -->
 
