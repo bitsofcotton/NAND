@@ -86,7 +86,7 @@ on issue on this bitsofcotton/NAND .
 * * * restrict inputs.
 * * State\[Int states\]
 * * * Status class, initialize with json,
-* * * specify status and next status returns function pointer.
+* * * returns next status function pointer on each.
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
