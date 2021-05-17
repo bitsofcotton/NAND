@@ -1,6 +1,6 @@
 # NAND
-Natural simpler compiler with natural simpler documentation on pairs of file.
-Aims to small code amount with documentation, moderate worst-case speed, no matter better-case speed with medium functionality.
+Natural simpler compiler with natural simpler comments on file.
+Aims to small code amount with comment connected, moderate worst-case speed, no matter better-case speed with medium functionality.
 And aims to revert operation via randtools solver. Library oriented. Convert to C language.
 So it's huge, it should import prior sources with license notifications, so multiple file link is needed.
 And, const operation should be hardly calculated to optimize.  
@@ -14,7 +14,7 @@ on issue on this bitsofcotton/NAND .
 
 # Syntax Before draft.
 * header
-* * using name : path.path(.class)
+* * using name : (path.path(.class)|class)
 * * * use library (class) as the name.
 * * class classname (: inherit) : "comment"
 * * * pure class, only one class inherit is accepted.
@@ -41,9 +41,8 @@ on issue on this bitsofcotton/NAND .
 * * * * super class operator is also operator +=item .
 * * * * if there's no such operator, search super, then, replace with
 * * * * root class definition on operator += or some with refactored one.
-* * fn name(name : type : "comment", ...) : type : "comment" (definition)
-* * fn name(name : type, ...) : type (function)
-* * * function definition. also lambda be. from awesome scala.
+* * fn name(name : type : "comment", ...) : type : "comment"
+* * * function, also lambda be. from awesome scala.
 * * * const return type makes reference to the variable.
 * * friend
 * * * in-class friend functions to write down inter-class operator.
@@ -72,6 +71,8 @@ on issue on this bitsofcotton/NAND .
 * special functions
 * * assert(x)
 * * * stop execution or compilation if x is false.
+* * Duck function("function name")
+* * * returns function that have function name.
 * special variables
 * * \_\_pointer_bits\_\_
 * * * number of pointer bit size.
@@ -80,14 +81,19 @@ on issue on this bitsofcotton/NAND .
 * * \_\_callgraph\_\_
 * * * information for debugging.
 
+* pending libraries
+* * Range\[def type, type lower, type upper, type default\]
+* * * restrict inputs.
+* * State\[Int states\]
+* * * Status class, initialize with json,
+* * * specify status and next status returns function pointer.
+
 # General Tips
-If the data is enough, machine learning methods can implement any of the implementation. For this, please refer randtools (with F_p integer, using F_p^k register).
+If the data is enough, machine learning methods can implement any of the implementation.
+For this, please refer randtools (with F_p integer, using F_(p^k) register on each).
 <!--
-In another words, topology of the machine learning block diagrams is needed in only the case when we met the condition the problem is huge nor the problem is something sparse.
+In another words, topology of the machine learning block diagrams is needed in only the case when we met the condition
+the problem is huge nor the problem is something sparse nor imcomplete set on data.
 -->
 
 So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system).
-<!--
-In another words, if we don't need such readability and we have much of datas and their relations, machine learning is better.
-We call when the constraints size is able to count-up by human, it's readable one. If the data we collected is not so concrete, the results also be not so concrete when machine learning. -->
-
