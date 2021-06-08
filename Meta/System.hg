@@ -1,42 +1,81 @@
-class Int[0]
+class Int[0] : : "Root"
   def invertible    : 0
   def abel          : 0
   def commutative   : 0
-  fn  operator !  ()     : bool
-  fn  operator ++ ()     : leaf
-  fn  operator ++ (void) : leaf
-  fn  operator -- (void) : leaf
-  fn  operator -  () const : leaf
-  fn  operator *   (const leaf) const : leaf
-  fn  operator **  (const leaf) const : leaf
-  fn  operator /  (const leaf) const : leaf
-  fn  operator %  (const leaf) const : leaf
-  fn  operator +  (const leaf) const : leaf
-  fn  operator -  (const leaf) const : leaf
-  fn  operator << [def type] (const type) const : leaf
-  fn  operator >> [def type] (const type) const : leaf
-  fn  operator <  (const leaf) const : bool
-  fn  operator <= (const leaf) const : bool
-  fn  operator >  (const leaf) const : bool
-  fn  operator >= (const leaf) const : bool
-  fn  operator == (const leaf) const : bool
-  fn  operator != (const leaf) const : bool
-  fn  operator &  (const leaf) const : leaf
-  fn  operator ^  (const leaf) const : leaf
-  fn  operator |  (const leaf) const : leaf
-  fn  operator && (const leaf) const : bool
-  fn  operator || (const leaf) const : bool
-  fn  operator += (const leaf) const : leaf
-  fn  operator -= (const leaf) const : leaf
-  fn  operator *= (const leaf) const : leaf
-  fn  operator **= (const leaf) const : leaf
-  fn  operator /= (const leaf) const : leaf
-  fn  operator %= (const leaf) const : leaf
-  fn  operator <<= [def type] (const type) const : leaf
-  fn  operator >>= [def type] (const type) const : leaf
-  fn  operator &= (const leaf) const : leaf
-  fn  operator ^= (const leaf) const : leaf
-  fn  operator |= (const leaf) const : leaf
+  fn  op !  ()     : bool : "Auto generated."
+    return ! bool(leaf)
+  fn  op ++ ()     : const leaf : "Auto generated."
+    return leaf.zorn()
+  fn  op ++ (void) : leaf : "Auto generated."
+    let work : auto(leaf)
+    ++ leaf
+    return work
+  fn  op -- (void) : leaf : "Auto generated."
+    let work : auto(leaf)
+    -- leaf
+    return work
+  fn  op -  () const : leaf : "Auto generated."
+    return ++ auto(~ leaf)
+  fn  op *   (src : const leaf) const : leaf : "Auto generated."
+    return auto(leaf) *= src
+  fn  op **  (src : const leaf) const : leaf : "Auto generated."
+    return auto(leaf) **= src
+  fn  op /  (src : const leaf) const : leaf : "Auto generated."
+    return auto(leaf) /= src
+  fn  op %  (src : const leaf) const : leaf : "Auto generated."
+    return leaf - (leaf / src) * src
+  fn  op +  (src : const leaf) const : leaf : "Auto generated."
+    return auto(leaf) += src
+  fn  op -  (src : const leaf) const : leaf : "Auto generated."
+    return auto(leaf) -= src
+  fn  op << [def type] (src : const type) const : leaf : "Auto generated."
+    return auto(leaf) <<= src
+  fn  op >> [def type] (src : const type) const : leaf : "Auto generated."
+    return auto(leaf) >>= src
+  fn  op <  (src : const leaf) const : bool : "Auto generated."
+    return leaf.less(src)
+  fn  op <= (src : const leaf) const : bool : "Auto generated."
+    return this < src || this == src
+  fn  op >  (src : const leaf) const : bool : "Auto generated."
+    return ! (this <= src)
+  fn  op >= (src : const leaf) const : bool : "Auto generated."
+    return ! (this <  src)
+  fn  op == (src : const leaf) const : bool : "Auto generated."
+    return ! (this != src)
+  fn  op != (src : const leaf) const : bool : "Auto generated."
+    return ! (this == src)
+  fn  op &  (src : const leaf) const : leaf : "Auto generated."
+    return auto(leaf) &= src
+  fn  op ^  (src : const leaf) const : leaf : "Auto generated."
+    return auto(leaf) ^= src
+  fn  op |  (src : const leaf) const : leaf : "Auto generated."
+    return auto(leaf) |= src
+  fn  op && (src : const leaf) const : bool : "Auto generated."
+    return bool(leaf) && bool(src)
+  fn  op || (src : const leaf) const : bool : "Auto generated."
+    return bool(leaf) || bool(src)
+  fn  op += (src : const leaf) const : const leaf : "Auto generated."
+    return leaf = leaf + src
+  fn  op -= (src : const leaf) const : const leaf : "Auto generated."
+    return leaf += - src
+  fn  op *= (src : const leaf) const : const leaf : "Auto generated."
+    return leaf = leaf * src
+  fn  op **= (src : const leaf) const : const leaf : "Auto generated."
+    return leaf = leaf ** src
+  fn  op /= (src : const leaf) const : const leaf : "Auto generated."
+    return leaf = leaf / src
+  fn  op %= (src : const leaf) const : const leaf : "Auto generated."
+    return leaf = leaf % src
+  fn  op <<= [def type] (src : const type) const : const leaf : "Auto generated."
+    return leaf = leaf << src
+  fn  op >>= [def type] (src : const type) const : const leaf : "Auto generated."
+    return leaf = leaf >> src
+  fn  op &= (src : const leaf) const : const leaf : "Auto generated."
+    return leaf = leaf & src
+  fn  op ^= (src : const leaf) const : const leaf : "Auto generated."
+    return leaf = leaf ^ src
+  fn  op |= (src : const leaf) const : const leaf : "Auto generated."
+    return leaf = leaf | src
   # stub for leafs.
   def zorn()      : { }
   def less(const leaf) : { }
@@ -47,20 +86,20 @@ class Int[0]
   def in(const Array) : { }
   def out()       : { }
 
-class Int[1] : Int[0]
+class Int[1] : Int[0] : "bool"
   def abel        : 1
   def commutative : 1
 
-class Int[__pointer_bits__] : Int[0]
+class Int[__pointer_bits__] : Int[0] : "unique int"
   def abel        : 1
   def commutative : 1
 
-def void   : Int[0]
-def Object : Int[0]
-def bool   : Int[1]
-def int    : Int[__pointer_bits_]
+def void   : Int[0] : "void"
+def Object : Int[0] : "Object"
+def bool   : Int[1] : "bool"
+def int    : Int[__pointer_bits_] : "synonym"
 
-class Duck[...] : Object
+class Duck[...] : Object : "Duck"
   ctor() : void
   dtor() : void
 
@@ -71,22 +110,23 @@ fn Signal(Int, Int)   : Int
 fn SignalHandler(Int, Int) : Int
 fn Thread(fn delegate() : Int) : Int
 
-class Pool[Int size] : Object
-  let ptr  : Int
-  ctor()   : void
-  dtor()   : void
-  fn assign[def type]() : type
+class Pool[Int size] : Object : "Root memory pool that unique on process"
+  let ptr : Int : "Pointer on the memory"
+  ctor()  : void
+  dtor()  : void
+  fn assign[def type](size : const Int) : type
   fn release[def type](type) : bool
   # Linked list*
 
-class PoolDisk[Int size] : Object
-  let handle : Array
-  ctor()   : void
-  dtor()   : void
+class PoolDisk[Int size] : Object : "Disk data pool"
+  let handle : Array : "Handle to disk offset"
+  let disk : /* File */ : "disk"
+  ctor() : void
+  dtor() : void
   fn assign(def type](const Int as) : type
   fn release[def type](type) : bool
 
-class Array[def type, def p = Pool, p pool] : Object
+class Array[def type, def p = Pool, p pool] : Object : "Array on pool"
   let ptr  : Int
   ctor()   : void
   ctor(Int size) : void
@@ -98,22 +138,22 @@ class Array[def type, def p = Pool, p pool] : Object
   fn delete(const Int idx) : void
   fn last()            : type
   fn size()            : Int
-  fn operator [] (const Int idx) : type
+  fn op [] (const Int idx) : type
 
-class Sorted[def type] : Array[type]
+class Sorted[def type] : Array[type] : "sorted array indices"
   # with heap sort.
   let sort : Array[Int]
   ctor()   : void
-  ctor(const Array[type] a) : void
+  ctor(a : const Array[type]) : void
   dtor()   : void
-  fn reserve(const Int size) : void
-  fn push_back(type p) : void
-  fn delete(const Int idx) : void
+  fn reserve(size : const Int) : void
+  fn push_back(p : type) : void
+  fn delete(idx : const Int) : void
   fn size() : Int
   fn min()  : type
   fn median() : type
   fn max()  : type
-  fn operator [] (const Int idx) : type
+  fn op [] (idx : const Int) : const type
 
 class Pair[def type0, def type1] : Object
   def pair : Pair[type0, type1]
@@ -121,26 +161,26 @@ class Pair[def type0, def type1] : Object
   let e1 : type1
   ctor() : void
   ctor(type0 e0, type1 e1)
+    this.e0 = e0
+    this.e1 = e1
   dtor() : void
-  fn operator <  (const pair) : bool
-  fn operator != (const pair) : bool
+  fn op <  (src : const pair) : bool
+    return e0 < src.e0 || (e0 == src.e0 && e1 < src.e1)
+  fn op != (src : const pair) : bool
+    return e0 != src.e0 || e1 != src.e1
 
 class Map[def typedst, def typesrc] : Sorted[Pair[typedst, typesrc]]
   ctor() : void
   dtor() : void
   fn isin(const typedst a) : bool
-  fn operator [] (const typedst a) : typesrc
+  fn op [] (const typedst a) : typesrc
   fn delete(const typedst a) : bool
 
 class Schedule[def schedFunc] : Sorted[Pair[Int, Int]]
   ctor() : void
   dtor() : void
 
-class RBTree[def type] : Sorted[type]
-  ctor() : void
-  dtor() : void
-
-class Graph[def type] : Matrix[type]
+class Graph[def type] : Meta.Linear.Matrix[type]
   ctor() : void
   dtor() : void
   # graph into plane.

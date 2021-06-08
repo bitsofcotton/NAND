@@ -10,9 +10,9 @@ class RGB[def type] : Object
   let b : type
   fn ctor() : void
   fn dtor() : void
-  fn operator -  () : this
-  fn operator != () : this
-  fn operator += () : this
+  fn op -  () : this
+  fn op != () : this
+  fn op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
@@ -21,9 +21,9 @@ class RGBA[def type] : Quarternion[type]
   def rgba : Quarternion[type]
   fn ctor() : void
   fn dtor() : void
-  fn operator -  () : this
-  fn operator != () : this
-  fn operator += () : this
+  fn op -  () : this
+  fn op != () : this
+  fn op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
@@ -34,9 +34,9 @@ class HSV[def type] : Object
   let v : type
   fn ctor() : void
   fn dtor() : void
-  fn operator -  () : this
-  fn operator != () : this
-  fn operator += () : this
+  fn op -  () : this
+  fn op != () : this
+  fn op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
@@ -47,9 +47,9 @@ class HSB<def type> : Object
   let b : type
   fn ctor() : void
   fn dtor() : void
-  fn operator -  () : this
-  fn operator != () : this
-  fn operator += () : this
+  fn op -  () : this
+  fn op != () : this
+  fn op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
@@ -60,9 +60,9 @@ class Lab<def type> : Object
   let b : type
   fn ctor() : void
   fn dtor() : void
-  fn operator -  () : this
-  fn operator != () : this
-  fn operator += () : this
+  fn op -  () : this
+  fn op != () : this
+  fn op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
@@ -70,9 +70,9 @@ class Lab<def type> : Object
 class ColorDigital[def type] : Vector[type]
   fn ctor() : void
   fn dtor() : void
-  fn operator -  () : this
-  fn operator != () : this
-  fn operator += () : this
+  fn op -  () : this
+  fn op != () : this
+  fn op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
@@ -80,10 +80,10 @@ class ColorDigital[def type] : Vector[type]
 class ColorAnalogue[def type, fn func] : Object
   fn ctor() : void
   fn dtor() : void
-  fn operator -  () : this
-  fn operator != () : this
-  fn operator += () : this
-  fn operator ColorDigital[type]() : ColorDigital[type]()
+  fn op -  () : this
+  fn op != () : this
+  fn op += () : this
+  fn op ColorDigital[type]() : ColorDigital[type]()
   def zorn() : this
   def less() : bool
   def ensure() : this
