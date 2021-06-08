@@ -1,6 +1,6 @@
 # NAND
 Natural simpler compiler with natural simpler comments on file.
-Aims to small code amount with comment connected, moderate worst-case speed, no matter better-case speed with medium functionality.
+Aims to small code amount with comment connected, moderate worst-case speed, no matter better-case speed with medium functionality, zero copy without relocation nor i/o.
 And aims to revert operation via randtools solver. Library oriented. Convert to C language.
 So it's huge, it should import prior sources with license notifications, so multiple file link is needed.
 And, const operation should be hardly calculated to optimize.  
@@ -36,11 +36,11 @@ on issue on this bitsofcotton/NAND .
 * * * * (const ... defined function returns reference).
 * * * let a : b : "comment"
 * * * * with comment.
-* * * operator +=item val
+* * * op +=item val
 * * * * operator with some extension to C.
 * * * * super class operator is also operator +=item .
 * * * * if there's no such operator, search super, then, replace with
-* * * * root class definition on operator += or some with refactored one.
+* * * * root class definition on op += or some with refactored one.
 * * fn name(name : type : "comment", ...) : type : "comment"
 * * * function, also lambda be. from awesome scala.
 * * * const return type makes reference to the variable.
@@ -49,9 +49,10 @@ on issue on this bitsofcotton/NAND .
 * * start with _ as private
 * * ctor, dtor
 * * * from some awesome programming languages.
+* * enter
 * * ensure
-* * * every variable change, we call this last.
-* * this and leaf (end of leaf on the object) and super object references.
+* * * every variable change, we call this first / last.
+* * this and leaf (end of leaf of the object) and super object references.
 * * typeof, typeid
 * * * typeof(this), typid(class name) and so on.
 * source
