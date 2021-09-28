@@ -16,9 +16,9 @@ on issue on this bitsofcotton/NAND .
 * header
 * * using name : (path.path(.class)|class)
 * * * use library (class) as the name.
-* * class classname (: inherit) : "comment"
+* * class classname (: inherit) : "comment" : "license"
 * * * pure class, only one class inherit is accepted.
-* * def name : definition : "comment"
+* * def name : definition : "comment" : "license"
 * * * type and some definitions, block-wise.
 * * let : like swift:
 * * * let a : b
@@ -27,21 +27,22 @@ on issue on this bitsofcotton/NAND .
 * * * let a : auto(b)
 * * * let a : type(b)
 * * * let a : func(b)
+* * * let a : func!(b)
 * * * let a : const auto(b)
 * * * let a : const type(b)
 * * * let a : const func(b)
+* * * let a : const func!(b)
 * * * * a is instanced object of b
 * * * * or operator type operator on object of b
-* * * * or function return makes some object.
-* * * * (const ... defined function returns reference).
-* * * let a : b : "comment"
+* * * * func! returns reference.
+* * * let a : b : "comment" : "license"
 * * * * with comment.
 * * * op +=item val
 * * * * operator with some extension to C.
 * * * * super class operator is also operator +=item .
 * * * * if there's no such operator, search super, then, replace with
 * * * * root class definition on op += or some with refactored one.
-* * fn name(name : type : "comment", ...) : type : "comment"
+* * fn name(name : type : "comment", ...) : type : "comment" : "license"
 * * * function, also lambda be. from awesome scala.
 * * * const return type makes reference to the variable.
 * * friend
@@ -58,7 +59,7 @@ on issue on this bitsofcotton/NAND .
 * source
 * * no exception methods, instead of it, template class result.
 * * no thread directives, instead of it, template class.
-* * with parallel 'for ... in ...', no 'for ... ; ... ; ...'.
+* * with parallel 'for ... in ... : label', no 'for ... ; ... ; ...'.
 * * inverse(function) : worst case brute force inverse function if function
 * * is a deterministic one.
 * special classes can be overrided.
@@ -98,3 +99,4 @@ the problem is huge nor the problem is something sparse nor imcomplete set on da
 -->
 
 So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system).
+
