@@ -1,6 +1,7 @@
 # NAND
 Natural simpler compiler with natural simpler comments on file.
-Aims to small code amount with comment connected, moderate worst-case speed, no matter better-case speed with medium functionality, zero copy without relocation nor i/o.
+Aims to small code amount with comment connected, moderate worst-case speed, no matter better-case speed with medium functionality, zero copy without relocation nor i/o.  
+(We'll implement worst case O(((mem size) * (blk size))^1.5), to best case O(lg((mem size) * (blk size))), or deterministic O(1) without blksize change methods. Do our best to make blk size == lg lg mem size.)  
 And aims to revert operation via randtools solver. Library oriented. Convert to C language.
 So it's huge, it should import prior sources with license notifications, so multiple file link is needed.
 And, const operation should be hardly calculated to optimize.  
@@ -12,7 +13,9 @@ structure to be write once and small amount of lines with low complexity
 on both compiler and program, please teach me, or, simply please send me
 on issue on this bitsofcotton/NAND .
 
-# Syntax Before draft.
+Searching the ways to prevent mistakes in the code other than type-safe, class-capsule, assertion.
+
+# Draft syntax.
 * header
 * * using name : (path.path(.class)|class)
 * * * use library (class) as the name.
@@ -92,10 +95,10 @@ on issue on this bitsofcotton/NAND .
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
-For this, please refer randtools (with F_p integer, using F_(p^k) register on each).
+For this, please refer randtools (with F_p integer, using (F_p)^k register on each).
 <!--
 In another words, topology of the machine learning block diagrams is needed in only the case when we met the condition
-the problem is huge nor the problem is something sparse nor imcomplete set on data.
+the problem is huge nor the problem is something sparse nor imcomplete set on the data.
 -->
 
 So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system).
