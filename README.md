@@ -1,7 +1,7 @@
 # NAND
 Natural simpler compiler with natural simpler comments on file.
 Aims to small code amount with comment connected, moderate worst-case speed, no matter better-case speed with medium functionality, zero copy without relocation nor i/o.  
-(We'll implement worst case O(((mem size) * (blk size))^1.5), to best case O(lg((mem size) * (blk size))), or deterministic O(1) without blksize change methods. Do our best to make blk size == lg lg mem size.)  
+(We'll implement worst case O(((mem size) * (blk size))^1.5), to best case O(lg((mem size) * (blk size))), or deterministic O(1) without blksize change methods. Even blk size is up to sqrt(mem size), do our best to make blk size == lg lg mem size.)  
 And aims to revert operation via randtools solver. Library oriented. Convert to C language.
 So it's huge, it should import prior sources with license notifications, so multiple file link is needed.
 And, const operation should be hardly calculated to optimize.  
