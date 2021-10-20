@@ -1,19 +1,17 @@
-# NAND
+# NAND(Stub)
 Natural simpler compiler with natural simpler comments on file.
 Aims to small code amount with comment connected, moderate worst-case speed, no matter better-case speed with medium functionality, zero copy without relocation nor i/o.  
-(We'll implement worst case O(((mem size) * (blk size))^1.5), to best case O(lg((mem size) * (blk size))), or deterministic O(1) without blksize change methods. Even blk size is up to sqrt(mem size), do our best to make blk size == lg lg mem size.)  
-And aims to revert operation via randtools solver. Library oriented. Convert to C language.
+
+(We target to implement working memory size as O((input size)^2) to make tables, calculation on each function upto O(((mem size) * lg(mem size))^1.5), ideally O(lg((mem size) * lg(mem size))), especially no block condition, O(1) with caching for outlet.
+So overall we estimate to target the functions O(((input size)^2 * lg(input size) * lg((input size) * 2 * lg(input size)))^1.5 + (cache calculation time) * (depth in functions) * (cache size)). Overall we claculate with cache, O((input size)^4 lg^3((input size) * lg(input size)) * #(calculation function)) in worst case, this is equivalent to O((mem size)^2 lg^3((mem size) * lg(mem size)) * #(calculation function)) in worst case. So we target with many core architectures to have the core# such of them.)
+
+Aims to revert operation via randtools solver but to be brute force in some cases. Library oriented. Convert to C language.
+
 So it's huge, it should import prior sources with license notifications, so multiple file link is needed.
-And, const operation should be hardly calculated to optimize.  
 
-Stub of planning project.
+Const operation should be hardly calculated to optimize.  
 
-If you know other techniques to have an language structure that source code
-structure to be write once and small amount of lines with low complexity
-on both compiler and program, please teach me, or, simply please send me
-on issue on this bitsofcotton/NAND .
-
-Searching the ways to prevent mistakes in the code other than type-safe, class-capsule, assertion.
+Searching the ways to prevent mistakes in the code other than type-safe, class-capsule, assertion. (to guarantee intend|expect to do.)
 
 # Draft syntax.
 * header
@@ -102,4 +100,6 @@ the problem is huge nor the problem is something sparse nor imcomplete set on th
 -->
 
 So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system).
+
+We need the partial QR and add row, then QR function with reasonable time order as not to depend original matrices rows, but depend columns to implement unstable size optimization.
 
