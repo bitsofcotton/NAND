@@ -93,6 +93,8 @@ Searching the ways to prevent mistakes in the code other than type-safe, class-c
 * * State\[Int states\]
 * * * Status class, initialize with json,
 * * * returns next status function pointer on each.
+* * Struct\[Array\[Int\] size\]
+* * * Copy reference structure from file, and write to file.
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
