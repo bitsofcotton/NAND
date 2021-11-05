@@ -7,13 +7,14 @@ So overall we estimate to target the functions O(((input size)^2 * lg(input size
 
 Aims to revert operation via randtools solver but to be brute force in some cases. Library oriented. Convert to C language.
 
-So it's huge, it should import prior sources with license notifications, so multiple file link is needed.
+So it's huge, it should import prior sources with license notifications.
 
 Const operation should be hardly calculated to optimize.  
 
 Aims to both compiler and entire library source code are size that is readable by one person easily, which compiler itself is in specific mnemonic code.
 
 Searching the ways to prevent mistakes in the code other than type-safe, class-capsule, assertion. (to guarantee intend|expect to do.)
+(We don't support special flows.)
 
 # Draft syntax.
 * header
