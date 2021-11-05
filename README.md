@@ -11,7 +11,7 @@ So it's huge, it should import prior sources with license notifications, so mult
 
 Const operation should be hardly calculated to optimize.  
 
-Aims to both compiler and entire library source code are size that is readable by one person, compiler itself in specific mnemonic code.
+Aims to both compiler and entire library source code are size that is readable by one person easily, which compiler itself is in specific mnemonic code.
 
 Searching the ways to prevent mistakes in the code other than type-safe, class-capsule, assertion. (to guarantee intend|expect to do.)
 
