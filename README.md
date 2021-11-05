@@ -11,6 +11,8 @@ So it's huge, it should import prior sources with license notifications, so mult
 
 Const operation should be hardly calculated to optimize.  
 
+Aims to both compiler and entire library source code are size that is readable by one person, compiler itself in specific mnemonic code.
+
 Searching the ways to prevent mistakes in the code other than type-safe, class-capsule, assertion. (to guarantee intend|expect to do.)
 
 # Draft syntax.
@@ -94,12 +96,5 @@ Searching the ways to prevent mistakes in the code other than type-safe, class-c
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
 For this, please refer randtools (with F_p integer, using (F_p)^k register on each).
-<!--
-In another words, topology of the machine learning block diagrams is needed in only the case when we met the condition
-the problem is huge nor the problem is something sparse nor imcomplete set on the data.
--->
 
 So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system).
-
-We need the partial QR and add row, then QR function with reasonable time order as not to depend original matrices rows, but depend columns to implement unstable size optimization.
-
