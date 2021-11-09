@@ -69,8 +69,7 @@ Searching the ways to prevent mistakes in the code other than type-safe, class-c
 * special classes can be overrided.
 * * Int\[0\]
 * * * void, Object root.
-* * Int\[1\] inherites Int\[0\]. : bool class.
-* * Int\[platform_depends\] inherites Int\[0\]. : only one integer class.
+* * Int\[platform_depends\] inherites Int\[0\]. : only one integer class, bool for nonzero.
 * * * on register integer.
 * * Duck[type, type, ...]
 * * * Duck type programming.
