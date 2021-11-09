@@ -183,3 +183,11 @@ class CayleyHamilton[def type, def base] : Object
   fn op -=  (const ch) : ch
   fn op /=  (const type) : ch
 
+# Huge...
+
+# Finite Element:
+class FE[def type, fn delegate(const Vector, const Vector) : type] : Array[Vector]
+  fn ctor() : void
+  fn dtor() : void
+# Huge.
+
