@@ -1,6 +1,6 @@
 using Meta.System
 
-class Vector[def type, def index, def Array = Array]
+type Vector[def type, def index, def Array = Array]
   def vector : Vector[type, index]
   let coeff  : type
   let entity : Array[type]
@@ -31,7 +31,7 @@ class Vector[def type, def index, def Array = Array]
   fn  op %=  (const type)   : vector
   def less() : bool
 
-class Matrix[def type, def index0, def Array = Array]
+type Matrix[def type, def index0, def Array = Array]
   def matrix : Matrix[type, index0]
   def vector : Vector[type, index0]
   def index  : Complex[index0]
@@ -79,16 +79,20 @@ fn FullQR(const Matrix, Matrix, Matrix) : bool
 fn Schur(const Matrix, Matrix, Matrix) : bool
 fn SVD(const Matrix, Matrix, Vector, Matrix) : bool
 fn GSVD(const Matrix, const Matrix, Matrix, Matrix, Matrix) : bool
+fn log(const Matrix, const type) : Matrix
+fn exp(const Matrix, const type) : Matrix
+fn pow(const Matrix, const type) : Matrix
 fn pseudoInverse(const Matrix) : Matrix
 fn feasible(const Matrix, const Vector) : bool
 fn LP(const Matrix, const Vector, const Vector) : Vector
 fn QP(const Matrix, const Vector, const Matrix, const Vector) : Vector
 fn Fourier(const Vector, const bool) : Vector
+# if vector size is prime, not fast one.
 fn FastFourier(const Vector, const bool) : Vector
 fn Diff(const Vector, const bool) : Vector
 fn MotherWavelet(const Vector, const Vector, const bool) : Vector
 
-class Complex[def type] : Object
+type Complex[def type] : Object
   def complex : Complex[type]
   let real    : type
   let imag    : type
@@ -121,7 +125,7 @@ class Complex[def type] : Object
 fn abs(const Complex) : type
 fn arg(const Complex) : type
 
-class Quaternion[def type] : Object
+type Quaternion[def type] : Object
   def quat  : Quaternion[type]
   let r1    : type
   let r2    : type
@@ -156,7 +160,7 @@ class Quaternion[def type] : Object
   fn op -=  (const quat) : quat
   fn op /=  (const type) : quat
 
-class CayleyHamilton[def type, def base] : Object
+type CayleyHamilton[def type, def base] : Object
   def ch    : CayleyHamilton[base]
   let r1    : type
   let r2    : type
@@ -186,7 +190,7 @@ class CayleyHamilton[def type, def base] : Object
 # Huge...
 
 # Finite Element:
-class FE[def type, fn delegate(const Vector, const Vector) : type] : Array[Vector]
+type FE[def type, fn delegate(const Vector, const Vector) : type] : Array[Vector]
   fn ctor() : void
   fn dtor() : void
 # Huge.

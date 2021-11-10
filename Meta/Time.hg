@@ -1,3 +1,4 @@
+# implementation that depends on implementation, base is also unixtime.
 class Calendar : Int
   fn ctor() : void
   fn dtor() : void

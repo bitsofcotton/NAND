@@ -1,7 +1,7 @@
 # commutative and non commutative...
 # referring some mathematic results.
 
-class Int[int bits] : Object
+type Int[int bits] : Object
   def int  : Int[bits / 2]
   def dint : Int[bits]
   def lsb  : 0
@@ -36,7 +36,7 @@ class Int[int bits] : Object
   fn  op |=  (const dint)       : int
   fn  op ^=  (const dint)       : int
 
-class ParaInt[def type, Int wbits, Int pbits]
+type ParaInt[def type, Int wbits, Int pbits]
   def int   : ParaInt[type, wbits, pbits]
   def bint  : type
   let _flat : Int[wbits]
@@ -92,7 +92,7 @@ class ParaInt[def type, Int wbits, Int pbits]
   fn  op &=  (const int) : int
   fn  op |=  (const int) : int
 
-class Signed[def type]
+type Signed[def type]
   def int  : Signed[type]
   fn  ctor()    : void
   fn  ctor(def) : void
@@ -106,7 +106,7 @@ class Signed[def type]
   fn  op >   (const int) const : bool
   fn  op >=  (const int) const : bool
 
-class pZ[def type, type z]
+type pZ[def type, type z]
   def pz   : pz[type, z]
   let e    : type
   fn  ctor()    : void
@@ -117,7 +117,7 @@ class pZ[def type, type z]
   fn  ensure()  : pz
   def zorn() : pz
 
-class Band[def type] : Complex[type]
+type Band[def type] : Complex[type]
   fn ctor() : void
   fn dtor() : void
 
@@ -131,7 +131,7 @@ fn abs(const Signed) : type
 // Solve ax + by = c in Z, a, b, c are const.
 fn eucleidos[def type](type, type, const type, const type, const type) : void
 
-class Float[Int mantissa, Int exponent] : Object
+type Float[Int mantissa, Int exponent] : Object
   def float : Float[mantissa, exponent]
   def intm  : Int[mantissa]
   def intw  : Int[mantissa * Int(2)]
@@ -175,7 +175,7 @@ class Float[Int mantissa, Int exponent] : Object
   fn  floor() : float
   friend op Int(const float) const : Int
 
-class WFloat[def float_t] : Object
+type WFloat[def float_t] : Object
   def float : WFloat[float_t]
   def bool  : Int[1]
   let _f0   : float_t
@@ -207,7 +207,7 @@ class WFloat[def float_t] : Object
   fn  isnan() const : bool
   fn  isinf() const : bool
 
-class Fraction[def type] : Object
+type Fraction[def type] : Object
   def fraction : Fraction[type]
   def bool     : Int[1]
   let _sign  : bool

@@ -1,118 +1,120 @@
 using Meta.System
 
-class Glay[def type] : type
+type Glay[def type] : type
   fn ctor() : void
   fn dtor() : void
 
-class RGB[def type] : Object
+type RGB[def type] : Object
   let r : type
   let g : type
   let b : type
-  fn ctor() : void
-  fn dtor() : void
-  fn op -  () : this
-  fn op != () : this
-  fn op += () : this
+  fn  ctor() : void
+  fn  dtor() : void
+  fn  op -  () : this
+  fn  op != () : this
+  fn  op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
+  friend RGBA(rgb : RGB) : RGBA
+  # ...
 
-class RGBA[def type] : Quarternion[type]
+type RGBA[def type] : Quarternion[type]
   def rgba : Quarternion[type]
-  fn ctor() : void
-  fn dtor() : void
-  fn op -  () : this
-  fn op != () : this
-  fn op += () : this
+  fn  ctor() : void
+  fn  dtor() : void
+  fn  op -  () : this
+  fn  op != () : this
+  fn  op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
 
-class HSV[def type] : Object
+type HSV[def type] : Object
   let h : type
   let s : type
   let v : type
-  fn ctor() : void
-  fn dtor() : void
-  fn op -  () : this
-  fn op != () : this
-  fn op += () : this
+  fn  ctor() : void
+  fn  dtor() : void
+  fn  op -  () : this
+  fn  op != () : this
+  fn  op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
 
-class HSB<def type> : Object
+type HSB<def type> : Object
   let h : type
   let s : type
   let b : type
-  fn ctor() : void
-  fn dtor() : void
-  fn op -  () : this
-  fn op != () : this
-  fn op += () : this
+  fn  ctor() : void
+  fn  dtor() : void
+  fn  op -  () : this
+  fn  op != () : this
+  fn  op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
 
-class Lab<def type> : Object
+type Lab<def type> : Object
   let l : type
   let a : type
   let b : type
-  fn ctor() : void
-  fn dtor() : void
-  fn op -  () : this
-  fn op != () : this
-  fn op += () : this
+  fn  ctor() : void
+  fn  dtor() : void
+  fn  op -  () : this
+  fn  op != () : this
+  fn  op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
 
-class ColorDigital[def type] : Vector[type]
-  fn ctor() : void
-  fn dtor() : void
-  fn op -  () : this
-  fn op != () : this
-  fn op += () : this
+type ColorDigital[def type] : Vector[type]
+  fn  ctor() : void
+  fn  dtor() : void
+  fn  op -  () : this
+  fn  op != () : this
+  fn  op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
 
-class ColorAnalogue[def type, fn func] : Object
-  fn ctor() : void
-  fn dtor() : void
-  fn op -  () : this
-  fn op != () : this
-  fn op += () : this
-  fn op ColorDigital[type]() : ColorDigital[type]()
+type ColorAnalogue[def type, fn func] : Object
+  fn  ctor() : void
+  fn  dtor() : void
+  fn  op -  () : this
+  fn  op != () : this
+  fn  op += () : this
+  fn  op ColorDigital[type]() : ColorDigital[type]()
   def zorn() : this
   def less() : bool
   def ensure() : this
 
-class Texture[def color] : Matrix[color]
-  fn ctor(const Complex[Int]) : void
-  fn dtor() : void
-  # ld/st, stretch, clear, point, line
+type Texture[def color] : Matrix[color]
+  fn  ctor(const Complex[Int]) : void
+  fn  dtor() : void
+  fn  load!(xywh : , ** File **) : Texture
+  fn  store!(xywh : , t : Texture) : Texture
+  fn  clear!(xywh : , c : color) : Texture
+  fn  point!(xy : Complex, c : color) : Texture
+  fn  line!(xy : Complex, c : color) : Texture
   # make pattern
+  fn  plot!(e : Equaion, xywh) : Texture
+  fn  splot!(e : Equation, xyzwhz) : Texture
+  fn  maze!(wh) : Texture
+  # friend on them???
+  fn  tilt(mesh : , xywh) : Texture
+  fn  poincare!(e : Equation, Matrix) : Texture
+  friend SVG(t : Texture) : SVG
+  # illust...
+  # font is the implementation depends implementation.
+  fn  renderFont[type type]() : Texture
 
-class Plot[def color] : Texture[color]
-  # making graph
+type PlayMovie[def color, def driver] : Texture[color]
   fn ctor() : void
   fn dtor() : void
+  fn load!() : void
+  fn play!() : Texture
 
-class PlayMovie[def color, def driver] : Texture[color]
-  fn ctor() : void
-  fn dtor() : void
-
-# 2D, 3D, illust
-# fonts
-# Huge...
-
-# Maze
-# SVG
-# Huge...
-
-# Poincare cut.
-# Huge...
-
-# Widgets: dom xml base. Huge...
+# Widgets: dom xml base. referes w3c minimal set.
 

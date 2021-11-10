@@ -1,22 +1,22 @@
-class Text : Array
+# UTF, UCS, jis, euc, sjis are in the Shift/...
+type Text : Array
   ctor()
   dtor()
 
-# UTF, UCS, jis, euc, sjis
-# fputs function.
-# fread function.
-# consoles.
+let cout : ...
+let cerr : ...
 
-# BNF
-# SGML
-# BNF parser
 # Huge...
+type BNF[def type] : ...
 
-class Stemming[def text] : Object
+type SGML[def type] : ...
+
+
+type Stemming[def text] : Object
   fn ctor() : void
   fn dtor() : void
 
-class Regex[def text] : Object
+type Regex[def text] : Object
   fn ctor() : void
   fn dtor() : void
   fn compile(const text) : bool

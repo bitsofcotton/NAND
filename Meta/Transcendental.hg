@@ -13,21 +13,21 @@ fn asin[def type](type) : type
 fn acos[def type](type) : type
 fn atan[def type](type) : type
 fn atan2[def type](type, type) : type
-fn exp(Complex)  : type
-fn log(Complex)  : type
-fn sin(Complex)  : type
-fn cos(Complex)  : type
-fn tan(Complex)  : type
-fn csc(Complex)  : type
-fn sec(Complex)  : type
-fn cot(Complex)  : type
-fn asin(Complex) : type
-fn acos(Complex) : type
-fn atan(Complex) : type
-fn sinh(Complex) : type
-fn cosh(Complex) : type
-fn tanh(Complex) : type
-fn Li2(Complex)  : type
+fn exp(Complex)  : Complex
+fn log(Complex)  : Complex
+fn sin(Complex)  : Complex
+fn cos(Complex)  : Complex
+fn tan(Complex)  : Complex
+fn csc(Complex)  : Complex
+fn sec(Complex)  : Complex
+fn cot(Complex)  : Complex
+fn asin(Complex) : Complex
+fn acos(Complex) : Complex
+fn atan(Complex) : Complex
+fn sinh(Complex) : Complex
+fn cosh(Complex) : Complex
+fn tanh(Complex) : Complex
+fn Li2(Complex)  : Complex
 fn SolveSeries[def type](fn coeff(type) : type, const type x) : type
 fn SolveSeries[def type](const Array[type] coeff, const type x) : type
 fn InvertSeries[def type](const Array[type] coeff, const type y)

@@ -1,6 +1,6 @@
 using Meta.Linear
 
-class Distribution[def type, def func]
+type Distribution[def type, def func]
   ctor() : void
   dtor() : void
 

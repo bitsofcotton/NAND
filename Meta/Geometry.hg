@@ -1,10 +1,17 @@
-# solve continuous functions.
-# approximate f into some forms.
+type geomIndex : Equation
+  fn ctor() : void
+  fn dtor() : void
+  fn dim() : int
+  fn ker() : int
+  fn coker() : int
+  fn jacobi() : Matrix
+  fn eigens() : Vector
+  fn factor() : Array[Equation]
+  fn differentialForm() : Equation
+  fn factorGraph() : Matrix[Equation]
 
-# for f:
-#   differential form
-#   dim, ker, coker
-#   factor shapes
-#   jacobi invert
-#   some numbers that describes the geometry.
+fn solve(e : Equation) : Equation
+fn approximate(e : Equation, f : Equation) : Equation
+
+# fn render(e : Equation) : Vector[Vector ...]
 

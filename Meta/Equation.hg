@@ -1,8 +1,8 @@
-class Equation : BNF
+type Equation : BNF
   fn ctor() : void
   fn dtor() : void
 
-class Logic : Equation
+type Logic : Equation
   fn ctor() : void
   fn dtor() : void
 

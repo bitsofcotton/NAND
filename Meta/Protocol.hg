@@ -1,2 +1,7 @@
 # protocols : extremely huge.
+# and they're the implementation depends on implementation, so shift/...
+type Gate[type layer, type lowlayer] : lowlayer
+  fn ctor() : void
+  fn dtor() : void
+
 

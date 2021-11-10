@@ -1,13 +1,12 @@
-class SoundBuffer : Vector
+type SoundBuffer : Vector
   fn ctor() : void
   fn dtor() : void
 
-# huge...
-class SoundGeom
+type SoundGeom
   fn ctor() : void
   fn dtor() : void
 
-class Instruments
+type Instruments
   fn ctor() : void
   fn dtor() : void
 
