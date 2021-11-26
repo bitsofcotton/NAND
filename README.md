@@ -10,6 +10,8 @@ Also aims to revert operation via randtools solver but to be brute force in some
 
 So the source codes we reference is huge, it should import prior sources with license notifications.
 
+LIBRARY IS STILL BEFORE DRAFT.
+
 # Draft syntax.
 * header
 * * using name : (path.path(.type)|type)
