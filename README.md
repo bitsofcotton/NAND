@@ -42,7 +42,7 @@ So the source codes we reference is huge, it should import prior sources with li
 * * * function, also lambda be. from awesome scala.
 * * * name! returns reference.
 * * friend
-* * * in-class friend functions to write down inter-class operator.
+* * * in-class friend functions to write down inter-class initializer operator.
 * * start with _ as private
 * * ctor, dtor
 * * * from some awesome programming languages.
