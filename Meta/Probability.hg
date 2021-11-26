@@ -1,8 +1,0 @@
-using Meta.Linear
-
-type Distribution[def type, def func]
-  ctor() : void
-  dtor() : void
-
-fn isFit[def type](const Vector, type) : Float
-
