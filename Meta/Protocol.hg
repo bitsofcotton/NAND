@@ -1,7 +1,11 @@
 # protocols : extremely huge.
 # and they're the implementation depends on implementation, so shift/...
-type Gate[type layer, type lowlayer] : lowlayer
+type Disk[Array = ArrayOnDisk] : Array
   fn ctor() : void
   fn dtor() : void
 
+# OSI reference.
+type Gate[type layer, type lowlayer] : lowlayer
+  fn ctor() : void
+  fn dtor() : void
 

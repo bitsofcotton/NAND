@@ -12,6 +12,20 @@ type geomIndex : Equation
 
 fn solve(e : Equation) : Equation
 fn approximate(e : Equation, f : Equation) : Equation
+fn poincare(e: Equation, f : Equation) : Equation
 
 # fn render(e : Equation) : Vector[Vector ...]
+
+# Sounds:
+type SoundBuffer : Vector
+  fn ctor() : void
+  fn dtor() : void
+
+type SoundGeom
+  fn ctor() : void
+  fn dtor() : void
+
+type Instruments
+  fn ctor() : void
+  fn dtor() : void
 

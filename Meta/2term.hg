@@ -1,0 +1,364 @@
+# commutative and non commutative...
+# referring some mathematic results.
+
+type Int[int bits] : Object
+  def int  : Int[bits / 2]
+  def dint : Int[bits]
+  def lsb  : 0
+  def msb  : bits - 1
+  let e0   : int
+  let e1   : int
+  friend op Int   (const dint) : Int
+  friend op bool  (const dint) : bool
+  fn  ctor()    : void
+  fn  ctor(def) : void
+  fn  ctor(Int) : void
+  fn  ctor(const Int) : void
+  fn  dtor()    : void
+  fn  op []  (const Int) : bool
+  fn  op []  (const Int) const : bool
+  fn  op []  (const Int, const Int) : dint
+  fn  op []  (const Int, const Int) const : dint
+  fn  op ~   () const : int
+  def zorn()           : dint
+  fn  op --  ()     : dint
+  fn  op *   (const dint) const : dint
+  fn  op **  (const dint) const : dint
+  fn  op /   (const dint) const : dint
+  fn  op <<  (const dInt) const : dint
+  fn  op >>  (const dInt) const : dint
+  def less(const dint) : bool
+  fn  op !=  (const dint) const : bool
+  fn  op =   (dint)             : int
+  fn  op =   (const dint)       : int
+  fn  op +=  (const dint)       : int
+  fn  op &=  (const dint)       : int
+  fn  op |=  (const dint)       : int
+  fn  op ^=  (const dint)       : int
+
+type ParaInt[def type, Int wbits, Int pbits]
+  def int   : ParaInt[type, wbits, pbits]
+  def bint  : type
+  let _flat : Int[wbits]
+  fn  ctor()     : void
+  fn  ctor(def)  : void
+  fn  ctor(type) : void
+  fn  ctor(type, fn) : void
+  fn  dtor()     : void
+  fn  seed(const bint) : int
+  fn  seed(const bint, fn) : int
+  fn  dopara(fn) : void
+  fn  op []  (const Int) : bool
+  fn  op []  (const Int) const : bool
+  fn  op []  (const Int, const Int) : bool
+  fn  op []  (const Int, const Int) const : bool
+  fn  op !   () const : bool
+  fn  op ~   () const : int
+  fn  op ++  ()     : int
+  fn  op ++  (void) : int
+  fn  op --  ()     : int
+  fn  op --  (void) : int
+  fn  op -   ()     const : int
+  fn  op *   (const int) const : int
+  fn  op **  (const int) const : int
+  fn  op /   (const int) const : int
+  fn  op %   (const int) const : int
+  fn  op +   (const int) const : int
+  fn  op -   (const int) const : int
+  fn  op <<  (const Int) const : int
+  fn  op >>  (const Int) const : int
+  fn  op <   (const int) const : bool
+  fn  op <=  (const int) const : bool
+  fn  op >   (const int) const : bool
+  fn  op >=  (const int) const : bool
+  fn  op ==  (const int) const : bool
+  fn  op !=  (const int) const : bool
+  fn  op &   (const int) const : int
+  fn  op ^   (const int) const : int
+  fn  op |   (const int) const : int
+  fn  op &&  (const int) const : bool
+  fn  op ||  (const int) const : bool
+  fn  op =   (int)       : int
+  fn  op =   (const int) : int
+  fn  op +=  (const int) : int
+  fn  op -=  (const int) : int
+  fn  op *=  (const int) : int
+  fn  op **= (const int) : int
+  fn  op /=  (const int) : int
+  fn  op %=  (const int) : int
+  fn  op /=  (const int) : int
+  fn  op <<= (const Int) : int
+  fn  op >>= (const Int) : int
+  fn  op &=  (const int) : int
+  fn  op |=  (const int) : int
+
+type Signed[def type]
+  def int  : Signed[type]
+  fn  ctor()    : void
+  fn  ctor(def) : void
+  fn  ctor(type) : void
+  fn  ctor(const type) : void
+  fn  ctor(int) : void
+  fn  ctor(const int) : void
+  fn  dtor()    : void
+  fn  op <   (const int) const : bool
+  fn  op <=  (const int) const : bool
+  fn  op >   (const int) const : bool
+  fn  op >=  (const int) const : bool
+
+type pZ[def type, type z]
+  def pz   : pz[type, z]
+  let e    : type
+  fn  ctor()    : void
+  fn  ctor(def) : void
+  fn  ctor(type) : void
+  fn  ctor(const type) : void
+  fn  dtor()    : void
+  fn  ensure()  : pz
+  def zorn() : pz
+
+type Band[def type] : Complex[type]
+  fn ctor() : void
+  fn dtor() : void
+
+fn gcd[def type](const type, const type) : type
+fn lcm[def type](const type, const type) : type
+fn factor2[def type](const type) : type
+fn max[def type](const type, const type) : type
+fn min[def type](const type, const type) : type
+fn abs(const Signed) : type
+
+// Solve ax + by = c in Z, a, b, c are const.
+fn eucleidos[def type](type, type, const type, const type, const type) : void
+
+type Float[Int mantissa, Int exponent] : Object
+  def float : Float[mantissa, exponent]
+  def intm  : Int[mantissa]
+  def intw  : Int[mantissa * Int(2)]
+  def inte  : Int[exponent]
+  let _m    : intm
+  let _e    : inte
+  let _flag : int
+  def INF   : const int("0x1")
+  def NaN   : const int("0x2")
+  def SIGN  : const int("0x4")
+  def WORK  : const int("0x8")
+  fn  ctor()    : void
+  fn  ctor(def) : void
+  fn  dtor()    : void
+  fn  roundMulDiv(intw)   : bool
+  fn  op ! () const : bool
+  fn  op - () const : float
+  fn  op *  (const float) const : float
+  fn  op ** (const float) const : float
+  fn  op /  (const float) const : float
+  fn  op %  (const float) const : float
+  fn  op +  (const float) const : float
+  fn  op -  (const float) const : float
+  fn  op <  (const float) const : bool
+  fn  op <= (const float) const : bool
+  fn  op >  (const float) const : bool
+  fn  op >= (const float) const : bool
+  fn  op == (const float) const : bool
+  fn  op != (const float) const : bool
+  fn  op =  (float)        : float
+  fn  op =  (const float)  : float
+  fn  op += (const float)  : float
+  fn  op -= (const float)  : float
+  fn  op *= (const float)  : float
+  fn  op **= (const float) : float
+  fn  op /= (const float)  : float
+  fn  op %= (const float)  : float
+  fn  isnan() const : bool
+  fn  isinf() const : bool
+  fn  ceil()  : float
+  fn  floor() : float
+  friend op Int(const float) const : Int
+
+type WFloat[def float_t] : Object
+  def float : WFloat[float_t]
+  def bool  : Int[1]
+  let _f0   : float_t
+  let _f1   : float_t
+  fn  ctor()    : void
+  fn  ctor(def) : void
+  fn  dtor()    : void
+  fn  op !  () const : bool
+  fn  op -  () const : float
+  fn  op *  (const float) const : float
+  fn  op ** (const float) const : float
+  fn  op /  (const float) const : float
+  fn  op %  (const float) const : float
+  fn  op +  (const float) const : float
+  fn  op -  (const float) const : float
+  fn  op <  (const float) const : bool
+  fn  op <= (const float) const : bool
+  fn  op >  (const float) const : bool
+  fn  op >= (const float) const : bool
+  fn  op == (const float) const : bool
+  fn  op != (const float) const : bool
+  fn  op =  (const float) : float
+  fn  op += (const float) : float
+  fn  op -= (const float) : float
+  fn  op *= (const float) : float
+  fn  op **= (const float) : float
+  fn  op /= (const float) : float
+  fn  op %= (const float) : float
+  fn  isnan() const : bool
+  fn  isinf() const : bool
+
+type Fraction[def type] : Object
+  def fraction : Fraction[type]
+  def bool     : Int[1]
+  let _sign  : bool
+  let _n     : type
+  let _d     : type
+  fn  ctor() : void
+  fn  ctor(type, type) : void
+  fn  ctor(const type, const type) : void
+  fn  dtor() : void
+  fn  op ** (const fraction) const : fraction
+  fn  op <  (const fraction) const : bool
+  fn  op <= (const fraction) const : bool
+  fn  op >  (const fraction) const : bool
+  fn  op >= (const fraction) const : bool
+  fn  op != (const fraction) const : bool
+  fn  op =  (fraction)       : fraction
+  fn  op =  (const fraction) : fraction
+  fn  op += (const fraction) : fraction
+  fn  op *= (const fraction) : fraction
+  fn  op /= (const fraction) : fraction
+
+fn floor[def type](type) : type
+fn ceil[def type](type)  : type
+fn isnan[def type](type) : bool
+fn isinf[def type](type) :bool
+
+using Meta.Ring
+
+friend Int[Int bits]::op Int (const dint) : Int
+  return Int(e0)
+
+friend Int[Int bits]::op bool (const dint) : bool
+  return bool(e0) || bool(e1)
+
+fn Int[Int bits]::ctor() : void
+  return
+
+fn Int[Int bits]::ctor(def d) : void
+  let zero : static const dint(0)
+  let ten  : static const dint(10)
+  this = zero
+  for x in d:
+    this *= ten
+    this += dint(x)
+  return
+
+fn Int[Int bits]::ctor(const Int d) : void
+  e0 = d
+  e1 = int(0)
+  return
+
+fn Int[Int bits]::dtor() : void
+  super()
+  return
+
+fn Int[Int bits]::op [] (const Int idx) : bool
+  return const(this)[idx]
+
+fn Int[Int bits]::op [] (const Int idx) const : bool
+  assert(Int(0) <= idx && idx < bits)
+  if(idx < bits / 2)
+    return e0 >> idx
+  return e1 >> (idx - bits / 2)
+
+fn Int[Int bits]::op [] (const Int start, const Int end) : dint
+  return const(this)[start, end]
+
+fn Int[Int bits]::op [] (const Int start, const Int end) const : dint
+  assert(Int(0) <= start && start < bits)
+  assert(Int(0) <= end   && end   < bits)
+  return (this >> start) & ((dint(1) << (start - end)) - dint(1))
+
+fn Int[Int bits]::op ~  () const : dint
+  let work : dint()
+  work.e0 = ~ e0
+  work.e1 = ~ e1
+  return work
+
+fn Int[Int bits]::op zorn() : dint
+  ++ e0
+  if(! e0)
+    ++ e1
+  return this
+
+fn Int[Int bits]::op -- ()       : dint
+  if(! e0)
+    -- e1
+  -- e0
+  return this
+
+fn Int[Int bits]::op *  (const dint src) const : dint
+  let res : dint(0)
+  for bit in src:
+    if(bit):
+      res += this << bit.idx
+  return res
+
+fn Int[Int bits]::op ** (const dint src) const : dint
+  let res  : dint(1)
+  let work : auto(this)
+  for bit in src:
+    if(bit):
+      res *= work
+    work *= work
+  return res
+
+#fn Int[Int bits]::op /  (const dint src) const : dint
+#fn Int[Int bits]::op << (const Int src) const : dint
+#fn Int[Int bits]::op >> (const Int src) const : dint
+ 
+fn Int[Int bits]::less(const dint src) const : bool
+  return (this - src)[msb]
+
+fn Int[Int bits]::op == (const dint src) : bool
+  return bool(this ^ src)
+
+fn Int[Int bits]::op = (dint src) : dint
+  e0 = src.e0
+  e1 = src.e1
+  return this
+
+fn Int[Int bits]::op = (const dint src) : dint
+  e0 = const(src.e0)
+  e1 = const(src.e1)
+  return this
+
+fn Int[Int bits]::op += (const dint src) : dint
+  ## assembler??
+
+fn Int[Int bits]::op &= (const dint src) : dint
+  e0 &= src.e0
+  e1 &= src.e1
+  return this
+
+fn Int[Int bits]::op |= (const dint src) : dint
+  e0 |= src.e0
+  e1 |= src.e1
+  return this
+
+fn Int[Int bits]::op ^= (const dint src) : dint
+  e0 ^= src.e0
+  e1 ^= src.e1
+  return this
+
+# finite gropus, and make new finite series from them with some method.
+# Cryption s.t. S-Box, iteration, RSA, DSA, ECDSA, PRNG, ...
+
+# Real world cryption tools, hashing tools.
+# Leed solomon
+# Hamming
+# Vitavi
+# SHA, AES, DES, ...
+# Huge...
+
