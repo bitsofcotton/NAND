@@ -1,22 +1,18 @@
-# NAND(Stub)
+# NAND(Never finish)
 Natural simpler compiler which code with natural simpler comments and licenses on a file.
 
-We support: type safe, class capsule, assertion, data integrity check gate (mutex for them), and don't support special flows.
+We support: type safe, class capsule, assertion, multithread data integrity check gate (mutex for them), and do not support special flows, either do not support hashes.
+Aims to small code amount on both compiler/library with comment connected (ideally one can read whole easily), only matter worst case speed with medium functionality, revert operation via randtools solver but to be brute force in some cases.
+We target : working memory size as O((input size)^2) to make tables, calculation on each function upto O(((mem size) * lg(mem size))^1.5), ideally O(lg((mem size) * lg(mem size))), O(lg(mem size)) with caching for outlet.
 
-Aims to small code amount with comment connected, moderate worst-case speed, no matter better-case speed with medium functionality.
-So we target to implement working memory size as O((input size)^2) to make tables, calculation on each function upto O(((mem size) * lg(mem size))^1.5), ideally O(lg((mem size) * lg(mem size))), especially no block condition, O(1) with caching for outlet.
+Library structure is now draft for legacy codes we can easily refer source codes with open source licenses and there's cleary defined datasheets like rfc or open or trivial formats. We should implement next but after trans-compiler ok.
 
-Also aims to revert operation via randtools solver but to be brute force in some cases, both compiler and entire library source code be in the size one can read easily, which compiler itself is in specific mnemonic code.
-
-So the source codes we reference is huge, it should import prior sources with license notifications.
-
-LIBRARY IS STILL BEFORE DRAFT.
-
-# Draft syntax.
+# Syntax should be implemented.
 * header
-* * using name : (path.path(.type)|type)
+* * using (name :)? path.path(.type)
+* * using name : type, function
 * * type classname (: inherit) : "comment" : "license"
-* * * Only one class inherit is accepted.
+* * * Only one class inheritation is accepted.
 * * def name : definition : "comment" : "license"
 * * * block-wise.
 * * let : like swift:
@@ -55,7 +51,7 @@ LIBRARY IS STILL BEFORE DRAFT.
 * * this and leaf (end of leaf of the object) and super object references.
 * * typeof, typeid
 * source
-* * 'for ... in ... : label', no 'for ... ; ... ; ...'.
+* * 'for ... in ... : label', type.foreach class function definition is used,
 * * inverse(function) : worst case brute force inverse function.
 * special types can be overrided.
 * * Int\[0\] : void, Object root.
@@ -73,15 +69,6 @@ LIBRARY IS STILL BEFORE DRAFT.
 * * * information for debugging.
 * * \_\_callgraph\_\_
 * * * information for debugging.
-
-* pending libraries
-* * Range\[def type, type lower, type upper, type default\]
-* * * restrict inputs.
-* * State\[Int states\]
-* * * Status class, initialize with json,
-* * * returns next status function pointer on each.
-* * Struct\[Array\[Int\] size\]
-* * * Copy reference structure from file, and write to file.
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
