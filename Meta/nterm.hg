@@ -1,4 +1,4 @@
-using Meta.System
+using Meta.s
 
 type Vector[def type, def index, def Array = Array]
   def vector : Vector[type, index]
