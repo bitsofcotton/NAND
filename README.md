@@ -1,13 +1,15 @@
 # NAND(Never finish)
 Natural simpler compiler which code with natural simpler comments and licenses on a file.
 
+Aims to add one of a code stack which bases on not the latest but a modern C compiler.
+
 We support: type safe, class capsule, assertion, multithread data integrity check gate (mutex for them), and do not support special flows, either do not support hashes.
 Aims to small code amount on both compiler/library with comment connected (ideally one can read whole easily), only matter worst case speed with medium functionality, revert operation via randtools solver but to be brute force in some cases.
 We target : working memory size as O((input size)^2) to make tables, calculation on each function upto O(((mem size) * lg(mem size))^1.5), ideally O(lg((mem size) * lg(mem size))), O(lg(mem size)) with caching for outlet.
 
 Library structure is now draft for legacy codes that we can easily refer source codes with open source licenses and there's cleary defined datasheets like rfc or open or trivial formats. We should implement next but after trans-compiler ok.
 
-# Syntax should be implemented.
+# Syntax draft.
 * header
 * * using (name :) (uri|path.path...)(.type)
 * * using name : (type|function)
