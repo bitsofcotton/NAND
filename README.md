@@ -80,6 +80,6 @@ So around this, we aims and we need the implementation of compact and low comple
 
 # General Tips
 If we have described end of condition as condition itself, the algorithm is defined and it is usually be optimization problem.
-So we need the code set faster than them ideally described in above, s.t. for m constraint n variables, ideally memory is smaller than O(mn), arithmetic operation number is smaller than O(mn^2), for mn core CPUs, the time is faster than O(lg(m) + lg(n) + L) for L bit operation.
+So we need the code set faster than them ideally described in above, s.t. for m constraint n variables, ideally memory is smaller than O(mn), arithmetic operation number is smaller than O(mn^2), for mn core CPUs, the time is faster than O((lg(m) + lg(n)) \* L) for L bit operation.
 
 
