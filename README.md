@@ -1,64 +1,62 @@
 # NAND(Never finish)
 Natural simpler compiler which code with natural simpler comments and licenses on a file.
 
-Aims to add one of a code stack which bases on not the latest but a modern C compiler.
+Aims to add one of a code stack s.t. small code amount on both compiler/library with comment connected (ideally one can read whole easily) bases on not the latest but a modern C compiler. But to make this practical, we need const. operation hard optimization.
 
-We support: type safe, class capsule, assertion, multithread data integrity check gate (mutex for them), and do not support special flows, either do not support hashes.
-Aims to small code amount on both compiler/library with comment connected (ideally one can read whole easily), only matter worst case speed with medium functionality, revert operation via randtools solver but to be brute force in some cases.
-We target : working memory size as O((input size)^2) to make tables, calculation on each function upto O(((mem size) * lg(mem size))^1.5), ideally O(lg((mem size) * lg(mem size))), O(lg(mem size)) with caching for outlet.
+Library target : working memory size as O((input size)^2) to make tables, calculation step on each function upto O(((mem size) * lg(mem size))^1.5), ideally O(lg((mem size) * lg(mem size))), O(lg(mem size)) with caching for outlet.
 
-Library structure is now draft for legacy codes that we can easily refer source codes with open source licenses and there's cleary defined datasheets like rfc or open or trivial formats. We should implement next but after trans-compiler ok.
-
-# Syntax draft.
-* header
-* * using (name :) (uri|path.path...)(.type)
-* * using name : (type|function)
-* * type classname : inherit : "comment" : "license"
-* * * Only one class inheritation is accepted.
-* * def name : definition : "comment" : "license"
-* * * block-wise.
-* * let is omitted, like swift's let:
-* * * a : b
-* * * a : const(b)
-* * * * a is (non const) reference of b or const reference of b.
-* * * * the original variable will not be used like some awesome languages.
-* * * a : auto(b)
-* * * a : type(b)
-* * * a : func(b)
-* * * a : const auto(b)
-* * * a : const type(b)
-* * * a : const func(b)
-* * * * a is instanced object of b
-* * * a : func!(b)
-* * * a : const func!(b)
-* * * * a is function returned reference.
-* * * a : b : "comment" : "license"
-* * * a +=item val
-* * * * operator with some extension to C.
-* * * * super class operator is also operator +=item .
-* * * * if there's no such operator, search super, then, replace with
-* * * * root class definition on op += or some with refactored one.
-* * fn name(name : type : "comment", ...) : type : "comment" : "license"
-* * * function, also lambda be. from awesome scala.
-* * * name! returns reference.
-* * friend
-* * * in-class friend functions to write down inter-class initializer operator.
-* * start with _ as private
-* * ctor, dtor
-* * * from some awesome programming languages.
-* * enter
-* * leave
-* * * every variable change, we call this first / last.
-* * * only described in same class are affected.
-* * this and leaf (end of leaf of the object) and super object references.
-* * typeof, typeid
-* source
-* * 'for ... in ... : label', type.foreach class function definition is used,
-* * * break label
-* * inverse(function) : worst case brute force inverse function.
+# Syntax freeze.
+* load (name :)? (uri|path.path...)(.type|.function)
+* type classname : inherit : "comment" : "license"
+* * Only one class inheritation is accepted.
+* def name : definition : "comment" : "license"
+* * block-wise.
+* let is omitted, like swift's let:
+* * a : b
+* * a : const(b)
+* * * a is (non const) reference of b or const reference of b.
+* * a : static(b)
+* * * a is initialized by b once in first of execution.
+* * * the original variable will not be used like some awesome languages.
+* * a : auto(b)
+* * a : type(b)
+* * a : func(b)
+* * a : const auto(b)
+* * a : const type(b)
+* * a : const func(b)
+* * * a is instanced object of b
+* * a : func!(b)
+* * a : const func!(b)
+* * * a is function returned reference.
+* * a : (fn ...)(...) \\ ...
+* * * initialize with lambda function.
+* * a : b : "comment" : "license"
+* * * comment and license.
+* fn name(name : type : "comment", ...) : type : "comment" : "license"
+* * function, also lambda be. from awesome scala.
+* * function name! returns reference.
+* a +=item val
+* * operator with some extension to C.
+* * super class operator is also operator +=item .
+* * if there's no such operator, search super, then, replace with
+* * root class definition on op += or some with refactored one.
+* start with _ as private in type
+* friend
+* * in-class friend functions to write down inter-class initializer operator.
+* ctor, dtor
+* * from some awesome programming languages.
+* enter, leave
+* * every variable change, we call this first / last.
+* * only described in the same class are affected.
+* only ctor/dtor/enter/leave/friend/operator can be defined in type block.
+* this and leaf (end of leaf of the object) and super object references.
+* typeof, typeid
+* 'for ... in ... : label', type.foreach class function definition is used,
+* * break label
+* inverse(function, result) : worst case brute force inverse function.
 * special types can be overrided.
 * * Int\[0\] : void, Object root, no inheritation.
-* * Int\[platform_depends\] inherites Int\[0\]. : only one integer class, bool for nonzero, on register integer.
+* * Int\[__pointer_bits_\] inherites Int\[0\]. : only one integer class, bool for nonzero, on register integer.
 * * Duck[type, type, ...] : Duck type programming
 * special functions
 * * assert(x)
@@ -78,4 +76,9 @@ If the data is enough, machine learning methods can implement any of the impleme
 For this, please refer randtools (with F_p integer, using (F_p)^k register on each).
 
 So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system).
+
+# General Tips
+If we have described end of condition as condition itself, the algorithm is defined and it is usually be optimization problem.
+So we need the code set faster than them ideally described in above, s.t. for m constraint n variables, ideally memory is smaller than O(mn), arithmetic operation number is smaller than O(mn^2), for mn core CPUs, the time is faster than O(lg(m) + lg(n) + L) for L bit operation.
+
 
