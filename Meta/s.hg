@@ -99,11 +99,10 @@ type void   : Int[0] : "void"
 type Object : Int[0] : "Object"
 type bool   : Int[__pointer_bits__] : "bool"
 type int    : Int[__pointer_bits__] : "synonym"
-type Duck[...] : Object : "Duck"
 
 fn Export(def) : void
 fn Import(def) : bool
-fn Call(def, Array)   : Duck
+fn Call(def, Array)   : Int
 fn Signal(Int, Int)   : Int
 fn SignalHandler(Int, Int) : Int
 fn Thread(fn delegate() : Int) : Int
