@@ -7,8 +7,6 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 
 # Syntax freeze.
 * load (name :)? (uri|path.path...)(.type|.function)
-* type classname : inherit : "comment" : "license"
-* * Only one class inheritation is accepted.
 * def name : definition : "comment" : "license"
 * * block-wise.
 * let is omitted, like swift's let:
@@ -31,34 +29,29 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 * fn name(name : type : "comment", ...) : type : "comment" : "license"
 * * function, also lambda be. from awesome scala.
 * * function name! returns reference.
-* a +=item val
-* * operator with some extension to C.
-* * super class operator is also operator +=item .
-* * if there's no such operator, search super, then, replace with
-* * root class definition on op += or some with refactored one.
-* start with _ as private in type
-* friend
-* * in-type friend functions to write down inter-type initializer operator.
-* ctor, dtor
-* * from some awesome programming languages.
-* enter, leave
-* * every variable change, we call this first / last.
-* * only described in the same class are affected.
-* only variable/ctor/dtor/enter/leave/friend/operator can be defined in type block.
-* this and leaf (end of leaf of the object) and super object references.
-* typeof, typeid
-* 'for ... in ... : label', type.foreach class function definition is used,
-* * break label
 * inverse(function, result) : worst case brute force inverse function.
+* typeof, typeid
+* type classname : inherit : "comment" : "license"
+* * Only one class inheritation is accepted. Treat as arithmetic ones.
+* * a +=item val
+* * * operator with some extension to C.
+* * * super class operator is also operator +=item .
+* * * if there's no such operator, search super, then, replace with
+* * * root class definition on op += or some with refactored one.
+* * start with _ as private in type
+* * friend
+* * * in-type friend functions to write down inter-type initializer operator.
+* * ctor, dtor
+* * * from some awesome programming languages.
+* * enter, leave
+* * * every variable change, we call this first / last.
+* * * only described in the same class are affected.
+* * only variable/ctor/dtor/enter/leave/friend/operator can be defined in type block.
+* * this and leaf (end of leaf of the object) and super object references.
 * special types can be overrided.
 * * Int\[0\] : void, Object root, no inheritation.
-* * Int\[\_\_pointer_bits\_\_\] inherites Int\[0\]. : only one integer class, bool for nonzero, on register integer.
+* * Int\[\_\_pointer_bits\_\_\] inherites Int\[0\]. : only integer class, bool for nonzero.
 * * Duck[type, type, ...] : Duck type programming
-* special functions
-* * assert(x)
-* * * stop execution or compilation if x is false.
-* * Duck function("function name")
-* * * returns function that have function name.
 * special variables
 * * \_\_pointer_bits\_\_
 * * * number of pointer bit size.
@@ -66,11 +59,17 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 * * * information for debugging.
 * * \_\_callgraph\_\_
 * * * information for debugging.
-* flows
+* * Duck function("function name")
+* * * returns function that have function name.
+* special flows
 * * () ? () : ()
 * * * 3-term operator like in C.
-* * switch-case for constant. case variable optimization intended use only with state type.
-* * return ...
+* * return result
+* * 'for ... in ... : label', type.foreach class function definition is used,
+* * * break label
+* * assert(x)
+* * * stop execution or compilation if x is false.
+* line start with \# treated comment:
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
