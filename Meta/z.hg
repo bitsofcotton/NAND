@@ -43,17 +43,16 @@ type Optron[def type] : Matrix[type]
   fn in(const vec) : bool
   fn out(const vec) : vec
 
-type BlockDiagram[def type] : Array[Perceptron[type]]
-  def vec : Vector[type]
-  fn ctor(const Matrix[Int] d) : void
+type Delayron[def type] : Array
+  fn ctor() : void
   fn dtor() : void
   fn in(const vec, const vec) : bool
   fn in(const vec) : bool
   fn out(const vec) : vec
 
-type Zisc[def type] : BlockDiagram
+type BlockDiagram[def type] : Array[Perceptron[type]]
   def vec : Vector[type]
-  fn ctor() : void
+  fn ctor(const Matrix[Int] d) : void
   fn dtor() : void
   fn in(const vec, const vec) : bool
   fn in(const vec) : bool
