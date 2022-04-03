@@ -52,7 +52,7 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 * inverse(function, result) : worst case brute force inverse function.
 * special types can be overrided.
 * * Int\[0\] : void, Object root, no inheritation.
-* * Int\[__pointer_bits_\] inherites Int\[0\]. : only one integer class, bool for nonzero, on register integer.
+* * Int\[\\__pointer_bits\_\_\] inherites Int\[0\]. : only one integer class, bool for nonzero, on register integer.
 * * Duck[type, type, ...] : Duck type programming
 * special functions
 * * assert(x)
