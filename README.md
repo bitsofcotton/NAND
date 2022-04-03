@@ -69,6 +69,7 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 * flows
 * * if ... elif ... else
 * * switch-case for constant. case variable optimization intended use only with state type.
+* * return ...
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
