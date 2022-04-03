@@ -1,31 +1,31 @@
-# graphics, geometry.
 using Meta.s
-using Meta.2term
-using Meta.nterm
+using Meta.2
+using Meta.n
+# graphics, geometry.
 
 type Glay[def type] : type
-  fn ctor() : void
-  fn dtor() : void
-
 type RGB[def type] : Object
   let r : type
   let g : type
   let b : type
-  fn  ctor() : void
-  fn  dtor() : void
+  fn ctor(Glay[type] src)
+    r = type(src)
+    g = type(src)
+    b = type(src)
+    return this
+  friend Glay()
+    # not optimal, we should refer color space in wikipedia.
+    return (r + g + b) / type(3)
   fn  op -  () : this
   fn  op != () : this
   fn  op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
-  friend RGBA(rgb : RGB) : RGBA
   # ...
 
 type RGBA[def type] : Quarternion[type]
   def rgba : Quarternion[type]
-  fn  ctor() : void
-  fn  dtor() : void
   fn  op -  () : this
   fn  op != () : this
   fn  op += () : this
@@ -37,8 +37,6 @@ type HSV[def type] : Object
   let h : type
   let s : type
   let v : type
-  fn  ctor() : void
-  fn  dtor() : void
   fn  op -  () : this
   fn  op != () : this
   fn  op += () : this
@@ -50,8 +48,6 @@ type HSB<def type> : Object
   let h : type
   let s : type
   let b : type
-  fn  ctor() : void
-  fn  dtor() : void
   fn  op -  () : this
   fn  op != () : this
   fn  op += () : this
@@ -63,8 +59,6 @@ type Lab<def type> : Object
   let l : type
   let a : type
   let b : type
-  fn  ctor() : void
-  fn  dtor() : void
   fn  op -  () : this
   fn  op != () : this
   fn  op += () : this
@@ -73,8 +67,6 @@ type Lab<def type> : Object
   def ensure() : this
 
 type ColorDigital[def type] : Vector[type]
-  fn  ctor() : void
-  fn  dtor() : void
   fn  op -  () : this
   fn  op != () : this
   fn  op += () : this
@@ -83,8 +75,6 @@ type ColorDigital[def type] : Vector[type]
   def ensure() : this
 
 type ColorAnalogue[def type, fn func] : Object
-  fn  ctor() : void
-  fn  dtor() : void
   fn  op -  () : this
   fn  op != () : this
   fn  op += () : this
@@ -114,44 +104,31 @@ type Texture[def color] : Matrix[color]
   fn  renderFont[type type]() : Texture
 
 type PlayMovie[def color, def driver] : Texture[color]
-  fn ctor() : void
-  fn dtor() : void
   fn load!() : void
   fn play!() : Texture
 
-# Widgets: dom xml base. referes w3c minimal set.
-
-
+# Widgets: dom xml base. referes w3c minimal set. huge...
 
 # geometry
 type geomIndex : Equation
-  fn ctor() : void
-  fn dtor() : void
-  fn dim() : int
-  fn ker() : int
-  fn coker() : int
-  fn jacobi() : Matrix
-  fn eigens() : Vector
-  fn factor() : Array[Equation]
-  fn differentialForm() : Equation
-  fn factorGraph() : Matrix[Equation]
-
+fn ker(e : Equation) : Int
+fn dim(e : Equation) : Int
+fn coker(e : Equation) : Int
+  return dim(e) - ker(e)
+fn jacobi(e : Equation) : Matrix
+  return
+fn eigens(e : Equation) : Vector
+  return
+fn factor(e : Equation) : Array[Equation]
+  return
+fn differentialForm(e : Equation) : Equation
+  return
 fn solve(e : Equation) : Equation
 fn approximate(e : Equation, f : Equation) : Equation
 fn poincare(e: Equation, f : Equation) : Equation
-
 # fn render(e : Equation) : Vector[Vector ...]
 
-# Sounds:
 type SoundBuffer : Vector
-  fn ctor() : void
-  fn dtor() : void
-
 type SoundGeom
-  fn ctor() : void
-  fn dtor() : void
-
 type Instruments
-  fn ctor() : void
-  fn dtor() : void
 

@@ -2,73 +2,53 @@ using Meta.s
 
 type Vector[def type, def index, def Array = Array]
   def vector : Vector[type, index]
-  let coeff  : type
-  let entity : Array[type]
-  fn  ctor() : void
-  fn  ctor(const index) : void
-  fn  dtor() : void
-  fn  resize(const index) : vector
-  fn  size() const : const index
+  e : Array[type]
+  fn  ctor(const index, const type e0)
   fn  init(fn ier(idx : index, entity : type) : void) : vector
-  fn  O() const : vector
-  fn  I() const : vector
-  fn  op [] (const index)        : type
-  fn  op [] (const index)  const : const type
-  fn  op [] (const index, const index)        : vector
-  fn  op [] (const index, const index)  const : const vector
-  fn  op bool () const : bool
-  fn  op -  ()             const : vector
-  fn  dot         (const vector) const : type
-  fn  op <eachAll (const vector) const : bool
-  fn  op != (const vector) const : bool
-  fn  op =  (vector)       : vector
-  fn  op =  (const vector) : vector
-  fn  op += (const vector) : vector
-  fn  op -= (const vector) : vector
-  fn  op *=  (const type)   : vector
-  fn  op **= (const type)   : vector
-  fn  op /=  (const type)   : vector
-  fn  op %=  (const type)   : vector
+  fn  [] (const index)        : type
+  fn  [] (const index)  const : const type
+  fn  [] (const index, const index)        : vector
+  fn  [] (const index, const index)  const : const vector
+  fn  friend bool
+  fn  -  ()             const : vector
+  fn  *dot (const vector) const : type
+  fn  != (const vector) const : bool
+  fn  =  (vector)       : vector
+  fn  =  (const vector) : vector
+  fn  += (const vector) : vector
+  fn  -= (const vector) : vector
+  fn  *=  (const type)   : vector
+  fn  **= (const type)   : vector
+  fn  /=  (const type)   : vector
+  fn  %=  (const type)   : vector
   def less() : bool
 
 type Matrix[def type, def index0, def Array = Array]
   def matrix : Matrix[type, index0]
   def vector : Vector[type, index0]
   def index  : Complex[index0]
-  let transposed : bool
-  let coeff  : type
-  let entity : Array[vector]
-  fn  ctor() : void
-  fn  ctor(const index) : void
-  fn  dtor() : void
-  fn  resize(const index) : matrix
-  fn  size() const : const index
-  fn  init(fn ier(idx : index, entity : type) : void) : matrix
-  fn  O() const : matrix
-  fn  I() const : matrix
-  fn  II() const : matrix
-  fn  row(const index0) : vector
-  fn  row(const index0) const : const vector
-  fn  setCol(const index0, const vector) : void
-  fn  col(const index0) const : const vector
-  fn  op [] (const index)       : type
-  fn  op [] (const index) const : const type
-  fn  op [] (const index, const index)       : type
-  fn  op [] (const index, const index) const : const type
-  fn  op !  ()             const : bool
-  fn  op -  ()             const : matrix
-  fn  op *  (const vector) const : vector
-  fn  op *  (const matrix) const : matrix
-  fn  op ** (const type)   const : matrix
-  fn  op <d  (const matrix) const : bool
-  fn  op != (const vector) const : bool
-  fn  op =  (matrix)       : matrix
-  fn  op =  (const matrix) : matrix
-  fn  op += (const matrix) : matrix
-  fn  op -= (const matrix) : matrix
-  fn  op *= (const type)   : matrix
-  fn  transpose()                : matrix
-  fn  transposed()         const : matrix
+  _e : Array[vector]
+  fn  ctor(const index, const type e0) : void
+  fn  []row(const index0) : vector
+  fn  []row(const index0) const : const vector
+  fn  []setCol(const index0, const vector) : void
+  fn  []col(const index0) const : const vector
+  fn  [] (const index)       : type
+  fn  [] (const index) const : const type
+  fn  [] (const index, const index)       : type
+  fn  [] (const index, const index) const : const type
+  fn  !  ()             const : bool
+  fn  -  ()             const : matrix
+  fn  *  (const vector) const : vector
+  fn  *  (const matrix) const : matrix
+  fn  ** (const type)   const : matrix
+  fn  <d  (const matrix) const : bool
+  fn  != (const vector) const : bool
+  fn  =  (matrix)       : matrix
+  fn  =  (const matrix) : matrix
+  fn  += (const matrix) : matrix
+  fn  -= (const matrix) : matrix
+  fn  *= (const type)   : matrix
 
 fn Eigen(const Matrix, Matrix, Matrix) : bool
 fn Eigen(const Matrix, const Matrix, Matrix, Matrix, Matrix) : bool
@@ -94,110 +74,89 @@ fn MotherWavelet(const Vector, const Vector, const bool) : Vector
 
 type Complex[def type] : Object
   def complex : Complex[type]
-  let real    : type
-  let imag    : type
+  _real : type
+  _imag : type
+  zero  : static(type(0))
   fn ctor()   : void
-  fn ctor(type)       : void
-  fn ctor(const type) : void
-  fn ctor(type, type) : void
-  fn ctor(const type, const type) : void
-  fn ctor(complex)    : void
-  fn ctor(const complex) : void
-  fn dtor()   : void
-  fn size() const : const Int
-  fn op []  (const Int) : type
-  fn op !   () const    : bool
-  fn op ~   () const    : complex
-  fn op -   () const    : complex
-  fn op *   (const complex) const : complex
-  fn op **  (const complex) const : complex
-  fn op /   (const complex) const : complex
-  fn op !=  (const complex) const : bool
-  fn op &&  (const complex) const : bool
-  fn op ||  (const complex) const : bool
-  fn op =   (complex)       : complex
-  fn op =   (const complex) : complex
-  fn op +=  (const complex) : complex
-  fn op -=  (const complex) : complex
-  fn op /=  (const complex) : complex
-  fn op /=  (const type) : complex
+  fn ctor(e0 : (type | const type), e1 : (type | const type) = zero) : void
+  fn ctor(e  : (complex | const complex))  : void
+  fn []  (const Int) : type
+  fn !   () const    : bool
+  fn ~   () const    : complex
+  fn -   () const    : complex
+  fn *   (const complex) const : complex
+  fn **  (const complex) const : complex
+  fn /   (const complex) const : complex
+  fn !=  (const complex) const : bool
+  fn &&  (const complex) const : bool
+  fn ||  (const complex) const : bool
+  fn =   (complex)       : complex
+  fn =   (const complex) : complex
+  fn +=  (const complex) : complex
+  fn -=  (const complex) : complex
+  fn /=  (const complex) : complex
+  fn /=  (const type) : complex
 
 fn abs(const Complex) : type
 fn arg(const Complex) : type
 
 type Quaternion[def type] : Object
-  def quat  : Quaternion[type]
-  let r1    : type
-  let r2    : type
-  let r3    : type
-  let r4    : type
+  def quat : Quaternion[type]
+  _r1 : type
+  _r2 : type
+  _r3 : type
+  _r4 : type
   fn ctor() : void
-  fn ctor(type)       : void
-  fn ctor(const type) : void
-  fn ctor(Complex[type])       : void
-  fn ctor(const Complex[type]) : void
-  fn ctor(type, type, type, type) : void
-  fn ctor(const type, const type, const type, const type) : void
-  fn ctor(Complex[type], Complex[type])             : void
-  fn ctor(const Complex[type], const Complex[type]) : void
-  fn dtor()  : void
-  fn size() const : const Int
-  fn op []  (const Int) : type
-  fn op !   () const    : bool
-  fn op ~   () const    : quat
-  fn op -   () const    : quat
-  fn op *   (const quat) const : quat
-  fn op **  (const quat) const : quat
-  fn op /   (const quat) const : quat
-  fn op +   (const quat) const : quat
-  fn op -   (const quat) const : quat
-  fn op !=  (const quat) const : bool
-  fn op &&  (const quat) const : bool
-  fn op ||  (const quat) const : bool
-  fn op =   (quat)       : quat
-  fn op =   (const quat) : quat
-  fn op +=  (const quat) : quat
-  fn op -=  (const quat) : quat
-  fn op /=  (const type) : quat
+  fn ctor(e : (type | const type)) : void
+  fn ctor(e : (Complex[type] | const Complex[type]))       : void
+  fn ctor((type | const type), (type | const type), (type | const type), (type | const type)) : void
+  fn ctor((Complex[type] | const Complex[type]), (Complex[type] | const Complex[type])) : void
+  fn []  (const Int) : type
+  fn !   () const    : bool
+  fn ~   () const    : quat
+  fn -   () const    : quat
+  fn *   (const quat) const : quat
+  fn **  (const quat) const : quat
+  fn /   (const quat) const : quat
+  fn +   (const quat) const : quat
+  fn -   (const quat) const : quat
+  fn !=  (const quat) const : bool
+  fn &&  (const quat) const : bool
+  fn ||  (const quat) const : bool
+  fn =   (quat)       : quat
+  fn =   (const quat) : quat
+  fn +=  (const quat) : quat
+  fn -=  (const quat) : quat
+  fn /=  (const type) : quat
 
 type CayleyHamilton[def type, def base] : Object
-  def ch    : CayleyHamilton[base]
-  let r1    : type
-  let r2    : type
-  fn ctor() : void
-  fn ctor(type) : void
-  fn ctor(const type) : void
-  fn ctor(CayleyHamilton[type]) : void
-  fn ctor(const CayleyHamilton[type]) : void
-  fn dtor() : void
-  fn size() const : const Int
-  fn op []  (const Int) : type
-  fn op !   () const    : bool
-  fn op ~   () const    : ch
-  fn op -   () const    : ch
-  fn op *   (const ch) const : ch
-  fn op **  (const ch) const : ch
-  fn op /   (const ch) const : ch
-  fn op !=  (const ch) const : bool
-  fn op &&  (const ch) const : bool
-  fn op ||  (const ch) const : bool
-  fn op =   (ch)       : ch
-  fn op =   (const ch) : ch
-  fn op +=  (const ch) : ch
-  fn op -=  (const ch) : ch
-  fn op /=  (const type) : ch
+  def ch : CayleyHamilton[base]
+  _r1 : type
+  _r2 : type
+  fn ctor(e : (type | const type)) : void
+  fn ctor(e : (CayleyHamilton[type] | const CayleyHamilton[type])) : void
+  fn []  (const Int) : type
+  fn !   () const    : bool
+  fn ~   () const    : ch
+  fn -   () const    : ch
+  fn *   (const ch) const : ch
+  fn **  (const ch) const : ch
+  fn /   (const ch) const : ch
+  fn !=  (const ch) const : bool
+  fn &&  (const ch) const : bool
+  fn ||  (const ch) const : bool
+  fn =   (ch)       : ch
+  fn =   (const ch) : ch
+  fn +=  (const ch) : ch
+  fn -=  (const ch) : ch
+  fn /=  (const type) : ch
 
 # Huge...
 
 # Finite Element:
 type FE[def type, fn delegate(const Vector, const Vector) : type] : Array[Vector]
-  fn ctor() : void
-  fn dtor() : void
 
-# Probability
-type Distribution[def type, def func]
-  ctor() : void
-  dtor() : void
-
-fn isFit[def type](const Vector, type) : Float
+fn countupVolume(in : Array[Array[type] ], cut : Array[type], size : Int) : Array[type]
+fn countupLattice(in : Array[Array[type] ], cut : Array[type], size : Int) : Array[type]
+fn generateNormalDist(size : Int) : Array[type]
 
