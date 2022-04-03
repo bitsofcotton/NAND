@@ -21,12 +21,8 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 * * a : auto(b)
 * * a : type(b)
 * * a : func(b)
-* * a : const auto(b)
-* * a : const type(b)
-* * a : const func(b)
 * * * a is instanced object of b
 * * a : func!(b)
-* * a : const func!(b)
 * * * a is function returned reference.
 * * a : (fn ...)(...) \\ ...
 * * * initialize with lambda function.
@@ -42,13 +38,13 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 * * root class definition on op += or some with refactored one.
 * start with _ as private in type
 * friend
-* * in-class friend functions to write down inter-class initializer operator.
+* * in-type friend functions to write down inter-type initializer operator.
 * ctor, dtor
 * * from some awesome programming languages.
 * enter, leave
 * * every variable change, we call this first / last.
 * * only described in the same class are affected.
-* only ctor/dtor/enter/leave/friend/operator can be defined in type block.
+* only variable/ctor/dtor/enter/leave/friend/operator can be defined in type block.
 * this and leaf (end of leaf of the object) and super object references.
 * typeof, typeid
 * 'for ... in ... : label', type.foreach class function definition is used,
@@ -70,6 +66,9 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 * * * information for debugging.
 * * \_\_callgraph\_\_
 * * * information for debugging.
+* flows
+* * if ... elif ... else
+* * switch-case for constant. case variable optimization.
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
