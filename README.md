@@ -67,7 +67,8 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 * * \_\_callgraph\_\_
 * * * information for debugging.
 * flows
-* * if ... elif ... else
+* * () ? () : ()
+* * * 3-term operator like in C.
 * * switch-case for constant. case variable optimization intended use only with state type.
 * * return ...
 
