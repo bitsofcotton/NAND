@@ -15,9 +15,9 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 * * a : b
 * * a : const(b)
 * * * a is (non const) reference of b or const reference of b.
+* * * the original variable will not be used like some awesome languages.
 * * a : static(b)
 * * * a is initialized by b once in first of execution.
-* * * the original variable will not be used like some awesome languages.
 * * a : auto(b)
 * * a : type(b)
 * * a : func(b)
