@@ -29,6 +29,7 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 * fn name(name : type : "comment", ...) : type : "comment" : "license"
 * * function, also lambda be. from awesome scala.
 * * function name! returns reference.
+* * type can specify (type \| ... \| type), also specify template omitted.
 * inverse(function, result) : worst case brute force inverse function.
 * typeof, typeid
 * type classname : inherit : "comment" : "license"
@@ -51,7 +52,6 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 * special types can be overrided.
 * * Int\[0\] : void, Object root, no inheritation.
 * * Int\[\_\_pointer_bits\_\_\] inherites Int\[0\]. : only integer class, bool for nonzero.
-* * Duck[type, type, ...] : Duck type programming
 * special variables
 * * \_\_pointer_bits\_\_
 * * * number of pointer bit size.
@@ -59,8 +59,6 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 * * * information for debugging.
 * * \_\_callgraph\_\_
 * * * information for debugging.
-* * Duck function("function name")
-* * * returns function that have function name.
 * special flows
 * * () ? () : ()
 * * * 3-term operator like in C.
