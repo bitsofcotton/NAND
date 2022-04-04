@@ -62,7 +62,7 @@ Aims to add one of a code stack s.t. small code amount on both compiler/library 
 * * * break label
 * * assert(x)
 * * * stop execution or compilation if x is false.
-* \# will be treat line after them as a comment:
+* \# will treat line after them as a comment:
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
