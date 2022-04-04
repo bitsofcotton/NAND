@@ -1,9 +1,6 @@
 # NAND(Never finish)
 Natural simpler compiler which code with natural simpler comments and licenses on a file.
-
-Aims to add one of a code stack s.t. small code amount on both compiler/library with comment connected (ideally one can read whole easily) bases on not the latest but a modern C compiler. But to make this practical, we need const. operation hard optimization.
-
-Library target : working memory size as O((input size)^2) to make tables, calculation step on each function upto O(((mem size) * lg(mem size))^1.5), ideally O(lg((mem size) * lg(mem size))), O(lg(mem size)) with caching for outlet.
+Aims to add one of a code stack s.t. small code amount on both compiler/library with comment connected (ideally one can read whole easily) bases on not the latest but a modern C compiler.
 
 # Syntax freeze.
 * load (name :)? (uri|path.path...)(.type|.function)
@@ -29,7 +26,8 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 * fn name(name : type : "comment", ...) : type : "comment" : "license"
 * * function, also lambda be. from awesome scala.
 * * function name! returns reference.
-* * type can specify (type \| ... \| type), also specify template omitted.
+* * type can specify (type \| ... \| type), also be able to specify template omitted.
+* * with calling function, we must specify the variable name as: name(name = val, ...)
 * inverse(function, result) : worst case brute force inverse function.
 * typeof, typeid
 * type classname : inherit : "comment" : "license"
@@ -45,21 +43,18 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 * * ctor, dtor
 * * * from some awesome programming languages.
 * * enter, leave
-* * * every variable change, we call this first / last.
-* * * only described in the same class are affected.
-* * only variable/ctor/dtor/enter/leave/friend/operator can be defined in type block.
+* * * every variable change, we call this first / last on all of the functions in type.
+* * only variable/ctor/dtor/friend/enter/leave/operator can be defined in type block. only operator we can specify return type others auto generated with this or void.
 * * this and leaf (end of leaf of the object) and super object references.
-* special types can be overrided.
+* special types and variables and flows.
 * * Int\[0\] : void, Object root, no inheritation.
 * * Int\[\_\_pointer_bits\_\_\] inherites Int\[0\]. : only integer class, bool for nonzero.
-* special variables
 * * \_\_pointer_bits\_\_
 * * * number of pointer bit size.
 * * \_\_here\_\_
 * * * information for debugging.
 * * \_\_callgraph\_\_
 * * * information for debugging.
-* special flows
 * * () ? () : ()
 * * * 3-term operator like in C.
 * * return result
@@ -67,16 +62,15 @@ Library target : working memory size as O((input size)^2) to make tables, calcul
 * * * break label
 * * assert(x)
 * * * stop execution or compilation if x is false.
-* line start with \# treated comment:
+* \# will be treat line after them as a comment:
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
 For this, please refer randtools (with F_p integer, using (F_p)^k register on each).
-
 So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system).
 
 # General Tips
-If we have described end of condition as condition itself, the algorithm is defined and it is usually be optimization problem.
-So we need the code set faster than them ideally described in above, s.t. for m constraint n variables, ideally memory is smaller than O(mn), arithmetic operation number is smaller than O(mn^2), for mn core CPUs, the time is faster than O((lg(m) + lg(n)) \* L) for L bit operation.
+If we have described end of condition as condition itself, the algorithm is defined and it usually be optimization problem.
+So we need the code set better efficient than them s.t. for m constraint n variables, ideally memory is smaller than O(mn), arithmetic operation number is smaller than O(mn^2), for mn core CPUs, the time is faster than O((lg(m) + lg(n)) \* L) for L bit operation.
 
 
