@@ -1,6 +1,6 @@
 # NAND(Never finish)
 Natural simpler compiler which code with natural simpler comments and licenses on a file.
-Aims to add one of a code stack s.t. small code amount on both compiler/library with comment connected (ideally one can read whole easily) bases on not the latest but a modern C compiler.
+Aims to add one of a code stack s.t. small code amount on both compiler/library with comment connected (ideally one can read whole easily) bases on not the latest but a modern C compiler. This repository pefer explicit description.
 
 # Syntax freeze.
 * load (name :)? (uri|path.path...)(.type|.function)
@@ -45,6 +45,7 @@ Aims to add one of a code stack s.t. small code amount on both compiler/library 
 * * enter, leave
 * * * every variable change, we call this first / last on all of the functions in type.
 * * only variable/ctor/dtor/friend/enter/leave/operator can be defined in type block. only operator we can specify return type others auto generated with this or void.
+* * needs super function explicit to call super functions, not to be auto called.
 * * this and leaf (end of leaf of the object) and super object references.
 * special types and variables and flows.
 * * Int\[0\] : void, Object root, no inheritation.
@@ -58,7 +59,7 @@ Aims to add one of a code stack s.t. small code amount on both compiler/library 
 * * () ? () : ()
 * * * 3-term operator like in C.
 * * return result
-* * 'for ... in ... : label', type.foreach class function definition is used,
+* * 'for ... from ... to ... : label', type.op ++for, type.op \<for function definition is used,
 * * * break label
 * * assert(x)
 * * * stop execution or compilation if x is false.
