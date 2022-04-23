@@ -1,63 +1,63 @@
-using Meta.n
+load Meta.n
 
 # Wait, pipe, etc...
 # entity is in Shift/...
 type Chip : Object : "chip root"
   _tick : Int(0)
-  fn ++ ()
+  op ++ ()
     # emulation
   # control, errata, each chip interface.
 
 type Status[] : ...
-  fn ctor(json : JSON) : void
-  fn dtor() : void
-  fn ++!(s : String) : Status
+  ctor(json : JSON) : void
+  dtor() : void
+  op ++!(s : String) : Status
 
 # entity is in Shift/...
 type Mnemonic : ...
-  fn ctor() : void
-  fn dtor() : void
-  fn ==() : void
+  ctor() : void
+  dtor() : void
+  op ==() : void
 
 fn optimizeFlow(v : Vector[Mnemonic]) : Vector[Mnemonic]
 fn compile(v : Vector[Mnemonic]) : Vector[Mnemonic]
 
 type Runner : 
-  fn ctor() : void
-  fn dtor() : void
-  let c2r : Vector[Pair[Mnemonic, Mnemonic]]
+  ctor() : void
+  dtor() : void
+  c2r : Vector[Pair[Mnemonic, Mnemonic]]
 
 type Perceptron[def type] : Matrix[type]
   def vec : Vector[type]
-  fn +=(const vec, const vec) : bool
+  op +=(const vec, const vec) : bool
     # in
-  fn +=(const vec) : bool
+  op +=(const vec) : bool
     # in
-  fn -=(const vec) : vec
+  op -=(const vec) : vec
     # out
 
 type Optron[def type] : Matrix[type]
-  fn +=(const vec, const vec) : bool
+  op +=(const vec, const vec) : bool
     # in
-  fn +=(const vec) : bool
+  op +=(const vec) : bool
     # in
-  fn -=(vec) : vec
+  op -=(vec) : vec
     # out
 
 type Delayron[def type] : Array
-  fn +=(const vec, const vec) : bool
+  op +=(const vec, const vec) : bool
     # in
-  fn +=(const vec) : bool
+  op +=(const vec) : bool
     # in
-  fn -=(vec) : vec
+  op -=(vec) : vec
     # out
 
 type BlockDiagram[def type] : Array[Perceptron[type]]
   def vec : Vector[type]
-  fn +=(const vec, const vec) : bool
+  op +=(const vec, const vec) : bool
     # in
-  fn +=(const vec) : bool
+  op +=(const vec) : bool
     # in
-  fn -=(vec) : vec
+  op -=(vec) : vec
     # out
 

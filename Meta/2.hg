@@ -14,7 +14,7 @@ type Int[int bits] : Object
     return e0
   friend op bool ()
     return bool(e0) | bool(e1)
-  fn ctor(d : def):
+  ctor(d : def):
     zero : static const dint(0)
     ten  : static const dint(10)
     this = zero
@@ -22,13 +22,13 @@ type Int[int bits] : Object
       this *= ten
       this += dint(x)
     return this
-  fn ctor(d : (Int|const Int))
-    
-  fn  []  (const Int) : bool
-  fn  []  (const Int) const : bool
-  fn  []  (const Int, const Int) : dint
-  fn  []  (const Int, const Int) const : dint
-  fn  ~   () const : int
+  ctor(d : (Int|const Int))
+    return
+  op  []  (const Int) : bool
+  op  []  (const Int) const : bool
+  op  []  (const Int, const Int) : dint
+  op  []  (const Int, const Int) const : dint
+  op  ~   () const : int
     e0 = ~ e0
     e1 = ~ e1
     return this
@@ -37,18 +37,18 @@ type Int[int bits] : Object
     if(! e0)
       ++ e1
     return this
-  fn  --  () : dint
+  op  --  () : dint
     if(! e0)
       -- e1
     -- e0
     return this
-  fn  *   (src : (dint | const dint)) const : dint
+  op  *   (src : (dint | const dint)) const : dint
     let res : dint(0)
     for bit in src:
       if(bit):
         res += this << bit.idx
     return res
-  fn  **  (src : (dint | const dint)) const : dint
+  op  **  (src : (dint | const dint)) const : dint
     res  : dint(1)
     work : auto(this)
     for bit in src:
@@ -56,28 +56,28 @@ type Int[int bits] : Object
         res *= work
       work *= work
     return res
-  fn  /   (const dint) const : dint
-  fn  <<  (const dInt) const : dint
-  fn  >>  (const dInt) const : dint
+  op  /   (const dint) const : dint
+  op  <<  (const dInt) const : dint
+  op  >>  (const dInt) const : dint
   def less(src : (dint | const dint)) const : bool
     return (this - src)[msb]
-  fn !=  (const dint) const : bool
+  op !=  (const dint) const : bool
     return ! (this == src)
-  fn ==  (src : (dint | const dint)) const : bool
+  op ==  (src : (dint | const dint)) const : bool
     return bool(this ^ src)
-  fn =   (dint)             : int
-  fn =   (const dint)       : int
-  fn +=  (const dint)       : int
+  op =   (dint)             : int
+  op =   (const dint)       : int
+  op +=  (const dint)       : int
     ## assembler??
-  fn &=  (src : (dint | const dint)) : int
+  op &=  (src : (dint | const dint)) : int
     e0 &= src.e0
     e1 &= src.e1
     return this
-  fn |=  (src : (dint | const dint)) : int
+  op |=  (src : (dint | const dint)) : int
     e0 |= src.e0
     e1 |= src.e1
     return this
-  fn ^=  (src : (dint | const dint)) : int
+  op ^=  (src : (dint | const dint)) : int
     e0 ^= src.e0
     e1 ^= src.e1
     return this
@@ -86,80 +86,79 @@ type ParaInt[def type, Int wbits, Int pbits]
   def int   : ParaInt[type, wbits, pbits]
   def bint  : type
   _flat : Int[wbits]
-  fn  ctor()
-  fn  ctor(def)
-  fn  ctor(type)
-  fn  ctor(type, fn)
-  fn  ctor(const bint)
-  fn  ctor(const bint, fn)
-  fn  dtor()
-  fn  dopara(fn)
-  fn  []  (const Int) : bool
-  fn  []  (const Int) const : bool
-  fn  []  (const Int, const Int) : bool
-  fn  []  (const Int, const Int) const : bool
-  fn  !   () const : bool
-  fn  ~   () const : int
-  fn  ++  ()     : int
-  fn  ++  (void) : int
-  fn  --  ()     : int
-  fn  --  (void) : int
-  fn  -   ()     const : int
-  fn  *   (const int) const : int
-  fn  **  (const int) const : int
-  fn  /   (const int) const : int
-  fn  %   (const int) const : int
-  fn  +   (const int) const : int
-  fn  -   (const int) const : int
-  fn  <<  (const Int) const : int
-  fn  >>  (const Int) const : int
-  fn  <   (const int) const : bool
-  fn  <=  (const int) const : bool
-  fn  >   (const int) const : bool
-  fn  >=  (const int) const : bool
-  fn  ==  (const int) const : bool
-  fn  !=  (const int) const : bool
-  fn  &   (const int) const : int
-  fn  ^   (const int) const : int
-  fn  |   (const int) const : int
-  fn  &&  (const int) const : bool
-  fn  ||  (const int) const : bool
-  fn  =   (int)       : int
-  fn  =   (const int) : int
-  fn  +=  (const int) : int
-  fn  -=  (const int) : int
-  fn  *=  (const int) : int
-  fn  **= (const int) : int
-  fn  /=  (const int) : int
-  fn  %=  (const int) : int
-  fn  /=  (const int) : int
-  fn  <<= (const Int) : int
-  fn  >>= (const Int) : int
-  fn  &=  (const int) : int
-  fn  |=  (const int) : int
+  ctor()
+  ctor(def)
+  ctor(type)
+  ctor(type, fn)
+  ctor(const bint)
+  ctor(const bint, fn)
+  dtor()
+  op  []  (const Int) : bool
+  op  []  (const Int) const : bool
+  op  []  (const Int, const Int) : bool
+  op  []  (const Int, const Int) const : bool
+  op  !   () const : bool
+  op  ~   () const : int
+  op  ++  ()     : int
+  op  ++  (void) : int
+  op  --  ()     : int
+  op  --  (void) : int
+  op  -   ()     const : int
+  op  *   (const int) const : int
+  op  **  (const int) const : int
+  op  /   (const int) const : int
+  op  %   (const int) const : int
+  op  +   (const int) const : int
+  op  -   (const int) const : int
+  op  <<  (const Int) const : int
+  op  >>  (const Int) const : int
+  op  <   (const int) const : bool
+  op  <=  (const int) const : bool
+  op  >   (const int) const : bool
+  op  >=  (const int) const : bool
+  op  ==  (const int) const : bool
+  op  !=  (const int) const : bool
+  op  &   (const int) const : int
+  op  ^   (const int) const : int
+  op  |   (const int) const : int
+  op  &&  (const int) const : bool
+  op  ||  (const int) const : bool
+  op  =   (int)       : int
+  op  =   (const int) : int
+  op  +=  (const int) : int
+  op  -=  (const int) : int
+  op  *=  (const int) : int
+  op  **= (const int) : int
+  op  /=  (const int) : int
+  op  %=  (const int) : int
+  op  /=  (const int) : int
+  op  <<= (const Int) : int
+  op  >>= (const Int) : int
+  op  &=  (const int) : int
+  op  |=  (const int) : int
 
 type Signed[def type] : type
   def int : Signed[type]
-  fn  ctor()
-  fn  ctor(def)
-  fn  ctor(type)
-  fn  ctor(const type)
-  fn  ctor(int)
-  fn  ctor(const int)
-  fn  dtor()
-  fn  <   (const int) const : bool
-  fn  <=  (const int) const : bool
-  fn  >   (const int) const : bool
-  fn  >=  (const int) const : bool
+  ctor()
+  ctor(def)
+  ctor(type)
+  ctor(const type)
+  ctor(int)
+  ctor(const int)
+  dtor()
+  op  <   (const int) const : bool
+  op  <=  (const int) const : bool
+  op  >   (const int) const : bool
+  op  >=  (const int) const : bool
 
 type pZ[def type, type z] : type
   def pz : pz[type, z]
-  fn leave() : pz
+  leave() : pz
     return this %= z
 
 type Band[def type] : Complex[type]
-  fn ctor()
-  fn dtor()
+  ctor()
+  dtor()
 
 fn gcd[def type](const type, const type) : type
 fn lcm[def type](const type, const type) : type
@@ -168,7 +167,7 @@ fn max[def type](const type, const type) : type
 fn min[def type](const type, const type) : type
 fn abs(const Signed) : type
 
-// Solve ax + by = c in Z, a, b, c are const.
+# Solve ax + by = c in Z, a, b, c are const.
 fn eucleidos[def type](type, type, const type, const type, const type) : void
 
 type Float[Int mantissa, Int exponent] : Object
@@ -183,86 +182,86 @@ type Float[Int mantissa, Int exponent] : Object
   _m    : intm
   _e    : inte
   _flag : int
-  fn  ctor()
-  fn  ctor(def)
-  fn  dtor()
-  fn  leave : float
-  fn  ! () const : bool
-  fn  - () const : float
-  fn  *  (const float) const : float
-  fn  ** (const float) const : float
-  fn  /  (const float) const : float
-  fn  %  (const float) const : float
-  fn  +  (const float) const : float
-  fn  -  (const float) const : float
-  fn  <  (const float) const : bool
-  fn  <= (const float) const : bool
-  fn  >  (const float) const : bool
-  fn  >= (const float) const : bool
-  fn  == (const float) const : bool
-  fn  != (const float) const : bool
-  fn  =  (float)        : float
-  fn  =  (const float)  : float
-  fn  += (const float)  : float
-  fn  -= (const float)  : float
-  fn  *= (const float)  : float
-  fn  **= (const float) : float
-  fn  /= (const float)  : float
-  fn  %= (const float)  : float
+  ctor()
+  ctor(def)
+  dtor()
+  leave : float
+  op  ! () const : bool
+  op  - () const : float
+  op  *  (const float) const : float
+  op  ** (const float) const : float
+  op  /  (const float) const : float
+  op  %  (const float) const : float
+  op +  (const float) const : float
+  op  -  (const float) const : float
+  op  <  (const float) const : bool
+  op  <= (const float) const : bool
+  op  >  (const float) const : bool
+  op  >= (const float) const : bool
+  op  == (const float) const : bool
+  op  != (const float) const : bool
+  op  =  (float)        : float
+  op  =  (const float)  : float
+  op  += (const float)  : float
+  op  -= (const float)  : float
+  op  *= (const float)  : float
+  op  **= (const float) : float
+  op  /= (const float)  : float
+  op  %= (const float)  : float
   friend Int() const
 
 type WFloat[def float_t] : Object
   def float : WFloat[float_t]
   _f0 : float_t
   _f1 : float_t
-  fn  ctor()
-  fn  ctor(def)
-  fn  ctor(float_t)
-  fn  ctor(float)
-  fn  dtor()
+  ctor()
+  ctor(def)
+  ctor(float_t)
+  ctor(float)
+  dtor()
   friend float() const
-  fn  !  () const : bool
-  fn  -  () const : float
-  fn  *  (const float) const : float
-  fn  ** (const float) const : float
-  fn  /  (const float) const : float
-  fn  %  (const float) const : float
-  fn  +  (const float) const : float
-  fn  -  (const float) const : float
-  fn  <  (const float) const : bool
-  fn  <= (const float) const : bool
-  fn  >  (const float) const : bool
-  fn  >= (const float) const : bool
-  fn  == (const float) const : bool
-  fn  != (const float) const : bool
-  fn  =  (const float) : float
-  fn  += (const float) : float
-  fn  -= (const float) : float
-  fn  *= (const float) : float
-  fn  **= (const float) : float
-  fn  /= (const float) : float
-  fn  %= (const float) : float
+  op  !  () const : bool
+  op  -  () const : float
+  op  *  (const float) const : float
+  op  ** (const float) const : float
+  op  /  (const float) const : float
+  op  %  (const float) const : float
+  op  +  (const float) const : float
+  op  -  (const float) const : float
+  op  <  (const float) const : bool
+  op  <= (const float) const : bool
+  op  >  (const float) const : bool
+  op  >= (const float) const : bool
+  op  == (const float) const : bool
+  op  != (const float) const : bool
+  op  =  (const float) : float
+  op  += (const float) : float
+  op  -= (const float) : float
+  op  *= (const float) : float
+  op  **= (const float) : float
+  op  /= (const float) : float
+  op  %= (const float) : float
 
 type Fraction[def type] : Object
   def fraction : Fraction[type]
   _sign : bool
   _n    : type
   _d    : type
-  fn  ctor()
-  fn  ctor(type, type)
-  fn  ctor(const type, const type)
-  fn  dtor()
-  fn  ** (const fraction) const : fraction
-  fn  <  (const fraction) const : bool
-  fn  <= (const fraction) const : bool
-  fn  >  (const fraction) const : bool
-  fn  >= (const fraction) const : bool
-  fn  != (const fraction) const : bool
-  fn  =  (fraction)       : fraction
-  fn  =  (const fraction) : fraction
-  fn  += (const fraction) : fraction
-  fn  *= (const fraction) : fraction
-  fn  /= (const fraction) : fraction
+  ctor()
+  ctor(type, type)
+  ctor(const type, const type)
+  dtor()
+  op  ** (const fraction) const : fraction
+  op  <  (const fraction) const : bool
+  op  <= (const fraction) const : bool
+  op  >  (const fraction) const : bool
+  op  >= (const fraction) const : bool
+  op  != (const fraction) const : bool
+  op  =  (fraction)       : fraction
+  op  =  (const fraction) : fraction
+  op  += (const fraction) : fraction
+  op  *= (const fraction) : fraction
+  op  /= (const fraction) : fraction
 
 fn floor[def type](type) : type
 fn ceil[def type](type)  : type

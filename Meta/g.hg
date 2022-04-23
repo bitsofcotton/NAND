@@ -1,14 +1,14 @@
-using Meta.s
-using Meta.2
-using Meta.n
+load Meta.s
+load Meta.2
+load Meta.n
 # graphics, geometry.
 
 type Glay[def type] : type
 type RGB[def type] : Object
-  let r : type
-  let g : type
-  let b : type
-  fn ctor(Glay[type] src)
+  r : type
+  g : type
+  b : type
+  ctor(Glay[type] src)
     r = type(src)
     g = type(src)
     b = type(src)
@@ -16,9 +16,9 @@ type RGB[def type] : Object
   friend Glay()
     # not optimal, we should refer color space in wikipedia.
     return (r + g + b) / type(3)
-  fn  op -  () : this
-  fn  op != () : this
-  fn  op += () : this
+  op -  () : this
+  op != () : this
+  op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
@@ -26,86 +26,86 @@ type RGB[def type] : Object
 
 type RGBA[def type] : Quarternion[type]
   def rgba : Quarternion[type]
-  fn  op -  () : this
-  fn  op != () : this
-  fn  op += () : this
+  op -  () : this
+  op != () : this
+  op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
 
 type HSV[def type] : Object
-  let h : type
-  let s : type
-  let v : type
-  fn  op -  () : this
-  fn  op != () : this
-  fn  op += () : this
+  h : type
+  s : type
+  v : type
+  op -  () : this
+  op != () : this
+  op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
 
 type HSB<def type> : Object
-  let h : type
-  let s : type
-  let b : type
-  fn  op -  () : this
-  fn  op != () : this
-  fn  op += () : this
+  h : type
+  s : type
+  b : type
+  op -  () : this
+  op != () : this
+  op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
 
 type Lab<def type> : Object
-  let l : type
-  let a : type
-  let b : type
-  fn  op -  () : this
-  fn  op != () : this
-  fn  op += () : this
+  l : type
+  a : type
+  b : type
+  op -  () : this
+  op != () : this
+  op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
 
 type ColorDigital[def type] : Vector[type]
-  fn  op -  () : this
-  fn  op != () : this
-  fn  op += () : this
+  op -  () : this
+  op != () : this
+  op += () : this
   def zorn() : this
   def less() : bool
   def ensure() : this
 
 type ColorAnalogue[def type, fn func] : Object
-  fn  op -  () : this
-  fn  op != () : this
-  fn  op += () : this
-  fn  op ColorDigital[type]() : ColorDigital[type]()
+  op -  () : this
+  op != () : this
+  op += () : this
+  op ColorDigital[type]() : ColorDigital[type]()
   def zorn() : this
   def less() : bool
   def ensure() : this
 
 type Texture[def color] : Matrix[color]
-  fn  ctor(const Complex[Int]) : void
-  fn  dtor() : void
-  fn  load!(xywh : , ** File **) : Texture
-  fn  store!(xywh : , t : Texture) : Texture
-  fn  clear!(xywh : , c : color) : Texture
-  fn  point!(xy : Complex, c : color) : Texture
-  fn  line!(xy : Complex, c : color) : Texture
+  ctor(const Complex[Int]) : void
+  ctor(xywh : , ** File **) : Texture
+  dtor() : void
+  op <<store!(xywh : , t : Texture) : Texture
+  op -clear!(xywh : , c : color) : Texture
+  op +point!(xy : Complex, c : color) : Texture
+  op +line!(xy : Complex, c : color) : Texture
   # make pattern
-  fn  plot!(e : Equaion, xywh) : Texture
-  fn  splot!(e : Equation, xyzwhz) : Texture
-  fn  maze!(wh) : Texture
+  op +plot!(e : Equaion, xywh) : Texture
+  op +splot!(e : Equation, xyzwhz) : Texture
+  op +maze!(wh) : Texture
   # friend on them???
-  fn  tilt(mesh : , xywh) : Texture
-  fn  poincare!(e : Equation, Matrix) : Texture
+  op +tilt(mesh : , xywh) : Texture
+  op +poincare!(e : Equation, Matrix) : Texture
   friend SVG(t : Texture) : SVG
   # illust...
   # font is the implementation depends implementation.
-  fn  renderFont[type type]() : Texture
+  op +renderFont[type type]() : Texture
 
 type PlayMovie[def color, def driver] : Texture[color]
-  fn load!() : void
-  fn play!() : Texture
+  ctor()
+  op <<play!() : Texture
 
 # Widgets: dom xml base. referes w3c minimal set. huge...
 
