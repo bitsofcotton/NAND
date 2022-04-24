@@ -74,4 +74,14 @@ So around this, we aims and we need the implementation of compact and low comple
 If we have described end of condition as condition itself, the algorithm is defined and it usually be optimization problem.
 So we need the code set better efficient than them s.t. for m constraint n variables, ideally memory is smaller than O(mn), arithmetic operation number is smaller than O(mn^2), for mn core CPUs, the time is faster than O((lg(m) + lg(n)) \* L) for L bit operation.
 
+# Tips
+One of the method reducing source code is to exclude same or similar structures from reading binary perspective.
+So with this, this repository aims and follows class capsule with arithmetic method in mathematics. One of a perspective of mathematics is to treat quantities and their structures as calculatible possible simple way, and is often has a structure repeat, invert, and they sometimes treated as arithmetic operations.
+Some conditions needs variables along with initialize / ensure method.
+Except some of the special flows especially initialize/error flow, I don't know whether or not special flows other than if then else, for, while is needed. And if we implement such flows with class capsule, it usually vanishes the condition.
+But, it would be greately appreciated if you know the methods reducing source code other than along with preparing data nor how to treat data in the codes.
+
+# Things undone.
+This repository has NO materialized implementation.
+There exists huge fields they have important materials.
 
