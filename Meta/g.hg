@@ -12,10 +12,9 @@ type RGB[def type] : Object
     r = type(src)
     g = type(src)
     b = type(src)
-    return this
   friend Glay()
     # not optimal, we should refer color space in wikipedia.
-    return (r + g + b) / type(3)
+    res = (r + g + b) / type(3)
   op -  () : this
   op != () : this
   op += () : this
@@ -114,15 +113,11 @@ type geomIndex : Equation
 fn ker(e : Equation) : Int
 fn dim(e : Equation) : Int
 fn coker(e : Equation) : Int
-  return dim(e) - ker(e)
+  res = dim(e) - ker(e)
 fn jacobi(e : Equation) : Matrix
-  return
 fn eigens(e : Equation) : Vector
-  return
 fn factor(e : Equation) : Array[Equation]
-  return
 fn differentialForm(e : Equation) : Equation
-  return
 fn solve(e : Equation) : Equation
 fn approximate(e : Equation, f : Equation) : Equation
 fn poincare(e: Equation, f : Equation) : Equation

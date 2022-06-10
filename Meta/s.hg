@@ -5,99 +5,90 @@ type Int[0] : : "Root"
   def abel        : 0
   def commutative : 0
   op  !  ()     : bool : "Auto generated."
-    return ! bool(leaf)
+    res = ! bool(leaf)
   op  ++ ()     : const typeof(leaf) : "Auto generated."
-    return leaf.zorn()
+    res = leaf.zorn()
   op  ++ (void) : typeof(leaf) : "Auto generated."
     work : auto(leaf)
     ++ leaf
-    return work
+    res = work
   op  -- (void) : typeof(leaf) : "Auto generated."
     work : auto(leaf)
     -- leaf
-    return work
+    res = work
   op  -  () const : typeof(leaf) : "Auto generated."
-    return ++ auto(~ leaf)
+    res = ++ auto(~ leaf)
   op  *   (src : const typeof(leaf)) const : typeof(leaf) : "Auto generated."
-    return auto(leaf) *= src
+    res = auto(leaf) *= src
   op  **  (src : const typeof(leaf)) const : typeof(leaf) : "Auto generated."
-    return auto(leaf) **= src
+    res = auto(leaf) **= src
   op  /  (src : const typeof(leaf)) const : typeof(leaf) : "Auto generated."
-    return auto(leaf) /= src
+    res = auto(leaf) /= src
   op  %  (src : const typeof(leaf)) const : typeof(leaf) : "Auto generated."
-    return leaf - (leaf / src) * src
+    res = leaf - (leaf / src) * src
   op  +  (src : const typeof(leaf)) const : typeof(leaf) : "Auto generated."
-    return auto(leaf) += src
+    res = auto(leaf) += src
   op  -  (src : const typeof(leaf)) const : typeof(leaf) : "Auto generated."
-    return auto(leaf) -= src
+    res = auto(leaf) -= src
   op  << [def type] (src : const type) const : typeof(leaf) : "Auto generated."
-    return auto(leaf) <<= src
+    res = auto(leaf) <<= src
   op  >> [def type] (src : const type) const : typeof(leaf) : "Auto generated."
-    return auto(leaf) >>= src
+    res = auto(leaf) >>= src
   op  <  (src : const typeof(leaf)) const : bool : "Auto generated."
-    return leaf.less(src)
+    res = leaf.less(src)
   op  <= (src : const typeof(leaf)) const : bool : "Auto generated."
-    return this < src || this == src
+    res = this < src || this == src
   op  >  (src : const typeof(leaf)) const : bool : "Auto generated."
-    return ! (this <= src)
+    res = ! (this <= src)
   op  >= (src : const typeof(leaf)) const : bool : "Auto generated."
-    return ! (this <  src)
+    res = ! (this <  src)
   op  == (src : const typeof(leaf)) const : bool : "Auto generated."
-    return ! (this != src)
+    res = ! (this != src)
   op  != (src : const typeof(leaf)) const : bool : "Auto generated."
-    return ! (this == src)
+    res = ! (this == src)
   op  &  (src : const typeof(leaf)) const : typeof(leaf) : "Auto generated."
-    return auto(leaf) &= src
+    res = auto(leaf) &= src
   op  ^  (src : const typeof(leaf)) const : typeof(leaf) : "Auto generated."
-    return auto(leaf) ^= src
+    res = auto(leaf) ^= src
   op  |  (src : const typeof(leaf)) const : typeof(leaf) : "Auto generated."
-    return auto(leaf) |= src
+    res = auto(leaf) |= src
   op  && (src : const typeof(leaf)) const : bool : "Auto generated."
-    return bool(leaf) && bool(src)
+    res = bool(leaf) && bool(src)
   op  || (src : const typeof(leaf)) const : bool : "Auto generated."
-    return bool(leaf) || bool(src)
+    res = bool(leaf) || bool(src)
   op  += (src : const typeof(leaf)) const : const typeof(leaf) : "Auto generated."
-    return leaf = leaf + src
+    leaf = leaf + src
   op  -= (src : const typeof(leaf)) const : const typeof(leaf) : "Auto generated."
-    return leaf += - src
+    leaf += - src
   op  *= (src : const typeof(leaf)) const : const typeof(leaf) : "Auto generated."
-    return leaf = leaf * src
+    leaf = leaf * src
   op  **= (src : const typeof(leaf)) const : const typeof(leaf) : "Auto generated."
-    return leaf = leaf ** src
+    leaf = leaf ** src
   op  /= (src : const typeof(leaf)) const : const typeof(leaf) : "Auto generated."
-    return leaf = leaf / src
+    leaf = leaf / src
   op  %= (src : const typeof(leaf)) const : const typeof(leaf) : "Auto generated."
-    return leaf = leaf % src
+    leaf = leaf % src
   op  <<= [def type] (src : const type) const : const typeof(leaf) : "Auto generated."
-    return leaf = leaf << src
+    leaf = leaf << src
   op  >>= [def type] (src : const type) const : const typeof(leaf) : "Auto generated."
-    return leaf = leaf >> src
+    leaf = leaf >> src
   op  &= (src : const typeof(leaf)) const : const typeof(leaf) : "Auto generated."
-    return leaf = leaf & src
+    leaf = leaf & src
   op  ^= (src : const typeof(leaf)) const : const typeof(leaf) : "Auto generated."
-    return leaf = leaf ^ src
+    leaf = leaf ^ src
   op  |= (src : const typeof(leaf)) const : const typeof(leaf) : "Auto generated."
-    return leaf = leaf | src
+    leaf = leaf | src
   # stub for leafs.
   def zorn() :
-    return
   def less(const leaf) :
-    return
   def each() :
-    return
   def progress() :
-    return
   def is_progress() :
     # Mutex, then, access limitation.
-    return
   def print() :
-    return
   def test() :
-    return
   def in(const Array) :
-    return
   def out() :
-    return
 
 type Int[__pointer_bits__] : Int[0] : "unique int"
   def abel        : 1
@@ -118,11 +109,10 @@ fn mcopy(int dst, int src) : void
 
 type Range[def type, type lower, type upper, type default] : type : "Restricted type"
   ctor()
-    return this = default
+    this = default
   leave()
     this < lower ? this = lower
     upper < this ? this = upper
-    return this
 
 type State[Int states] : Array[Array[]] : "states"
 
@@ -185,11 +175,10 @@ type Pair[def type0, def type1] : Object
   ctor(type0 e0, type1 e1)
     this.e0 = e0
     this.e1 = e1
-    return this
   op <  (src : const pair) : bool
-    return e0 < src.e0 || (e0 == src.e0 && e1 < src.e1)
+    res = e0 < src.e0 || (e0 == src.e0 && e1 < src.e1)
   op != (src : const pair) : bool
-    return e0 != src.e0 || e1 != src.e1
+    res = e0 != src.e0 || e1 != src.e1
 
 type Map[def typedst, def typesrc] : Sorted[Pair[typedst, typesrc]]
   op [] (const typedst a) : typesrc

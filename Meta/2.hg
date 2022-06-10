@@ -9,11 +9,11 @@ type Int[int bits] : Object
   e0 : int
   e1 : int
   friend op Int  ()
-    return Int(e0)
+    res = Int(e0)
   friend op int  ()
-    return e0
+    res = e0
   friend op bool ()
-    return bool(e0) | bool(e1)
+    res = bool(e0) | bool(e1)
   ctor(d : def):
     zero : static const dint(0)
     ten  : static const dint(10)
@@ -21,9 +21,8 @@ type Int[int bits] : Object
     for x in d:
       this *= ten
       this += dint(x)
-    return this
   ctor(d : (Int|const Int))
-    return
+    res = d
   op  []  (const Int) : bool
   op  []  (const Int) const : bool
   op  []  (const Int, const Int) : dint
@@ -31,25 +30,22 @@ type Int[int bits] : Object
   op  ~   () const : int
     e0 = ~ e0
     e1 = ~ e1
-    return this
   def zorn() : dint
     ++ e0
     if(! e0)
       ++ e1
-    return this
   op  --  () : dint
     if(! e0)
       -- e1
     -- e0
-    return this
   op  *   (src : (dint | const dint)) const : dint
-    let res : dint(0)
+    res = dint(0)
     for bit in src:
       if(bit):
         res += this << bit.idx
     return res
   op  **  (src : (dint | const dint)) const : dint
-    res  : dint(1)
+    res  = dint(1)
     work : auto(this)
     for bit in src:
       if(bit):
@@ -60,11 +56,11 @@ type Int[int bits] : Object
   op  <<  (const dInt) const : dint
   op  >>  (const dInt) const : dint
   def less(src : (dint | const dint)) const : bool
-    return (this - src)[msb]
+    res = (this - src)[msb]
   op !=  (const dint) const : bool
-    return ! (this == src)
+    res = ! (this == src)
   op ==  (src : (dint | const dint)) const : bool
-    return bool(this ^ src)
+    res = bool(this ^ src)
   op =   (dint)             : int
   op =   (const dint)       : int
   op +=  (const dint)       : int
@@ -72,15 +68,12 @@ type Int[int bits] : Object
   op &=  (src : (dint | const dint)) : int
     e0 &= src.e0
     e1 &= src.e1
-    return this
   op |=  (src : (dint | const dint)) : int
     e0 |= src.e0
     e1 |= src.e1
-    return this
   op ^=  (src : (dint | const dint)) : int
     e0 ^= src.e0
     e1 ^= src.e1
-    return this
 
 type ParaInt[def type, Int wbits, Int pbits]
   def int   : ParaInt[type, wbits, pbits]
@@ -154,7 +147,7 @@ type Signed[def type] : type
 type pZ[def type, type z] : type
   def pz : pz[type, z]
   leave() : pz
-    return this %= z
+    this %= z
 
 type Band[def type] : Complex[type]
   ctor()
