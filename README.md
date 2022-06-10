@@ -4,6 +4,7 @@ Aims to add one of a code stack s.t. small code amount on both compiler/library 
 
 # Syntax freeze.
 * load (name :)? (uri|path.path...)(.type|.function)
+* * import once.
 * def name : definition : "comment" : "license"
 * * block-wise.
 * let is omitted, like swift's let:
@@ -23,11 +24,14 @@ Aims to add one of a code stack s.t. small code amount on both compiler/library 
 * * * initialize with lambda function.
 * * a : b : "comment" : "license"
 * * * comment and license.
-* fn name(name : type : "comment", ...) : type : "comment" : "license"
+* (inline?) fn name(name : type : "comment", ...) : type : "comment" : "license"
 * * function, also lambda be. from awesome scala.
 * * function name! returns reference.
 * * type can specify (type \| ... \| type), also be able to specify template omitted.
 * * with calling function, we must specify the variable name as: name(name = val, ...)
+* * no return mnemonic, instead of them, reserved "res" variable.
+* * * res is this or leaf default depends on return type.
+* * * from awesome embedded C language.
 * inverse(function, result) : worst case brute force inverse function.
 * typeof, typeid
 * type classname : inherit : "comment" : "license"
@@ -44,7 +48,7 @@ Aims to add one of a code stack s.t. small code amount on both compiler/library 
 * * * from some awesome programming languages.
 * * enter, leave
 * * * every variable change, we call this first / last on all of the functions in type.
-* * only variable/ctor/dtor/friend/enter/leave/operator can be defined in type block. only operator we can specify return type others auto generated with this or void.
+* * only variable/def/ctor/dtor/friend/enter/leave/operator can be defined in type block. only operator we can specify return type others auto generated with this or void.
 * * needs super function explicit to call super functions, not to be auto called.
 * * this and leaf (end of leaf of the object) and super object references.
 * special types and variables and flows.
@@ -58,7 +62,6 @@ Aims to add one of a code stack s.t. small code amount on both compiler/library 
 * * * information for debugging.
 * * () ? () : ()
 * * * 3-term operator like in C.
-* * return result
 * * 'for ... from ... to ... : label', type.op ++for, type.op \<for function definition is used,
 * * * break label
 * * assert(x)
