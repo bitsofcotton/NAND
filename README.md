@@ -87,7 +87,7 @@ Except some of the special flows especially initialize/error flow, I don't know 
 But, it would be greately appreciated if you know the methods reducing source code other than along with preparing data nor how to treat data in the codes.
 
 # Tips
-After strongly optimized program, any m-output n-input program can be described as O(mn\*f(L)) arithmetic calculation time, and for parallel computing, O(f(L)). So we only focus on simplicity itself strong. (However, compiletime speed is very heavy.)
+After strongly optimized program, any m-output n-input program can be described as O(mn\*f(L)) arithmetic calculation time, and for parallel computing, O(f(L)), which L can be O(lg(mn)) if we describe m, n as a bit. So we only focus on simplicity itself strong. (However, compiletime speed is very heavy.)
 
 # Things undone.
 This repository has NO materialized implementation.
