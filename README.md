@@ -75,10 +75,6 @@ If the data is enough, machine learning methods can implement any of the impleme
 For this, please refer randtools (with F_p integer, using (F_p)^k register on each).
 So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system).
 
-# General Tips
-If we have described end of condition as condition itself, the algorithm is defined and it usually be optimization problem.
-So we need the code set better efficient than them s.t. for m constraint n variables, ideally memory is smaller than O(mn), arithmetic operation number is smaller than O(mn^2), for mn core CPUs, the time is faster than O((lg(m) + lg(n)) \* L) for L bit operation.
-
 # Tips
 One of the method reducing source code is to exclude same or similar structures from reading binary perspective.
 So with this, this repository aims and follows class capsule with arithmetic method in mathematics. One of a perspective of mathematics is to treat quantities and their structures as calculatible possible simple way, and is often has a structure repeat, invert, and they sometimes treated as arithmetic operations.
