@@ -2,6 +2,8 @@
 Natural simpler compiler which code with natural simpler comments and licenses on a file.
 Aims to add one of a code stack s.t. small code amount on both compiler/library with comment connected (ideally one can read whole easily) bases on not the latest but a modern C compiler. This repository pefer explicit description.
 
+We trust randtools optimizer strong, so we focus only the simple enough implementation.
+
 # Syntax freeze.
 * load (name :)? (uri|path.path...)(.type|.function)
 * * import once.
@@ -83,6 +85,9 @@ So with this, this repository aims and follows class capsule with arithmetic met
 Some conditions needs variables along with initialize / ensure method.
 Except some of the special flows especially initialize/error flow, I don't know whether or not special flows other than if then else, for, while is needed. And if we implement such flows with class capsule, it usually vanishes the condition.
 But, it would be greately appreciated if you know the methods reducing source code other than along with preparing data nor how to treat data in the codes.
+
+# Tips
+After strongly optimized program, any m-output n-input program can be described as O(mn\*f(L)) arithmetic calculation time, and for parallel computing, O(f(L)). So we only focus on simplicity itself strong. (However, compiletime speed is very heavy.)
 
 # Things undone.
 This repository has NO materialized implementation.
