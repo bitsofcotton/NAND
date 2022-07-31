@@ -2,9 +2,9 @@
 Natural simpler compiler which code with natural simpler comments and licenses on a file.
 Aims to add one of a code stack s.t. small code amount on both compiler/library with comment connected (ideally one can read whole easily) bases on not the latest but a modern C compiler. This repository pefer explicit description.
 
-We trust randtools optimizer strong, so we focus only the simple enough implementation.
+We trust randtools optimizer strong, so we focus only the simple enough implementation even including infinite loop.
 
-# Syntax freeze.
+# Syntax concrete (remains how to specify block without \\ nor :).
 * load (name :)? (uri|path.path...)(.type|.function)
 * * import once.
 * def name : definition : "comment" : "license"
@@ -26,6 +26,8 @@ We trust randtools optimizer strong, so we focus only the simple enough implemen
 * * * initialize with lambda function.
 * * a : b : "comment" : "license"
 * * * comment and license.
+* * a : b \\n\\t ...
+* * * variable block.
 * (inline?) fn name(name : type : "comment", ...) : type : "comment" : "license"
 * * function, also lambda be. from awesome scala.
 * * function name! returns reference.
@@ -50,7 +52,7 @@ We trust randtools optimizer strong, so we focus only the simple enough implemen
 * * * from some awesome programming languages.
 * * enter, leave
 * * * every variable change, we call this first / last on all of the functions in type.
-* * only variable/def/ctor/dtor/friend/enter/leave/operator can be defined in type block. only operator we can specify return type others auto generated with this or void.
+* * only variable/def/ctor/dtor/friend/enter/leave/operator can be defined in type block. only operator we can specify return type others auto generated with this or void, we can specify leaf explicitly in another case.
 * * needs super function explicit to call super functions, not to be auto called.
 * * this and leaf (end of leaf of the object) and super object references.
 * special types and variables and flows.
