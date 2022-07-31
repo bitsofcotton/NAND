@@ -5,40 +5,41 @@ Aims to add one of a code stack s.t. small code amount on both compiler/library 
 We trust randtools optimizer strong, so we focus only the simple enough implementation even including infinite loop.
 
 # Syntax concrete (remains how to specify block without \\ nor :).
-* load (name :)? (uri|path.path...)(.type|.function)
+* load name : (uri|path.path...)(.type|.function)?
 * * import once.
 * def name : definition : "comment" : "license"
+* * each operand doesn't omittable.
 * * block-wise.
 * let is omitted, like swift's let:
-* * a : b
-* * a : const(b)
+* * a : b ::
+* * a : const(b) ::
 * * * a is (non const) reference of b or const reference of b.
 * * * the original variable will not be used like some awesome languages.
-* * a : static(b)
+* * a : static(b) ::
 * * * a is initialized by b once in first of execution.
-* * a : auto(b)
-* * a : type(b)
-* * a : func(b)
+* * a : auto(b) ::
+* * a : type(b) ::
+* * a : func(b) ::
 * * * a is instanced object of b
-* * a : func!(b)
+* * a : func!(b) ::
 * * * a is function returned reference.
-* * a : (fn ...)(...) \\ ...
+* * a : (fn ...)(...) ... ::
 * * * initialize with lambda function.
 * * a : b : "comment" : "license"
 * * * comment and license.
-* * a : b \\n\\t ...
+* * a : b :: \\n\\t ...
 * * * variable block.
-* (inline?) fn name(name : type : "comment", ...) : type : "comment" : "license"
+* (inline?) fn name(name : type : "comment"?, ...) : type : "comment"? : "license"?
 * * function, also lambda be. from awesome scala.
 * * function name! returns reference.
 * * type can specify (type \| ... \| type), also be able to specify template omitted.
 * * with calling function, we must specify the variable name as: name(name = val, ...)
 * * no return mnemonic, instead of them, reserved "res" variable.
-* * * res is this or leaf default depends on return type.
+* * * res is this or leaf default depends on return type in class, otherwise, depends on caller operand.
 * * * from awesome embedded C language.
 * inverse(function, result) : worst case brute force inverse function.
 * typeof, typeid
-* type classname : inherit : "comment" : "license"
+* type classname : inherit : "comment"? : "license"?
 * * Only one class inheritation is accepted. Treat as arithmetic ones.
 * * a +=item val
 * * * operator with some extension to C.
@@ -58,6 +59,7 @@ We trust randtools optimizer strong, so we focus only the simple enough implemen
 * special types and variables and flows.
 * * Int\[0\] : void, Object root, no inheritation.
 * * Int\[\_\_pointer_bits\_\_\] inherites Int\[0\]. : only integer class, bool for nonzero.
+* * Packed\[type\] : \_\_attribute\_\_((packed))
 * * \_\_pointer_bits\_\_
 * * * number of pointer bit size.
 * * \_\_here\_\_
@@ -70,6 +72,7 @@ We trust randtools optimizer strong, so we focus only the simple enough implemen
 * * * break label
 * * assert(x)
 * * * stop execution or compilation if x is false.
+* * * we can override this with assert function redefinition in execution time.
 * \# will treat line after them as a comment:
 
 # General Tips
