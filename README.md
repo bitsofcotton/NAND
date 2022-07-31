@@ -59,7 +59,6 @@ We trust randtools optimizer strong, so we focus only the simple enough implemen
 * special types and variables and flows.
 * * Int\[0\] : void, Object root, no inheritation.
 * * Int\[\_\_pointer_bits\_\_\] inherites Int\[0\]. : only integer class, bool for nonzero.
-* * Packed\[type\] : \_\_attribute\_\_((packed))
 * * \_\_pointer_bits\_\_
 * * * number of pointer bit size.
 * * \_\_here\_\_
