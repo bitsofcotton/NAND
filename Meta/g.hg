@@ -3,8 +3,9 @@ load Meta.2
 load Meta.n
 # graphics, geometry.
 
-type Glay[def type] : type
-type RGB[def type] : Object
+type Glay[def type] : type : :
+
+type RGB[def type] : Object : :
   r : type
   g : type
   b : type
@@ -23,7 +24,7 @@ type RGB[def type] : Object
   def ensure() : this
   # ...
 
-type RGBA[def type] : Quarternion[type]
+type RGBA[def type] : Quarternion[type] : :
   def rgba : Quarternion[type]
   op -  () : this
   op != () : this
@@ -32,7 +33,7 @@ type RGBA[def type] : Quarternion[type]
   def less() : bool
   def ensure() : this
 
-type HSV[def type] : Object
+type HSV[def type] : Object : :
   h : type
   s : type
   v : type
@@ -43,7 +44,7 @@ type HSV[def type] : Object
   def less() : bool
   def ensure() : this
 
-type HSB<def type> : Object
+type HSB<def type> : Object : :
   h : type
   s : type
   b : type
@@ -54,7 +55,7 @@ type HSB<def type> : Object
   def less() : bool
   def ensure() : this
 
-type Lab<def type> : Object
+type Lab<def type> : Object : :
   l : type
   a : type
   b : type

@@ -1,6 +1,6 @@
 # System root.
 
-type Int[0] : : "Root"
+type Int[0] : : "Root" : "Auto generated."
   def invertible  : 0
   def abel        : 0
   def commutative : 0
@@ -90,39 +90,38 @@ type Int[0] : : "Root"
   def in(const Array) :
   def out() :
 
-type Int[__pointer_bits__] : Int[0] : "unique int"
-  def abel        : 1
-  def commutative : 1
+type Int[__pointer_bits__] : Int[0] : "System wide unique int" : ""
+  def abel        : 1 : :
+  def commutative : 1 : :
 
-type void   : Int[0] : "void"
-type Object : Int[0] : "Object"
-type bool   : Int[__pointer_bits__] : "bool"
-type int    : Int[__pointer_bits__] : "synonym"
+type void   : Int[0] : "void" : ""
+type Object : Int[0] : "Object" : ""
+type bool   : Int[__pointer_bits__] : "bool" : ""
+type int    : Int[__pointer_bits__] : "synonym" : ""
 
-fn Export(def) : void
-fn Import(def) : bool
-fn Call(def, Array)   : Int
-fn Signal(Int, Int)   : Int
-fn SignalHandler(Int, Int) : Int
-fn Thread(fn delegate() : Int) : Int
-fn mcopy(int dst, int src) : void
+fn Export(def) : void : "Export as library" : 
+fn Import(def) : bool : "Import library" : 
+fn Call(def, Array)   : Int : "Call exterior" :
+fn Signal(Int, Int)   : Int : "Signal" :
+fn SignalHandler(Int, Int) : Int : "Signal" :
+fn Thread(fn delegate() : Int) : Int : "Thread" :
+fn mcopy(int dst, int src) : void : "mem copy" :
 
-type Range[def type, type lower, type upper, type default] : type : "Restricted type"
+type Range[def type, type lower, type upper, type default] : type : "Restricted type" : ""
   ctor()
     this = default
   leave()
     this < lower ? this = lower
     upper < this ? this = upper
 
-type State[Int states] : Array[Array[]] : "states"
+type State[Int states] : Array[Array[]] : "Handle automata states" : ""
 
-# handle binary structure.
-type Struct[Array[Int] size] : void
+type Struct[Array[Int] size] : void : "Handle binary structure" :
   ctor()
   dtor()
   # file operations.
 
-type Pool[Int size] : Object : "Root memory pool that unique on process"
+type Pool[Int size] : Object : "Root memory pool that unique on process" :
   _ptr : Int : "Pointer on the memory"
   ctor()
   dtor()
@@ -130,7 +129,7 @@ type Pool[Int size] : Object : "Root memory pool that unique on process"
   op -=release[def type](type) : bool
   # Linked list*
 
-type PoolDisk[Int size] : Object : "Disk data pool"
+type PoolDisk[Int size] : Object : "Disk data pool" :
   _handle : Array : "Handle to disk offset"
   _disk : File : "disk"
   ctor()
@@ -138,7 +137,7 @@ type PoolDisk[Int size] : Object : "Disk data pool"
   op +=assign[def type](const Int as) : type
   op -=release[def type](type) : bool
 
-type Array[def type, def p = Pool, p pool] : Object : "Array on pool"
+type Array[def type, def p = Pool, p pool] : Object : "Array on pool" :
   _ptr : Int
   ctor()
   ctor(Int size)
@@ -151,7 +150,7 @@ type Array[def type, def p = Pool, p pool] : Object : "Array on pool"
   op [last] () : type
   op [size] () : Int
 
-type Sorted[def type] : Array[type] : "sorted array indices"
+type Sorted[def type] : Array[type] : "sorted array indices" :
   # with heap sort.
   _sort : Array[Int]
   ctor(a : const Array[type]) : void
@@ -167,7 +166,7 @@ type Sorted[def type] : Array[type] : "sorted array indices"
   op [median] () : type
   op [max] ()  : type
 
-type Pair[def type0, def type1] : Object
+type Pair[def type0, def type1] : Object : "Pairwise" :
   def pair : Pair[type0, type1]
   e0 : type0
   e1 : type1
@@ -180,23 +179,20 @@ type Pair[def type0, def type1] : Object
   op != (src : const pair) : bool
     res = e0 != src.e0 || e1 != src.e1
 
-type Map[def typedst, def typesrc] : Sorted[Pair[typedst, typesrc]]
+type Map[def typedst, def typesrc] : Sorted[Pair[typedst, typesrc]] : "Map" :
   op [] (const typedst a) : typesrc
-fn isin(const typedst a) : bool
-fn delete(const typedst a) : bool
+  op []?(const typedst a) : bool
+  op -=delete(const typedst a) : bool
 
-type Schedule[def schedFunc] : Sorted[Pair[Int, Int]]
+type Schedule[def schedFunc] : Sorted[Pair[Int, Int]] : "Scheduler" :
 
-type Graph[def type] : Matrix[type]
-# graph into plane.
-fn place() : Array
+type Graph[def type] : Matrix[type] : "Graph plotter." :
+  fn +=place() : Array
 
-# protocols : extremely huge.
-# and they're the implementation depends on implementation, so shift/...
-type Disk[Array = ArrayOnDisk, def lowlayer] : Array
+# implementation depends on implementation, so shift/...
+type Disk[Array = ArrayOnDisk, def lowlayer] : Array : "Protocols: extremely huge." :
 
-# OSI reference.
-type Gate[def layer, def lowlayer] : lowlayer
+type Gate[def layer, def lowlayer] : lowlayer : "OSI reference" :
 
 # Cluster : redundancy, interface.
 
@@ -211,11 +207,10 @@ type BNF[def type] : ...
 type SGML[def type] : ...
 fn stemming(t : (Text | const Text)) : Array[...]
 
-type Regex[def text] : Object
+type Regex[def text] : Object : "Regex preceding R.B. ..." :
   ctor(const text)
   op ==match (const text) # XXX
 
-# implementation that depends on implementation, base is also unixtime.
 type Gregorious : Object : "calender"
   unix : Int
   ctor()

@@ -1,7 +1,7 @@
 load Meta.s
 # referring some mathematic results, 2 term operators.
 
-type Int[int bits] : Object
+type Int[int bits] : Object : "" : ""
   def int  : Int[bits / 2]
   def dint : Int[bits]
   def lsb  : 0
@@ -43,7 +43,6 @@ type Int[int bits] : Object
     for bit in src:
       if(bit):
         res += this << bit.idx
-    return res
   op  **  (src : (dint | const dint)) const : dint
     res  = dint(1)
     work : auto(this)
@@ -51,7 +50,6 @@ type Int[int bits] : Object
       if(bit):
         res *= work
       work *= work
-    return res
   op  /   (const dint) const : dint
   op  <<  (const dInt) const : dint
   op  >>  (const dInt) const : dint
@@ -75,7 +73,7 @@ type Int[int bits] : Object
     e0 ^= src.e0
     e1 ^= src.e1
 
-type ParaInt[def type, Int wbits, Int pbits]
+type ParaInt[def type, Int wbits, Int pbits] : Int[0] : "" : ""
   def int   : ParaInt[type, wbits, pbits]
   def bint  : type
   _flat : Int[wbits]
@@ -130,7 +128,7 @@ type ParaInt[def type, Int wbits, Int pbits]
   op  &=  (const int) : int
   op  |=  (const int) : int
 
-type Signed[def type] : type
+type Signed[def type] : type : "" : ""
   def int : Signed[type]
   ctor()
   ctor(def)
@@ -144,14 +142,13 @@ type Signed[def type] : type
   op  >   (const int) const : bool
   op  >=  (const int) const : bool
 
-type pZ[def type, type z] : type
+type pZ[def type, type z] : type : "Periodical Z" : ""
   def pz : pz[type, z]
   leave() : pz
     this %= z
 
-type Band[def type] : Complex[type]
-  ctor()
-  dtor()
+type Band[def type] : Complex[type] : "Band as complex plane point" : ""
+  
 
 fn gcd[def type](const type, const type) : type
 fn lcm[def type](const type, const type) : type
@@ -163,7 +160,7 @@ fn abs(const Signed) : type
 # Solve ax + by = c in Z, a, b, c are const.
 fn eucleidos[def type](type, type, const type, const type, const type) : void
 
-type Float[Int mantissa, Int exponent] : Object
+type Float[Int mantissa, Int exponent] : Object : "Pseudo Q with interval" : ""
   def float : Float[mantissa, exponent]
   def intm  : Int[mantissa]
   def intw  : Int[mantissa * Int(2)]
@@ -203,7 +200,7 @@ type Float[Int mantissa, Int exponent] : Object
   op  %= (const float)  : float
   friend Int() const
 
-type WFloat[def float_t] : Object
+type WFloat[def float_t] : Object : "Left/Right side bound" : ""
   def float : WFloat[float_t]
   _f0 : float_t
   _f1 : float_t
@@ -235,7 +232,7 @@ type WFloat[def float_t] : Object
   op  /= (const float) : float
   op  %= (const float) : float
 
-type Fraction[def type] : Object
+type Fraction[def type] : Object : "Q with finite accuracy" : ""
   def fraction : Fraction[type]
   _sign : bool
   _n    : type
@@ -269,41 +266,41 @@ fn isinf[def type](type) :bool
 # Vitavi
 # Huge...
 
-type Equation : BNF
-type Logic : Equation
+type Equation : BNF : "Equation as BNF expression" : ""
+type Logic : Equation : "Logic as Equation expression" : ""
 
 # transcendal op on equation should be in generic programming compatible form in this
-fn bothside[def type](type, type, type) : type
-fn newton[def type, def f](type) : type
-fn superGeometry[def type, fn da(type) : type, fn db(type) : type, def f] : type
-fn sqrt[def type](type) : type
-fn pi[def type](type)   : type
-fn exp[def type](type)  : type
-fn log[def type](type)  : type
-fn sin[def type](type)  : type
-fn cos[def type](type)  : type
-fn tan[def type](type)  : type
-fn asin[def type](type) : type
-fn acos[def type](type) : type
-fn atan[def type](type) : type
-fn atan2[def type](type, type) : type
-fn exp(Complex)  : Complex
-fn log(Complex)  : Complex
-fn sin(Complex)  : Complex
-fn cos(Complex)  : Complex
-fn tan(Complex)  : Complex
-fn csc(Complex)  : Complex
-fn sec(Complex)  : Complex
-fn cot(Complex)  : Complex
-fn asin(Complex) : Complex
-fn acos(Complex) : Complex
-fn atan(Complex) : Complex
-fn sinh(Complex) : Complex
-fn cosh(Complex) : Complex
-fn tanh(Complex) : Complex
-fn Li2(Complex)  : Complex
-fn SolveSeries[def type](fn coeff(type) : type, const type x) : type
-fn SolveSeries[def type](const Array[type] coeff, const type x) : type
-fn InvertSeries[def type](const Array[type] coeff, const type y)
-fn Melin[def type](const Array[type] coeff, const type y)
+fn bothside[def type](type, type, type) : type : "bothside method." : ""
+fn newton[def type, def f](type) : type : "newton method with f'" : ""
+fn superGeometry[def type, fn da(type) : type, fn db(type) : type, def f] : type : "Super geometry series." : "R.B."
+fn sqrt[def type](type) : type : "Square root of x" : ""
+fn pi[def type](type)   : type : "Pi" : ""
+fn exp[def type](type)  : type : "exponent" : ""
+fn log[def type](type)  : type : "logarithm" : ""
+fn sin[def type](type)  : type : "sine curve" : ""
+fn cos[def type](type)  : type : "cosine curve" : ""
+fn tan[def type](type)  : type : "tangent function" : ""
+fn asin[def type](type) : type : "arcsine function" : ""
+fn acos[def type](type) : type : "arccosine function" : ""
+fn atan[def type](type) : type : "arctangent function of periodical" : ""
+fn atan2[def type](type, type) : type : "arctangent function y, x" : ""
+fn exp(Complex)  : Complex : "complex exponent" : ""
+fn log(Complex)  : Complex : "complex logarithm" : ""
+fn sin(Complex)  : Complex : "complex sine" : ""
+fn cos(Complex)  : Complex : "complex cosine" : ""
+fn tan(Complex)  : Complex : "complex tangent" : ""
+fn csc(Complex)  : Complex : "complex cosecant" : ""
+fn sec(Complex)  : Complex : "complex secant" : ""
+fn cot(Complex)  : Complex : "complex cotangent" : ""
+fn asin(Complex) : Complex : "complex arcsine" : ""
+fn acos(Complex) : Complex : "complex arccosine" : ""
+fn atan(Complex) : Complex : "complex arctangent" : ""
+fn sinh(Complex) : Complex : "hyperbolic sine" : ""
+fn cosh(Complex) : Complex : "hyperbolic cosine" : ""
+fn tanh(Complex) : Complex : "hyperbolic tangent" : ""
+fn Li2(Complex)  : Complex : "Li2" : ""
+fn SolveSeries[def type](fn coeff(type) : type, const type x) : type : "Calculate taylor series they converges" : ""
+fn SolveSeries[def type](const Array[type] coeff, const type x) : type : "Calculate finite mother functions" : ""
+fn InvertSeries[def type](const Array[type] coeff, const type y) : type : "Calculate invert of taylor series" : ""
+fn Melin[def type](const Array[type] coeff, const type y) : * : "Melin conversion" : ""
 

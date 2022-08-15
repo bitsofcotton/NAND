@@ -8,9 +8,11 @@ type Chip : Object : "chip root"
     # emulation
   # control, errata, each chip interface.
 
-type Status[] : ...
+type Status[type] : Matrix[type]
   ctor(json : JSON) : void
+    
   dtor() : void
+    
   op ++!(s : String) : Status
 
 # entity is in Shift/...
@@ -22,9 +24,7 @@ type Mnemonic : ...
 fn optimizeFlow(v : Vector[Mnemonic]) : Vector[Mnemonic]
 fn compile(v : Vector[Mnemonic]) : Vector[Mnemonic]
 
-type Runner : 
-  ctor() : void
-  dtor() : void
+type Runner : Object : :
   c2r : Vector[Pair[Mnemonic, Mnemonic]]
 
 type Perceptron[def type] : Matrix[type]
