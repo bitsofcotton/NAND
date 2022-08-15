@@ -4,7 +4,7 @@ Aims to add one of a code stack s.t. small code amount on both compiler/library 
 
 We trust randtools optimizer strong, so we focus only the simple enough implementation even including infinite loop.
 
-# Syntax concrete (remains how to specify block without \\ nor :).
+# Syntax concrete.
 * load name : (uri|path.path...)(.type|.function)?
 * * import once.
 * def name : definition : "comment" : "license"
@@ -29,7 +29,7 @@ We trust randtools optimizer strong, so we focus only the simple enough implemen
 * * * comment and license.
 * * a : b :: \\n\\t ...
 * * * variable block.
-* (inline?) fn name(name : type : "comment"?, ...) : type : "comment"? : "license"?
+* (inline|fn) name(name : type : "comment"?, ...) : type : "comment"? : "license"?
 * * function, also lambda be. from awesome scala.
 * * function name! returns reference.
 * * type can specify (type \| ... \| type), also be able to specify template omitted.
