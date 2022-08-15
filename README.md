@@ -89,6 +89,9 @@ But, it would be greately appreciated if you know the methods reducing source co
 # Tips
 After strongly optimized program, any m-output n-input program can be described as O(mn\*f(L)) arithmetic calculation time, and for parallel computing, O(f(L)), which L can be O(lg(n)) if we describe m, n as a bit. So we only focus on simplicity itself strong. (However, compiletime speed is very heavy.)
 
+# Obscure tips
+Thus above, if the program description only needs linear to memory size phenomenon, there's also apprehension to collision of algorithms they also caused by compile alike machine learning phenomenon. We might avoid this by selection of the phenomenon, however, in totally, we cannot. So in such case, we can try to compile them with small enough parts and collection of them nor compile before each compute on same machine, but even in their case, it is obscure it is valid or not on real raw meaning.
+
 # Things undone.
 This repository has NO materialized implementation.
 There exists huge fields they have important materials.
