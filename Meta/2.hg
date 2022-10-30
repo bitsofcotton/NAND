@@ -1,4 +1,4 @@
-load Meta.s
+load s : Meta.s
 # referring some mathematic results, 2 term operators.
 
 type Int[int bits] : Object : "" : ""

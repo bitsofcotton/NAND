@@ -219,3 +219,5 @@ type Gregorious : Object : "calender"
 # some procedures like:
 #   attend/leave time logging and calculate total time with time zone.
 
+# garbage collection with reference count type.
+
