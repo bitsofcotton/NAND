@@ -1,17 +1,47 @@
 #! /usr/bin/env python
 
+# XXX:  For the first replicator, is the python optimal???
+# ToDo: search clean language sets.
+# ToDo: decide optimal type description array format.
+
 import sys
 import re
 
 # thanks to: https://qiita.com/hoto17296/items/e1f80fef8536a0e5e7db
 flatten = lambda x: "_".join([z for y in x for z in (flatten(y) if (hasattr(y, '__iter__') and not isinstance(y, str)) else y,)])
 
-def parse_typedef():
-  return []
+def parse_typedef(bufline, start, backtree, root):
+  tree = backtree
+  work = [tree]
+  idx  = start
+  while(idx < len(bufline)):
+    idx += 1
+    b = bufline[idx]
+    if(b == '' or b == ' ' or b == '\t' or b == '\n'):
+      continue
+    if(b == '['):
+      work[- 1].append([])
+    elif(b == ']'):
+      work.pop()
+      if(len(work) <= 1): break
+    elif(b == ','):
+      if(len(work) <= 1):
+        idx -= 1
+        return {"tree": tree, "status": "not defined"}
+    elif(not (b in root)):
+      print("NG: type not in root : ", start)
+      return {"tree": tree, "status": "not defined"}
+    elif(len(work) <= 1 and 1 <= len(tree)):
+      idx -= 1
+      break
+    tree.append(b)
+  if(done): return {"tree": tree, "status": "done", "idx": idx}
+  return {"tree": tree, "status": "short", "idx": idx}
 
 def parse_sentence():
   return []
 
+# dummy, put this into inline.
 def parse_block(buf, start):
   indent = 0
   ss = start
@@ -55,7 +85,12 @@ def parse_block(buf, start):
 #   ...[0...]["arg"][0...]["init"] # type arg init array, be able to recursive.
 # block array:
 #   ...[0...]["text"] # (fn|inline|var|def|sentence)
-def nameref(s):
+def nameref(res, uri, load):
+  load.append(uri)
+  f = open(uri)
+  s = f.readlines()
+  s.extend(['\n'])
+  f.close()
   bra = {}
   braket = {}
   braquot = {}
@@ -112,7 +147,6 @@ def nameref(s):
   reserved_flow[":"] = ":"
   reserved_flow["break"] = "break"
   reserved_flow["assert"] = "assert"
-  res = {}
   typen = "root"
   res[typen] = {}
   ptr   = []
@@ -127,6 +161,7 @@ def nameref(s):
     buf.append([])
     for p in pp:
       buf[- 1].append(p)
+  backtree = []
   ss = 0
   while(ss < len(buf)):
     indent = 0
@@ -144,6 +179,7 @@ def nameref(s):
           tset = False
         if(0 < len(ptr)):
           if(ptr[0] == "load"):
+            
             ptr = []
           elif(ptr[0] == "type"):
             typen = ptr[1]
@@ -171,13 +207,28 @@ def nameref(s):
               res[typen][ptr[1]]["text"] = ptr[0]
               res[typen][ptr[1]]["name"] = ptr[1]
             if(ptr[0] == 'var'):
-              if(ptr[2] != ':'): print("ERR ptr[2] != :")
-              # loop:
-              res[typen][ptr[1]]["type"] = parse_typedef()
-              res[typen][ptr[1]]["init"] = parse_sentence()
-              # block:
+              if(ptr[2] != ':'): print("syntax error ptr[2] != :, ", ss)
+              work = parse_typedef(buf[ss], sss, backtree, res)
+              if(work["status"] == "done"):
+                res[typen][ptr[1]]["type"] = work["tree"]
+                res[typen][ptr[1]]["init"] = parse_sentence()
+                backtree = []
+              elif(work["status"] == "not defined"):
+                print("type verification: type not defined: ", ss)
+              elif(work["status"] == "short"):
+                # XXX: next indent check:
+                sss += 1
+                continue
+              else:
+                print("fatal error.")
+                exit(0)
+              pb = parse_block(buf, ss + 1)
+              if(indent < pb[1]):
+                ptr = []
+                ss = pb[0]
+                break
             elif(ptr[0] == 'def'):
-              if(ptr[2] != ':'): print("ERR ptr[2] != :")
+              if(ptr[2] != ':'): print("syntax error ptr[2] != :, ", ss)
               pb = parse_block(buf, ss + 1)
               res[typen][ptr[1]]["def"] = pb
               if(indent < pb[1]):
@@ -185,10 +236,22 @@ def nameref(s):
                 ss = pb[0]
                 break
             else:
-              # loop
-              res[typen][ptr[1]][- 1]["type"] = parse_typedef()
-              res[typen][ptr[1]][- 1]["init"] = parse_sentence()
-              res[typen][ptr[1]][- 1]["ret"]  = parse_typedef()
+              work = parse_typedef(buf[ss], sss, backtree, res)
+              if(work["status"] == "done"):
+                res[typen][ptr[1]]["type"] = work["tree"]
+                res[typen][ptr[1]]["init"] = parse_sentence()
+                backtree = []
+              elif(work["status"] == "not defined"):
+                print("type verification: type not defined: ", ss)
+              elif(work["status"] == "short"):
+                # XXX: next indent check:
+                sss += 1
+                continue
+              else:
+                print("fatal error.")
+                exit(0)
+              #res[typen][ptr[1]][- 1]["init"] = parse_sentence()
+              #res[typen][ptr[1]][- 1]["ret"]  = parse_typedef()
               pb = parse_block(buf, ss + 1)
               res[typen][ptr[1]][- 1]["entity"] = pb
               if(indent < pb[1]):
@@ -238,7 +301,7 @@ def nameref(s):
           ptr.append("var")
           ptr.append(p)
         else:
-          print("parse error : ", ss)
+          print("syntax error : ", ss)
         first = False
       else:
         # XXX: check
@@ -247,9 +310,7 @@ def nameref(s):
     ss += 1
   return res
 
-lines = sys.stdin.readlines()
-lines.extend(['\n'])
-work = nameref(lines)
+work = nameref({}, sys.argv[1], [])
 wp = str(work).split("}")
 for w in wp:
   print(w)
