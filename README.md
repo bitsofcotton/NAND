@@ -91,8 +91,26 @@ After strongly optimized program, any m-output n-input program can be described 
 
 # Obscure tips
 Thus above, if the program description only needs linear to memory size phenomenon, there's also apprehension to collision of algorithms they also caused by compile alike machine learning phenomenon. We might avoid this by selection of the phenomenon, however, in totally, we cannot. So in such case, we can try to compile them with small enough parts and collection of them nor compile before each compute on same machine, but even in their case, it is obscure it is valid or not on real raw meaning.
+-&gt; This isn't critical because the invariant has multiple of the calculation
+operand real value patterns as a one expression.
+However, if there's a glitches s.t. multiple invariants into unsplittable
+one dimension causes glitches on the computers.
+
+# Tips on optimizing
+We should use fractional type with sqrt-added field on the optimization
+calculation. Also, we need some of the large accuracy on them.
+So even we optimize 64-bit 2-term operations, we need many of the time.
+So, we need divide and conquer method for general complemented calculations.
+In C program with no memory reference, we only need 2 term optimizers, and
+connect the first digit matrices block accurate method, then,
+we get the last large matrix.
+Otherwise, if some of the 3 or more term operators hardly depends on the
+each of the operand, we need to optimize them as a whole.
 
 # Things undone.
 This repository has NO materialized implementation.
 There exists huge fields they have important materials.
+
+# Control directory
+We cram the scrapped delusion which all the things we want supported by computer for now into Control directory (can be different from yours). Some of the future, this categorize can be changed.
 
