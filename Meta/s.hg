@@ -186,6 +186,18 @@ type Map[def typedst, def typesrc] : Sorted[Pair[typedst, typesrc]] : "Map" :
 
 type Schedule[def schedFunc] : Sorted[Pair[Int, Int]] : "Scheduler" :
 
+type GCItem[def type] : Pair[type, Int] : "GCItem"
+  cnt : Int
+  ent : type
+  ctor()
+  ctor(type)
+  ctor(GCItem(type))
+
+type GC[def type] : Object : "Garbage Collection"
+  ctor()
+  op +=item (GCItem[type])
+  op -=item (GCItem[type])
+
 type Graph[def type] : Matrix[type] : "Graph plotter." :
   fn +=place() : Array
 
