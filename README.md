@@ -2,7 +2,8 @@
 Natural simpler compiler which code with natural simpler comments and licenses on a file.
 Aims to add one of a code stack s.t. small code amount on both compiler/library with comment connected (ideally one can read whole easily) bases on not the latest but a modern C compiler. This repository pefer explicit description.
 
-We trust randtools optimizer strong, so we focus only the simple enough implementation even including infinite loop.
+<strike>We trust randtools optimizer strong, so we focus only the simple enough implementation even including infinite loop.</strike>
+We cannot use randtools optimizer because the pigeon hole slips, So we reduce overhead as hard as possible with no loop order hard optimization.
 
 # Syntax concrete.
 * load name : (uri|path.path...)(.type|.function)?
