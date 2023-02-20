@@ -5,6 +5,8 @@ Aims to add one of a code stack s.t. small code amount on both compiler/library 
 <strike>We trust randtools optimizer strong, so we focus only the simple enough implementation even including infinite loop.</strike>
 We cannot use randtools optimizer because the pigeon hole slips, So we reduce overhead as hard as possible with no loop order hard optimization.
 
+We aim the library as maximum compressed structures (module cohesion) for standard library as many languages do.
+
 # Syntax concrete.
 * load name : (uri|path.path...)(.type|.function)?
 * * import once.
