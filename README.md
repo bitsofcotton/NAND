@@ -7,6 +7,8 @@ We cannot use randtools optimizer because the pigeon hole slips, So we reduce ov
 
 We aim the library as maximum compressed structures (module cohesion) for standard library as many languages do.
 
+This aims to compile nand source into C source and check the output by hand or eyes. Otherwise, they can even infect if whole system is infected condition. (All we can do is to transcode and check the transformed or compiled source by hands or eyes even any of the code patches, or, we can do only to crypt them.)
+
 # Syntax concrete.
 * load name : (uri|path.path...)(.type|.function)?
 * * import once.
