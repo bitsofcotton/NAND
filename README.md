@@ -9,6 +9,12 @@ We aim the library as maximum compressed structures (module cohesion) for standa
 
 This aims to compile nand source into C source and check the output by hand or eyes. Otherwise, they can even infect if whole system is infected condition. (All we can do is to transcode and check the transformed or compiled source by hands or eyes even any of the code patches, or, we can do only to crypt them.)
 
+# XXX (nota bene):
+This isn't breaks the original system infection if compiler or interpreter or system are infected condition.
+So to break them, we should read/write all of the raw binary on boot strap in as possibe as raw layer enough, or, only write the boot strap with some deep stacked VMs they cannot tracked with cryption.
+However, latter one is hard to prove they really worked as expected because we cannot exclude completely the condition some of the big brother observing us with some of the low layer.
+Also, the source code this repository have is observed from some another since before you download this repository, so if the infectioner implant has some code depends on this repo, we cannot avoid infection chain at all.
+
 # Syntax concrete.
 * load name : (uri|path.path...)(.type|.function)?
 * * import once.
