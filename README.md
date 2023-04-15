@@ -3,7 +3,8 @@ Natural simpler compiler which code with natural simpler comments and licenses o
 Aims to add one of a code stack s.t. small code amount on both compiler/library with comment connected (ideally one can read whole easily) bases on not the latest but a modern C compiler. This repository pefer explicit description.
 
 <strike>We trust randtools optimizer strong, so we focus only the simple enough implementation even including infinite loop.</strike>
-We cannot use randtools optimizer because the pigeon hole slips, So we reduce overhead as hard as possible with no loop order hard optimization.
+<strike>We cannot use randtools optimizer because the pigeon hole slips, So we reduce overhead as hard as possible with no loop order hard optimization.</strike>
+A randtools optimizer is valid in making invariant meaning, however is not valid in output complexity meaning. So if we decide to use safe method, the latter decision, if we decide to believe invariant meaning strong, the former decision.
 
 We aim the library as maximum compressed structures (module cohesion) for standard library as many languages do.
 
@@ -15,13 +16,11 @@ So to break them, we should read/write all of the raw binary on boot strap in as
 However, latter one is hard to prove they really worked as expected because we cannot exclude completely the condition some of the big brother observing us with some of the low layer.
 Also, the source code this repository have is observed from some another since before you download this repository, so if the infectioner implant has some code depends on this repo, we cannot avoid infection chain at all.
 
-# Syntax concrete.
-* load name : (uri|path.path...)(.type|.function)?
-* * import once.
-* def name : definition : "comment" : "license"
-* * each operand doesn't omittable.
-* * block-wise.
-* let is omitted, like swift's let:
+# Syntax concrete (2).
+* load is omitted in root context.
+* * name : (uri|path.path...)(.type|.function)?
+* * import once, no need include guard.
+* let is omitted in type and function context, like swift's let:
 * * a : b ::
 * * a : const(b) ::
 * * * a is (non const) reference of b or const reference of b.
@@ -40,13 +39,15 @@ Also, the source code this repository have is observed from some another since b
 * * * comment and license.
 * * a : b :: \\n\\t ...
 * * * variable block.
+* def name : definition : "comment" : "license"
+* * each operand isn't omittable.
+* * block-wise.
 * (inline|fn) name(name : type : "comment"?, ...) : type : "comment"? : "license"?
 * * function, also lambda be. from awesome scala.
 * * function name! returns reference.
 * * type can specify (type \| ... \| type), also be able to specify template omitted.
 * * with calling function, we must specify the variable name as: name(name = val, ...)
 * * no return mnemonic, instead of them, reserved "res" variable.
-* * * res is this or leaf default depends on return type in class, otherwise, depends on caller operand.
 * * * from awesome embedded C language.
 * inverse(function, result) : worst case brute force inverse function.
 * typeof, typeid
