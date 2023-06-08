@@ -1,0 +1,4 @@
+# We need to simulate some target systems on the same machines.
+# There's many of the softwares such that libvirt, qemu, vmware, parallels, ... etcetc.
+# They are virtual but also tele-existance of the computer/machines.
+
