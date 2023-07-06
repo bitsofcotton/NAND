@@ -16,7 +16,7 @@ So to break them, we should read/write all of the raw binary on boot strap in as
 However, latter one is hard to prove they really worked as expected because we cannot exclude completely the condition some of the big brother observing us with some of the low layer.
 Also, the source code this repository have is observed from some another since before you download this repository, so if the infectioner implant has some code depends on this repo, we cannot avoid infection chain at all.
 
-# Syntax concrete (2).
+# Syntax concrete (3).
 * load is omitted in root context.
 * * name : (uri|path.path...)(.type|.function)?
 * * import once, no need include guard.
@@ -58,7 +58,7 @@ Also, the source code this repository have is observed from some another since b
 * * * super class operator is also operator +=item .
 * * * if there's no such operator, search super, then, replace with
 * * * root class definition on op += or some with refactored one.
-* * start with _ as private in type
+* * no private/protected, public only.
 * * friend
 * * * in-type friend functions to write down inter-type initializer operator.
 * * ctor, dtor
