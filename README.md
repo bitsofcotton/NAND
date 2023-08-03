@@ -1,48 +1,41 @@
 # NAND(Never finish)
-Natural simpler compiler which code with natural simpler comments and licenses on a file.
-Aims to add one of a code stack s.t. small code amount on both compiler/library with comment connected (ideally one can read whole easily) bases on not the latest but a modern C compiler. This repository pefer explicit description.
+Natural tinier compiler which code with natural tinier comments and licenses on a file.
+Aims to add one of a code stack s.t. tiny code amount on both compiler/library with comment connected (ideally one can read whole easily) (we aim maximum module cohesion with moderate readability) bases on not the latest but a modern C compiler. However, this repository pefer explicit description.
 
-<strike>We trust randtools optimizer strong, so we focus only the simple enough implementation even including infinite loop.</strike>
-<strike>We cannot use randtools optimizer because the pigeon hole slips, So we reduce overhead as hard as possible with no loop order hard optimization.</strike>
-A randtools optimizer is valid in making invariant meaning, however is not valid in output complexity meaning. So if we decide to use safe method, the latter decision, if we decide to believe invariant meaning strong, the former decision.
-
-We aim the library as maximum compressed structures (module cohesion) for standard library as many languages do.
+A randtools optimizer is valid in making invariant meaning, however is not valid in output complexity meaning. So if we decide to use safe method, no loop order optimization can be accepted, if we decide to believe invariant meaning strong whole program optimization is accepted.
 
 This aims to compile nand source into C source and check the output by hand or eyes. Otherwise, they can even infect if whole system is infected condition. (All we can do is to transcode and check the transformed or compiled source by hands or eyes even any of the code patches, or, we can do only to crypt them.)
 
-# XXX (nota bene):
 This isn't breaks the original system infection if compiler or interpreter or system are infected condition.
-So to break them, we should read/write all of the raw binary on boot strap in as possibe as raw layer enough, or, only write the boot strap with some deep stacked VMs they cannot tracked with cryption.
-However, latter one is hard to prove they really worked as expected because we cannot exclude completely the condition some of the big brother observing us with some of the low layer.
-Also, the source code this repository have is observed from some another since before you download this repository, so if the infectioner implant has some code depends on this repo, we cannot avoid infection chain at all.
+So the source code this repository have is observed from some another since before you download this repository, so if the infectioner implant has some code depends on this repo, we cannot avoid infection chain at all.
 
 # Syntax concrete (3).
 * load is omitted in root context.
 * * name : (uri|path.path...)(.type|.function)?
 * * import once, no need include guard.
 * let is omitted in type and function context, like swift's let:
-* * a : b ::
-* * a : const(b) ::
+* * a : b :
+* * a : const(b) :
 * * * a is (non const) reference of b or const reference of b.
 * * * the original variable will not be used like some awesome languages.
-* * a : static(b) ::
+* * a : static(b) :
 * * * a is initialized by b once in first of execution.
-* * a : auto(b) ::
-* * a : type(b) ::
-* * a : func(b) ::
+* * a : auto(b) :
+* * a : type(b) :
+* * a : func(b) :
 * * * a is instanced object of b
-* * a : func!(b) ::
+* * a : func!(b) :
 * * * a is function returned reference.
-* * a : (fn ...)(...) ... ::
+* * a : (fn ...)(...) ... :
 * * * initialize with lambda function.
 * * a : b : "comment" : "license"
 * * * comment and license.
-* * a : b :: \\n\\t ...
+* * a : b : \\n\\t ...
 * * * variable block.
-* def name : definition : "comment" : "license"
+* def name : definition : "license? comment"
 * * each operand isn't omittable.
 * * block-wise.
-* (inline|fn) name(name : type : "comment"?, ...) : type : "comment"? : "license"?
+* (inline|fn) name(name : type : "comment"?, ...) : type : "license? comment"?
 * * function, also lambda be. from awesome scala.
 * * function name! returns reference.
 * * type can specify (type \| ... \| type), also be able to specify template omitted.
@@ -51,7 +44,7 @@ Also, the source code this repository have is observed from some another since b
 * * * from awesome embedded C language.
 * inverse(function, result) : worst case brute force inverse function.
 * typeof, typeid
-* type classname : inherit : "comment"? : "license"?
+* type classname : inherit : "license? comment"?
 * * Only one class inheritation is accepted. Treat as arithmetic ones.
 * * a +=item val
 * * * operator with some extension to C.
@@ -79,8 +72,9 @@ Also, the source code this repository have is observed from some another since b
 * * * information for debugging.
 * * () ? () : ()
 * * * 3-term operator like in C.
-* * 'for ... from ... to ... : label', type.op ++for, type.op \<for function definition is used,
+* * 'for|para ... from ... to ... : label', type.op ++for, type.op \<for function definition is used,
 * * * break label
+* * * when parallel, out of the scope treated as global, in the scope treated as thread variable (except for the reference).
 * * assert(x)
 * * * stop execution or compilation if x is false.
 * * * we can override this with assert function redefinition in execution time.
