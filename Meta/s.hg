@@ -1,9 +1,9 @@
 # System root.
 
-type Int[0] : : "Root" : "Auto generated."
-  def invertible  : 0
-  def abel        : 0
-  def commutative : 0
+type Int[0] : : "Root. Auto generated."
+  def invertible  : 0 :
+  def abel        : 0 :
+  def commutative : 0 :
   op  !  ()     : bool : "Auto generated."
     res = ! bool(leaf)
   op  ++ ()     : const typeof(leaf) : "Auto generated."
@@ -79,129 +79,129 @@ type Int[0] : : "Root" : "Auto generated."
   op  |= (src : const typeof(leaf)) const : const typeof(leaf) : "Auto generated."
     leaf = leaf | src
   # stub for leafs.
-  def zorn() :
-  def less(const leaf) :
-  def each() :
-  def progress() :
-  def is_progress() :
+  def zorn() ::
+  def less(const leaf) ::
+  def each() ::
+  def progress() ::
+  def is_progress() ::
     # Mutex, then, access limitation.
-  def print() :
-  def test() :
-  def in(const Array) :
-  def out() :
+  def print() ::
+  def test() ::
+  def in(const Array) ::
+  def out() ::
 
-type Int[__pointer_bits__] : Int[0] : "System wide unique int" : ""
-  def abel        : 1 : :
-  def commutative : 1 : :
+type Int[__pointer_bits__] : Int[0] : "System wide unique int"
+  def abel        : 1 :
+  def commutative : 1 :
 
-type void   : Int[0] : "void" : ""
-type Object : Int[0] : "Object" : ""
-type bool   : Int[__pointer_bits__] : "bool" : ""
-type int    : Int[__pointer_bits__] : "synonym" : ""
+type void   : Int[0] : "void"
+type Object : Int[0] : "Object"
+type bool   : Int[__pointer_bits__] : "bool"
+type int    : Int[__pointer_bits__] : "synonym"
 
-fn Export(def) : void : "Export as library" : 
-fn Import(def) : bool : "Import library" : 
-fn Call(def, Array)   : Int : "Call exterior" :
-fn Signal(Int, Int)   : Int : "Signal" :
-fn SignalHandler(Int, Int) : Int : "Signal" :
-fn Thread(fn delegate() : Int) : Int : "Thread" :
-fn mcopy(int dst, int src) : void : "mem copy" :
+fn Export(def) : void : "Export as library"
+fn Import(def) : bool : "Import library"
+fn Call(def, Array)   : Int : "Call exterior"
+fn Signal(Int, Int)   : Int : "Signal"
+fn SignalHandler(Int, Int) : Int : "Signal"
+fn Thread(fn delegate() : Int) : Int : "Thread"
+fn mcopy(int dst, int src) : void : "mem copy"
 
-type Range[def type, type lower, type upper, type default] : type : "Restricted type" : ""
-  ctor()
+type Range[def type, type lower, type upper, type default] : type : "Restricted type"
+  ctor() ::
     this = default
-  leave()
+  leave() ::
     this < lower ? this = lower
     upper < this ? this = upper
 
-type State[Int states] : Array[Array[]] : "Handle automata states" : ""
+type State[Int states] : Array[Array[]] : "Handle automata states"
 
-type Struct[Array[Int] size] : void : "Handle binary structure" :
-  ctor()
-  dtor()
+type Struct[Array[Int] size] : void : "Handle binary structure"
+  ctor() ::
+  dtor() ::
   # file operations.
 
-type Pool[Int size] : Object : "Root memory pool that unique on process" :
+type Pool[Int size] : Object : "Root memory pool that unique on process"
   _ptr : Int : "Pointer on the memory"
-  ctor()
-  dtor()
-  op +=assign[def type](size : const Int) : type
-  op -=release[def type](type) : bool
+  ctor() ::
+  dtor() ::
+  op +=assign[def type](size : const Int) : type :
+  op -=release[def type](type) : bool :
   # Linked list*
 
-type PoolDisk[Int size] : Object : "Disk data pool" :
+type PoolDisk[Int size] : Object : "Disk data pool"
   _handle : Array : "Handle to disk offset"
   _disk : File : "disk"
-  ctor()
-  dtor()
-  op +=assign[def type](const Int as) : type
-  op -=release[def type](type) : bool
+  ctor() ::
+  dtor() ::
+  op +=assign[def type](const Int as) : type :
+  op -=release[def type](type) : bool :
 
-type Array[def type, def p = Pool, p pool] : Object : "Array on pool" :
-  _ptr : Int
-  ctor()
-  ctor(Int size)
-  op +=push (p : type) : typeof(this)
-  op -=delete (idx : Int) : typeof(this)
-  op -=pop (idx : Int) : type
-  op [] (const Int idx) : type
-  op +=resize(const Int size, const type init) : void
-  op +=reserve(const Int size) : void
-  op [last] () : type
-  op [size] () : Int
+type Array[def type, def p = Pool, p pool] : Object : "Array on pool"
+  _ptr : Int :
+  ctor() ::
+  ctor(Int size) ::
+  op +=push (p : type) : typeof(this) :
+  op -=delete (idx : Int) : typeof(this) :
+  op -=pop (idx : Int) : type :
+  op [] (const Int idx) : type :
+  op +=resize(const Int size, const type init) : void :
+  op +=reserve(const Int size) : void :
+  op [last] () : type :
+  op [size] () : Int :
 
-type Sorted[def type] : Array[type] : "sorted array indices" :
+type Sorted[def type] : Array[type] : "sorted array indices"
   # with heap sort.
-  _sort : Array[Int]
-  ctor(a : const Array[type]) : void
-  op +=push (p : type) : typeof(this)
-  op -=delete (idx : Int) : typeof(this)
-  op -=pop (idx : Int) : type
-  op [] (const Int idx) : type
-  op +=resize(const Int size, const type init) : void
-  op +=reserve(const Int size) : void
-  op [last] () : type
-  op [size] () : Int
-  op [min] ()  : type
-  op [median] () : type
-  op [max] ()  : type
+  _sort : Array[Int] :
+  ctor(a : const Array[type]) : void :
+  op +=push (p : type) : typeof(this) :
+  op -=delete (idx : Int) : typeof(this) :
+  op -=pop (idx : Int) : type :
+  op [] (const Int idx) : type :
+  op +=resize(const Int size, const type init) : void :
+  op +=reserve(const Int size) : void :
+  op [last] () : type :
+  op [size] () : Int :
+  op [min] ()  : type :
+  op [median] () : type :
+  op [max] ()  : type :
 
-type Pair[def type0, def type1] : Object : "Pairwise" :
-  def pair : Pair[type0, type1]
-  e0 : type0
-  e1 : type1
-  ctor()
-  ctor(type0 e0, type1 e1)
+type Pair[def type0, def type1] : Object : "Pairwise"
+  def pair : Pair[type0, type1] :
+  e0 : type0 :
+  e1 : type1 :
+  ctor() ::
+  ctor(type0 e0, type1 e1) ::
     this.e0 = e0
     this.e1 = e1
-  op <  (src : const pair) : bool
+  op <  (src : const pair) : bool :
     res = e0 < src.e0 || (e0 == src.e0 && e1 < src.e1)
-  op != (src : const pair) : bool
+  op != (src : const pair) : bool :
     res = e0 != src.e0 || e1 != src.e1
 
-type Map[def typedst, def typesrc] : Sorted[Pair[typedst, typesrc]] : "Map" :
-  op [] (const typedst a) : typesrc
-  op []?(const typedst a) : bool
-  op -=delete(const typedst a) : bool
+type Map[def typedst, def typesrc] : Sorted[Pair[typedst, typesrc]] : "Map"
+  op [] (const typedst a) : typesrc :
+  op []?(const typedst a) : bool :
+  op -=delete(const typedst a) : bool :
 
-type Schedule[def schedFunc] : Sorted[Pair[Int, Int]] : "Scheduler" :
+type Schedule[def schedFunc] : Sorted[Pair[Int, Int]] : "Scheduler"
 
 type GC[def type] : Pair[type, Int] : "GC"
-  _cnt : Signed[Int]
-  _ent : type
-  _ref : GC[type]
-  ctor()
-  ctor(type)
-  ctor(GC[type])
-  dtor()
+  _cnt : Signed[Int] :
+  _ent : type :
+  _ref : GC[type] :
+  ctor() ::
+  ctor(type) ::
+  ctor(GC[type]) ::
+  dtor() ::
 
-type Graph[def type] : Matrix[type] : "Graph plotter." :
-  fn +=place() : Array
+type Graph[def type] : Matrix[type] : "Graph plotter."
+  fn +=place() : Array :
 
 # implementation depends on implementation, so shift/...
-type Disk[Array = ArrayOnDisk, def lowlayer] : Array : "Protocols: extremely huge." :
+type Disk[Array = ArrayOnDisk, def lowlayer] : Array : "Protocols: extremely huge."
 
-type Gate[def layer, def lowlayer] : lowlayer : "OSI reference" :
+type Gate[def layer, def lowlayer] : lowlayer : "OSI reference"
 
 # Cluster : redundancy, interface.
 
@@ -212,18 +212,18 @@ cout : ...
 cerr : ...
 
 # Huge...
-type BNF[def type] : ...
-type SGML[def type] : ...
-fn stemming(t : (Text | const Text)) : Array[...]
+type BNF[def type] : :
+type SGML[def type] : :
+fn stemming(t : (Text | const Text)) : Array[...] :
 
-type Regex[def text] : Object : "Regex preceding R.B. ..." :
-  ctor(const text)
-  op ==match (const text) # XXX
+type Regex[def text] : Object : "Regex preceding R.B. ..."
+  ctor(const text) ::
+  op ==match (const text) :: # XXX
 
 type Gregorious : Object : "calender"
-  unix : Int
-  ctor()
-  friend Int()
+  unix : Int :
+  ctor() ::
+  friend Int() ::
 
 # some procedures like:
 #   attend/leave time logging and calculate total time with time zone.

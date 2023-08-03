@@ -1,262 +1,206 @@
-load s : Meta.s
+s : Meta.s
 # referring some mathematic results, 2 term operators.
 
-type Int[int bits] : Object : "" : ""
-  def int  : Int[bits / 2]
-  def dint : Int[bits]
-  def lsb  : 0
-  def msb  : bits - 1
-  e0 : int
-  e1 : int
-  friend op Int  ()
+type Int[int bits] : Object : ""
+  def int  : Int[bits / 2] :
+  def dint : Int[bits] :
+  def lsb  : 0 :
+  def msb  : bits - 1 :
+  e0 : int :
+  e1 : int :
+  friend op Int  () ::
     res = Int(e0)
-  friend op int  ()
+  friend op int  () ::
     res = e0
-  friend op bool ()
+  friend op bool () ::
     res = bool(e0) | bool(e1)
-  ctor(d : def):
+  ctor(d : def) ::
     zero : static const dint(0)
     ten  : static const dint(10)
     this = zero
     for x in d:
       this *= ten
       this += dint(x)
-  ctor(d : (Int|const Int))
+  ctor(d : (Int|const Int)) ::
     res = d
-  op  []  (const Int) : bool
-  op  []  (const Int) const : bool
-  op  []  (const Int, const Int) : dint
-  op  []  (const Int, const Int) const : dint
-  op  ~   () const : int
+  op  []  (const Int) : bool :
+  op  []  (const Int) const : bool :
+  op  []  (const Int, const Int) : dint :
+  op  []  (const Int, const Int) const : dint :
+  op  ~   () const : int :
     e0 = ~ e0
     e1 = ~ e1
-  def zorn() : dint
+  def zorn() : dint :
     ++ e0
     if(! e0)
       ++ e1
-  op  --  () : dint
+  op  --  () : dint :
     if(! e0)
       -- e1
     -- e0
-  op  *   (src : (dint | const dint)) const : dint
+  op  *   (src : (dint | const dint)) const : dint :
     res = dint(0)
     for bit in src:
       if(bit):
         res += this << bit.idx
-  op  **  (src : (dint | const dint)) const : dint
+  op  **  (src : (dint | const dint)) const : dint :
     res  = dint(1)
     work : auto(this)
     for bit in src:
       if(bit):
         res *= work
       work *= work
-  op  /   (const dint) const : dint
-  op  <<  (const dInt) const : dint
-  op  >>  (const dInt) const : dint
-  def less(src : (dint | const dint)) const : bool
+  op  /   (const dint) const : dint :
+  op  <<  (const dInt) const : dint :
+  op  >>  (const dInt) const : dint :
+  def less(src : (dint | const dint)) const : bool :
     res = (this - src)[msb]
-  op !=  (const dint) const : bool
+  op !=  (const dint) const : bool :
     res = ! (this == src)
-  op ==  (src : (dint | const dint)) const : bool
+  op ==  (src : (dint | const dint)) const : bool :
     res = bool(this ^ src)
-  op =   (dint)             : int
-  op =   (const dint)       : int
-  op +=  (const dint)       : int
+  op =   (dint)             : int :
+  op =   (const dint)       : int :
+  op +=  (const dint)       : int :
     ## assembler??
-  op &=  (src : (dint | const dint)) : int
+  op &=  (src : (dint | const dint)) : int :
     e0 &= src.e0
     e1 &= src.e1
-  op |=  (src : (dint | const dint)) : int
+  op |=  (src : (dint | const dint)) : int :
     e0 |= src.e0
     e1 |= src.e1
-  op ^=  (src : (dint | const dint)) : int
+  op ^=  (src : (dint | const dint)) : int :
     e0 ^= src.e0
     e1 ^= src.e1
 
-type ParaInt[def type, Int wbits, Int pbits] : Int[0] : "" : ""
-  def int   : ParaInt[type, wbits, pbits]
-  def bint  : type
-  _flat : Int[wbits]
-  ctor()
-  ctor(def)
-  ctor(type)
-  ctor(type, fn)
-  ctor(const bint)
-  ctor(const bint, fn)
-  dtor()
-  op  []  (const Int) : bool
-  op  []  (const Int) const : bool
-  op  []  (const Int, const Int) : bool
-  op  []  (const Int, const Int) const : bool
-  op  !   () const : bool
-  op  ~   () const : int
-  op  ++  ()     : int
-  op  ++  (void) : int
-  op  --  ()     : int
-  op  --  (void) : int
-  op  -   ()     const : int
-  op  *   (const int) const : int
-  op  **  (const int) const : int
-  op  /   (const int) const : int
-  op  %   (const int) const : int
-  op  +   (const int) const : int
-  op  -   (const int) const : int
-  op  <<  (const Int) const : int
-  op  >>  (const Int) const : int
-  op  <   (const int) const : bool
-  op  <=  (const int) const : bool
-  op  >   (const int) const : bool
-  op  >=  (const int) const : bool
-  op  ==  (const int) const : bool
-  op  !=  (const int) const : bool
-  op  &   (const int) const : int
-  op  ^   (const int) const : int
-  op  |   (const int) const : int
-  op  &&  (const int) const : bool
-  op  ||  (const int) const : bool
-  op  =   (int)       : int
-  op  =   (const int) : int
-  op  +=  (const int) : int
-  op  -=  (const int) : int
-  op  *=  (const int) : int
-  op  **= (const int) : int
-  op  /=  (const int) : int
-  op  %=  (const int) : int
-  op  /=  (const int) : int
-  op  <<= (const Int) : int
-  op  >>= (const Int) : int
-  op  &=  (const int) : int
-  op  |=  (const int) : int
+type Signed[def type] : type : ""
+  def int : Signed[type] :
+  ctor() ::
+  ctor(def) ::
+  ctor(type) ::
+  ctor(const type) ::
+  ctor(int) ::
+  ctor(const int) ::
+  dtor() ::
+  op  <   (const int) const : bool :
+  op  <=  (const int) const : bool :
+  op  >   (const int) const : bool :
+  op  >=  (const int) const : bool :
 
-type Signed[def type] : type : "" : ""
-  def int : Signed[type]
-  ctor()
-  ctor(def)
-  ctor(type)
-  ctor(const type)
-  ctor(int)
-  ctor(const int)
-  dtor()
-  op  <   (const int) const : bool
-  op  <=  (const int) const : bool
-  op  >   (const int) const : bool
-  op  >=  (const int) const : bool
-
-type pZ[def type, type z] : type : "Periodical Z" : ""
-  def pz : pz[type, z]
-  leave() : pz
+type pZ[def type, type z] : type : "Periodical Z"
+  def pz : pz[type, z] :
+  leave() ::
     this %= z
 
-type Band[def type] : Complex[type] : "Band as complex plane point" : ""
-  
+type Band[def type] : Complex[type] : "Band as complex plane point"
 
-fn gcd[def type](const type, const type) : type
-fn lcm[def type](const type, const type) : type
-fn factor2[def type](const type) : type
-fn max[def type](const type, const type) : type
-fn min[def type](const type, const type) : type
-fn abs(const Signed) : type
+fn gcd[def type](const type, const type) : type : "greatest common divide"
+fn lcm[def type](const type, const type) : type : "least common multiply"
+fn factor2[def type](const type) : type : "factor 2"
+fn max[def type](const type, const type) : type : "maximum"
+fn min[def type](const type, const type) : type : "minimum"
+fn abs(const Signed) : type : "absolute value"
 
 # Solve ax + by = c in Z, a, b, c are const.
-fn eucleidos[def type](type, type, const type, const type, const type) : void
+fn eucleidos[def type](x: type, y: type, a: const type, b:const type, c: const type) : void : ""
 
-type Float[Int mantissa, Int exponent] : Object : "Pseudo Q with interval" : ""
-  def float : Float[mantissa, exponent]
-  def intm  : Int[mantissa]
-  def intw  : Int[mantissa * Int(2)]
-  def inte  : Int[exponent]
-  def INF   : const int("0x1")
-  def NaN   : const int("0x2")
-  def SIGN  : const int("0x4")
-  def WORK  : const int("0x8")
-  _m    : intm
-  _e    : inte
-  _flag : int
-  ctor()
-  ctor(def)
-  dtor()
-  leave : float
-  op  ! () const : bool
-  op  - () const : float
-  op  *  (const float) const : float
-  op  ** (const float) const : float
-  op  /  (const float) const : float
-  op  %  (const float) const : float
-  op +  (const float) const : float
-  op  -  (const float) const : float
-  op  <  (const float) const : bool
-  op  <= (const float) const : bool
-  op  >  (const float) const : bool
-  op  >= (const float) const : bool
-  op  == (const float) const : bool
-  op  != (const float) const : bool
-  op  =  (float)        : float
-  op  =  (const float)  : float
-  op  += (const float)  : float
-  op  -= (const float)  : float
-  op  *= (const float)  : float
-  op  **= (const float) : float
-  op  /= (const float)  : float
-  op  %= (const float)  : float
-  friend Int() const
+type Float[Int mantissa, Int exponent] : Object : "Pseudo Q with interval"
+  def float : Float[mantissa, exponent] :
+  def intm  : Int[mantissa] :
+  def intw  : Int[mantissa * Int(2)] :
+  def inte  : Int[exponent] :
+  def INF   : static const int("0x1") :
+  def NaN   : static const int("0x2") :
+  def SIGN  : static const int("0x4") :
+  def WORK  : static const int("0x8") :
+  _m    : intm :
+  _e    : inte :
+  _flag : int :
+  ctor() ::
+  ctor(def) ::
+  dtor() ::
+  leave ::
+  op  ! () const : bool :
+  op  - () const : float :
+  op  *  (const float) const : float :
+  op  ** (const float) const : float :
+  op  /  (const float) const : float :
+  op  %  (const float) const : float :
+  op +  (const float) const : float :
+  op  -  (const float) const : float :
+  op  <  (const float) const : bool :
+  op  <= (const float) const : bool :
+  op  >  (const float) const : bool :
+  op  >= (const float) const : bool :
+  op  == (const float) const : bool :
+  op  != (const float) const : bool :
+  op  =  (float)        : float :
+  op  =  (const float)  : float :
+  op  += (const float)  : float :
+  op  -= (const float)  : float :
+  op  *= (const float)  : float :
+  op  **= (const float) : float :
+  op  /= (const float)  : float :
+  op  %= (const float)  : float :
+  friend Int() const ::
 
-type WFloat[def float_t] : Object : "Left/Right side bound" : ""
-  def float : WFloat[float_t]
-  _f0 : float_t
-  _f1 : float_t
-  ctor()
-  ctor(def)
-  ctor(float_t)
-  ctor(float)
-  dtor()
-  friend float() const
-  op  !  () const : bool
-  op  -  () const : float
-  op  *  (const float) const : float
-  op  ** (const float) const : float
-  op  /  (const float) const : float
-  op  %  (const float) const : float
-  op  +  (const float) const : float
-  op  -  (const float) const : float
-  op  <  (const float) const : bool
-  op  <= (const float) const : bool
-  op  >  (const float) const : bool
-  op  >= (const float) const : bool
-  op  == (const float) const : bool
-  op  != (const float) const : bool
-  op  =  (const float) : float
-  op  += (const float) : float
-  op  -= (const float) : float
-  op  *= (const float) : float
-  op  **= (const float) : float
-  op  /= (const float) : float
-  op  %= (const float) : float
+type WFloat[def float_t] : Object : "Left/Right side bound"
+  def float : WFloat[float_t] :
+  _f0 : float_t :
+  _f1 : float_t :
+  ctor() ::
+  ctor(def) ::
+  ctor(float_t) ::
+  ctor(float) ::
+  dtor() ::
+  friend float() const ::
+  op  !  () const : bool :
+  op  -  () const : float :
+  op  *  (const float) const : float :
+  op  ** (const float) const : float :
+  op  /  (const float) const : float :
+  op  %  (const float) const : float :
+  op  +  (const float) const : float :
+  op  -  (const float) const : float :
+  op  <  (const float) const : bool :
+  op  <= (const float) const : bool :
+  op  >  (const float) const : bool :
+  op  >= (const float) const : bool :
+  op  == (const float) const : bool :
+  op  != (const float) const : bool :
+  op  =  (const float) : float :
+  op  += (const float) : float :
+  op  -= (const float) : float :
+  op  *= (const float) : float :
+  op  **= (const float) : float :
+  op  /= (const float) : float :
+  op  %= (const float) : float :
 
-type Fraction[def type] : Object : "Q with finite accuracy" : ""
-  def fraction : Fraction[type]
-  _sign : bool
-  _n    : type
-  _d    : type
-  ctor()
-  ctor(type, type)
-  ctor(const type, const type)
-  dtor()
-  op  ** (const fraction) const : fraction
-  op  <  (const fraction) const : bool
-  op  <= (const fraction) const : bool
-  op  >  (const fraction) const : bool
-  op  >= (const fraction) const : bool
-  op  != (const fraction) const : bool
-  op  =  (fraction)       : fraction
-  op  =  (const fraction) : fraction
-  op  += (const fraction) : fraction
-  op  *= (const fraction) : fraction
-  op  /= (const fraction) : fraction
+type Fraction[def type] : Object : "Q with finite accuracy"
+  def fraction : Fraction[type] :
+  _sign : bool :
+  _n    : type :
+  _d    : type :
+  ctor() ::
+  ctor(type, type) ::
+  ctor(const type, const type) ::
+  dtor() ::
+  op  ** (const fraction) const : fraction :
+  op  <  (const fraction) const : bool :
+  op  <= (const fraction) const : bool :
+  op  >  (const fraction) const : bool :
+  op  >= (const fraction) const : bool :
+  op  != (const fraction) const : bool :
+  op  =  (fraction)       : fraction :
+  op  =  (const fraction) : fraction :
+  op  += (const fraction) : fraction :
+  op  *= (const fraction) : fraction :
+  op  /= (const fraction) : fraction :
 
-fn floor[def type](type) : type
-fn ceil[def type](type)  : type
-fn isnan[def type](type) : bool
-fn isinf[def type](type) :bool
+fn absfloor[def type](type) : type :
+fn absceil[def type](type)  : type :
+fn isnan[def type](type) : bool :
+fn isinf[def type](type) : bool :
 
 # finite gropus, and make new finite series from them with some method.
 # Cryption bases
@@ -266,41 +210,41 @@ fn isinf[def type](type) :bool
 # Vitavi
 # Huge...
 
-type Equation : BNF : "Equation as BNF expression" : ""
-type Logic : Equation : "Logic as Equation expression" : ""
+type Equation : BNF : "Equation as BNF expression"
+type Logic : Equation : "Logic as Equation expression"
 
 # transcendal op on equation should be in generic programming compatible form in this
-fn bothside[def type](type, type, type) : type : "bothside method." : ""
-fn newton[def type, def f](type) : type : "newton method with f'" : ""
-fn superGeometry[def type, fn da(type) : type, fn db(type) : type, def f] : type : "Super geometry series." : "R.B."
-fn sqrt[def type](type) : type : "Square root of x" : ""
-fn pi[def type](type)   : type : "Pi" : ""
-fn exp[def type](type)  : type : "exponent" : ""
-fn log[def type](type)  : type : "logarithm" : ""
-fn sin[def type](type)  : type : "sine curve" : ""
-fn cos[def type](type)  : type : "cosine curve" : ""
-fn tan[def type](type)  : type : "tangent function" : ""
-fn asin[def type](type) : type : "arcsine function" : ""
-fn acos[def type](type) : type : "arccosine function" : ""
-fn atan[def type](type) : type : "arctangent function of periodical" : ""
-fn atan2[def type](type, type) : type : "arctangent function y, x" : ""
-fn exp(Complex)  : Complex : "complex exponent" : ""
-fn log(Complex)  : Complex : "complex logarithm" : ""
-fn sin(Complex)  : Complex : "complex sine" : ""
-fn cos(Complex)  : Complex : "complex cosine" : ""
-fn tan(Complex)  : Complex : "complex tangent" : ""
-fn csc(Complex)  : Complex : "complex cosecant" : ""
-fn sec(Complex)  : Complex : "complex secant" : ""
-fn cot(Complex)  : Complex : "complex cotangent" : ""
-fn asin(Complex) : Complex : "complex arcsine" : ""
-fn acos(Complex) : Complex : "complex arccosine" : ""
-fn atan(Complex) : Complex : "complex arctangent" : ""
-fn sinh(Complex) : Complex : "hyperbolic sine" : ""
-fn cosh(Complex) : Complex : "hyperbolic cosine" : ""
-fn tanh(Complex) : Complex : "hyperbolic tangent" : ""
-fn Li2(Complex)  : Complex : "Li2" : ""
-fn SolveSeries[def type](fn coeff(type) : type, const type x) : type : "Calculate taylor series they converges" : ""
-fn SolveSeries[def type](const Array[type] coeff, const type x) : type : "Calculate finite mother functions" : ""
-fn InvertSeries[def type](const Array[type] coeff, const type y) : type : "Calculate invert of taylor series" : ""
-fn Melin[def type](const Array[type] coeff, const type y) : * : "Melin conversion" : ""
+fn bothside[def type](type, type, type) : type : "bothside method."
+fn newton[def type, def f](type) : type : "newton method with f'"
+fn superGeometry[def type, fn da(type) : type, fn db(type) : type, def f] : type : "Super geometry series. R.B. "
+fn sqrt[def type](type) : type : "Square root of x"
+fn pi[def type](type)   : type : "Pi"
+fn exp[def type](type)  : type : "exponent"
+fn log[def type](type)  : type : "logarithm"
+fn sin[def type](type)  : type : "sine curve"
+fn cos[def type](type)  : type : "cosine curve"
+fn tan[def type](type)  : type : "tangent function"
+fn asin[def type](type) : type : "arcsine function"
+fn acos[def type](type) : type : "arccosine function"
+fn atan[def type](type) : type : "arctangent function of periodical"
+fn atan2[def type](type, type) : type : "arctangent function y, x"
+fn exp(Complex)  : Complex : "complex exponent"
+fn log(Complex)  : Complex : "complex logarithm"
+fn sin(Complex)  : Complex : "complex sine"
+fn cos(Complex)  : Complex : "complex cosine"
+fn tan(Complex)  : Complex : "complex tangent"
+fn csc(Complex)  : Complex : "complex cosecant"
+fn sec(Complex)  : Complex : "complex secant"
+fn cot(Complex)  : Complex : "complex cotangent"
+fn asin(Complex) : Complex : "complex arcsine"
+fn acos(Complex) : Complex : "complex arccosine"
+fn atan(Complex) : Complex : "complex arctangent"
+fn sinh(Complex) : Complex : "hyperbolic sine"
+fn cosh(Complex) : Complex : "hyperbolic cosine"
+fn tanh(Complex) : Complex : "hyperbolic tangent"
+fn Li2(Complex)  : Complex : "Li2"
+fn SolveSeries[def type](fn coeff(type) : type, const type x) : type : "Calculate taylor series they converges"
+fn SolveSeries[def type](const Array[type] coeff, const type x) : type : "Calculate finite mother functions"
+fn InvertSeries[def type](const Array[type] coeff, const type y) : type : "Calculate invert of taylor series"
+fn Melin[def type](const Array[type] coeff, const type y) : * : "Melin conversion"
 

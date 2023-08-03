@@ -3,128 +3,128 @@ load Meta.2
 load Meta.n
 # graphics, geometry.
 
-type Glay[def type] : type : :
+type Glay[def type] : type :
 
-type RGB[def type] : Object : :
-  r : type
-  g : type
-  b : type
-  ctor(Glay[type] src)
+type RGB[def type] : Object :
+  r : type :
+  g : type :
+  b : type :
+  ctor(Glay[type] src) ::
     r = type(src)
     g = type(src)
     b = type(src)
-  friend Glay()
+  friend Glay() ::
     # not optimal, we should refer color space in wikipedia.
     res = (r + g + b) / type(3)
-  op -  () : this
-  op != () : this
-  op += () : this
-  def zorn() : this
-  def less() : bool
-  def ensure() : this
+  op -  () : this :
+  op != () : this :
+  op += () : this :
+  def zorn() : this :
+  def less() : bool :
+  def ensure() : this :
   # ...
 
-type RGBA[def type] : Quarternion[type] : :
-  def rgba : Quarternion[type]
-  op -  () : this
-  op != () : this
-  op += () : this
-  def zorn() : this
-  def less() : bool
-  def ensure() : this
+type RGBA[def type] : Quarternion[type] :
+  def rgba : Quarternion[type] :
+  op -  () ::
+  op != () ::
+  op += () ::
+  def zorn() : this :
+  def less() : bool :
+  def ensure() : this :
 
-type HSV[def type] : Object : :
-  h : type
-  s : type
-  v : type
-  op -  () : this
-  op != () : this
-  op += () : this
-  def zorn() : this
-  def less() : bool
-  def ensure() : this
+type HSV[def type] : Object :
+  h : type :
+  s : type :
+  v : type :
+  op -  () : this :
+  op != () : this :
+  op += () : this :
+  def zorn() : this :
+  def less() : bool :
+  def ensure() : this :
 
-type HSB<def type> : Object : :
-  h : type
-  s : type
-  b : type
-  op -  () : this
-  op != () : this
-  op += () : this
-  def zorn() : this
-  def less() : bool
-  def ensure() : this
+type HSB<def type> : Object :
+  h : type :
+  s : type :
+  b : type :
+  op -  () : this :
+  op != () : this :
+  op += () : this :
+  def zorn() : this :
+  def less() : bool :
+  def ensure() : this :
 
-type Lab<def type> : Object : :
-  l : type
-  a : type
-  b : type
-  op -  () : this
-  op != () : this
-  op += () : this
-  def zorn() : this
-  def less() : bool
-  def ensure() : this
+type Lab<def type> : Object :
+  l : type :
+  a : type :
+  b : type :
+  op -  () ::
+  op != () ::
+  op += () ::
+  def zorn() : this :
+  def less() : bool :
+  def ensure() : this :
 
-type ColorDigital[def type] : Vector[type]
-  op -  () : this
-  op != () : this
-  op += () : this
-  def zorn() : this
-  def less() : bool
-  def ensure() : this
+type ColorDigital[def type] : Vector[type] :
+  op -  () ::
+  op != () ::
+  op += () ::
+  def zorn() : this :
+  def less() : bool :
+  def ensure() : this :
 
-type ColorAnalogue[def type, fn func] : Object
-  op -  () : this
-  op != () : this
-  op += () : this
-  op ColorDigital[type]() : ColorDigital[type]()
-  def zorn() : this
-  def less() : bool
-  def ensure() : this
+type ColorAnalogue[def type, fn func] : Object :
+  op -  () ::
+  op != () ::
+  op += () ::
+  friend ColorDigital[type]() ::
+  def zorn() : this :
+  def less() : bool :
+  def ensure() : this :
 
-type Texture[def color] : Matrix[color]
-  ctor(const Complex[Int]) : void
-  ctor(xywh : , ** File **) : Texture
-  dtor() : void
-  op <<store!(xywh : , t : Texture) : Texture
-  op -clear!(xywh : , c : color) : Texture
-  op +point!(xy : Complex, c : color) : Texture
-  op +line!(xy : Complex, c : color) : Texture
+type Texture[def color] : Matrix[color] :
+  ctor(const Complex[Int]) ::
+  ctor(xywh : , ** File **) ::
+  dtor() : void :
+  op <<store!(xywh : , t : Texture) ::
+  op -clear!(xywh : , c : color) ::
+  op +point!(xy : Complex, c : color) ::
+  op +line!(xy : Complex, c : color) ::
   # make pattern
-  op +plot!(e : Equaion, xywh) : Texture
-  op +splot!(e : Equation, xyzwhz) : Texture
-  op +maze!(wh) : Texture
+  op +plot!(e : Equaion, xywh) ::
+  op +splot!(e : Equation, xyzwhz) ::
+  op +maze!(wh) ::
   # friend on them???
-  op +tilt(mesh : , xywh) : Texture
-  op +poincare!(e : Equation, Matrix) : Texture
-  friend SVG(t : Texture) : SVG
+  op +tilt(mesh : , xywh) ::
+  op +poincare!(e : Equation, Matrix) ::
+  friend SVG(t : Texture) ::
   # illust...
   # font is the implementation depends implementation.
-  op +renderFont[type type]() : Texture
+  op +renderFont[type type]() ::
 
-type PlayMovie[def color, def driver] : Texture[color]
-  ctor()
-  op <<play!() : Texture
+type PlayMovie[def color, def driver] : Texture[color] :
+  ctor() ::
+  op <<play!() ::
 
 # Widgets: dom xml base. referes w3c minimal set. huge...
 
 # geometry
-type geomIndex : Equation
-fn ker(e : Equation) : Int
-fn dim(e : Equation) : Int
-fn coker(e : Equation) : Int
+type geomIndex : Equation :
+fn ker(e : Equation) : Int :
+fn dim(e : Equation) : Int :
+fn coker(e : Equation) : Int :
   res = dim(e) - ker(e)
-fn jacobi(e : Equation) : Matrix
-fn eigens(e : Equation) : Vector
-fn factor(e : Equation) : Array[Equation]
-fn differentialForm(e : Equation) : Equation
-fn solve(e : Equation) : Equation
-fn approximate(e : Equation, f : Equation) : Equation
-fn poincare(e: Equation, f : Equation) : Equation
-# fn render(e : Equation) : Vector[Vector ...]
+fn jacobi(e : Equation) : Matrix :
+fn eigens(e : Equation) : Vector :
+fn factor(e : Equation) : Array[Equation] :
+fn differentialForm(e : Equation) : Equation :
+fn solve(e : Equation) : Equation :
+fn approximate(e : Equation, f : Equation) : Equation :
+fn poincare(e: Equation, f : Equation) : Equation :
+# fn render(e : Equation) : Vector[Vector ...] :
 
-type SoundBuffer : Vector
-type SoundGeom
-type Instruments
+type SoundBuffer : Vector :
+type SoundGeom ::
+type Instruments ::
 

@@ -1,162 +1,162 @@
 load Meta.s
+# 1d: vector, 2d: matrix, 3d: tensor, 4d: vector[tensor].
 
-type Vector[def type, def index, def Array = Array] : "Vector" :
-  def vector : Vector[type, index]
+type Vector[def type, def index, def Array = Array] : "Vector"
+  def vector : Vector[type, index] :
   e : Array[type]
-  ctor(const index, const type e0)
-  ctor(op ier(idx : index, entity : type) : void) : vector
-  op  [] (const index)        : type
-  op  [] (const index)  const : const type
-  op  [] (const index, const index)        : vector
-  op  [] (const index, const index)  const : const vector
-  op  friend bool
-  op  -  ()             const : vector
-  op  *dot (const vector) const : type
-  op  != (const vector) const : bool
-  op  =  (vector)       : vector
-  op  =  (const vector) : vector
-  op  += (const vector) : vector
-  op  -= (const vector) : vector
-  op  *=  (const type)   : vector
-  op  **= (const type)   : vector
-  op  /=  (const type)   : vector
-  op  %=  (const type)   : vector
-  def less() : bool
+  ctor(const index, const type e0) ::
+  ctor(op ier(idx : index, entity : type) : void) : vector :
+  op  [] (const index)        : type :
+  op  [] (const index)  const : const type :
+  op  [] (const index, const index)        : vector :
+  op  [] (const index, const index)  const : const vector :
+  op  friend bool ::
+  op  -  ()             const : vector :
+  op  *dot (const vector) const : type :
+  op  != (const vector) const : bool :
+  op  =  (vector)       : vector :
+  op  =  (const vector) : vector :
+  op  += (const vector) : vector :
+  op  -= (const vector) : vector :
+  op  *=  (const type)   : vector :
+  op  **= (const type)   : vector :
+  op  /=  (const type)   : vector :
+  op  %=  (const type)   : vector :
+  def less() : bool :
 
-type Matrix[def type, def index0, def Array = Array] : "Matrix" :
-  def matrix : Matrix[type, index0]
-  def vector : Vector[type, index0]
-  def index  : Complex[index0]
-  _e : Array[vector]
-  ctor(const index, const type e0) : void
-  op  []row(const index0) : vector
-  op  []row(const index0) const : const vector
-  op  []setCol(const index0, const vector) : void
-  op  []col(const index0) const : const vector
-  op  [] (const index)       : type
-  op  [] (const index) const : const type
-  op  [] (const index, const index)       : type
-  op  [] (const index, const index) const : const type
-  op  !  ()             const : bool
-  op  -  ()             const : matrix
-  op  *  (const vector) const : vector
-  op  *  (const matrix) const : matrix
-  op  ** (const type)   const : matrix
-  op  <d  (const matrix) const : bool
-  op  != (const vector) const : bool
-  op  =  (matrix)       : matrix
-  op  =  (const matrix) : matrix
-  op  += (const matrix) : matrix
-  op  -= (const matrix) : matrix
-  op  *= (const type)   : matrix
+type Matrix[def type, def index0, def Array = Array] : "Matrix"
+  def matrix : Matrix[type, index0] :
+  def vector : Vector[type, index0] :
+  def index  : Complex[index0] :
+  _e : Array[vector] :
+  ctor(const index, const type e0) : void :
+  op  []row(const index0) : vector :
+  op  []row(const index0) const : const vector :
+  op  []setCol(const index0, const vector) : void :
+  op  []col(const index0) const : const vector :
+  op  [] (const index)       : type :
+  op  [] (const index) const : const type :
+  op  [] (const index, const index)       : type :
+  op  [] (const index, const index) const : const type :
+  op  !  ()             const : bool :
+  op  -  ()             const : matrix :
+  op  *  (const vector) const : vector :
+  op  *  (const matrix) const : matrix :
+  op  ** (const type)   const : matrix :
+  op  <d  (const matrix) const : bool :
+  op  != (const vector) const : bool :
+  op  =  (matrix)       : matrix :
+  op  =  (const matrix) : matrix :
+  op  += (const matrix) : matrix :
+  op  -= (const matrix) : matrix :
+  op  *= (const type)   : matrix :
 
-fn Eigen(const Matrix, Matrix, Matrix) : bool
-fn Eigen(const Matrix, const Matrix, Matrix, Matrix, Matrix) : bool
-fn LU(const Matrix, Matrix, Matrix) : bool
-fn Cholesky(const Matrix, Matrix)   : bool
-fn QR(const Matrix, Matrix, Matrix) : bool
-fn FullQR(const Matrix, Matrix, Matrix) : bool
-fn Schur(const Matrix, Matrix, Matrix) : bool
-fn SVD(const Matrix, Matrix, Vector, Matrix) : bool
-fn GSVD(const Matrix, const Matrix, Matrix, Matrix, Matrix) : bool
-fn log(const Matrix, const type) : Matrix
-fn exp(const Matrix, const type) : Matrix
-fn pow(const Matrix, const type) : Matrix
-fn pseudoInverse(const Matrix) : Matrix
-fn feasible(const Matrix, const Vector) : bool
-fn LP(const Matrix, const Vector, const Vector) : Vector
-fn QP(const Matrix, const Vector, const Matrix, const Vector) : Vector
-fn Fourier(const Vector, const bool) : Vector
+fn Eigen(const Matrix, Matrix, Matrix) : bool :
+fn Eigen(const Matrix, const Matrix, Matrix, Matrix, Matrix) : bool :
+fn LU(const Matrix, L: Matrix, U: Matrix) : bool :
+fn Cholesky(const Matrix, C: Matrix)   : bool :
+fn QR(const Matrix, Qt: Matrix, R: Matrix) : bool :
+fn Schur(const Matrix, U: Matrix, A: Matrix) : bool :
+fn SVD(const Matrix, Ut: Matrix, w: Vector, V: Matrix) : bool :
+fn SVD(A: const Matrix, B: const Matrix, Ut: Matrix, V0: Matrix, V1: Matrix) : bool :
+fn log(const Matrix) : Matrix :
+fn exp(const Matrix) : Matrix :
+fn pow(const Matrix, p: const type) : Matrix :
+fn pseudoInverse(const Matrix) : Matrix :
+fn feasible(A: const Matrix, b: const Vector, interior: Vector) : bool :
+fn LP(A: const Matrix, b: const Vector, c: const Vector) : Vector :
+fn QP(const Matrix, const Vector, const Matrix, const Vector) : Vector :
+fn Fourier(v: const Vector, inverse: const bool) : Vector :
 # if vector size is prime, not fast one.
-fn FastFourier(const Vector, const bool) : Vector
-fn Diff(const Vector, const bool) : Vector
+fn FastFourier(v: const Vector, inverse: const bool) : Vector
+fn Diff(v: const Vector, integrate: const bool) : Vector
 fn MotherWavelet(const Vector, const Vector, const bool) : Vector
 
-type Complex[def type] : Object : "Complex plane point" :
-  def complex : Complex[type]
-  _real : type
-  _imag : type
-  zero  : static(type(0))
-  ctor()   : void
-  ctor(e0 : (type | const type), e1 : (type | const type) = zero) : void
-  ctor(e  : (complex | const complex))  : void
-  op []  (const Int) : type
-  op !   () const    : bool
-  op ~   () const    : complex
-  op -   () const    : complex
-  op *   (const complex) const : complex
-  op **  (const complex) const : complex
-  op /   (const complex) const : complex
-  op !=  (const complex) const : bool
-  op &&  (const complex) const : bool
-  op ||  (const complex) const : bool
-  op =   (complex)       : complex
-  op =   (const complex) : complex
-  op +=  (const complex) : complex
-  op -=  (const complex) : complex
-  op /=  (const complex) : complex
-  op /=  (const type) : complex
+type Complex[def type] : Object : "Complex plane point"
+  def complex : Complex[type] :
+  _real : type :
+  _imag : type :
+  zero  : static(type(0)) :
+  ctor() ::
+  ctor(e0 : (type | const type), e1 : (type | const type) = zero) ::
+  ctor(e  : (complex | const complex)) ::
+  op []  (const Int) : type :
+  op !   () const    : bool :
+  op ~   () const    : complex :
+  op -   () const    : complex :
+  op *   (const complex) const : complex :
+  op **  (const complex) const : complex :
+  op /   (const complex) const : complex :
+  op !=  (const complex) const : bool :
+  op &&  (const complex) const : bool :
+  op ||  (const complex) const : bool :
+  op =   (complex)       : complex :
+  op =   (const complex) : complex :
+  op +=  (const complex) : complex :
+  op -=  (const complex) : complex :
+  op /=  (const complex) : complex :
+  op /=  (const type) : complex :
 
-fn abs(const Complex) : type
-fn arg(const Complex) : type
+fn abs(const Complex) : type :
+fn arg(const Complex) : type :
 
-type Quaternion[def type] : Object : "Quarternion space point" :
-  def quat : Quaternion[type]
-  _r1 : type
-  _r2 : type
-  _r3 : type
-  _r4 : type
-  ctor() : void
-  ctor(e : (type | const type)) : void
-  ctor(e : (Complex[type] | const Complex[type]))       : void
-  ctor((type | const type), (type | const type), (type | const type), (type | const type)) : void
-  ctor((Complex[type] | const Complex[type]), (Complex[type] | const Complex[type])) : void
-  op []  (const Int) : type
-  op !   () const    : bool
-  op ~   () const    : quat
-  op -   () const    : quat
-  op *   (const quat) const : quat
-  op **  (const quat) const : quat
-  op /   (const quat) const : quat
-  op +   (const quat) const : quat
-  op -   (const quat) const : quat
-  op !=  (const quat) const : bool
-  op &&  (const quat) const : bool
-  op ||  (const quat) const : bool
-  op =   (quat)       : quat
-  op =   (const quat) : quat
-  op +=  (const quat) : quat
-  op -=  (const quat) : quat
-  op /=  (const type) : quat
+type Quaternion[def type] : Object : "Quarternion space point"
+  def quat : Quaternion[type] :
+  _r1 : type :
+  _r2 : type :
+  _r3 : type :
+  _r4 : type :
+  ctor() ::
+  ctor(e : (type | const type)) ::
+  ctor(e : (Complex[type] | const Complex[type])) ::
+  ctor((type | const type), (type | const type), (type | const type), (type | const type)) ::
+  ctor((Complex[type] | const Complex[type]), (Complex[type] | const Complex[type])) ::
+  op []  (const Int) : type :
+  op !   () const    : bool :
+  op ~   () const    : quat :
+  op -   () const    : quat :
+  op *   (const quat) const : quat :
+  op **  (const quat) const : quat :
+  op /   (const quat) const : quat :
+  op +   (const quat) const : quat :
+  op -   (const quat) const : quat :
+  op !=  (const quat) const : bool :
+  op &&  (const quat) const : bool :
+  op ||  (const quat) const : bool :
+  op =   (quat)       : quat :
+  op =   (const quat) : quat :
+  op +=  (const quat) : quat :
+  op -=  (const quat) : quat :
+  op /=  (const type) : quat :
 
-type CayleyHamilton[def type, def base] : Object : "Cayley Dickson construction" :
-  def ch : CayleyHamilton[base]
-  _r1 : type
-  _r2 : type
-  ctor(e : (type | const type)) : void
-  ctor(e : (CayleyHamilton[type] | const CayleyHamilton[type])) : void
-  op []  (const Int) : type
-  op !   () const    : bool
-  op ~   () const    : ch
-  op -   () const    : ch
-  op *   (const ch) const : ch
-  op **  (const ch) const : ch
-  op /   (const ch) const : ch
-  op !=  (const ch) const : bool
-  op &&  (const ch) const : bool
-  op ||  (const ch) const : bool
-  op =   (ch)       : ch
-  op =   (const ch) : ch
-  op +=  (const ch) : ch
-  op -=  (const ch) : ch
-  op /=  (const type) : ch
+type CayleyHamilton[def type, def base] : Object : "Cayley Dickson construction"
+  def ch : CayleyHamilton[base] :
+  _r1 : type :
+  _r2 : type :
+  ctor(e : (type | const type)) ::
+  ctor(e : (CayleyHamilton[type] | const CayleyHamilton[type])) ::
+  op []  (const Int) : type :
+  op !   () const    : bool :
+  op ~   () const    : ch :
+  op -   () const    : ch :
+  op *   (const ch) const : ch :
+  op **  (const ch) const : ch :
+  op /   (const ch) const : ch :
+  op !=  (const ch) const : bool :
+  op &&  (const ch) const : bool :
+  op ||  (const ch) const : bool :
+  op =   (ch)       : ch :
+  op =   (const ch) : ch :
+  op +=  (const ch) : ch :
+  op -=  (const ch) : ch :
+  op /=  (const type) : ch :
 
 # Huge...
 
 # Finite Element:
-type FE[def type, op delegate(const Vector, const Vector) : type] : Array[Vector]
+type FE[def type, op delegate(const Vector, const Vector) : type] : Array[Vector] :
 
-fn countupVolume(in : Array[Array[type] ], cut : Array[type], size : Int) : Array[type]
-fn countupLattice(in : Array[Array[type] ], cut : Array[type], size : Int) : Array[type]
-fn generateNormalDist(size : Int) : Array[type]
+fn countupVolume(in : Array[Array[type] ], cut : Array[type], size : Int) : Array[type] :
+fn countupLattice(in : Array[Array[type] ], cut : Array[type], size : Int) : Array[type] :
+fn generateNormalDist(size : Int) : Array[type] :
 
