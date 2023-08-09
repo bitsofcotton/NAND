@@ -2,7 +2,7 @@ load Meta.n
 
 # Wait, pipe, etc...
 # entity is in Shift/...
-type Chip : Object # "chip root"
+type Chip : Object # chip root
   _tick : Int(0)
   op ++ ()
     # emulation

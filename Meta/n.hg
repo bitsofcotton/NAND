@@ -1,7 +1,7 @@
 load Meta.s
 # 1d: vector, 2d: matrix, 3d: tensor, 4d: vector[tensor].
 
-type Vector[def type, def index, def Array = Array] # "Vector"
+type Vector[def type, def index, def Array = Array] # Vector
   def vector : Vector[type, index]
   e : Array[type]
   ctor(const index, const type e0)
@@ -24,7 +24,7 @@ type Vector[def type, def index, def Array = Array] # "Vector"
   op  %=  (const type)   : vector
   def less() : bool
 
-type Matrix[def type, def index0, def Array = Array] # "Matrix"
+type Matrix[def type, def index0, def Array = Array] # Matrix
   def matrix : Matrix[type, index0]
   def vector : Vector[type, index0]
   def index  : Complex[index0]
@@ -72,7 +72,7 @@ fn FastFourier(v: const Vector, inverse: const bool) : Vector
 fn Diff(v: const Vector, integrate: const bool) : Vector
 fn MotherWavelet(const Vector, const Vector, const bool) : Vector
 
-type Complex[def type] : Object # "Complex plane point"
+type Complex[def type] : Object # Complex plane point
   def complex : Complex[type]
   _real : type
   _imag : type
@@ -100,7 +100,7 @@ type Complex[def type] : Object # "Complex plane point"
 fn abs(const Complex) : type
 fn arg(const Complex) : type
 
-type Quaternion[def type] : Object # "Quarternion space point"
+type Quaternion[def type] : Object # Quarternion space point
   def quat : Quaternion[type]
   _r1 : type
   _r2 : type
@@ -129,7 +129,7 @@ type Quaternion[def type] : Object # "Quarternion space point"
   op -=  (const quat) : quat
   op /=  (const type) : quat
 
-type CayleyHamilton[def type, def base] : Object # "Cayley Dickson construction"
+type CayleyHamilton[def type, def base] : Object # Cayley Dickson construction
   def ch : CayleyHamilton[base]
   _r1 : type
   _r2 : type
