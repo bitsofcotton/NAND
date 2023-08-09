@@ -1,15 +1,11 @@
 # NAND(Never finish)
 Natural tinier compiler which code with natural tinier comments and licenses on a file.
-Aims to add one of a code stack s.t. tiny code amount on both compiler/library with comment connected (ideally one can read whole easily) (we aim maximum module cohesion with moderate readability) bases on not the latest but a modern C compiler. However, this repository pefer explicit description.
 
-A randtools optimizer is valid in making invariant meaning, however is not valid in output complexity meaning. So if we decide to use safe method, no loop order optimization can be accepted, if we decide to believe invariant meaning strong whole program optimization is accepted.
+A randtools optimizer is valid in making invariant meaning, however is not valid in output complexity meaning. So if we decide to use safe method, no hard optimization can be accepted, if we decide to believe invariant meaning strong, whole program optimization is accepted.
 
 This aims to compile nand source into C source and check the output by hand or eyes. Otherwise, they can even infect if whole system is infected condition. (All we can do is to transcode and check the transformed or compiled source by hands or eyes even any of the code patches, or, we can do only to crypt them.)
 
-This isn't breaks the original system infection if compiler or interpreter or system are infected condition.
-So the source code this repository have is observed from some another since before you download this repository, so if the infectioner implant has some code depends on this repo, we cannot avoid infection chain at all.
-
-# Syntax concrete (3).
+# Syntax concrete (4).
 * load is omitted in root context.
 * * name : (uri|path.path...)(.type|.function)?
 * * import once, no need include guard.
@@ -28,14 +24,12 @@ So the source code this repository have is observed from some another since befo
 * * * a is function returned reference.
 * * a : (fn ...)(...) ...
 * * * initialize with lambda function.
-* * a : b (# license? comment)?
-* * * comment and license.
 * * a : b \\n\\t ...
 * * * variable block.
-* def name : definition (# license? comment)?
+* def name : definition
 * * each operand isn't omittable.
 * * block-wise.
-* (inline|fn) name(name : type : "comment"?, ...) : type (# license? comment?)?
+* (inline|fn) name(name : type : "comment"?, ...) : type
 * * function, also lambda be. from awesome scala.
 * * function name! returns reference.
 * * type can specify (type \| ... \| type), also be able to specify template omitted.
@@ -44,7 +38,7 @@ So the source code this repository have is observed from some another since befo
 * * * from awesome embedded C language.
 * inverse(function, result) : worst case brute force inverse function.
 * typeof, typeid
-* type classname : inherit (# license? comment?)?
+* type classname : inherit
 * * Only one class inheritation is accepted. Treat as arithmetic ones.
 * * a +=item val
 * * * operator with some extension to C.
@@ -57,7 +51,9 @@ So the source code this repository have is observed from some another since befo
 * * ctor, dtor
 * * * from some awesome programming languages.
 * * enter, leave
-* * * every variable change, we call this first / last on all of the functions in type.
+* * * every operator call they change class variables, we call this first / last on all of the destructive functions in type.
+* * call, return
+* * * every operator call, we call this first / last on all of the functions in type.
 * * only variable/def/ctor/dtor/friend/enter/leave/operator can be defined in type block. only operator we can specify return type others auto generated with this or void, we can specify leaf explicitly in another case.
 * * needs super function explicit to call super functions, not to be auto called.
 * * this and leaf (end of leaf of the object) and super object references.
@@ -79,6 +75,9 @@ So the source code this repository have is observed from some another since befo
 * * * stop execution or compilation if x is false.
 * * * we can override this with assert function redefinition in execution time.
 * \# will treat line after them as a comment.
+* * # license? comment...
+* .
+* * close all bras on the sentense.
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
@@ -93,34 +92,6 @@ Except some of the special flows especially initialize/error flow, I don't know 
 But, it would be greately appreciated if you know the methods reducing source code other than along with preparing data nor how to treat data in the codes.
 
 # Tips
-After strongly optimized program, any m-output n-input program can be described as O(mn\*f(L)) arithmetic calculation time, and for parallel computing, O(f(L)), which L can be O(lg(n)) if we describe m, n as a bit. So we only focus on simplicity itself strong. (However, compiletime speed is very heavy.)
-
-# Obscure tips
-Thus above, if the program description only needs linear to memory size phenomenon, there's also apprehension to collision of algorithms they also caused by compile alike machine learning phenomenon. We might avoid this by selection of the phenomenon, however, in totally, we cannot. So in such case, we can try to compile them with small enough parts and collection of them nor compile before each compute on same machine, but even in their case, it is obscure it is valid or not on real raw meaning.
--&gt; This isn't critical because the invariant has multiple of the calculation
-operand real value patterns as a one expression.
-However, if there's a glitches s.t. multiple invariants into unsplittable
-one dimension causes glitches on the computers.
-
-# Tips on optimizing
-We should use fractional type with sqrt-added field on the optimization
-calculation. Also, we need some of the large accuracy on them.
-So even we optimize 64-bit 2-term operations, we need many of the time.
-So, we need divide and conquer method for general complemented calculations.
-In C program with no memory reference, we only need 2 term optimizers, and
-connect the first digit matrices block accurate method, then,
-we get the last large matrix.
-Otherwise, if some of the 3 or more term operators hardly depends on the
-each of the operand, we need to optimize them as a whole.
-
-# Things undone.
-This repository has NO materialized implementation.
-There exists huge fields they have important materials.
-
-# Control directory
-We cram the scrapped delusion which all the things we want supported by computer for now into Control directory (can be different from yours). Some of the future, this categorize can be changed.
-
-# Tips
 Second of the method to reduce function code is to match same-result algorithms as only one code.
 This is especially in sort algorithms, however, to reduce such codes, we need to check by hands now.
 So we need to do them only library code as maximum compressed and functional enough ones.
@@ -129,4 +100,11 @@ So there's many libraries exists doing this.
 # Tips
 To exclude same... from perspective on algorithm, we only get in/output similarity or algorithm similarity itself.
 So we need same from perspective on data to exclude multiple description writing on the code. However, this is already done by some of the known ongoing libraries s.t. bison/json for best practice. So there isn't exist new field for us (however, there could be another way for another peroson... eg. programs for the web).
+
+# Things undone.
+This repository has NO materialized implementation.
+There exists huge fields they have important materials.
+
+# Control directory
+We cram the scrapped delusion which all the things we want supported by computer for now into Control directory (can be different from yours). Some of the future, this categorize can be changed.
 
