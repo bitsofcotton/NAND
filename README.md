@@ -75,7 +75,7 @@ This aims to compile nand source into C source and check the output by hand or e
 * * * stop execution or compilation if x is false.
 * * * we can override this with assert function redefinition in execution time.
 * \# will treat line after them as a comment.
-* * # license? comment...
+* * \# license? comment...
 * .
 * * close all bras on the sentense.
 
