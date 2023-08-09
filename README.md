@@ -6,10 +6,10 @@ A randtools optimizer is valid in making invariant meaning, however is not valid
 This aims to compile nand source into C source and check the output by hand or eyes. Otherwise, they can even infect if whole system is infected condition. (All we can do is to transcode and check the transformed or compiled source by hands or eyes even any of the code patches, or, we can do only to crypt them.)
 
 # Syntax concrete (5).
-* load is omitted in root context.
+* load is omitted in root context. (root context only)
 * * name : (uri|path.path...)(.type|.function)?
 * * import once, no need include guard.
-* let is omitted in type and function context, like swift's let:
+* let is omitted in type and function context, like swift's let: (type context and in function context)
 * * a : b
 * * a : const(b)
 * * * a is (non const) reference of b or const reference of b.
@@ -26,16 +26,16 @@ This aims to compile nand source into C source and check the output by hand or e
 * * * initialize with lambda function.
 * * a : b \\n\\t ...
 * * * variable block.
-* def name : definition
+* def name : definition (every context)
 * * each operand isn't omittable.
 * * block-wise.
-* name(name : type (: "comment")?, ...) : (inline)? type
+* name(name : type (: "comment")?, ...) : (inline)? type (root context and type context)
 * * function, also lambda be. from awesome scala.
 * * function name! returns reference.
 * * with calling function, we must specify the variable name as: name(name = val, ...)
 * * no return mnemonic, instead of them, reserved "res" variable.
 * * from awesome embedded C language.
-* type classname : inherit
+* type classname : inherit (root context only)
 * * Only one class inheritation is accepted. Treat as arithmetic ones.
 * * a +=item val
 * * * operator with some extension to C.
