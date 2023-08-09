@@ -2,62 +2,62 @@ load Meta.n
 
 # Wait, pipe, etc...
 # entity is in Shift/...
-type Chip : Object : "chip root"
-  _tick : Int(0) :
-  op ++ () ::
+type Chip : Object # "chip root"
+  _tick : Int(0)
+  op ++ ()
     # emulation
   # control, errata, each chip interface.
 
-type Status[type] : Matrix[type] :
-  ctor(json : JSON) ::
+type Status[type] : Matrix[type]
+  ctor(json : JSON)
     
-  dtor() ::
+  dtor()
     
-  op ++!(s : String) : Status :
+  op ++!(s : String) : Status
 
 # entity is in Shift/...
-type Mnemonic : ... :
-  ctor() ::
-  dtor() ::
-  op ==() ::
+type Mnemonic : ...
+  ctor()
+  dtor()
+  op ==()
 
-fn optimizeFlow(v : Vector[Mnemonic]) : Vector[Mnemonic] :
-fn compile(v : Vector[Mnemonic]) : Vector[Mnemonic] :
+fn optimizeFlow(v : Vector[Mnemonic]) : Vector[Mnemonic]
+fn compile(v : Vector[Mnemonic]) : Vector[Mnemonic]
 
-type Runner : Object :
-  c2r : Vector[Pair[Mnemonic, Mnemonic]] :
+type Runner : Object
+  c2r : Vector[Pair[Mnemonic, Mnemonic]]
 
-type Perceptron[def type] : Matrix[type] :
-  def vec : Vector[type] :
-  op +=(const vec, const vec) : bool :
+type Perceptron[def type] : Matrix[type]
+  def vec : Vector[type]
+  op +=(const vec, const vec) : bool
     # in
-  op +=(const vec) : bool :
+  op +=(const vec) : bool
     # in
-  op -=(const vec) : vec :
+  op -=(const vec) : vec
     # out
 
 type Optron[def type] : Matrix[type]
-  op +=(const vec, const vec) : bool :
+  op +=(const vec, const vec) : bool
     # in
-  op +=(const vec) : bool :
+  op +=(const vec) : bool
     # in
-  op -=(vec) : vec :
+  op -=(vec) : vec
     # out
 
 type Delayron[def type] : Array
-  op +=(const vec, const vec) : bool :
+  op +=(const vec, const vec) : bool
     # in
-  op +=(const vec) : bool :
+  op +=(const vec) : bool
     # in
-  op -=(vec) : vec :
+  op -=(vec) : vec
     # out
 
 type BlockDiagram[def type] : Array[Perceptron[type]]
   def vec : Vector[type]
-  op +=(const vec, const vec) : bool :
+  op +=(const vec, const vec) : bool
     # in
-  op +=(const vec) : bool :
+  op +=(const vec) : bool
     # in
-  op -=(vec) : vec :
+  op -=(vec) : vec
     # out
 
