@@ -28,7 +28,7 @@ So the source code this repository have is observed from some another since befo
 * * * a is function returned reference.
 * * a : (fn ...)(...) ... :
 * * * initialize with lambda function.
-* * a : b : "comment" : "license"
+* * a : b : "license? comment"?
 * * * comment and license.
 * * a : b : \\n\\t ...
 * * * variable block.
@@ -119,4 +119,14 @@ There exists huge fields they have important materials.
 
 # Control directory
 We cram the scrapped delusion which all the things we want supported by computer for now into Control directory (can be different from yours). Some of the future, this categorize can be changed.
+
+# Tips
+Second of the method to reduce function code is to match same-result algorithms as only one code.
+This is especially in sort algorithms, however, to reduce such codes, we need to check by hands now.
+So we need to do them only library code as maximum compressed and functional enough ones.
+So there's many libraries exists doing this.
+
+# Tips
+To exclude same... from perspective on algorithm, we only get in/output similarity or algorithm similarity itself.
+So we need same from perspective on data to exclude multiple description writing on the code. However, this is already done by some of the known ongoing libraries s.t. bison/json for best practice. So there isn't exist new field for us (however, there could be another way for another peroson... eg. programs for the web).
 
