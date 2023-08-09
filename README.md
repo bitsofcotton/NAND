@@ -14,28 +14,28 @@ So the source code this repository have is observed from some another since befo
 * * name : (uri|path.path...)(.type|.function)?
 * * import once, no need include guard.
 * let is omitted in type and function context, like swift's let:
-* * a : b :
-* * a : const(b) :
+* * a : b
+* * a : const(b)
 * * * a is (non const) reference of b or const reference of b.
 * * * the original variable will not be used like some awesome languages.
-* * a : static(b) :
+* * a : static(b)
 * * * a is initialized by b once in first of execution.
-* * a : auto(b) :
-* * a : type(b) :
-* * a : func(b) :
+* * a : auto(b)
+* * a : type(b)
+* * a : func(b)
 * * * a is instanced object of b
-* * a : func!(b) :
+* * a : func!(b)
 * * * a is function returned reference.
-* * a : (fn ...)(...) ... :
+* * a : (fn ...)(...) ...
 * * * initialize with lambda function.
-* * a : b : "license? comment"?
+* * a : b (# license? comment)?
 * * * comment and license.
-* * a : b : \\n\\t ...
+* * a : b \\n\\t ...
 * * * variable block.
-* def name : definition : "license? comment"
+* def name : definition (# license? comment)?
 * * each operand isn't omittable.
 * * block-wise.
-* (inline|fn) name(name : type : "comment"?, ...) : type : "license? comment"?
+* (inline|fn) name(name : type : "comment"?, ...) : type (# license? comment?)?
 * * function, also lambda be. from awesome scala.
 * * function name! returns reference.
 * * type can specify (type \| ... \| type), also be able to specify template omitted.
@@ -44,7 +44,7 @@ So the source code this repository have is observed from some another since befo
 * * * from awesome embedded C language.
 * inverse(function, result) : worst case brute force inverse function.
 * typeof, typeid
-* type classname : inherit : "license? comment"?
+* type classname : inherit (# license? comment?)?
 * * Only one class inheritation is accepted. Treat as arithmetic ones.
 * * a +=item val
 * * * operator with some extension to C.
@@ -78,7 +78,7 @@ So the source code this repository have is observed from some another since befo
 * * assert(x)
 * * * stop execution or compilation if x is false.
 * * * we can override this with assert function redefinition in execution time.
-* \# will treat line after them as a comment:
+* \# will treat line after them as a comment.
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
