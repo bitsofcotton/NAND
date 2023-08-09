@@ -79,7 +79,7 @@ This aims to compile nand source into C source and check the output by hand or e
 * * val \. element
 * * * in type element lookup.
 * * typeof, typeid
-* * inverse[function](result) : worst case brute force inverse function.
+* * inverse\[function\](result) : worst case brute force inverse function.
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
