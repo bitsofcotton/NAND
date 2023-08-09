@@ -5,7 +5,7 @@ A randtools optimizer is valid in making invariant meaning, however is not valid
 
 This aims to compile nand source into C source and check the output by hand or eyes. Otherwise, they can even infect if whole system is infected condition. (All we can do is to transcode and check the transformed or compiled source by hands or eyes even any of the code patches, or, we can do only to crypt them.)
 
-# Syntax concrete (4).
+# Syntax concrete (5).
 * load is omitted in root context.
 * * name : (uri|path.path...)(.type|.function)?
 * * import once, no need include guard.
@@ -22,22 +22,19 @@ This aims to compile nand source into C source and check the output by hand or e
 * * * a is instanced object of b
 * * a : func!(b)
 * * * a is function returned reference.
-* * a : (fn ...)(...) ...
+* * a : (... : ..., ...)(...) : type ...
 * * * initialize with lambda function.
 * * a : b \\n\\t ...
 * * * variable block.
 * def name : definition
 * * each operand isn't omittable.
 * * block-wise.
-* (inline|fn) name(name : type : "comment"?, ...) : type
+* name(name : type : "comment"?, ...) : inline? type
 * * function, also lambda be. from awesome scala.
 * * function name! returns reference.
-* * type can specify (type \| ... \| type), also be able to specify template omitted.
 * * with calling function, we must specify the variable name as: name(name = val, ...)
 * * no return mnemonic, instead of them, reserved "res" variable.
-* * * from awesome embedded C language.
-* inverse(function, result) : worst case brute force inverse function.
-* typeof, typeid
+* * from awesome embedded C language.
 * type classname : inherit
 * * Only one class inheritation is accepted. Treat as arithmetic ones.
 * * a +=item val
@@ -53,7 +50,7 @@ This aims to compile nand source into C source and check the output by hand or e
 * * enter, leave
 * * * every operator call they change class variables, we call this first / last on all of the destructive functions in type.
 * * call, return
-* * * every operator call, we call this first / last on all of the functions in type.
+* * * every operator call they doesn't change class variables, we call this first / last on all of the non destructive functions in type.
 * * only variable/def/ctor/dtor/friend/enter/leave/operator can be defined in type block. only operator we can specify return type others auto generated with this or void, we can specify leaf explicitly in another case.
 * * needs super function explicit to call super functions, not to be auto called.
 * * this and leaf (end of leaf of the object) and super object references.
@@ -74,10 +71,15 @@ This aims to compile nand source into C source and check the output by hand or e
 * * assert(x)
 * * * stop execution or compilation if x is false.
 * * * we can override this with assert function redefinition in execution time.
-* \# will treat line after them as a comment.
-* * \# license? comment...
-* .
-* * close all bras on the sentense.
+* * \# will treat line after them as a comment.
+* * * \# license? comment...
+* * \.
+* * * close all bras on the sentense.
+* * type can specify (type \| ... \| type), also be able to specify template omitted.
+* * val \. element
+* * * in type element lookup.
+* * typeof, typeid
+* * inverse[function](result) : worst case brute force inverse function.
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
@@ -107,4 +109,9 @@ There exists huge fields they have important materials.
 
 # Control directory
 We cram the scrapped delusion which all the things we want supported by computer for now into Control directory (can be different from yours). Some of the future, this categorize can be changed.
+
+# close readme.md and their fixes
+2023/08/10.
+
+#
 
