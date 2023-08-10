@@ -4,7 +4,7 @@ load Meta.n
 # entity is in Shift/...
 type Chip : Object # chip root
   _tick : Int(0)
-  op ++ ()
+  ++ ()
     # emulation
   # control, errata, each chip interface.
 
@@ -13,51 +13,51 @@ type Status[type] : Matrix[type]
     
   dtor()
     
-  op ++!(s : String) : Status
+  ++!(s : String) : Status
 
 # entity is in Shift/...
 type Mnemonic : ...
   ctor()
   dtor()
-  op ==()
+  ==()
 
-fn optimizeFlow(v : Vector[Mnemonic]) : Vector[Mnemonic]
-fn compile(v : Vector[Mnemonic]) : Vector[Mnemonic]
+optimizeFlow(v : Vector[Mnemonic]) : Vector[Mnemonic]
+compile(v : Vector[Mnemonic]) : Vector[Mnemonic]
 
 type Runner : Object
   c2r : Vector[Pair[Mnemonic, Mnemonic]]
 
 type Perceptron[def type] : Matrix[type]
   def vec : Vector[type]
-  op +=(const vec, const vec) : bool
+  +=(const vec, const vec) : bool
     # in
-  op +=(const vec) : bool
+  +=(const vec) : bool
     # in
-  op -=(const vec) : vec
+  -=(const vec) : vec
     # out
 
 type Optron[def type] : Matrix[type]
-  op +=(const vec, const vec) : bool
+  +=(const vec, const vec) : bool
     # in
-  op +=(const vec) : bool
+  +=(const vec) : bool
     # in
-  op -=(vec) : vec
+  -=(vec) : vec
     # out
 
 type Delayron[def type] : Array
-  op +=(const vec, const vec) : bool
+  +=(const vec, const vec) : bool
     # in
-  op +=(const vec) : bool
+  +=(const vec) : bool
     # in
-  op -=(vec) : vec
+  -=(vec) : vec
     # out
 
 type BlockDiagram[def type] : Array[Perceptron[type]]
   def vec : Vector[type]
-  op +=(const vec, const vec) : bool
+  +=(const vec, const vec) : bool
     # in
-  op +=(const vec) : bool
+  +=(const vec) : bool
     # in
-  op -=(vec) : vec
+  -=(vec) : vec
     # out
 

@@ -4,83 +4,81 @@ type Int[0] : # Root. Auto generated.
   def invertible  : 0
   def abel        : 0
   def commutative : 0
-  op  !  ()     : bool # Auto generated.
+  !  ()     : inline bool # Auto generated.
     res = ! bool(leaf)
-  op  ++ ()     : const typeof(leaf) # Auto generated.
-    res = leaf.zorn()
-  op  ++ (void) : typeof(leaf) # Auto generated.
+  ++ ()     : inline const typeof(leaf) # Auto generated.
+    leaf ++
+  ++ (void) : inline typeof(leaf) # Auto generated.
     work : auto(leaf)
     ++ leaf
     res = work
-  op  -- (void) : typeof(leaf) # Auto generated.
+  -- (void) : inline typeof(leaf) # Auto generated.
     work : auto(leaf)
     -- leaf
     res = work
-  op  -  () const : typeof(leaf) # Auto generated.
+  -  () const : inline typeof(leaf) # Auto generated.
     res = ++ auto(~ leaf)
-  op  *   (src : const typeof(leaf)) const : typeof(leaf) # Auto generated.
+  *   (src : const typeof(leaf)) const : inline typeof(leaf) # Auto generated.
     res = auto(leaf) *= src
-  op  **  (src : const typeof(leaf)) const : typeof(leaf) # Auto generated.
+  **  (src : const typeof(leaf)) const : inline typeof(leaf) # Auto generated.
     res = auto(leaf) **= src
-  op  /  (src : const typeof(leaf)) const : typeof(leaf) # Auto generated.
+  /  (src : const typeof(leaf)) const : inline typeof(leaf) # Auto generated.
     res = auto(leaf) /= src
-  op  %  (src : const typeof(leaf)) const : typeof(leaf) # Auto generated.
+  %  (src : const typeof(leaf)) const : inline typeof(leaf) # Auto generated.
     res = leaf - (leaf / src) * src
-  op  +  (src : const typeof(leaf)) const : typeof(leaf) # Auto generated.
+  +  (src : const typeof(leaf)) const : inline typeof(leaf) # Auto generated.
     res = auto(leaf) += src
-  op  -  (src : const typeof(leaf)) const : typeof(leaf) # Auto generated.
+  -  (src : const typeof(leaf)) const : inline typeof(leaf) # Auto generated.
     res = auto(leaf) -= src
-  op  << [def type] (src : const type) const : typeof(leaf) # Auto generated.
+  << [def type] (src : const type) const : inline typeof(leaf) # Auto generated.
     res = auto(leaf) <<= src
-  op  >> [def type] (src : const type) const : typeof(leaf) # Auto generated.
+  >> [def type] (src : const type) const : inline typeof(leaf) # Auto generated.
     res = auto(leaf) >>= src
-  op  <  (src : const typeof(leaf)) const : bool # Auto generated.
-    res = leaf.less(src)
-  op  <= (src : const typeof(leaf)) const : bool # Auto generated.
+  <  (src : const typeof(leaf)) const : inline bool # Auto generated.
+    res = ! (this >= src)
+  <= (src : const typeof(leaf)) const : inline bool # Auto generated.
     res = this < src || this == src
-  op  >  (src : const typeof(leaf)) const : bool # Auto generated.
+  >  (src : const typeof(leaf)) const : inline bool # Auto generated.
     res = ! (this <= src)
-  op  >= (src : const typeof(leaf)) const : bool # Auto generated.
+  >= (src : const typeof(leaf)) const : inline bool # Auto generated.
     res = ! (this <  src)
-  op  == (src : const typeof(leaf)) const : bool # Auto generated.
+  == (src : const typeof(leaf)) const : inline bool # Auto generated.
     res = ! (this != src)
-  op  != (src : const typeof(leaf)) const : bool # Auto generated.
+  != (src : const typeof(leaf)) const : inline bool # Auto generated.
     res = ! (this == src)
-  op  &  (src : const typeof(leaf)) const : typeof(leaf) # Auto generated.
+  &  (src : const typeof(leaf)) const : inline typeof(leaf) # Auto generated.
     res = auto(leaf) &= src
-  op  ^  (src : const typeof(leaf)) const : typeof(leaf) # Auto generated.
+  ^  (src : const typeof(leaf)) const : inline typeof(leaf) # Auto generated.
     res = auto(leaf) ^= src
-  op  |  (src : const typeof(leaf)) const : typeof(leaf) # Auto generated.
+  |  (src : const typeof(leaf)) const : inline typeof(leaf) # Auto generated.
     res = auto(leaf) |= src
-  op  && (src : const typeof(leaf)) const : bool # Auto generated.
+  && (src : const typeof(leaf)) const : inline bool # Auto generated.
     res = bool(leaf) && bool(src)
-  op  || (src : const typeof(leaf)) const : bool # Auto generated.
+  || (src : const typeof(leaf)) const : inline bool # Auto generated.
     res = bool(leaf) || bool(src)
-  op  += (src : const typeof(leaf)) const : const typeof(leaf) # Auto generated.
+  += (src : const typeof(leaf)) const : inline const typeof(leaf) # Auto generated.
     leaf = leaf + src
-  op  -= (src : const typeof(leaf)) const : const typeof(leaf) # Auto generated.
+  -= (src : const typeof(leaf)) const : inline const typeof(leaf) # Auto generated.
     leaf += - src
-  op  *= (src : const typeof(leaf)) const : const typeof(leaf) # Auto generated.
+  *= (src : const typeof(leaf)) const : inline const typeof(leaf) # Auto generated.
     leaf = leaf * src
-  op  **= (src : const typeof(leaf)) const : const typeof(leaf) # Auto generated.
+  **= (src : const typeof(leaf)) const : inline const typeof(leaf) # Auto generated.
     leaf = leaf ** src
-  op  /= (src : const typeof(leaf)) const : const typeof(leaf) # Auto generated.
+  /= (src : const typeof(leaf)) const : inline const typeof(leaf) # Auto generated.
     leaf = leaf / src
-  op  %= (src : const typeof(leaf)) const : const typeof(leaf) # Auto generated.
+  %= (src : const typeof(leaf)) const : inline const typeof(leaf) # Auto generated.
     leaf = leaf % src
-  op  <<= [def type] (src : const type) const : const typeof(leaf) # Auto generated.
+  <<= [def type] (src : const type) const : inline const typeof(leaf) # Auto generated.
     leaf = leaf << src
-  op  >>= [def type] (src : const type) const : const typeof(leaf) # Auto generated.
+  >>= [def type] (src : const type) const : inline const typeof(leaf) # Auto generated.
     leaf = leaf >> src
-  op  &= (src : const typeof(leaf)) const : const typeof(leaf) # Auto generated.
+  &= (src : const typeof(leaf)) const : inline const typeof(leaf) # Auto generated.
     leaf = leaf & src
-  op  ^= (src : const typeof(leaf)) const : const typeof(leaf) # Auto generated.
+  ^= (src : const typeof(leaf)) const : inline const typeof(leaf) # Auto generated.
     leaf = leaf ^ src
-  op  |= (src : const typeof(leaf)) const : const typeof(leaf) # Auto generated.
+  |= (src : const typeof(leaf)) const : inline const typeof(leaf) # Auto generated.
     leaf = leaf | src
   # stub for leafs.
-  def zorn()
-  def less(const leaf)
   def each()
   def progress()
   def is_progress()
@@ -99,18 +97,18 @@ type Object : Int[0] # Object
 type bool   : Int[__pointer_bits__] # bool
 type int    : Int[__pointer_bits__] # synonym
 
-fn Export(def) : void # Export as library
-fn Import(def) : bool # Import library
-fn Call(def, Array)   : Int # Call exterior
-fn Signal(Int, Int)   : Int # Signal
-fn SignalHandler(Int, Int) : Int # Signal
-fn Thread(fn delegate() : Int) : Int # Thread
-fn mcopy(int dst, int src) : void # mem copy
+Export(def) : void # Export as library
+Import(def) : bool # Import library
+Call(def, Array)   : Int # Call exterior
+Signal(Int, Int)   : Int # Signal
+SignalHandler(Int, Int) : Int # Signal
+Thread(delegate() : Int) : Int # Thread
+mcopy(int dst, int src) : void # mem copy
 
 type Range[def type, type lower, type upper, type default] : type # Restricted type
-  ctor()
+  ctor() : inline typeof(leaf)
     this = default
-  leave()
+  leave() : inline typeof(leaf)
     this < lower ? this = lower
     upper < this ? this = upper
 
@@ -125,8 +123,8 @@ type Pool[Int size] : Object # Root memory pool that unique on process
   _ptr : Int # Pointer on the memory
   ctor()
   dtor()
-  op +=assign[def type](size : const Int) : type
-  op -=release[def type](type) : bool
+  +=assign[def type](size : const Int) : type
+  -=release[def type](type) : bool
   # Linked list*
 
 type PoolDisk[Int size] : Object # Disk data pool
@@ -134,55 +132,55 @@ type PoolDisk[Int size] : Object # Disk data pool
   _disk : File # disk
   ctor()
   dtor()
-  op +=assign[def type](const Int as) : type
-  op -=release[def type](type) : bool
+  +=assign[def type](const Int as) : type
+  -=release[def type](type) : bool
 
 type Array[def type, def p = Pool, p pool] : Object # Array on pool
   _ptr : Int
   ctor()
   ctor(Int size)
-  op +=push (p : type) : typeof(this)
-  op -=delete (idx : Int) : typeof(this)
-  op -=pop (idx : Int) : type
-  op [] (const Int idx) : type
-  op +=resize(const Int size, const type init) : void
-  op +=reserve(const Int size) : void
-  op [last] () : type
-  op [size] () : Int
+  +=push (p : type) : typeof(this)
+  -=delete (idx : Int) : typeof(this)
+  -=pop (idx : Int) : type
+  [] (const Int idx) : type
+  +=resize(const Int size, const type init) : void
+  +=reserve(const Int size) : void
+  [last] () : type
+  [size] () : Int
 
 type Sorted[def type] : Array[type] # sorted array indices
   # with heap sort.
   _sort : Array[Int]
   ctor(a : const Array[type]) : void
-  op +=push (p : type) : typeof(this)
-  op -=delete (idx : Int) : typeof(this)
-  op -=pop (idx : Int) : type
-  op [] (const Int idx) : type
-  op +=resize(const Int size, const type init) : void
-  op +=reserve(const Int size) : void
-  op [last] () : type
-  op [size] () : Int
-  op [min] ()  : type
-  op [median] () : type
-  op [max] ()  : type
+  +=push (p : type) : typeof(this)
+  -=delete (idx : Int) : typeof(this)
+  -=pop (idx : Int) : type
+  [] (const Int idx) : type
+  +=resize(const Int size, const type init) : void
+  +=reserve(const Int size) : void
+  [last] () : type
+  [size] () : Int
+  [min] ()  : type
+  [median] () : type
+  [max] ()  : type
 
 type Pair[def type0, def type1] : Object # Pairwise
   def pair : Pair[type0, type1]
   e0 : type0
   e1 : type1
   ctor()
-  ctor(type0 e0, type1 e1)
+  ctor(type0 e0, type1 e1) : inline typeof(leaf)
     this.e0 = e0
     this.e1 = e1
-  op <  (src : const pair) : bool
+  <  (src : const pair) : inline bool
     res = e0 < src.e0 || (e0 == src.e0 && e1 < src.e1)
-  op != (src : const pair) : bool
+  != (src : const pair) : inline bool
     res = e0 != src.e0 || e1 != src.e1
 
 type Map[def typedst, def typesrc] : Sorted[Pair[typedst, typesrc]] # Map
-  op [] (const typedst a) : typesrc
-  op []?(const typedst a) : bool
-  op -=delete(const typedst a) : bool
+  [] (const typedst a) : typesrc
+  []?(const typedst a) : bool
+  -=delete(const typedst a) : inline bool
 
 type Schedule[def schedFunc] : Sorted[Pair[Int, Int]] # Scheduler
 
@@ -196,7 +194,7 @@ type GC[def type] : Pair[type, Int] # GC
   dtor()
 
 type Graph[def type] : Matrix[type] # Graph plotter.
-  fn +=place() : Array
+  +=place() : Array
 
 # implementation depends on implementation, so shift/...
 type Disk[Array = ArrayOnDisk, def lowlayer] : Array # Protocols: extremely huge.
@@ -214,11 +212,11 @@ cerr : ...
 # Huge...
 type BNF[def type] :
 type SGML[def type] :
-fn stemming(t : (Text | const Text)) : Array[...]
+stemming(t : (Text | const Text)) : Array[...]
 
 type Regex[def text] : Object # Regex preceding R.B. ...
   ctor(const text)
-  op ==match (const text) : # XXX
+  ==match (const text) : # XXX
 
 type Gregorious : Object # calender
   unix : Int

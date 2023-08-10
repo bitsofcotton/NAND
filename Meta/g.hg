@@ -16,113 +16,99 @@ type RGB[def type] : Object
   friend Glay()
     # not optimal, we should refer color space in wikipedia.
     res = (r + g + b) / type(3)
-  op -  () : this
-  op != () : this
-  op += () : this
-  def zorn() : this
-  def less() : bool
+  -  () : this
+  != () : this
+  += () : this
   def ensure() : this
   # ...
 
 type RGBA[def type] : Quarternion[type]
   def rgba : Quarternion[type]
-  op -  ()
-  op != ()
-  op += ()
-  def zorn() : this
-  def less() : bool
+  -  ()
+  != ()
+  += ()
   def ensure() : this
 
 type HSV[def type] : Object
   h : type
   s : type
   v : type
-  op -  () : this
-  op != () : this
-  op += () : this
-  def zorn() : this
-  def less() : bool
+  -  () : this
+  != () : this
+  += () : this
   def ensure() : this
 
 type HSB<def type> : Object
   h : type
   s : type
   b : type
-  op -  () : this
-  op != () : this
-  op += () : this
-  def zorn() : this
-  def less() : bool
+  -  () : this
+  != () : this
+  += () : this
   def ensure() : this
 
 type Lab<def type> : Object
   l : type
   a : type
   b : type
-  op -  ()
-  op != ()
-  op += ()
-  def zorn() : this
-  def less() : bool
+  -  ()
+  != ()
+  += ()
   def ensure() : this
 
 type ColorDigital[def type] : Vector[type]
-  op -  ()
-  op != ()
-  op += ()
-  def zorn() : this
-  def less() : bool
+  -  ()
+  != ()
+  += ()
   def ensure() : this
 
-type ColorAnalogue[def type, fn func] : Object
-  op -  ()
-  op != ()
-  op += ()
+type ColorAnalogue[def type, def func] : Object
+  -  ()
+  != ()
+  += ()
   friend ColorDigital[type]()
-  def zorn() : this
-  def less() : bool
   def ensure() : this
 
 type Texture[def color] : Matrix[color]
   ctor(const Complex[Int])
   ctor(xywh : , ** File **)
   dtor() : void
-  op <<store!(xywh : , t : Texture)
-  op -clear!(xywh : , c : color)
-  op +point!(xy : Complex, c : color)
-  op +line!(xy : Complex, c : color)
+  <<store!(xywh : , t : Texture)
+  -clear!(xywh : , c : color)
+  +point!(xy : Complex, c : color)
+  +line!(xy : Complex, c : color)
   # make pattern
-  op +plot!(e : Equaion, xywh)
-  op +splot!(e : Equation, xyzwhz)
-  op +maze!(wh)
+  +plot!(e : Equaion, xywh)
+  +splot!(e : Equation, xyzwhz)
+  +maze!(wh)
   # friend on them???
-  op +tilt(mesh : , xywh)
-  op +poincare!(e : Equation, Matrix)
+  +tilt(mesh : , xywh)
+  +poincare!(e : Equation, Matrix)
   friend SVG(t : Texture)
   # illust...
   # font is the implementation depends implementation.
-  op +renderFont[type type]()
+  +renderFont[type type]()
 
 type PlayMovie[def color, def driver] : Texture[color]
   ctor()
-  op <<play!()
+  <<play!()
 
 # Widgets: dom xml base. referes w3c minimal set. huge...
 
 # geometry
 type geomIndex : Equation
-fn ker(e : Equation) : Int
-fn dim(e : Equation) : Int
-fn coker(e : Equation) : Int
+ker(e : Equation) : Int
+dim(e : Equation) : Int
+coker(e : Equation) : Int
   res = dim(e) - ker(e)
-fn jacobi(e : Equation) : Matrix
-fn eigens(e : Equation) : Vector
-fn factor(e : Equation) : Array[Equation]
-fn differentialForm(e : Equation) : Equation
-fn solve(e : Equation) : Equation
-fn approximate(e : Equation, f : Equation) : Equation
-fn poincare(e: Equation, f : Equation) : Equation
-# fn render(e : Equation) : Vector[Vector ...]
+jacobi(e : Equation) : Matrix
+eigens(e : Equation) : Vector
+factor(e : Equation) : Array[Equation]
+differentialForm(e : Equation) : Equation
+solve(e : Equation) : Equation
+approximate(e : Equation, f : Equation) : Equation
+poincare(e: Equation, f : Equation) : Equation
+# render(e : Equation) : Vector[Vector ...]
 
 type SoundBuffer : Vector
 type SoundGeom
