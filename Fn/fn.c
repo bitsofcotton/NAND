@@ -22,12 +22,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 #define N_DEF   2048
 #define N_CHAIN 2048
 #define N_FUN   2048
+#define N_LOAD  200
 
 typedef struct {
   char* type;
+  char* synonim;
   char* def;
   char* body;
   int prev;
@@ -40,9 +43,10 @@ typedef struct {
 } defchain_t;
 
 typedef struct {
-  char* ret;
-  int*  rtype;
-  char* fun;
+  char*  ret;
+  int*   rtype;
+  char*  func;
+  char*  synonim;
   char** variables;
   int*** vtype;
   defchain_t chain[N_CHAIN];
@@ -155,37 +159,82 @@ void read_deftable(char** lines, const int s_line) {
   }
 }
 
-int main(int argc, char* argv[]) {
-  FILE* file;
+char** loadfile(int* sz, char filename[]) {
+  FILE*  file;
+  char** data;
   int c = 0;
   int lines = 1;
-  char** data;
-  file = fopen(argv[1], "r");
-  if(file == NULL) return - 1;
+  file = fopen(filename, "r");
+  if(file == NULL) {
+    *sz = 0;
+    return 0;
+  }
   while((c = fgetc(file)) != EOF)
     if(c == '\n') lines ++;
   rewind(file);
   data = (char**)calloc(lines, sizeof(char*));
   for(int i = 0; i < lines; i ++) {
-    int cnt = 0;
-    int ws  = 1;
-    int backup;
-    backup = ftell(file);
-    for( ; ; cnt ++) {
+    int cnt;
+    int backup = ftell(file);
+    for(cnt = 0 ; ; cnt ++) {
       int cc;
       cc = fgetc(file);
-      if(cc == EOF || cc == '\n') break;
-      if(cc == '#' && ws) break;
-      if(cc != ' ' || cc != '\t') ws = 0;
+      if(cc == EOF || cc == '\n' || cc == '#') break;
     }
     data[i] = (char*)calloc(cnt + 1, sizeof(char));
     fseek(file, backup, SEEK_SET);
     for(int j = 0; j < cnt; j ++)
       data[i][j] = fgetc(file);
     data[i][cnt] = '\0';
+    while(1) {
+      int cc;
+      cc = fgetc(file);
+      if(cc == EOF || cc == '\n') break;
+    }
   }
   fclose(file);
-  read_deftable(data, lines);
+  *sz = lines;
+  return data;
+}
+
+void do_namespace(char* list[], const int sz, char* stack[], const int sidx) {
+  assert(sidx < N_LOAD);
+  read_deftable(list, sz);
+  for(int i = 0; i < sz; i ++) {
+    // count continuous white space block without first/last.
+    int ws = 0;
+    int cnt = 0;
+    for( ; cnt < strlen(list[i]) && (list[i][cnt] == ' ' || list[i][cnt] == '\t'); cnt ++);
+    for( ; cnt < strlen(list[i]); ws ++) {
+      for( ; cnt < strlen(list[i]) && list[i][cnt] != ' ' && list[i][cnt] != '\t'; cnt ++) ;
+      for( ; cnt < strlen(list[i]) && (list[i][cnt] == ' ' || list[i][cnt] == '\t'); cnt ++);
+    }
+    if(2 < strlen(list[i]) && (list[i][strlen(list[i]) - 1] == ' ' || list[i][strlen(list[i]) - 1] == '\t')) ws --;
+    int colon = 0;
+    for(cnt = 0; cnt < strlen(list[i]); cnt ++) if(list[i][cnt] == ':') colon ++;
+    if(colon == 1 && ws <= 2) {
+      char** file;
+      int    sz;
+      file = loadfile(&sz, /* */ "");
+      do_namespace(file, sz, stack, sidx + 1);
+      // do synonim
+    }
+    // type?
+    // function?
+  }
+  return;
+}
+
+int main(int argc, char* argv[]) {
+  char** file;
+  int    sz;
+  char*  loadstack[N_LOAD];
+  file = loadfile(&sz, argv[1]);
+  loadstack[0] = argv[1];
+  do_namespace(file, sz, loadstack, 0);
+  // XXX: raw load check, no function/type restriction.
+  for(int i = 0; i < sz; i ++)
+    printf("%s\n", file[i]);
   return 0;
 }
 
