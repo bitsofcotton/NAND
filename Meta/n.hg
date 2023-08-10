@@ -1,4 +1,4 @@
-load Meta.s
+s : Meta.s
 # 1d: vector, 2d: matrix, 3d: tensor, 4d: vector[tensor].
 
 type Vector[def type, def index, def Array = Array] # Vector

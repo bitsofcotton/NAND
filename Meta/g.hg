@@ -1,6 +1,6 @@
-load Meta.s
-load Meta.2
-load Meta.n
+s  : Meta.s
+m2 : Meta.2
+mn : Meta.n
 # graphics, geometry.
 
 type Glay[def type] : type
