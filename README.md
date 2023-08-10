@@ -29,7 +29,7 @@ This aims to compile nand source into C source and check the output by hand or e
 * def name : definition (every context)
 * * each operand isn't omittable.
 * * block-wise.
-* name(name : type (: "comment")?, ...) : (inline)? type (root context and type context)
+* name(name : type (: "comment")?, ...) const? : (inline)? type (root context and in function context and type context as operator definition)
 * * function, also lambda be. from awesome scala.
 * * function name! returns reference.
 * * with calling function, we must specify the variable name as: name(name = val, ...)
@@ -113,6 +113,7 @@ We cram the scrapped delusion which all the things we want supported by computer
 
 # close readme.md and their fixes
 2023/08/10.
+2023/08/10 fix some.
 
 #
 
