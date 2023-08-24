@@ -26,6 +26,8 @@
 #define N_DEF   2048
 #define N_CHAIN 2048
 #define N_FUN   2048
+#define N_TYPE  200
+#define N_TYPE_LIST 200
 #define N_LOAD  200
 
 typedef struct {
@@ -52,8 +54,22 @@ typedef struct {
   defchain_t chain[N_CHAIN];
 } deffun_t;
 
+typedef struct {
+  char* type;
+  char* name;
+  char* synonim;
+  char* init;
+} type_1t;
+
+typedef struct {
+  char* typename;
+  char* synonim;
+  type_1t list[N_TYPE_LIST];
+} type_t;
+
 defstr_t   dstr[N_DEF];
 deffun_t   dfun[N_FUN];
+type_t     dtype[N_TYPE];
 int dchain_head[N_FUN];
 int dchain_tail[N_FUN];
 int dchain_size[N_FUN];
@@ -63,6 +79,7 @@ int dstr_size = 0;
 int dfun_head = - 1;
 int dfun_tail = - 1;
 int dfun_size = 0;
+int n_type = 0;
 
 char** append_deftable(char* type, char* def) {
   if(dstr_head < 0 || dstr_tail < 0 || dstr_size == 0) {
@@ -224,6 +241,65 @@ void do_namespace(char* list[], const int sz, char* stack[], const int sidx) {
   }
   return;
 }
+
+/*
+void output_types_c(FILE* out) {
+  bool punch[N_TYPE];
+  bool stagepunch[N_TYPE];
+  int stack[N_TYPE];
+  int pstack = 0;
+  for(int i = 0; i < N_TYPE; i ++) punch[i] = 0;
+  for(int i = 0; i < n_type; i ++) {
+    if(punch[i]) continue;
+    for(int i = 0; i < N_TYPE; i ++) stagepunch[i] = 0;
+    pstack = 0;
+    stack[pstack ++] = i;
+    for(int j = 0; j < n_type; j ++) {
+      if(punch[j] || stagepunch[j]) continue;
+      for(int k = 0; k < N_TYPE; k ++)
+        if(dtype[stack[j]].list[k].type[0]) {
+          // append stack.
+        }
+    }
+    // from last.
+    for(int j = pstack - 1; 0 < j; j --) {
+      punch[stack[j]] = 1;
+      // typedef structs.
+      fputs("typedef struct {", out);
+      // in-types
+      // ket.
+      fprintf(out, "} %s;\n", );
+    }
+  }
+}
+
+void output_func_c(FILE* out, deffun_t* f) {
+  // func type, func def.
+  // K&R???
+  // inline???
+  fprintf(out, "void %s(%s* res, ");
+  for() {
+    fprintf(out, "%s* %s");
+    if() fprintf(out, ", ");
+  }
+  fputs(") {", out);
+  for() {
+    for() {
+      fprintf(out, "%s(");
+      for() {
+        fprintf(out, "%s");
+      }
+    }
+  }
+}
+
+void output_funcs_c(FILE* out, int idx) {
+  // function backtrack.
+  for() {
+    output_func_c(out, &dfun[]);
+  }
+}
+*/
 
 int main(int argc, char* argv[]) {
   char** file;
