@@ -5,66 +5,59 @@ A randtools optimizer is valid in making invariant meaning, however is not valid
 
 This aims to compile nand source into C source and check the output by hand or eyes. Otherwise, they can even infect if whole system is infected condition. (All we can do is to transcode and check the transformed or compiled source by hands or eyes even any of the code patches, or, we can do only to crypt them.)
 
-# Syntax concrete (5).
+# Read some modern language descriptions
+Some of the syntax changes, however, isn't concrete enough.
+
+We should have operators to types as possible as enough transparent ones.
+
+Because some of the state-of-the-art languages says the class capsule as
+problematic ones.
+
+# Syntax concrete (6).
 * load is omitted in root context. (root context only)
-* * name : (uri|path.path...)(.type|.function)?
+* * name : "(uri|path)"(.type|.function)?
 * * import once, no need include guard.
-* let is omitted in type and function context, like swift's let: (type context and in function context)
+* * also, we should use this as define directives.
+* let is omitted
 * * a : b
 * * a : const(b)
 * * * a is (non const) reference of b or const reference of b.
 * * * the original variable will not be used like some awesome languages.
 * * a : static(b)
 * * * a is initialized by b once in first of execution.
-* * a : auto(b)
-* * a : type(b)
 * * a : func(b)
-* * * a is instanced object of b
+* * * a is instanced variable of function.
 * * a : func!(b)
 * * * a is function returned reference.
-* * a : (... : ..., ...)(...) : type ...
-* * * initialize with lambda function.
-* * a : b \\n\\t ...
-* * * variable block.
-* def name : definition (every context)
-* * each operand isn't omittable.
-* * block-wise.
-* name(name : type (: "comment")?, ...) const? : (inline)? type (root context and in function context and type context as operator definition)
-* * function, also lambda be. from awesome scala.
-* * function name! returns reference.
+* * * we should use function definition as entity ones in header files.
+* * a : operator-name(\[...\])\[b\]
+* * * bind operator to type as a variables.
+* name(name : type (: "comment")?, ...) const? : (inline)? type
+* * function, name! returns reference.
 * * with calling function, we must specify the variable name as: name(name = val, ...)
 * * no return mnemonic, instead of them, reserved "res" variable.
 * * from awesome embedded C language.
-* type classname : inherit (root context only)
-* * Only one class inheritation is accepted. Treat as arithmetic ones.
-* * a +=item val
-* * * operator with some extension to C.
-* * * super class operator is also operator +=item .
-* * * if there's no such operator, search super, then, replace with
-* * * root class definition on op += or some with refactored one.
-* * no private/protected, public only.
-* * friend
-* * * in-type friend functions to write down inter-type initializer operator.
-* * ctor, dtor
-* * * from some awesome programming languages.
-* * enter, leave
-* * * every operator call they change class variables, we call this first / last on all of the destructive functions in type.
-* * call, return
-* * * every operator call they doesn't change class variables, we call this first / last on all of the non destructive functions in type.
-* * only friend function and operator in the type we can specify return type, otherwise, returns leaf.
-* * needs super function explicit to call super functions, not to be auto called.
-* special types and variables and flows.
-* * Int\[0\] : void, Object root, no inheritation.
-* * Int\[\_\_pointer_bits\_\_\] inherites Int\[0\]. : only integer class, bool for nonzero.
+* op(\[templates...\])? operator-name : type-name (root context only)
+* * operator collections transparent to types.
+* * enter, leave, call, return
+* * * for each operator call, non const or const first/last operation.
+* * (operators)
+* * * could call another operator classes.
+* Special variables
+* * Int
+* * * only type we have on this, pointer wide, full set of arithmetic/bit ops.
+* * type typename
+* * * use some integer sets as a type.
 * * \_\_pointer_bits\_\_
 * * * number of pointer bit size.
 * * \_\_here\_\_
 * * * information for debugging.
 * * \_\_callgraph\_\_
 * * * information for debugging.
+* Special flows
 * * () ? () : ()
 * * * 3-term operator like in C.
-* * 'for|para ... from ... to ... : label', type.op ++for, type.op \<for function definition is used,
+* * '(for|para)\[operator\] ... from ... to ... : label', operator ++, operator \< function definition is used,
 * * * break label
 * * * when parallel, out of the scope treated as global, in the scope treated as thread variable (except for the reference).
 * * assert(x)
@@ -72,15 +65,11 @@ This aims to compile nand source into C source and check the output by hand or e
 * * * we can override this with assert function redefinition in execution time.
 * * \# will treat line after them as a comment.
 * * * \# license? comment...
-* * \.
-* * * close all bras on the sentense.
 * * type can specify (type \| ... \| type), also be able to specify template omitted.
 * * val \. element
 * * * in type element lookup.
-* * typeof, typeid
-* * inverse\[function\](result) : worst case brute force inverse function.
-* * this, leaf, super
-* * * object reference. in type function, super functions also be.
+* * defined?(...)
+* * * refers name table, returns true or false in first Int type.
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
