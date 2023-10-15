@@ -1,0 +1,67 @@
+s : Meta.s
+# vector operators and the phenomenon collections.
+
+type Vector[def type, def index, def Array = Array] # Vector
+  def vector : Vector[type, index]
+  e : Array[type]
+  ctor(const index, const type e0)
+  ctor(initer(idx : index, entity : type) : void) : vector
+  [] (const index)        : type
+  [] (const index)  const : const type
+  [] (const index, const index)        : vector
+  [] (const index, const index)  const : const vector
+  friend bool
+  -  ()             const : vector
+  *dot (const vector) const : type
+  != (const vector) const : bool
+  =  (vector)       : vector
+  =  (const vector) : vector
+  += (const vector) : vector
+  -= (const vector) : vector
+  *=  (const type)   : vector
+  **= (const type)   : vector
+  /=  (const type)   : vector
+  %=  (const type)   : vector
+  <   (const type)   : bool
+
+# Huge...
+
+generateNormalDist(size : Int) : Array[type]
+
+type ColorDigital[def type] : Vector[type]
+  -  ()
+  != ()
+  += ()
+  def ensure() : this
+
+type ColorAnalogue[def type, def func] : Object
+  -  ()
+  != ()
+  += ()
+  friend ColorDigital[type]()
+  def ensure() : this
+
+type SoundBuffer : Vector
+type SoundGeom
+type Instruments
+
+# Wait, pipe, etc...
+# entity is in Shift/...
+type Chip : Object # chip root
+  _tick : Int(0)
+  ++ ()
+    # emulation
+  # control, errata, each chip interface.
+
+# entity is in Shift/...
+type Mnemonic : ...
+  ctor()
+  dtor()
+  ==()
+
+optimizeFlow(v : Vector[Mnemonic]) : Vector[Mnemonic]
+compile(v : Vector[Mnemonic]) : Vector[Mnemonic]
+
+type Runner : Object
+  c2r : Vector[Pair[Mnemonic, Mnemonic]]
+

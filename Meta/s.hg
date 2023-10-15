@@ -1,9 +1,6 @@
 # System root.
 
-type Int[0] : # Root. Auto generated.
-  def invertible  : 0
-  def abel        : 0
-  def commutative : 0
+op complement[op op0] : T
   !  ()     : inline bool # Auto generated.
     res = ! bool(leaf)
   ++ ()     : inline const typeof(leaf) # Auto generated.
@@ -78,24 +75,6 @@ type Int[0] : # Root. Auto generated.
     leaf = leaf ^ src
   |= (src : const typeof(leaf)) const : inline const typeof(leaf) # Auto generated.
     leaf = leaf | src
-  # stub for leafs.
-  def each()
-  def progress()
-  def is_progress()
-    # Mutex, then, access limitation.
-  def print()
-  def test()
-  def in(const Array)
-  def out()
-
-type Int[__pointer_bits__] : Int[0] # System wide unique int
-  def abel        : 1
-  def commutative : 1
-
-type void   : Int[0] # void
-type Object : Int[0] # Object
-type bool   : Int[__pointer_bits__] # bool
-type int    : Int[__pointer_bits__] # synonym
 
 Export(def) : void # Export as library
 Import(def) : bool # Import library
@@ -111,8 +90,6 @@ type Range[def type, type lower, type upper, type default] : type # Restricted t
   leave() : inline typeof(leaf)
     this < lower ? this = lower
     upper < this ? this = upper
-
-type State[Int states] : Array[Array[]] # Handle automata states
 
 type Struct[Array[Int] size] : void # Handle binary structure
   ctor()
@@ -135,6 +112,7 @@ type PoolDisk[Int size] : Object # Disk data pool
   +=assign[def type](const Int as) : type
   -=release[def type](type) : bool
 
+# refer rust, should be build in vec type.
 type Array[def type, def p = Pool, p pool] : Object # Array on pool
   _ptr : Int
   ctor()
@@ -148,7 +126,7 @@ type Array[def type, def p = Pool, p pool] : Object # Array on pool
   [last] () : type
   [size] () : Int
 
-type Sorted[def type] : Array[type] # sorted array indices
+op Sorted[op op0] : Array[type] # sorted array indices
   # with heap sort.
   _sort : Array[Int]
   ctor(a : const Array[type]) : void
@@ -164,19 +142,6 @@ type Sorted[def type] : Array[type] # sorted array indices
   [median] () : type
   [max] ()  : type
 
-type Pair[def type0, def type1] : Object # Pairwise
-  def pair : Pair[type0, type1]
-  e0 : type0
-  e1 : type1
-  ctor()
-  ctor(type0 e0, type1 e1) : inline typeof(leaf)
-    this.e0 = e0
-    this.e1 = e1
-  <  (src : const pair) : inline bool
-    res = e0 < src.e0 || (e0 == src.e0 && e1 < src.e1)
-  != (src : const pair) : inline bool
-    res = e0 != src.e0 || e1 != src.e1
-
 type Map[def typedst, def typesrc] : Sorted[Pair[typedst, typesrc]] # Map
   [] (const typedst a) : typesrc
   []?(const typedst a) : bool
@@ -184,7 +149,7 @@ type Map[def typedst, def typesrc] : Sorted[Pair[typedst, typesrc]] # Map
 
 type Schedule[def schedFunc] : Sorted[Pair[Int, Int]] # Scheduler
 
-type GC[def type] : Pair[type, Int] # GC
+op GC[op op0] : pair[type, Int] # GC
   _cnt : Signed[Int]
   _ent : type
   _ref : GC[type]
