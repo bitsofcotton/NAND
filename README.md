@@ -103,6 +103,9 @@ Since we have non tangle dimension upper limits, we should exclude them into acc
 
 So heavy tuned functions, we have upper function data amount limit around 2peta or so because 16 depth 3 color tree has so. This is the case we make the hypothesis in/out/internal status is completely separable and tanglement can be calculated in the tangled form. However, the hypothesis we make includes each in/out/internal status tanglement causes information amount of them can be broken. So the hypothesis of such of them also makes the hypothesis uniqueness of the each in/out/internal status pillars and only refers unique 3 of the pillar they stands on. In general, such hypothesis can fails if the subject on them is not unique existance.
 
+# General Tips on pure functions
+So with above, heavy tuned function only with in/output without any internal status with start, the upper bound of them are 19683 (around 20k) functions with uniqueness of the whole on input with input tangling. (output only depends on f and input, so it's unique on raw meaning). So with such amount of the input information, we need to code amount up to 20k or so. This is around 2500 of 8 bit numerators we need on the model. If we apply this on the image, we need around 29px x 29px on each pixel with 3 term on image prediction nor 833px height on image extend prediction.
+
 # Things undone.
 This repository has NO materialized implementation.
 There exists huge fields they have important materials.
@@ -113,6 +116,7 @@ We cram the scrapped delusion which all the things we want supported by computer
 # close readme.md and their fixes
 2023/08/10.
 2023/08/10 fix some.
+2024/04/09 fix some. add general tips.
 
 #
 
