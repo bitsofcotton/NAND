@@ -32,11 +32,12 @@ problematic ones.
 * * * we should use function definition as entity ones in header files.
 * * a : operator-name(\[...\])\[b\]
 * * * bind operator to type as a variables.
-* name(name : type (: "comment")?, ...) const? : (inline)? type
+* name(\[templates...\])?(name : type (: "comment")?, ...) const? export? : type
 * * function, name! returns reference.
 * * with calling function, we must specify the variable name as: name(name = val, ...)
 * * no return mnemonic, instead of them, reserved "res" variable.
 * * from awesome embedded C language.
+* * on function call, pass const type to type causes auto makeing instance.
 * op(\[templates...\])? operator-name : type-name (root context only)
 * * operator collections transparent to types.
 * * enter, leave, call, return
@@ -46,8 +47,10 @@ problematic ones.
 * Special variables
 * * Int
 * * * only type we have on this, pointer wide, full set of arithmetic/bit ops.
-* * type typename
-* * * use some integer sets as a type.
+* * type(\[templates...\])? typename
+* * * use some integer or type sets as a type.
+* * * like typedef struct ... in C.
+* * * val \. element : in type element lookup.
 * * \_\_pointer_bits\_\_
 * * * number of pointer bit size.
 * * \_\_here\_\_
@@ -66,8 +69,6 @@ problematic ones.
 * * \# will treat line after them as a comment.
 * * * \# license? comment...
 * * type can specify (type \| ... \| type), also be able to specify template omitted.
-* * val \. element
-* * * in type element lookup.
 * * defined?(...)
 * * * refers name table, returns true or false in first Int type.
 
@@ -92,6 +93,15 @@ So there's many libraries exists doing this.
 # Tips
 To exclude same... from perspective on algorithm, we only get in/output similarity or algorithm similarity itself.
 So we need same from perspective on data to exclude multiple description writing on the code. However, this is already done by some of the known ongoing libraries s.t. bison/json for best practice. So there isn't exist new field for us (however, there could be another way for another peroson... eg. programs for the web).
+
+# General Tips
+Some of the algorithm description causes tan\<a,x\> type descriptions, however, if the intension of the first we observed isn't effective to such a vector in data amount meaning, the calculation can slips on the intension.
+So first intension amount : information amount on data/algorithm on binary tree description we have is the matter if the result breaks.
+We can exclude the information amount into accuracy or dimensions or multiple on layers, however, in any which case we have the amounts, the whole system description integrity is also matters.
+
+Since we have non tangle dimension upper limits, we should exclude them into accuracy or multiple on layers, however, accuracy on in/output has upper bounds to describe the function enough or not, so the only the secure way to exclude the information amount is multiple on layers, this don't touch any extensions of the calculation however this also has the limits.
+
+So heavy tuned functions, we have upper function data amount limit around 2peta or so because 16 depth 3 color tree has so. This is the case we make the hypothesis in/out/internal status is completely separable and tanglement can be calculated in the tangled form. However, the hypothesis we make includes each in/out/internal status tanglement causes information amount of them can be broken. So the hypothesis of such of them also makes the hypothesis uniqueness of the each in/out/internal status pillars and only refers unique 3 of the pillar they stands on. In general, such hypothesis can fails if the subject on them is not unique existance.
 
 # Things undone.
 This repository has NO materialized implementation.
