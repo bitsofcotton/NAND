@@ -1,190 +1,204 @@
 s : Meta.s
 # referring some mathematic results, 2, ... term operators.
 
-type pair[type T]:
-  first  : T(0)
-  second : T(0)
-  
+pair[type T] : type
+  first  : T
+  second : T
+DInt[type T] : pair[T]
+Float[Int mantissa, Int exponent] : type
+  m : mantissa
+  e : exponent
+  ctor()
+WFloat[type T] : pair[T]
+Fraction[type T] : type
+  sign : bool
+  n    : T
+  d    : T
+  ctor()
+Complex[type T] : type
+  r : T
+  i : T
+  ctor()
+  ctor(T)
+  ctor(pair[T])
+Quarternion[type T] : type
+  x : T
+  y : T
+  z : T
+  w : T
+  ctor(T)
+  ctor(Complex)
+  ctor(Quarternion)
 
-op DInt[op op0] : pair
-  []  (const Int) : bool
-  []  (const Int) const : bool
-  []  (const Int, const Int) : dint
-  []  (const Int, const Int) const : dint
-  ~   () const : pair
+EQuarternionion : BNF # EQuarternionion as BNF expression
+Logic : EQuarternionion # Logic as EQuarternionion expression
+Glay[type C] : type
+  g : C
+  ctor(src : RGB[C])
+    # not optimal, we should refer color space in wikipedia.
+    res = (src.r + src.g + src.b) / C(3)
+RGB[type C] : type
+  r : C
+  g : C
+  b : C
+  ctor(src : Glay[C])
+    res.r = type(src)
+    res.g = type(src)
+    res.b = type(src)
+RGBA[type C] : type
+  r : C
+  g : C
+  b : C
+  a : C
+HSV[type C] : type
+  h : C
+  s : C
+  v : C
+HSB[type C] : type
+  h : C
+  s : C
+  b : C
+Lab[type C] : type
+  l : C
+  a : C
+  b : C
+
+DInt[op op0, type T] : op-noop : DInt[T]
+  []  (const Int) : s.bool
+  []  (const Int) const : s.bool
+  []  (const Int, const Int) : DInt[T]
+  []  (const Int, const Int) const : DInt[T]
+  ~   () const : DInt[T]
     res.first  =op0 ~op0 first
     res.second =op0 ~op0 second
-  ++  () : pair
+  ++  () : DInt[T]
     ++op0 e0
-    if(!op0 e0)
-      ++op0 e1
-  --  () : dint
-    if(! e0)
-      -- e1
-    -- e0
-  *   (src : (dint | const dint)) const : dint
-    res = dint(0)
-    for bit in src:
-      if(bit):
-        res += this << bit.idx
-  **  (src : (dint | const dint)) const : dint
-    res  = dint(1)
+    (!op0 e0 ? ++op0 e1 : e1)
+  --  () : DInt[T]
+    (! e0 ? --op0 e1 : e1)
+    --op0 e0
+  *   (src : (DInt[T] | const DInt[T])) const : DInt[T]
+    res =op0 DInt[T](0)
+    for[Int] bit from 0 to bitsof(DInt[T]) :
+      (this[bit] ? res +=op0 this <<op0 bit : res)
+  **  (src : (DInt[T] | const DInt[T])) const : DInt[T]
+    res  =op0 DInt[T](1)
     work : auto(this)
-    for bit in src:
-      if(bit):
-        res *= work
-      work *= work
-  /   (const dint) const : dint
-  <<  (const dInt) const : dint
-  >>  (const dInt) const : dint
-  <   (src : (dint | const dint)) const : bool
-    res = (this - src)[msb]
-  !=  (const dint) const : bool
-    res = ! (this == src)
-  ==  (src : (dint | const dint)) const : bool
-    res = bool(this ^ src)
-  =   (dint)             : int
-  =   (const dint)       : int
-  +=  (const dint)       : int
-    ## assembler??
-  &=  (src : (dint | const dint)) : int
-    e0 &= src.e0
-    e1 &= src.e1
-  |=  (src : (dint | const dint)) : int
-    e0 |= src.e0
-    e1 |= src.e1
-  ^=  (src : (dint | const dint)) : int
-    e0 ^= src.e0
-    e1 ^= src.e1
+    for[Int] bit from 0 to bitsof(DInt[T]) :
+      (this[bit] ? res *=op0 work : res)
+      work *=op0 work
+  /   (const DInt[T]) const : DInt[T]
+  <<  (const DInt[T]) const : DInt[T]
+  >>  (const DInt[T]) const : DInt[T]
+  <   (src : (DInt[T] | const DInt[T])) const : bool
+    res = (this -op0 src)[op0 msb]
+  !=  (const DInt[T]) const : bool
+    res = ! (this ==op0 src)
+  ==  (src : (DInt[T] | const DInt[T])) const : bool
+    res = bool(this ^op0 src)
+  =   (DInt[T])             : DInt[T]
+  =   (const DInt[T])       : DInt[T]
+  +=  (const DInt[T])       : DInt[T]
+  &=  (src : (DInt[T] | const DInt[T])) : DInt[T]
+    e0 &=op0 src.e0
+    e1 &=op0 src.e1
+  |=  (src : (DInt[T] | const DInt[T])) : DInt[T]
+    e0 |=op0 src.e0
+    e1 |=op0 src.e1
+  ^=  (src : (DInt[T] | const DInt[T])) : DInt[T]
+    e0 ^=op0 src.e0
+    e1 ^=op0 src.e1
 
-type Signed[def type] : type
-  def int : Signed[type]
-  ctor()
-  ctor(def)
-  ctor(type)
-  ctor(const type)
-  ctor(int)
-  ctor(const int)
-  dtor()
-  <   (const int) const : bool
-  <=  (const int) const : bool
-  >   (const int) const : bool
-  >=  (const int) const : bool
+Signed[type T] : DInt : DInt[T]
+  <   (const DInt[T]) const : bool
+  <=  (const DInt[T]) const : bool
+  >   (const DInt[T]) const : bool
+  >=  (const DInt[T]) const : bool
 
-type pZ[def type, type z] : type # Periodical Z
-  def pz : pz[type, z]
-  leave()
-    this %= z
+pZ[type Z, Z p] : Z : Z
+  leave() : Z
+    res %= p
 
-type Band[def type] : Complex[type] # Band as complex plane point
-
-gcd[def type](const type, const type) : type # greatest common divide
-lcm[def type](const type, const type) : type # least common multiply
-factor2[def type](const type) : type # factor 2
-max[def type](const type, const type) : type # maximum
-min[def type](const type, const type) : type # minimum
-abs(const Signed) : type # absolute value
+gcd[type T](const T, const T) : T # greatest common divide
+lcm[type T](const T, const T) : T # least common multiply
+factor2[type T](const T) : T # factor 2
+max[type T](const T, const T) : T # maximum
+min[type T](const T, const T) : T # minimum
+abs(const Signed) : Signed # absolute value
 
 # Solve ax + by = c in Z, a, b, c are const.
-eucleidos[def type](x: type, y: type, a: const type, b:const type, c: const type) : void
+eucleidos[type T](x: T, y: T, a: const T, b:const T, c: const T) : void
 
-type Float[Int mantissa, Int exponent] : Object # Pseudo Q with interval
-  def float : Float[mantissa, exponent]
-  def intm  : Int[mantissa]
-  def intw  : Int[mantissa * Int(2)]
-  def inte  : Int[exponent]
-  def INF   : static const int("0x1")
-  def NaN   : static const int("0x2")
-  def SIGN  : static const int("0x4")
-  def WORK  : static const int("0x8")
-  _m    : intm
-  _e    : inte
-  _flag : int
-  ctor()
-  ctor(def)
-  dtor()
-  leave
+INF  : static const Int("0x1")
+NaN  : static const Int("0x2")
+SIGN : static const Int("0x4")
+WORK : static const Int("0x8")
+Float[type F] : op-noop : Float
+  leave()
   ! () const : bool
-  - () const : float
-  *  (const float) const : float
-  ** (const float) const : float
-  /  (const float) const : float
-  %  (const float) const : float
-  +  (const float) const : float
-  -  (const float) const : float
-  <  (const float) const : bool
-  <= (const float) const : bool
-  >  (const float) const : bool
-  >= (const float) const : bool
-  == (const float) const : bool
-  != (const float) const : bool
-  =  (float)        : float
-  =  (const float)  : float
-  += (const float)  : float
-  -= (const float)  : float
-  *= (const float)  : float
-  **= (const float) : float
-  /= (const float)  : float
-  %= (const float)  : float
+  - () const : Float
+  *  (const Float) const : Float
+  ** (const Float) const : Float
+  /  (const Float) const : Float
+  %  (const Float) const : Float
+  +  (const Float) const : Float
+  -  (const Float) const : Float
+  <  (const Float) const : bool
+  <= (const Float) const : bool
+  >  (const Float) const : bool
+  >= (const Float) const : bool
+  == (const Float) const : bool
+  != (const Float) const : bool
+  =  (Float)        : Float
+  =  (const Float)  : Float
+  += (const Float)  : Float
+  -= (const Float)  : Float
+  *= (const Float)  : Float
+  **= (const Float) : Float
+  /= (const Float)  : Float
+  %= (const Float)  : Float
   friend Int() const
 
-type WFloat[def float_t] : Object # Left/Right side bound
-  def float : WFloat[float_t]
-  _f0 : float_t
-  _f1 : float_t
-  ctor()
-  ctor(def)
-  ctor(float_t)
-  ctor(float)
-  dtor()
-  friend float() const
+WFloat : op-noop : WFloat
   !  () const : bool
-  -  () const : float
-  *  (const float) const : float
-  ** (const float) const : float
-  /  (const float) const : float
-  %  (const float) const : float
-  +  (const float) const : float
-  -  (const float) const : float
-  <  (const float) const : bool
-  <= (const float) const : bool
-  >  (const float) const : bool
-  >= (const float) const : bool
-  == (const float) const : bool
-  != (const float) const : bool
-  =  (const float) : float
-  += (const float) : float
-  -= (const float) : float
-  *= (const float) : float
-  **= (const float) : float
-  /= (const float) : float
-  %= (const float) : float
+  -  () const : WFloat
+  *  (const WFloat) const : float
+  ** (const WFloat) const : float
+  /  (const WFloat) const : float
+  %  (const WFloat) const : float
+  +  (const WFloat) const : float
+  -  (const WFloat) const : float
+  <  (const WFloat) const : bool
+  <= (const WFloat) const : bool
+  >  (const WFloat) const : bool
+  >= (const WFloat) const : bool
+  == (const WFloat) const : bool
+  != (const WFloat) const : bool
+  =  (const WFloat) : WFloat
+  += (const WFloat) : WFloat
+  -= (const WFloat) : WFloat
+  *= (const WFloat) : WFloat
+  **= (const WFloat) : WFloat
+  /= (const WFloat) : WFloat
+  %= (const WFloat) : WFloat
 
-type Fraction[def type] : Object # Q with finite accuracy
-  def fraction : Fraction[type]
-  _sign : bool
-  _n    : type
-  _d    : type
-  ctor()
-  ctor(type, type)
-  ctor(const type, const type)
-  dtor()
-  ** (const fraction) const : fraction
-  <  (const fraction) const : bool
-  <= (const fraction) const : bool
-  >  (const fraction) const : bool
-  >= (const fraction) const : bool
-  != (const fraction) const : bool
-  =  (fraction)       : fraction
-  =  (const fraction) : fraction
-  += (const fraction) : fraction
-  *= (const fraction) : fraction
-  /= (const fraction) : fraction
+Fraction[type T] : op-noop : Fraction
+  ** (const Fraction) const : Fraction
+  <  (const Fraction) const : bool
+  <= (const Fraction) const : bool
+  >  (const Fraction) const : bool
+  >= (const Fraction) const : bool
+  != (const Fraction) const : bool
+  =  (Fraction)       : Fraction
+  =  (const Fraction) : Fraction
+  += (const Fraction) : Fraction
+  *= (const Fraction) : Fraction
+  /= (const Fraction) : Fraction
 
-absfloor[def type](type) : type
-absceil[def type](type)  : type
-isnan[def type](type) : bool
-isinf[def type](type) : bool
+absfloor[type F](const F) : type
+absceil[type F](const F)  : type
+isnan[type F](const F) : bool
+isinf[type F](const F) : bool
 
 # finite gropus, and make new finite series from them with some method.
 # Cryption bases
@@ -194,151 +208,79 @@ isinf[def type](type) : bool
 # Vitavi
 # Huge...
 
-type Equation : BNF # Equation as BNF expression
-type Logic : Equation # Logic as Equation expression
-
-# transcendal op on equation should be in generic programming compatible form in this
-bothside[def type](type, type, type) : type # bothside method.
-newton[def type, def f](type) : type # newton method with f'
-superGeometry[def type, da(type) : type, db(type) : type, def f] : type # Super geometry series. R.B. 
-sqrt[def type](type) : type # Square root of x
-pi[def type](type)   : type # Pi
-exp[def type](type)  : type # exponent
-log[def type](type)  : type # logarithm
-sin[def type](type)  : type # sine curve
-cos[def type](type)  : type # cosine curve
-tan[def type](type)  : type # tangent function
-asin[def type](type) : type # arcsine function
-acos[def type](type) : type # arccosine function
-atan[def type](type) : type # arctangent function of periodical
-atan2[def type](type, type) : type # arctangent function y, x
-exp(Complex)  : Complex # complex exponent
-log(Complex)  : Complex # complex logarithm
-sin(Complex)  : Complex # complex sine
-cos(Complex)  : Complex # complex cosine
-tan(Complex)  : Complex # complex tangent
-csc(Complex)  : Complex # complex cosecant
-sec(Complex)  : Complex # complex secant
-cot(Complex)  : Complex # complex cotangent
-asin(Complex) : Complex # complex arcsine
-acos(Complex) : Complex # complex arccosine
-atan(Complex) : Complex # complex arctangent
+# transcendal op on eQuarternionion should be in generic programming compatible form in this
+bothside[type](type, type, type) : type # bothside method.
+newton[type, f](type) : type # newton method with f'
+superGeometry[type, da(type) : type, db(type) : type, def f] : type # Super geometry series. R.B. 
+sqrt[type](type) : type # Square root of x
+pi[type](type)   : type # Pi
+exp[type](type)  : type # exponent
+log[type](type)  : type # logarithm
+sin[type](type)  : type # sine curve
+cos[type](type)  : type # cosine curve
+tan[type](type)  : type # tangent function
+asin[type](type) : type # arcsine function
+acos[type](type) : type # arccosine function
+atan[type](type) : type # arctangent function of periodical
+atan2[type](type, type) : type # arctangent function y, x
+exp(Complex)  : Complex # Complex exponent
+log(Complex)  : Complex # Complex logarithm
+sin(Complex)  : Complex # Complex sine
+cos(Complex)  : Complex # Complex cosine
+tan(Complex)  : Complex # Complex tangent
+csc(Complex)  : Complex # Complex cosecant
+sec(Complex)  : Complex # Complex secant
+cot(Complex)  : Complex # Complex cotangent
+asin(Complex) : Complex # Complex arcsine
+acos(Complex) : Complex # Complex arccosine
+atan(Complex) : Complex # Complex arctangent
 sinh(Complex) : Complex # hyperbolic sine
 cosh(Complex) : Complex # hyperbolic cosine
 tanh(Complex) : Complex # hyperbolic tangent
 Li2(Complex)  : Complex # Li2
-SolveSeries[def type](coeff(type) : type, const type x) : type # Calculate taylor series they converges
-SolveSeries[def type](const Array[type] coeff, const type x) : type # Calculate finite mother functions
-InvertSeries[def type](const Array[type] coeff, const type y) : type # Calculate invert of taylor series
-Melin[def type](const Array[type] coeff, const type y) : * # Melin conversion
+SolveSeries[type](coeff(type) : type, const type x) : type # Calculate taylor series they converges
+SolveSeries[type](const Array[type] coeff, const type x) : type # Calculate finite mother functions
+InvertSeries[type](const Array[type] coeff, const type y) : type # Calculate invert of taylor series
+Melin[type](const Array[type] coeff, const type y) : * # Melin conversion
 
-type Glay[def type] : type
+zero[type T] : static T(0)
+Complex[T] : no-op : Complex[T]
+  []  (const Int) : Complex
+  !   () const    : bool
+  ~   () const    : Complex
+  -   () const    : Complex
+  *   (const Complex) const : Complex
+  **  (const Complex) const : Complex
+  /   (const Complex) const : Complex
+  !=  (const Complex) const : bool
+  &&  (const Complex) const : bool
+  ||  (const Complex) const : bool
+  =   (Complex)       : Complex
+  =   (const Complex) : Complex
+  +=  (const Complex) : Complex
+  -=  (const Complex) : Complex
+  /=  (const Complex) : Complex
+  /=  (const T) : Complex
 
-type RGB[def type] : Object
-  r : type
-  g : type
-  b : type
-  ctor(Glay[type] src)
-    r = type(src)
-    g = type(src)
-    b = type(src)
-  friend Glay()
-    # not optimal, we should refer color space in wikipedia.
-    res = (r + g + b) / type(3)
-  -  () : this
-  != () : this
-  += () : this
-  def ensure() : this
-  # ...
+abs[type T](const Complex) : T
+arg[type T](const Complex) : T
 
-type RGBA[def type] : Quarternion[type]
-  def rgba : Quarternion[type]
-  -  ()
-  != ()
-  += ()
-  def ensure() : this
-
-type HSV[def type] : Object
-  h : type
-  s : type
-  v : type
-  -  () : this
-  != () : this
-  += () : this
-  def ensure() : this
-
-type HSB<def type> : Object
-  h : type
-  s : type
-  b : type
-  -  () : this
-  != () : this
-  += () : this
-  def ensure() : this
-
-type Lab<def type> : Object
-  l : type
-  a : type
-  b : type
-  -  ()
-  != ()
-  += ()
-  def ensure() : this
-
-type Complex[def type] : Object # Complex plane point
-  def complex : Complex[type]
-  _real : type
-  _imag : type
-  zero  : static(type(0))
-  ctor()
-  ctor(e0 : (type | const type), e1 : (type | const type) = zero)
-  ctor(e  : (complex | const complex))
+Quarternion[type T] : no-op : Quarternion
   []  (const Int) : type
   !   () const    : bool
-  ~   () const    : complex
-  -   () const    : complex
-  *   (const complex) const : complex
-  **  (const complex) const : complex
-  /   (const complex) const : complex
-  !=  (const complex) const : bool
-  &&  (const complex) const : bool
-  ||  (const complex) const : bool
-  =   (complex)       : complex
-  =   (const complex) : complex
-  +=  (const complex) : complex
-  -=  (const complex) : complex
-  /=  (const complex) : complex
-  /=  (const type) : complex
-
-abs(const Complex) : type
-arg(const Complex) : type
-
-type Quaternion[def type] : Object # Quarternion space point
-  def quat : Quaternion[type]
-  _r1 : type
-  _r2 : type
-  _r3 : type
-  _r4 : type
-  ctor()
-  ctor(e : (type | const type))
-  ctor(e : (Complex[type] | const Complex[type]))
-  ctor((type | const type), (type | const type), (type | const type), (type | const type))
-  ctor((Complex[type] | const Complex[type]), (Complex[type] | const Complex[type]))
-  []  (const Int) : type
-  !   () const    : bool
-  ~   () const    : quat
-  -   () const    : quat
-  *   (const quat) const : quat
-  **  (const quat) const : quat
-  /   (const quat) const : quat
-  +   (const quat) const : quat
-  -   (const quat) const : quat
-  !=  (const quat) const : bool
-  &&  (const quat) const : bool
-  ||  (const quat) const : bool
-  =   (quat)       : quat
-  =   (const quat) : quat
-  +=  (const quat) : quat
-  -=  (const quat) : quat
-  /=  (const type) : quat
+  ~   () const    : Quarternion
+  -   () const    : Quarternion
+  *   (const Quarternion) const : Quarternion
+  **  (const Quarternion) const : Quarternion
+  /   (const Quarternion) const : Quarternion
+  +   (const Quarternion) const : Quarternion
+  -   (const Quarternion) const : Quarternion
+  !=  (const Quarternion) const : bool
+  &&  (const Quarternion) const : bool
+  ||  (const Quarternion) const : bool
+  =   (Quarternion)       : Quarternion
+  =   (const Quarternion) : Quarternion
+  +=  (const Quarternion) : Quarternion
+  -=  (const Quarternion) : Quarternion
+  /=  (const T) : Quarternion
 

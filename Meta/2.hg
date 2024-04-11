@@ -1,116 +1,117 @@
 s : Meta.s
 # matrix operators and phenomenon collections.
 
-type Matrix[def type, def index0, def Array = Array] # Matrix
-  def matrix : Matrix[type, index0]
-  def vector : Vector[type, index0]
-  def index  : Complex[index0]
-  _e : Array[vector]
+Mat[type T] : type
+  e : Vec[Vec[T]]
   ctor(const index, const type e0) : void
-  []row(const index0) : vector
-  []row(const index0) const : const vector
-  []setCol(const index0, const vector) : void
-  []col(const index0) const : const vector
-  [] (const index)       : type
-  [] (const index) const : const type
-  [] (const index, const index)       : type
-  [] (const index, const index) const : const type
-  !  ()             const : bool
-  -  ()             const : matrix
-  *  (const vector) const : vector
-  *  (const matrix) const : matrix
-  ** (const type)   const : matrix
-  <d  (const matrix) const : bool
-  != (const vector) const : bool
-  =  (matrix)       : matrix
-  =  (const matrix) : matrix
-  += (const matrix) : matrix
-  -= (const matrix) : matrix
-  *= (const type)   : matrix
-
-Eigen(const Matrix, Matrix, Matrix) : bool
-Eigen(const Matrix, const Matrix, Matrix, Matrix, Matrix) : bool
-LU(const Matrix, L: Matrix, U: Matrix) : bool
-Cholesky(const Matrix, C: Matrix)   : bool
-QR(const Matrix, Qt: Matrix, R: Matrix) : bool
-Schur(const Matrix, U: Matrix, A: Matrix) : bool
-SVD(const Matrix, Ut: Matrix, w: Vector, V: Matrix) : bool
-SVD(A: const Matrix, B: const Matrix, Ut: Matrix, V0: Matrix, V1: Matrix) : bool
-log(const Matrix) : Matrix
-exp(const Matrix) : Matrix
-pow(const Matrix, p: const type) : Matrix
-pseudoInverse(const Matrix) : Matrix
-feasible(A: const Matrix, b: const Vector, interior: Vector) : bool
-LP(A: const Matrix, b: const Vector, c: const Vector) : Vector
-QP(const Matrix, const Vector, const Matrix, const Vector) : Vector
-Fourier(v: const Vector, inverse: const bool) : Vector
-# if vector size is prime, not fast one.
-FastFourier(v: const Vector, inverse: const bool) : Vector
-Diff(v: const Vector, integrate: const bool) : Vector
-MotherWavelet(const Vector, const Vector, const bool) : Vector
-
-type Texture[def color] : Matrix[color]
+Texture[type C] : type
+  e : Mat[C]
   ctor(const Complex[Int])
   ctor(xywh : , ** File **)
   dtor() : void
+  friend SVG(t : Texture)
+Status[type T] : Mat[T]
+  ctor(json : JSON)
+Perceptron[type T] : Mat[T]
+Optron[type T] : Mat[T]
+Delayron[type T] : Vec
+BlockDiagram[type T] : Vec[Perceptron[T]]
+
+Mat[type T] : op-noop : Mat
+  []row(const index0) : Vec[T]
+  []row(const index0) const : const Vec[T]
+  []setCol(const index0, const vector) : void
+  []col(const index0) const : const Vec
+  [] (const Int)       : T
+  [] (const Int) const : const T
+  [] (const Int, const Int)       : T
+  [] (const Int, const Int) const : const T
+  !  ()             const : bool
+  -  ()             const : Mat
+  *  (const Vec)    const : Vec
+  *  (const Mat)    const : Mat
+  ** (const T)      const : Mat
+  ** (const Mat)    const : Mat
+  <d  (const Mat)   const : bool
+  != (const Vec)    const : bool
+  =  (Mat)       : Mat
+  =  (const Mat) : Mat
+  += (const Mat) : Mat
+  -= (const Mat) : Mat
+  *= (const T)   : Mat
+
+Eigen(const Mat, Mat, Mat) : bool
+Eigen(const Mat, const Mat, Mat, Mat, Mat) : bool
+LU(const Mat, L: Mat, U: Mat) : bool
+Cholesky(const Mat, C: Mat)   : bool
+QR(const Mat, Qt: Mat, R: Mat) : bool
+Schur(const Mat, U: Mat, A: Mat) : bool
+SVD(const Mat, Ut: Mat, w: Vec, V: Mat) : bool
+SVD(A: const Mat, B: const Mat, Ut: Mat, V0: Mat, V1: Mat) : bool
+log(const Mat) : Mat
+exp(const Mat) : Mat
+pow(const Mat, p: const type) : Mat
+pseudoInverse(const Mat) : Mat
+feasible(A: const Mat, b: const Vec, interior: Vec) : bool
+LP(A: const Mat, b: const Vec, c: const Vec) : Vec
+QP(const Mat, const Vec, const Mat, const Vec) : Vec
+Fourier(v: const Vec, inverse: const bool) : Vec
+# if vector size is prime, not fast one.
+FastFourier(v: const Vec, inverse: const bool) : Vec
+Diff(v: const Vec, integrate: const bool) : Vec
+MotherWavelet(const Vec, const Vec, const bool) : Vec
+
+Texture[type C] : Mat[C] : Texture
   <<store!(xywh : , t : Texture)
-  -clear!(xywh : , c : color)
-  +point!(xy : Complex, c : color)
-  +line!(xy : Complex, c : color)
+  -clear!(xywh : , c : C)
+  +point!(xy : Complex, c : C)
+  +line!(xy : Complex, c : C)
   # make pattern
   +plot!(e : Equaion, xywh)
   +splot!(e : Equation, xyzwhz)
   +maze!(wh)
   # friend on them???
   +tilt(mesh : , xywh)
-  +poincare!(e : Equation, Matrix)
-  friend SVG(t : Texture)
+  +poincare!(e : Equation, Mat)
   # illust...
   # font is the implementation depends implementation.
   +renderFont[type type]()
 
-type PlayMovie[def color, def driver] : Texture[color]
-  ctor()
+PlayMovie[type C, d] : Texture[C] : Texture[C]
   <<play!()
 
-type Status[type] : Matrix[type]
-  ctor(json : JSON)
-    
-  dtor()
-    
+Status[type] : op-noop : Mat[type]
   ++!(s : String) : Status
 
-type Perceptron[def type] : Matrix[type]
-  def vec : Vector[type]
-  +=(const vec, const vec) : bool
+Perceptron[type T] : op-noop : Mat[T]
+  +=(const Vec, const Vec) : bool
     # in
-  +=(const vec) : bool
+  +=(const Vec) : bool
     # in
-  -=(const vec) : vec
+  -=(const Vec) : Vec
     # out
 
-type Optron[def type] : Matrix[type]
-  +=(const vec, const vec) : bool
+Optron[type T] : op-noop : Mat[T]
+  +=(const Vec, const Vec) : bool
     # in
-  +=(const vec) : bool
+  +=(const Vec) : bool
     # in
-  -=(vec) : vec
+  -=(Vec) : Vec
     # out
 
-type Delayron[def type] : Array
-  +=(const vec, const vec) : bool
+Delayron[type T] : op-noop : Vec
+  +=(const Vec, const Vec) : bool
     # in
-  +=(const vec) : bool
+  +=(const Vec) : bool
     # in
-  -=(vec) : vec
+  -=(Vec) : Vec
     # out
 
-type BlockDiagram[def type] : Array[Perceptron[type]]
-  def vec : Vector[type]
-  +=(const vec, const vec) : bool
+BlockDiagram[type T] : op-noop : Vec[Perceptron[T]]
+  +=(const Vec, const Vec) : bool
     # in
-  +=(const vec) : bool
+  +=(const Vec) : bool
     # in
-  -=(vec) : vec
+  -=(Vec) : vec
     # out
 

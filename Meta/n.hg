@@ -2,24 +2,24 @@ s : Meta.s
 # tensor operators and phenomenon collections.
 
 # Finite Element:
-type FE[def type, delegate(const Vector, const Vector) : type] : Array[Vector]
+FE[type T, delegate(const Vector, const Vector) : T] : Vec[Vec]
 
-countupVolume(in : Array[Array[type] ], cut : Array[type], size : Int) : Array[type]
-countupLattice(in : Array[Array[type] ], cut : Array[type], size : Int) : Array[type]
-generateNormalDist(size : Int) : Array[type]
+countupVolume[type T](in : Mat[T],  cut : Vec[T], size : Int) : Vec[T]
+countupLattice[type T](in : Mat[T], cut : Vec[T], size : Int) : Vec[T]
+generateNormalDist[type T](size : Int) : Vec[T]
 
 # geometry
-type geomIndex : Equation
+geomIndex[type T]() : Equation[T]
 ker(e : Equation) : Int
 dim(e : Equation) : Int
 coker(e : Equation) : Int
   res = dim(e) - ker(e)
-jacobi(e : Equation) : Matrix
-eigens(e : Equation) : Vector
-factor(e : Equation) : Array[Equation]
+jacobi(e : Equation) : Mat
+eigens(e : Equation) : Vec
+factor(e : Equation) : Vec[Equation]
 differentialForm(e : Equation) : Equation
 solve(e : Equation) : Equation
 approximate(e : Equation, f : Equation) : Equation
 poincare(e: Equation, f : Equation) : Equation
-# render(e : Equation) : Vector[Vector ...]
+# render(e : Equation) : Vec[Vec ...]
 

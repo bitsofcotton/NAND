@@ -1,67 +1,42 @@
 s : Meta.s
 # vector operators and the phenomenon collections.
 
-type Vector[def type, def index, def Array = Array] # Vector
-  def vector : Vector[type, index]
-  e : Array[type]
-  ctor(const index, const type e0)
-  ctor(initer(idx : index, entity : type) : void) : vector
-  [] (const index)        : type
-  [] (const index)  const : const type
-  [] (const index, const index)        : vector
-  [] (const index, const index)  const : const vector
-  friend bool
-  -  ()             const : vector
-  *dot (const vector) const : type
-  != (const vector) const : bool
-  =  (vector)       : vector
-  =  (const vector) : vector
-  += (const vector) : vector
-  -= (const vector) : vector
-  *=  (const type)   : vector
-  **= (const type)   : vector
-  /=  (const type)   : vector
-  %=  (const type)   : vector
-  <   (const type)   : bool
-
-# Huge...
-
-generateNormalDist(size : Int) : Array[type]
-
-type ColorDigital[def type] : Vector[type]
-  -  ()
-  != ()
-  += ()
-  def ensure() : this
-
-type ColorAnalogue[def type, def func] : Object
-  -  ()
-  != ()
-  += ()
-  friend ColorDigital[type]()
-  def ensure() : this
-
-type SoundBuffer : Vector
-type SoundGeom
-type Instruments
+ColorDigital[T] : Vec[T]
+ColorAnalogue[type T, f[T]] : f[T]
+SoundBuffer[type T] : Vec[T]
+SoundGeom : type
+Instruments : type
 
 # Wait, pipe, etc...
 # entity is in Shift/...
-type Chip : Object # chip root
-  _tick : Int(0)
-  ++ ()
-    # emulation
-  # control, errata, each chip interface.
-
+Chip[type T] : type
+  # chip root
+  tick : Int(0)
 # entity is in Shift/...
-type Mnemonic : ...
-  ctor()
-  dtor()
-  ==()
-
-optimizeFlow(v : Vector[Mnemonic]) : Vector[Mnemonic]
-compile(v : Vector[Mnemonic]) : Vector[Mnemonic]
-
-type Runner : Object
+Mnemonic : type
+  #...
+Runner[type T] : type
   c2r : Vector[Pair[Mnemonic, Mnemonic]]
+
+
+arithvec[type T] : Vec[T] : Vec[T]
+  -  ()             const : Vec[t]
+  *dot (const Vec) const : T
+  != (const Vec) const : bool
+  =  (Vec)       : Vec
+  =  (const Vec) : Vec
+  += (const Vec) : Vec
+  -= (const Vec) : Vec
+  *=  (const T)  : Vec
+  **= (const T)  : Vec
+  /=  (const T)  : Vec
+  %=  (const T)  : Vec
+  <   (const T)  : bool
+
+# Huge...
+
+generateNormalDist[type T](size : Int) : Vec[T]
+
+optimizeFlow(v : Vec[Mnemonic]) : Vec[Mnemonic]
+compile(v : Vec[Mnemonic]) : Vec[Mnemonic]
 
