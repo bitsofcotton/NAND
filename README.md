@@ -1,63 +1,63 @@
 # NAND(Never finish)
 Natural tinier compiler which code with natural tinier comments and licenses on a file.
 
-A randtools optimizer is valid in making invariant meaning, however is not valid in output complexity meaning. So if we decide to use safe method, no hard optimization can be accepted, if we decide to believe invariant meaning strong, whole program optimization is accepted.
+This aims to compile nand source into C source and check the output by hand or eyes.
+Otherwise, they can even infect if whole system is infected condition.
+(All we can do is to transcode and check the transformed or compiled source by hands or eyes even any of the code patches, or, we can do only to crypt them with the cryption algorithm hidden from the attacker.)
 
-This aims to compile nand source into C source and check the output by hand or eyes. Otherwise, they can even infect if whole system is infected condition. (All we can do is to transcode and check the transformed or compiled source by hands or eyes even any of the code patches, or, we can do only to crypt them.)
-
-# Read some modern language descriptions
-Some of the syntax changes, however, isn't concrete enough.
-
-We should have operators to types as possible as enough transparent ones.
-
-Because some of the state-of-the-art languages says the class capsule as
-problematic ones.
-
-# Syntax concrete (6).
-* load is omitted in root context. (root context only)
-* * name : "(uri|path)"(.type|.function)?
-* * import once, no need include guard.
-* * also, we should use this as define directives.
-* let is omitted
-* * a : b
-* * a : const(b)
-* * * a is (non const) reference of b or const reference of b.
-* * * the original variable will not be used like some awesome languages.
-* * a : static(b)
-* * * a is initialized by b once in first of execution.
-* * a : func(b)
-* * * a is instanced variable of function.
-* * a : func!(b)
-* * * a is function returned reference.
-* * * we should use function definition as entity ones in header files.
-* * a : operator-name(\[...\])\[b\]
-* * * bind operator to type as a variables.
-* name(\[templates...\])?(name : type (: "comment")?, ...) const? export? : type
-* * function, name! returns reference.
-* * with calling function, we must specify the variable name as: name(name = val, ...)
-* * no return mnemonic, instead of them, reserved "res" variable.
-* * from awesome embedded C language.
-* * on function call, pass const type to type causes auto makeing instance.
-* op(\[templates...\])? operator-name : type-name (root context only)
-* * operator collections transparent to types.
-* * enter, leave, call, return
-* * * for each operator call, non const or const first/last operation.
-* * (operators)
-* * * could call another operator classes.
-* Special variables
-* * Int
-* * * only type we have on this, pointer wide, full set of arithmetic/bit ops.
-* * type(\[templates...\])? typename
+# Syntax concrete (7: renew).
+* ':' directive
+* * name : "(uri|path)"(.type|.function|.op)? (file root context only)
+* * * import once, no need include guard.
+* * * to define some of the name, we should use separated file.
+* * name(\[templates...\]) : op(\[templates...\])? operator-name : (inherit op-name) : type? (file root context only)
+* * * multiple lines.
+* * * operator collections to types.
+* * * if caller specified name doesn't match this op, call inherit.
+* * * enter, leave, call, return
+* * * * for each operator call, non const or const first/last operation.
+* * * (operators)
+* * * * could call another operator classes.
+* * name(\[templates...\]) : type(\[templates...\])?
+* * * multiple lines.
 * * * use some integer or type sets as a type.
-* * * like typedef struct ... in C.
-* * * val \. element : in type element lookup.
+* * * like typedef struct ... in C but with ctor(...), dtor().
+* * * ctor(name! ...) '\!' specifies moved argument.
+* * * val \. element : in type element lookup out of the scope.
+* * variables
+* * * a : b
+* * * a : const(b)
+* * * * a is (non const) reference of b or const reference of b.
+* * * * the original variable will not be used like some awesome languages.
+* * * a : static(b)
+* * * * a is initialized by b once in first of execution.
+* * * a : func(b)
+* * * * a is instanced variable of function.
+* * * a : func!(b)
+* * * * a is function returned reference.
+* * * * we should use function definition as entity ones in header files.
+* * name(\[templates...\])?(name : type (: "comment")?, ...) const? export? : type
+* * * function, name! returns reference.
+* * * with calling function, we must specify the variable name as:
+* * * * name(name = val, ...)
+* * * no return mnemonic, instead of them, reserved "res" variable.
+* * * * from awesome embedded C language.
+* * * on function call, pass const type to type causes auto makeing instance.
+* * * export exports the function, also prevent to be inlined.
+* Special characters
+* * Int
+* * * one of two type we have on this, pointer wide, full set of arithmetic/bit ops.
+* * Vec\[type\]
+* * * one of two type we have on this, vector we call ctor(...), dtor() on around instances, first operand with size.
+* * * We have : reserve, resize, push, pop, delete, op \[\] type function on this,
+* * move(...)
+* * * like in C++.
+* * op-noop
+* * * noop root operator.
 * * \_\_pointer_bits\_\_
 * * * number of pointer bit size.
 * * \_\_here\_\_
 * * * information for debugging.
-* * \_\_callgraph\_\_
-* * * information for debugging.
-* Special flows
 * * () ? () : ()
 * * * 3-term operator like in C.
 * * '(for|para)\[operator\] ... from ... to ... : label', operator ++, operator \< function definition is used,
@@ -68,13 +68,10 @@ problematic ones.
 * * * we can override this with assert function redefinition in execution time.
 * * \# will treat line after them as a comment.
 * * * \# license? comment...
-* * type can specify (type \| ... \| type), also be able to specify template omitted.
-* * defined?(...)
-* * * refers name table, returns true or false in first Int type.
+* * type or op can specify (type \| ... \| type) or (op \| ... \| op), also be able to specify template omitted.
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
-For this, please refer randtools (with F_p integer, using (F_p)^k register on each).
 So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system).
 
 # Tips
@@ -112,6 +109,8 @@ This is because 4 variables for each variable on in/out/states they should be se
 Because we only need 3+1 variables on non uniqueness of the one function, however, we also need the some large dimension parameters on compress/decompress function theirselves.
 However, this description also have a domain they have some of the sets of multiple viewpoints on each of in/out/states.
 
+In addition to this, this is we cannot describe as a function of f, however, some of the probability based functions have up to 16 variables because of hidden state part. However, 16 variables is too large not to tangle in raw.
+
 # Things undone.
 This repository has NO materialized implementation.
 There exists huge fields they have important materials.
@@ -123,6 +122,5 @@ We cram the scrapped delusion which all the things we want supported by computer
 2023/08/10.
 2023/08/10 fix some.
 2024/04/09 fix some. add general tips.
-
-#
+2024/04/11 syntax is concrete in first try. might be changed from some implementation simplify constarints.
 
