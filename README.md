@@ -104,12 +104,14 @@ So heavy tuned functions, we have upper function data amount limit around 2peta 
 So with above, heavy tuned function only with in/output without any internal status with start, the upper bound of them are 19683 (around 20k) functions with uniqueness of the whole on input with input tangling. (output only depends on f and input, so it's unique on raw meaning). So with such amount of the input information, we need to code amount up to 20k or so. This is around 2500 of 8 bit numerators we need on the model. If we apply this on the image, we need around 29px x 29px on each pixel with 3 term on image prediction nor 833px height on image extend prediction. Either, only one image, 50px x 50px upper limit.
 
 # General Tips on any functions
-Any functions with heavy tuned has up to 12 variables.
+Any functions with heavy tuned has up to 9 to 12 variables.
 This is because 4 variables for each variable on in/out/states they should be separated.
 Because we only need 3+1 variables on non uniqueness of the one function, however, we also need the some large dimension parameters on compress/decompress function theirselves.
 However, this description also have a domain they have some of the sets of multiple viewpoints on each of in/out/states.
 
 In addition to this, this is we cannot describe as a function of f, however, some of the probability based functions have up to 16 variables because of hidden state part. However, 16 variables is too large not to tangle in raw.
+
+This is because: f-output can have f-input and f-state based external pillars dependant external pillar and hidden part might not have combination-consistensy pillar because they're at most 15 variables in raw index meaning. (However, they're at most 4 variables in the bitpattern flag meaning.). So if the hidden part case the f treats, the upper bound number of f variables also might be 12.
 
 # Things undone.
 This repository has NO materialized implementation.
