@@ -113,6 +113,12 @@ In addition to this, this is we cannot describe as a function of f, however, som
 
 This is because: f-output can have f-input and f-state based external pillars dependant external pillar and hidden part might not have combination-consistensy pillar because they're at most 15 variables in raw index meaning. (However, they're at most 4 variables in the bitpattern flag meaning.). So if the hidden part case the f treats, the upper bound number of f variables also might be 12.
 
+# Tips on continuity
+In the form p1 and randtools treats the input as finite accuracy fixed point number but aligns on last of the function, so around middle part of the function could be broken as some of discontinuity.
+So the concrete method to have correct result cannot reduce or omit some of the loop number or algorithm topology as to be a Lie algebraic continuity.
+
+So if this condition is true for our observations, some of the continuity concerns some of the observation.
+
 # Things undone.
 This repository has NO materialized implementation.
 There exists huge fields they have important materials.
@@ -125,4 +131,5 @@ We cram the scrapped delusion which all the things we want supported by computer
 2023/08/10 fix some.
 2024/04/09 fix some. add general tips.
 2024/04/11 syntax is concrete in first try. might be changed from some implementation simplify constarints.
+2024/04/15 update readme.
 
