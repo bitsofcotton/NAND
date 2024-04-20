@@ -74,6 +74,25 @@ Otherwise, they can even infect if whole system is infected condition.
 If the data is enough, machine learning methods can implement any of the implementation.
 So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system).
 
+# Tips on layers
+Ongoing deep learnings often have layers 6 or so.
+This is valid because non commutative algebra between the layers has the limit 6 dimension without some habit vectors from the perspective we have.
+Also, the 6 of layers can be reduced into 4 of layers if we only to apply such learned results into some of the input stream.
+So same method, we can reduce 2/3 per each on only to apply some functions, however, there's some entropy vs. last observation limit we don't get better result lower bound.
+
+Also, the internal states entropy the function and the learned vector have has the upper bound up to around 2Pbits or so, without some habit vectors, from 3-function 16-depth tri-colored tree perspective.
+So we need up to around 250TB on the memory, however, we cannot have them from our currency reason, so we can only get some projection of them by some larger communities.
+
+Also, to learn something from the vector set, we need the vector dimension up to d := 2/sqrt(log(2)) \* sqrt(n \* log(n)) for n : input number of the vectors.
+This is the rough our limit on learning.
+
+Whole of this tip, so we need the internal states bits, in another words, the vector dimension on some machine learning, has the upper bound from 2 of them:
+(i) vector input number, (ii) the dimension the function input/output have.
+(i) is described below d \* 4 + 19683, (ii) is around dimension \* 4 + 19683.
+
+So en/decode the input is the matter but this is well done by some places and someones we can find on the Internet.
+So there's no new field on us.
+
 # Tips
 One of the method reducing source code is to exclude same or similar structures from reading binary perspective.
 So with this, this repository aims and follows class capsule with arithmetic method in mathematics. One of a perspective of mathematics is to treat quantities and their structures as calculatible possible simple way, and is often has a structure repeat, invert, and they sometimes treated as arithmetic operations.
@@ -132,4 +151,5 @@ We cram the scrapped delusion which all the things we want supported by computer
 2024/04/09 fix some. add general tips.
 2024/04/11 syntax is concrete in first try. might be changed from some implementation simplify constarints.
 2024/04/15 update readme.
+2024/04/20 add tips on layers.
 
