@@ -1,16 +1,16 @@
 # NAND(Never finish)
-Natural tinier compiler which code with natural tinier comments and licenses on a file.
+Natural tinier compiler which code with natural tinier comments and licenses on a file aims to easy to audit.
 
-This aims to compile nand source into C source and check the output by hand or eyes.
+This aims to compile nand source into C or lisp source and check the output by hand or eyes.
 Otherwise, they can even infect if whole system is infected condition.
 (All we can do is to transcode and check the transformed or compiled source by hands or eyes even any of the code patches, or, we can do only to crypt them with the cryption algorithm hidden from the attacker.)
 
-# Syntax concrete (7: renew).
-* ':' directive
-* * name : "(uri|path)"(.type|.function|.op)? (file root context only)
+# Syntax concrete (8).
+* ':' directive on root context
+* * name : "(uri|path)"(.type|.function|.op)?
 * * * import once, no need include guard.
 * * * to define some of the name, we should use separated file.
-* * name(\[templates...\]) : op(\[templates...\])? operator-name : (inherit op-name) : type? (file root context only)
+* * name(\[templates...\]) : op(\[templates...\])? operator-name : (inherit op-name) : type?
 * * * multiple lines.
 * * * operator collections to types.
 * * * if caller specified name doesn't match this op, call inherit.
@@ -24,6 +24,7 @@ Otherwise, they can even infect if whole system is infected condition.
 * * * like typedef struct ... in C but with ctor(...), dtor().
 * * * ctor(name! ...) '\!' specifies moved argument.
 * * * val \. element : in type element lookup out of the scope.
+* ':' directives
 * * variables
 * * * a : b
 * * * a : const(b)
@@ -42,7 +43,7 @@ Otherwise, they can even infect if whole system is infected condition.
 * * * * name(name = val, ...)
 * * * no return mnemonic, instead of them, reserved "res" variable.
 * * * * from awesome embedded C language.
-* * * on function call, pass const type to type causes auto makeing instance.
+* * * on function call, pass const type to type causes auto making instance.
 * * * export exports the function, also prevent to be inlined.
 * Special characters
 * * Int
@@ -51,7 +52,7 @@ Otherwise, they can even infect if whole system is infected condition.
 * * * one of two type we have on this, vector we call ctor(...), dtor() on around instances, first operand with size.
 * * * We have : reserve, resize, push, pop, delete, op \[\] type function on this,
 * * move(...)
-* * * like in C++.
+* * * like in C++, only for vector instance move.
 * * op-noop
 * * * noop root operator.
 * * \_\_pointer_bits\_\_
@@ -72,7 +73,7 @@ Otherwise, they can even infect if whole system is infected condition.
 
 # General Tips
 If the data is enough, machine learning methods can implement any of the implementation.
-So around this, we aims and we need the implementation of compact and low complexity and whole readable library, (and system).
+So around this, we aims and we need the implementation of compact and low complexity which is easy to audit.
 
 # Tips on layers
 Ongoing deep learnings often have layers 6 or so.
@@ -152,4 +153,5 @@ We cram the scrapped delusion which all the things we want supported by computer
 2024/04/11 syntax is concrete in first try. might be changed from some implementation simplify constarints.
 2024/04/15 update readme.
 2024/04/20 add tips on layers.
+2024/05/16 try to include auditing perspective, however, we don't know how to do them now (might be only the way is to compress some well written libraries as the descriptions only).
 
