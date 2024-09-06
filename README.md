@@ -5,12 +5,12 @@ This aims to compile nand source into C or lisp source and check the output by h
 Otherwise, they can even infect if whole system is infected condition.
 (All we can do is to transcode and check the transformed or compiled source by hands or eyes even any of the code patches, or, we can do only to crypt them with the cryption algorithm hidden from the attacker.)
 
-# Syntax concrete (9).
+# Syntax concrete (a).
 * ':' directive on root context
 * * namespace-name : "(uri|path)"(.type|.function|.op)?
 * * * import once, no need include guard.
 * * * to define some of the name, we should use separated file.
-* * operator-name(\[templates...\]) : op(\[templates...\])? inherit-op : type?
+* * operator-name(\[templates...\]) : inherit-op(\[templates...\])? : type?
 * * * multiple lines.
 * * * operator collections to types.
 * * * if caller specified name doesn't match this op, call inherit.
@@ -18,7 +18,7 @@ Otherwise, they can even infect if whole system is infected condition.
 * * * * for each operator call, non const or const first/last operation.
 * * * (operators)
 * * * * could call another operator classes.
-* * type-name(\[templates...\]) : type(\[templates...\])?
+* * type-name(\[templates...\]) : inherit-type(\[templates...\])?
 * * * multiple lines.
 * * * use some integer or type sets as a type.
 * * * like typedef struct ... in C but with ctor(...), dtor().
@@ -57,6 +57,8 @@ Otherwise, they can even infect if whole system is infected condition.
 * * * like in C++, we use pointers to compile so instance move.
 * * op-noop
 * * * noop root operator.
+* * type-root
+* * * root of the type, void, no internal states.
 * * \_\_pointer_bits\_\_
 * * * number of pointer bit size.
 * * \_\_here\_\_
@@ -72,6 +74,7 @@ Otherwise, they can even infect if whole system is infected condition.
 * * \# will treat line after them as a comment.
 * * * \# license? comment...
 * * type or op can specify (type \| ... \| type) or (op \| ... \| op), also be able to specify template omitted.
+* * It's no concrete 'private' definition.
 
 # Tips on layers
 There exists universal approximation theorem around 1980s-1990s but ongoing machie learnings uses many of layers often have 6 or so.
@@ -92,7 +95,7 @@ Whole of this tip, so we need the internal states bits, in another words, the ve
 So en/decode the input is the matter but this is well done by some places and someones we can find on the Internet.
 So there's no new field on us.
 
-# Tips o reduction
+# Tips on reduction
 To make things simple enough easy to audit, we need to reduce the code amount.
 
 One of the method reducing source code is to exclude same or similar structures from reading binary perspective.
