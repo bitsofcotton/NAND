@@ -5,7 +5,7 @@ This aims to compile nand source into C or lisp source and check the output by h
 Otherwise, they can even infect if whole system is infected condition.
 (All we can do is to transcode and check the transformed or compiled source by hands or eyes even any of the code patches, or, we can do only to crypt them with the cryption algorithm hidden from the attacker.)
 
-# Syntax concrete (a).
+# Syntax concrete (b).
 * ':' directive on root context
 * * namespace-name : "(uri|path)"(.type|.function|.op)?
 * * * import once, no need include guard.
@@ -65,7 +65,7 @@ Otherwise, they can even infect if whole system is infected condition.
 * * * information for debugging.
 * * () ? () : ()
 * * * 3-term operator like in C.
-* * '(for|para)\[operator\] ... from ... to ... : label', operator ++, operator \< function definition is used,
+* * 'label : (for|para)\[operator\] ... from ... to ...', operator ++, operator \< function definition is used,
 * * * break label
 * * * when parallel, out of the scope treated as global, in the scope treated as thread variable (except for the reference).
 * * assert(x)
@@ -140,5 +140,6 @@ We cram the scrapped delusion which all the things we want supported by computer
 2024/04/20 add tips on layers.
 2024/05/16 try to include auditing perspective, however, we don't know how to do them now (might be only the way is to compress some well written libraries as the descriptions only).
 2024/09/06 fix and simplify, punch some non needed readme.
+2025/02/02 update readme, update control directory, should go this but we don't have much reason.
 
 
