@@ -5,27 +5,24 @@ This aims to compile nand source into C or lisp source and check the output by h
 Otherwise, they can even infect if whole system is infected condition.
 (All we can do is to transcode and check the transformed or compiled source by hands or eyes even any of the code patches, or, we can do only to crypt them with the cryption algorithm hidden from the attacker.)
 
-# Syntax concrete (b).
+# Syntax concrete (c).
 * ':' directive on root context
-* * namespace-name : "(uri|path)"(.type|.function|.op)?
+* * namespace-name : "(uri|path)"(.type|.ctor|.op)?
 * * * import once, no need include guard.
 * * * to define some of the name, we should use separated file.
-* * operator-name(\[templates...\]) : inherit-op(\[templates...\])? : type?
+* * type-name(\[templates...\])? : "type"
 * * * multiple lines.
-* * * operator collections to types.
-* * * if caller specified name doesn't match this op, call inherit.
-* * * enter, leave, call, return
-* * * * for each operator call, non const or const first/last operation.
-* * * (operators)
-* * * * could call another operator classes.
-* * type-name(\[templates...\]) : inherit-type(\[templates...\])?
-* * * multiple lines.
-* * * use some integer or type sets as a type.
-* * * like typedef struct ... in C but with ctor(...), dtor().
-* * * ctor(name! ...) '\!' specifies moved argument.
+* * * use integer or vector or type sets as a type.
+* * * like typedef struct ... in C but with dtor().
+* * * enter/leave is replaced into the internal of operators.
 * * * val \. element : in type element lookup out of the scope.
-* * * enter, leave
-* * * * for each variable change
+* * type-name(\[templates...\])? : "ctor"
+* * * type ctors.
+* * * type-name! returns reference.
+* * "op(symbol)"operator-name(\[templates...\])?(variables ...) : type?
+* * * per operator on type, like in the class internal definition of C++.
+* * * call internally templated another operators or enter/leave for another operators.
+* * * type! means they returns reference.
 * ':' directives
 * * variables
 * * * a : b
@@ -34,47 +31,36 @@ Otherwise, they can even infect if whole system is infected condition.
 * * * * the original variable will not be used like some awesome languages.
 * * * a : static(b)
 * * * * a is initialized by b once in first of execution.
-* * * a : func(b)
-* * * * a is instanced variable of function.
-* * * a : func!(b)
-* * * * a is function returned reference.
+* * * a : type-name(b)
+* * * * a is instanced variable of ctor.
+* * * a : type-name!(b)
+* * * * a is ctor returned reference.
 * * * * we should use function definition as entity ones in header files.
-* * name(\[templates...\])?(name : type (: "comment")?, ...) const? export? : type
-* * * function, name! returns reference.
-* * * with calling function, we must specify the variable name as:
-* * * * name(name = val, ...)
-* * * no return mnemonic, instead of them, reserved "res" variable.
-* * * * from awesome embedded C language.
-* * * on function call, pass const type to type causes auto making instance.
-* * * export exports the function, also prevent to be inlined.
+* * * a : (equation)
+* * * * substitute and initiate calculation result into variable.
 * Special characters
 * * Int
 * * * one of two type we have on this, pointer wide, full set of arithmetic/bit ops.
 * * Vec\[type\]
 * * * one of two type we have on this, vector we call ctor(...), dtor() on around instances, first operand with size.
-* * * We have : reserve, resize, push, pop, delete, op \[\] type function on this,
-* * move(...)
-* * * like in C++, we use pointers to compile so instance move.
-* * op-noop
-* * * noop root operator.
-* * type-root
-* * * root of the type, void, no internal states.
+* * * We have : op+reserve, op+resize, op+push, op-pop, op-delete, op\[\] type function on this,
 * * \_\_pointer_bits\_\_
 * * * number of pointer bit size.
 * * \_\_here\_\_
 * * * information for debugging.
 * * () ? () : ()
 * * * 3-term operator like in C.
-* * 'label : (for|para)\[operator\] ... from ... to ...', operator ++, operator \< function definition is used,
+* * 'label : (for|para)\[operator-name\] ... from ... to ...', operator ++, operator \< function definition is used,
 * * * break label
 * * * when parallel, out of the scope treated as global, in the scope treated as thread variable (except for the reference).
 * * assert(x)
 * * * stop execution or compilation if x is false.
-* * * we can override this with assert function redefinition in execution time.
+* * * we can override this with compiler option on execution time.
 * * \# will treat line after them as a comment.
 * * * \# license? comment...
-* * type or op can specify (type \| ... \| type) or (op \| ... \| op), also be able to specify template omitted.
-* * It's no concrete 'private' definition.
+* * generic programming like specifying multiple types is abandoned
+* * * instead of them, we can define each operator as a simple one.
+* * class capsule private can be specified global policy on compile time as single file access.
 
 # Tips on layers
 There exists universal approximation theorem around 1980s-1990s but ongoing machie learnings uses many of layers often have 6 or so.
@@ -117,12 +103,13 @@ So we need same from perspective on data to exclude multiple description writing
 However, it would be greately appreciated if you know the methods reducing source code other than along with preparing data nor how to treat data in the codes.
 
 # Tips on hard tune to break output
-Either, in the form p1 and randtools treats the input as finite accuracy fixed point number but aligns on last of the function, so around middle part of the function could be broken as some of discontinuity.
-So the concrete method to have correct result cannot reduce or omit some of the loop number or algorithm topology as to be a Lie algebraic continuity.
+(rewrote:) The compiler loop hard tuning can slips with our obs.
+So only a concrete method is to decompose calculation only with unary/binary operators with stacking internal calculation result.
+So to strictly apply this, we conclude we only use ctor, ops only with Int/Vector types.
+However, the optimization itself can be applied, so to locking not to slip them, we should only tune them as linear ones.
 
-So if this condition is true for our observations, some of the continuity concerns some of the observation.
-
-However, there's also the probability they depends on data amount function have itself only.
+The radical method can use binary operator as hard tuned with applying tree of them can result only the operator-data concerns so any of the calculation time to be upper bound (input size)^2\*lg(input size) result with input size == output size condition.
+Ideally we might get this result but they can slips in some conditions so which we cannot determine enough.
 
 # Things undone.
 This repository has NO materialized implementation.
@@ -141,5 +128,5 @@ We cram the scrapped delusion which all the things we want supported by computer
 2024/05/16 try to include auditing perspective, however, we don't know how to do them now (might be only the way is to compress some well written libraries as the descriptions only).
 2024/09/06 fix and simplify, punch some non needed readme.
 2025/02/02 update readme, update control directory, should go this but we don't have much reason.
-
+2025/05/31 update readme, for readability reason, we can go with this, but also in maze is it have some meaning in this decade?
 
