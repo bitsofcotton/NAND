@@ -3,7 +3,7 @@ Natural tinier compiler which code with natural tinier comments and licenses on 
 
 This aims to compile nand source into C or lisp source and check the output by hand or eyes.
 Otherwise, they can even infect if whole system is infected condition.
-(All we can do is to transcode and check the transformed or compiled source by hands or eyes even any of the code patches, or, we can do only to crypt them with the cryption algorithm hidden from the attacker.)
+Searching assertion intention amplifier methods. (basically, they're only a saturation of the structure attributes balanced to cognitive load.).
 
 # Syntax concrete (c).
 * ':' directive on root context
@@ -62,27 +62,8 @@ Otherwise, they can even infect if whole system is infected condition.
 * * * instead of them, we can define each operator as a simple one.
 * * class capsule private can be specified global policy on compile time as single file access.
 
-# Tips on layers
-There exists universal approximation theorem around 1980s-1990s but ongoing machie learnings uses many of layers often have 6 or so.
-This is valid because non commutative algebra between the layers has the limit 6 dimension without some habit vectors from the perspective we have.
-Also, the 6 of layers can be reduced into 4 of layers if we only to apply such learned results into some of the input stream.
-So same method, we can reduce 2/3 per each on only to apply some functions, however, there's some entropy vs. last observation limit we don't get better result lower bound.
-
-Also, the internal states entropy the function and the learned vector have has the upper bound up to around 2Pbits or so, without some habit vectors, from 3-function 16-depth tri-colored tree perspective.
-So we need up to around 250TB on the memory, however, we cannot have them from our currency reason, so we can only get some projection of them by some larger communities.
-
-Also, to learn something from the vector set, we need the vector dimension up to d := 2/sqrt(log(2)) \* sqrt(n \* log(n)) for n : input number of the vectors.
-This is the rough our limit on learning.
-
-Whole of this tip, so we need the internal states bits, in another words, the vector dimension on some machine learning, has the upper bound from 2 of them:
-(i) vector input number, (ii) the dimension the function input/output have.
-(i) is described below d \* 4 + 19683, (ii) is around dimension \* 4 + 19683.
-
-So en/decode the input is the matter but this is well done by some places and someones we can find on the Internet.
-So there's no new field on us.
-
 # Tips on reduction
-To make things simple enough easy to audit, we need to reduce the code amount.
+To make things simple enough easy to audit, we need to reduce the code amount also amplify assertion intensions by simple syntax.
 
 One of the method reducing source code is to exclude same or similar structures from reading binary perspective.
 
@@ -103,13 +84,9 @@ So we need same from perspective on data to exclude multiple description writing
 However, it would be greately appreciated if you know the methods reducing source code other than along with preparing data nor how to treat data in the codes.
 
 # Tips on hard tune to break output
-(rewrote:) The compiler loop hard tuning can slips with our obs.
-So only a concrete method is to decompose calculation only with unary/binary operators with stacking internal calculation result.
-So to strictly apply this, we conclude we only use ctor, ops only with Int/Vector types.
-However, the optimization itself can be applied, so to locking not to slip them, we should only tune them as linear ones.
+The -Ohard loop hard optimization causes our phenomenon - structure also algorithm one to one map slips as a result of N-calculation on QP shortest path around hypothesis and their combination phenomenon.
 
-The radical method can use binary operator as hard tuned with applying tree of them can result only the operator-data concerns so any of the calculation time to be upper bound (input size)^2\*lg(input size) result with input size == output size condition.
-Ideally we might get this result but they can slips in some conditions so which we cannot determine enough.
+So to avoid them, we need to add some extra constant variables on loop even we only need only one dimension for them in surface.
 
 # Things undone.
 This repository has NO materialized implementation.
@@ -129,4 +106,5 @@ We cram the scrapped delusion which all the things we want supported by computer
 2024/09/06 fix and simplify, punch some non needed readme.
 2025/02/02 update readme, update control directory, should go this but we don't have much reason.
 2025/05/31 update readme, for readability reason, we can go with this, but also in maze is it have some meaning in this decade?
+2025/10/27 update readme. -Ohard exceptions.
 
